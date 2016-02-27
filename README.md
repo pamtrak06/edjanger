@@ -7,7 +7,7 @@ Don't want to write a docker-compose yaml for your testing Dockerfile ?
 Try edocker !
 ## ! Warrantly !
 Script edocker_install.sh is updating your bash environnement (~/.bash_aliases, ...) at your own risk.
-Please read the script before any installation.
+Please read the script edocker-installation.sh before any installation.
 
 ## How to install edocker
 edocker must be installed in /usr/local/edocker, like:
