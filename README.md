@@ -5,7 +5,7 @@ Annoying about repeating docker commands with long parameters ?
 Don't want to write a docker-compose yaml for your testing Dockerfile ?
 
 Try edocker !
-## ! Warrantly !
+## ! Warning !
 Script edocker_install.sh is updating your bash environnement (~/.bash_aliases, ...) at your own risk.
 Please read the script edocker-installation.sh before any installation.
 
