@@ -1,0 +1,3 @@
+source edocker.cfg
+echo delete images with none...
+docker rmi ${force_rmi} $(docker images | grep none| awk '{print $3}')
