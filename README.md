@@ -67,21 +67,21 @@ Now you've got aliases to run all your docker commands like:
 
 !!! All thoses aliases are available only when you're in your project folder ([docker working project]) '''
 
-### build alias
+### #build alias
 Alias d[basename for \<docker working project\>]build use following parameters readed from edocker.cfg:
 - environment_variables: give build_args option to docker build command 
 - build_path: folder containing Dockerfile
 - image_name: image name used for build
 
-### images alias
+### #images alias
 Alias d[basename for \<docker working project\>]images use following parameters readed from edocker.cfg:
 - image_name: image name used to grep for docker images command 
 
-### rmi alias
+### #rmi alias
 Alias d[basename for \<docker working project\>]rmi do not use parameters readed from edocker.cfg.
 This alias delete all images tagged with "none" attribute
 
-### run alias
+### #run alias
 Alias d[basename for \<docker working project\>]run use following parameters readed from edocker.cfg:
 - image_name: image name to create a container used by docker run command
 - container_name: name of the container for option --name used by docker run command
@@ -90,27 +90,27 @@ Alias d[basename for \<docker working project\>]run use following parameters rea
 - environment_variables: environement variables option (-e) used by docker run command
 - linked_containers: linked container mapping option (--link) used by docker run command
 
-### ps alias
+### #ps alias
 Alias d[basename for \<docker working project\>]ps use following parameters readed from edocker.cfg:
 - container_name: name of the container
 
-### rm alias
+### #rm alias
 Alias d[basename for \<docker working project\>]rm use following parameters readed from edocker.cfg:
 - container_name: name of the container to be deleted
 
-### start alias
+### #start alias
 Alias d[basename for \<docker working project\>]start use following parameters readed from edocker.cfg:
 - container_name: name of the container to be started
  
-### stop alias
+### #stop alias
 Alias d[basename for \<docker working project\>]stop use following parameters readed from edocker.cfg:
 - container_name: name of the container to be stopped
 
-### logs alias
+### #logs alias
 Alias d[basename for \<docker working project\>]logs use following parameters readed from edocker.cfg:
 - container_name: name of the container to be logged 
 
-### inspect alias
+### #inspect alias
 Alias d[basename for \<docker working project\>]inspect use following parameters readed from edocker.cfg:
 - container_name: name of the container to be inspected 
 
