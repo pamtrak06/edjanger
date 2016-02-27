@@ -11,44 +11,44 @@ Please read the script before any installation.
 
 ## How to install edocker
 edocker must be installed in /usr/local/edocker, like:
-```
+```bash
 cd /usr/local; git clone https://github.com/pamtrak06/edocker.git
 cd edocker; chmod 755 *.sh
 ```
 
 Put edocker in your PATH:
-```
+```bash
 export PATH=$PATH:/usr/local/edocker
 ```
 
 ## How to activate edocker for a project
 Go to your working docker folder
-```
+```bash
 cd [docker working project]
 ```
 Copy the edocker.cfg model in your working docker folder
-```
+```bash
 cp /usr/local/edocker/edocker.cfg [docker working project] 
 ```
 Configure your edocker.cfg with correct parameters
 By example, you could create a Dockerfile with this path :
-```
+```bash
 vi [docker working project]/build/Dockerfile
 ```
 Run th edocker installation
-```
+```bash
 edcoker-install.sh
-```
+```bash
 Execute the generated alias file
-```
+```bash
 source [basename for <docker working project>].alias
 ```
 You could remove those aliases by execute :
-```
+```bash
 source [basename for <docker working project>].unalias
 ```
 Your ~/bash_aliases contain alias activation for future bash sessions like:
-```
+```bash
 source [basename for <docker working project>].alias
 ```
 
@@ -116,7 +116,7 @@ Alias d[basename for \<docker working project\>]inspect use following parameters
 
 ## Tips
 create those two aliases and give the correct path for your project
-```
+```bash
 alias cdedocker='cd /usr/local/edocker'
 alias cd[basename for <docker working project>]='cd [docker working project]'
 ```
