@@ -26,28 +26,28 @@ echo "export PATH=$PATH:/usr/local/edocker" >> ~/.bashrc
 ```
 
 ## How to activate edocker for a project
-Go to your working docker folder
+Go to your working docker folder:
 ```bash
 cd [docker working project]
 ```
-Copy the edocker.cfg model in your working docker folder
+Copy the edocker.cfg model in your working docker folder:
 ```bash
 cp /usr/local/edocker/edocker.cfg [docker working project] 
 ```
 Configure your edocker.cfg with correct parameters
-By example, you could create a Dockerfile with this path :
+By example, you could create a Dockerfile with this path:
 ```bash
 vi [docker working project]/build/Dockerfile
 ```
-Run the edocker installation
+Run the edocker installation from your working docker folder:
 ```bash
 edcoker-install.sh
 ```
-Execute the generated alias file
+Execute the generated alias file:
 ```bash
 source [basename for <docker working project>].alias
 ```
-You could remove those aliases by execute :
+You could remove those aliases by executing:
 ```bash
 source [basename for <docker working project>].unalias
 ```
