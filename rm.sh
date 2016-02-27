@@ -7,7 +7,7 @@ else
   read response
   if [ "y" = "$response" ]; then
     if [ -n "$(docker ps -a|grep ${container_name}_${idx})" ]; then
-      echo "Delete container: \"${container_name}_${idx}\"...
+      echo "Delete container: \"${container_name}_${idx}\"..."
       docker rm $(docker stop ${container_name}_${idx})
     else
       echo "Container \"${container_name}_${idx}\" does not exist"
