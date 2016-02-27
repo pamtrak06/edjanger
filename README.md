@@ -72,3 +72,5 @@ Tips: create those two aliases with replacing the correct path for your project
 alias cdedocker='cd /usr/local/edocker'
 alias cd[basename for <docker working project>]='cd [docker working project]'
 ```
+## License
+edocker is under  "MIT License (MIT)" see LICENSE file.
