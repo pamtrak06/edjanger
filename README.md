@@ -54,7 +54,7 @@ source [basename for <docker working project>].alias
 
 ## How to use edocker for a project
 Now you've got aliases to run all your docker commands like:
-- d[basename for <docker working project>]build
+- d[basename for \<docker working project\>]build
 - d[basename for <docker working project>]images
 - d[basename for <docker working project>]rmi
 - d[basename for <docker working project>]rum
