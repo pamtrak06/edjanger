@@ -20,6 +20,10 @@ Put edocker in your PATH:
 ```bash
 export PATH=$PATH:/usr/local/edocker
 ```
+Put edocker in your bash sessions:
+```bash
+echo "export PATH=$PATH:/usr/local/edocker" >> ~/.bashrc
+```
 
 ## How to activate edocker for a project
 Go to your working docker folder
