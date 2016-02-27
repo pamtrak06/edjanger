@@ -73,7 +73,7 @@ Now you've got aliases to run all your docker commands like:
 
 ### #build alias
 Alias d[basename for \<docker working project\>]build use following parameters readed from edocker.cfg:
-- environment_variables: give build_args option to docker build command 
+- build_args: give build_args option to docker build command 
 - build_path: folder containing Dockerfile
 - image_name: image name used for build
 
