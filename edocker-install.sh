@@ -21,7 +21,7 @@ if [ -f $curdir/edocker.cfg ]; then
   echo -e "  - \"<source ${prefix}.unalias>\" => aliases d${prefix}[docker command] are removed"
   echo -e "\n--- Check if aliases are activated or removed in your session by running:"
   echo -e "  - \"<alias|grep ${prefix}>\""
-  if [ ! -f ~/.bash_aliases ] || [ -z "cat ~/.bash_aliases|grep ${prefix}.alias" ]; then
+  if [ ! -f ~/.bash_aliases ] || [ -n "cat ~/.bash_aliases|grep ${prefix}.alias" ]; then
     echo -e "\n--- Updating aliases activation in ~/.bash_aliases for future sessions..."
     echo -e "source ${curdir}/${prefix}.alias" >> ~/.bash_aliases
     echo -e "\n"
