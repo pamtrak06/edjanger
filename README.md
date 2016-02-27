@@ -39,10 +39,10 @@ By example, you could create a Dockerfile with this path :
 ```bash
 vi [docker working project]/build/Dockerfile
 ```
-Run th edocker installation
+Run the edocker installation
 ```bash
 edcoker-install.sh
-```bash
+```
 Execute the generated alias file
 ```bash
 source [basename for <docker working project>].alias
