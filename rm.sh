@@ -2,9 +2,9 @@ if [ ! -f edocker.cfg ]; then
   echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
 else
   source edocker.cfg
-  idx=$(echo "$(docker ps -a|grep ${image_name}|wc -l)+0"|bc)
+  idx=$(echo "$(docker ps -a|grep ${container_name}|wc -l)+0"|bc)
   if [ "0" = "${idx}" ]; then
-    echo "No running or stopped container for image: \"${image_name}\" available"
+    echo "No running or stopped container which name contains: \"${container_name}\" available"
   else
     echo "Container \"${container_name}_${idx}\" will be permanently erased, do you want to continue (y/n) ?"
     read response
