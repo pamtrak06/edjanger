@@ -1,3 +1,9 @@
+# ----------------------------------------------------
+# The MIT License (MIT)
+#
+# Copyright (c) 2016 copyright pamtrak06@gmail.com
+# ----------------------------------------------------
+
 function dockerbasicimage()
 {
   command="$1"

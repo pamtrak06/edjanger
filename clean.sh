@@ -1,3 +1,9 @@
+# ----------------------------------------------------
+# The MIT License (MIT)
+#
+# Copyright (c) 2016 copyright pamtrak06@gmail.com
+# ----------------------------------------------------
+
 echo "Images with \"none\" name will be deleted, is it ok for you (y/n) ?"
 read response
 if [ "y" = "$response" ]; then

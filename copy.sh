@@ -1,3 +1,9 @@
+# ----------------------------------------------------
+# The MIT License (MIT)
+#
+# Copyright (c) 2016 copyright pamtrak06@gmail.com
+# ----------------------------------------------------
+
 function usage {
   echo "Arguments: <order from host to container (h), from container to host (c)> <path from h or c> <path from c or h>"$
   echo "If argument 1=h, arg2=filename from host,    arg3=container path"$
