@@ -48,7 +48,7 @@ edockerinit
 ```
 Equivalent to 
 ```bash
-cp [edocker path]/edocker.cfg.sample [docker working project]/edocker.cfg
+cp [edocker path]/[edocker.cfg.sample](https://github.com/pamtrak06/edocker/blob/master/edocker.cfg.sample) [docker working project]/edocker.cfg
 ```
 
 Configure your edocker.cfg with correct parameters
