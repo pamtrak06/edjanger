@@ -1,36 +1,22 @@
-function dockerbasicimage()
+function usage_build()
 {
-  command="$1"
-  comment="$2"
- 
-  if [ ! -f edocker.cfg ]; then
-    echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
-  else
-    source edocker.cfg
-    echo "${comment} $(echo ${image_name} | cut -d ':' -f1)..."
-    docker ${command} | grep $(echo ${image_name} | cut -d ':' -f1)
-  fi
-
+  echo -e "edockerbuild"
+  echo -e "\n"
+  echo -e "#configuration"
+  echo -e "- edocker.cfg parameters:"
+  echo -e "  - image_name: name of image to be build"
+  echo -e "  - build_args: arguments give to building image"
+  echo -e "  - build_path: path where to find Dockerfile and his context"
+  echo -e "\n"$
+  echo -e "#usage"
+  echo -e "edockerbuild"
 }
 
-function dockerbasiccontainer()
+function usage()
 {
-  command="$1"
-  comment="$2"
-  initidx="$3"
-
-  if [ ! -f edocker.cfg ]; then
-    echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
-  else
-    source edocker.cfg
-    echo "${comment} ${ct}..."
-    if [ "${initidx}" != "-1" ]; then
-      idx=$(echo "$(docker ps | grep ${image_name} | wc -l)+${initidx}" | bc)
-      ct=${container_name}_${idx}
-      docker ${command} ${ct}
-    else
-      ct=${container_name}
-      docker ${command} | grep ${ct}
-    fi
+  if [ "$1" = "build" ]; then
+    usage_build
   fi
 }
+
+usage
