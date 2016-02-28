@@ -48,10 +48,10 @@ edockerinit
 ```
 Equivalent to 
 ```bash
-cp [edocker path]/[edocker.cfg.sample](https://github.com/pamtrak06/edocker/blob/master/edocker.cfg.sample) [docker working project]/edocker.cfg
+cp [edocker path]/edocker.cfg.sample [docker working project]/edocker.cfg
 ```
 
-Configure your edocker.cfg with correct parameters
+Configure your [edocker.cfg](https://github.com/pamtrak06/edocker/blob/master/edocker.cfg.sample) with correct parameters
 By example, you could create a Dockerfile with this path:
 ```bash
 vi [docker working project]/build/Dockerfile
@@ -70,7 +70,7 @@ Now you've got aliases to run all your docker commands like:
 - edockerlogs
 - edockerinspect
 
-!!! All thoses aliases are available only when you've got an edocker.cfg file in your project folder ([docker working project]) '''
+!!! All thoses aliases are available only when you've got an [edocker.cfg](https://github.com/pamtrak06/edocker/blob/master/edocker.cfg.sample) file in your project folder ([docker working project]) '''
 
 ### #alias edockerbuild
 Alias edockerbuild use following parameters readed from edocker.cfg:
