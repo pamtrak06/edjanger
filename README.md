@@ -44,13 +44,13 @@ edockerinit
 ```
 Equivalent to 
 ```bash
-cp [edocker path]/edocker.cfg.sample [docker working project]/edocker.cfg
+cp [edocker path]/edocker.cfg.sample [your docker working project]/edocker.cfg
 ```
 
-Configure your [edocker.cfg](https://github.com/pamtrak06/edocker/blob/master/edocker.cfg.sample) with correct parameters
+Configure your [edocker.cfg](https://github.com/pamtrak06/edocker/blob/master/edocker.cfg.sample) with correct parameters.
 By example, you could create a Dockerfile with this path:
 ```bash
-vi [docker working project]/build/Dockerfile
+vi [your docker working project]/build/Dockerfile
 ```
 
 ## How to use edocker in a docker a project working directory
