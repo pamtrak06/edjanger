@@ -1,4 +1,2 @@
-source edocker.cfg
-idx=$(echo "$(docker ps | grep ${image_name} | wc -l)+0" | bc)
-echo "logs container name:  ${container_name}_${idx}..."
-docker logs ${container_name}_${idx}
+source /usr/local/edocker/help.sh
+dockerbasiccontainer "logs" "Logs of container: " "0"

@@ -1,3 +1,2 @@
-source edocker.cfg
-echo "ps container with beginning name like:  ${container_name}..."
-docker ps -a | grep ${container_name}
+source /usr/local/edocker/help.sh
+dockerbasiccontainer "ps" "State of containers with name like: " "-1"

@@ -1,0 +1,59 @@
+# global edocker
+edockerpath=/usr/local/edocker
+prefix=edocker
+
+function buildAliases() {
+  
+  # edocker alias/unalias files
+  edaliasFile=${edockerpath}/${prefix}.alias
+  edunaliasFile=${edockerpath}/${prefix}.unalias
+  
+  echo -e "\n--- edocker: easy docker ---"
+  echo -e "\n--- Installation..."
+  
+  echo -e "\nProcess will create alias command in files:"
+  echo -e "  - ${edaliasFile}, containing all edocker alias"
+  echo -e "  - ${edunaliasFile}, containing all edocker unalias"
+  
+  # list all *.sh scripts from edocker path
+  scripts=$(ls $edockerpath/*.sh | grep -v $(basename $0))
+
+  # delete all previous aliases files in edocker path
+  rm -f ${edaliasFile} {edunaliasFile}
+  
+  echo -e "\n--- Build aliases..."
+  
+  # create aliases files (*.alias and *.unalias)
+  for s in $scripts; do
+    
+    base=$(basename $s)
+    
+    edalias=${prefix}${base%.sh}
+    
+    echo -e "  - updating aliases ${edalias} in files..."    
+
+    echo "alias ${edalias}=\". ${edockerpath}/${base}\"" >> ${edaliasFile}
+    
+    echo "unalias ${edalias}" >> ${edunaliasFile}
+    
+  done
+  
+  echo -e "\n--- Aliases files created. Run commands for (un)activation:"
+  echo -e "  - \"<source ${edockerpath}/${prefix}.alias>\"   => aliases ${prefix}[docker command] are added"
+  echo -e "  - \"<source ${edockerpath}/${prefix}.unalias>\" => aliases ${prefix}[docker command] are removed"
+ 
+  # check if alias are activated
+  echo -e "\n--- Check if aliases are activated or removed in your session by running:"
+  echo -e "  - \"<alias|grep ${prefix}>\""
+  
+  # configuration of docker project
+  echo -e "\n--- Do following actions in your favorite docker working directory:"
+  echo -e "  - run \"<edockerinit>\" your docker working directory,"
+  echo -e "    it copy model edocker.cfg.sample in your docker working directory with name edocker.cfg"
+  echo -e "  - configure parameters inside edocker.cfg, most important: image_name and container_name"
+  echo -e "  - try an edocker command, like edockerbuild..."
+    
+}
+
+# update (un)alias files in edocker path
+buildAliases

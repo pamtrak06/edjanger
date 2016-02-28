@@ -1,4 +1,2 @@
-source edocker.cfg
-idx=$(echo "$(docker ps | grep ${image_name} | wc -l)+1" | bc)
-echo start container name:  ${container_name}_${idx}...
-docker start ${container_name}_${idx}
+source /usr/local/edocker/help.sh
+dockerbasiccontainer "start" "Starting container: " "0"

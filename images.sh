@@ -1,3 +1,2 @@
-source edocker.cfg
-echo "images with beginning name like:  ${image_name}..."
-docker images | grep ${image_name}
+source /usr/local/edocker/help.sh
+dockerbasicimage "images" "List image which name name contains: "
