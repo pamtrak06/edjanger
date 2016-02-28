@@ -6,31 +6,34 @@ Annoying about repeating docker commands with long parameters ?
 Try edocker !
 
 ## How to install edocker
-edocker must be installed in /usr/local/edocker, like:
 ```bash
-cd /usr/local; git clone https://github.com/pamtrak06/edocker.git
-cd edocker; chmod 755 *.sh
+git clone https://github.com/pamtrak06/edocker.git
+cd edocker; chmod 755 *.sh; chmod 755 edockerinstall
 ```
 
 Run edocker installation
 ```bash
-cd /usr/local/edocker; chmod 755 *.sh; chmod 755 edockerinstall
 ./edockerinstall
-```
-
-Put edocker in your bash sessions:
-```bash
-echo "source /usr/local/edocker/edocker.alias" >> ~/.bashrc
 ```
 
 Execute the generated alias file:
 ```bash
-source /usr/local/edocker/edocker.alias
+source edocker.alias
 ```
 
-You could remove those aliases by executing:
+All is done !!! Run this command to see your edocker aliases
 ```bash
-source /usr/local/edocker/edocker.unalias
+alias|grep edocker
+```
+
+Recommanded: add edocker alias activation in your bash sessions:
+```bash
+echo "source [edocker path]/edocker.alias" >> ~/.bashrc
+```
+
+Tips: remove edocker aliases by executing:
+```bash
+source edocker.unalias
 ```
 
 ## How to activate edocker for a project
@@ -45,10 +48,10 @@ edockerinit
 ```
 Equivalent to 
 ```bash
-cp /usr/local/edocker/edocker.cfg.sample [docker working project]/edocker.cfg
+cp [edocker path]/edocker.cfg.sample [docker working project]/edocker.cfg
 ```
 
-Configure your edocker.cfg with correct parameters
+Configure your [edocker.cfg](https://github.com/pamtrak06/edocker/blob/master/edocker.cfg.sample) with correct parameters
 By example, you could create a Dockerfile with this path:
 ```bash
 vi [docker working project]/build/Dockerfile
@@ -67,7 +70,7 @@ Now you've got aliases to run all your docker commands like:
 - edockerlogs
 - edockerinspect
 
-!!! All thoses aliases are available only when you've got an edocker.cfg file in your project folder ([docker working project]) '''
+!!! All thoses aliases are available only when you've got an [edocker.cfg](https://github.com/pamtrak06/edocker/blob/master/edocker.cfg.sample) file in your project folder ([docker working project]) '''
 
 ### #alias edockerbuild
 Alias edockerbuild use following parameters readed from edocker.cfg:
@@ -119,8 +122,8 @@ Alias edockerinspect use following parameters readed from edocker.cfg:
 ## Tips
 create those two aliases and give the correct path for your project
 ```bash
-alias cdedocker='cd /usr/local/edocker'
-alias cd[basename for <docker working project>]='cd [docker working project]'
+alias cdedocker='cd [edocker path]'
+alias cd[basename for your docker working project]='cd [your docker working project]'
 ```
 ## Work in progress
 Please contribute !
@@ -128,6 +131,7 @@ Please contribute !
 - daemon               => TO BE Implemented
 - attach               => TO BE Implemented
 - build                => OK
+- clean                => OK
 - commit               => TO BE Implemented
 - cp                   => OK
 - create               => TO BE Implemented
@@ -135,10 +139,12 @@ Please contribute !
 - events               => TO BE Implemented
 - exec                 => OK
 - export               => TO BE Implemented
+- help                 => OK
 - history              => TO BE Implemented
 - images               => OK
 - import               => TO BE Implemented
 - info                 => TO BE Implemented
+- init                 => OK
 - inspect              => OK
 - kill                 => TO BE Implemented
 - load                 => TO BE Implemented
