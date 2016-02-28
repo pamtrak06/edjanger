@@ -1,2 +1,2 @@
-source /usr/local/edocker/help.sh
+source {edockerpath}/help.sh
 dockerbasiccontainer "inspect" "Inspection of container: " "0"

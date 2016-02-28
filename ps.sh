@@ -1,2 +1,2 @@
-source /usr/local/edocker/help.sh
+source {edockerpath}/help.sh
 dockerbasiccontainer "ps" "State of containers with name like: " "-1"

@@ -1,7 +1,15 @@
 # global edocker
-edockerpath=/usr/local/edocker
+edockerpath=$PWD
 prefix=edocker
 
+# Replace absolute paths of edocker in all scripts
+function updatePaths() {
+  script="$1"
+  base=$(basename $s)
+  sed -i "s|{edockerpath}|$PWD|g" ${script}
+}
+
+# Build aliases files
 function buildAliases() {
   
   # edocker alias/unalias files
@@ -25,6 +33,8 @@ function buildAliases() {
   
   # create aliases files (*.alias and *.unalias)
   for s in $scripts; do
+    
+    updatePaths "$s"
     
     base=$(basename $s)
     
