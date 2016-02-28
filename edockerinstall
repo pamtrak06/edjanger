@@ -7,18 +7,27 @@
 # global edocker
 edockerpath=$PWD
 prefix=edocker
+mode=debug
 
 # Replace absolute paths of edocker in all scripts
 function updatePaths() {
   script="$1"
-  if [ "$(uname)" = "Linux" ]; then
-    sed -i "s|{edockerpath}|$PWD|g" ${script}
-    # reverse for github uploading
-    #sed -i "s|$PWD|{edockerpath}|g" ${script}
-  elif [ "$(uname)" = "Darwin" ]; then
-    sed -i '' "s|{edockerpath}|$PWD|g" ${script}
-    # reverse for github uploading
-    #sed -i '' "s|$PWD|{edockerpath}|g" ${script}
+  
+  if [ "${mode}" = "release" ]; then
+    if [ "$(uname)" = "Linux" ]; then
+      sed -i "s|{edockerpath}|$PWD|g" ${script}
+    elif [ "$(uname)" = "Darwin" ]; then
+      sed -i '' "s|{edockerpath}|$PWD|g" ${script}
+    fi
+  else
+    if [ "$(uname)" = "Linux" ]; then
+      # reverse for github uploading
+      sed -i "s|$PWD|{edockerpath}|g" ${script}
+    elif [ "$(uname)" = "Darwin" ]; then
+      sed -i '' "s|{edockerpath}|$PWD|g" ${script}
+      # reverse for github uploading
+      sed -i '' "s|$PWD|{edockerpath}|g" ${script}
+    fi
   fi
 }
 
