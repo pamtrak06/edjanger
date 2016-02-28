@@ -2,7 +2,6 @@
 Scripts for easyest docker commands in a docker working folder (Dockerfile)
 
 Annoying about repeating docker commands with long parameters ?
-Don't want to write a docker-compose yaml for your testing Dockerfile ?
 
 Try edocker !
 
