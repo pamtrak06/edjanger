@@ -1,21 +1,36 @@
 function usage_build()
 {
   echo -e "-- edockerbuild --"
+  echo -e "  # Purpose"
+  echo -e "     Build image \"image_name\" from Dockerfile in \"build_path\" with arguments \"build_args\""
+  echo -e "  # Usage"
+  echo -e "     edockerbuild"
   echo -e "  # Configuration"
-  echo -e "     - edocker.cfg parameters:"
+  echo -e "     Parameters in edocker.cfg:"
   echo -e "       - image_name: name of image to be build"
   echo -e "       - build_args: arguments give to building image"
   echo -e "       - build_path: path where to find Dockerfile and his context"
-  echo -e "   # Usage"
-  echo -e "      edockerbuild"
+}
+
+function usage_clean()
+{
+  echo -e "-- edockerclean --"
+  echo -e "  # Purpose"
+  echo -e "     Clean all images with \"none\" attribute"
+  echo -e "  # Usage"
+  echo -e "     edockerclean"
+  echo -e "  # Configuration"
+  echo -e "     No parameters in edocker.cfg"
 }
 
 function usage()
 {
   if [ -z "$1" ]; then
-    echo "Help must have one argument in list: build"
+    echo "Help must have one argument in list: build, clean"
   elif [ "$1" = "build" ]; then
     usage_build
+  elif [ "$1" = "clean" ]; then
+    usage_clean
   fi
 }
 
