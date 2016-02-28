@@ -5,8 +5,7 @@ prefix=edocker
 # Replace absolute paths of edocker in all scripts
 function updatePaths() {
   script="$1"
-  base=$(basename $s)
-  sed -i "s|{edockerpath}|$PWD|g" ${script}
+  sed -i '' "s|{edockerpath}|$PWD|g" ${script}
 }
 
 # Build aliases files
@@ -32,11 +31,11 @@ function buildAliases() {
   echo -e "\n--- Build aliases..."
   
   # create aliases files (*.alias and *.unalias)
-  for s in $scripts; do
+  for s in ${scripts}; do
+
+    updatePaths "${s}"
     
-    updatePaths "$s"
-    
-    base=$(basename $s)
+    base=$(basename ${s})
     
     edalias=${prefix}${base%.sh}
     
