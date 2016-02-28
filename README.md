@@ -56,15 +56,19 @@ vi [your docker working project]/build/Dockerfile
 ## How to use edocker in a docker a project working directory
 Now you've got aliases to run all your docker commands like:
 - edockerbuild
-- edockerimages
 - edockerclean
-- edockerrun
+- edockercopy
+- edockerexec
+- edockerhelp
+- edockerimages
+- edockerinit
+- edockerinspect
+- edockerlogs
 - edockerps
 - edockerrm
+- edockerrun
 - edockerstart
 - edockerstop
-- edockerlogs
-- edockerinspect
 
 !!! All thoses aliases are available only when you've got an [edocker.cfg](https://github.com/pamtrak06/edocker/blob/master/edocker.cfg.sample) file in your project folder ([docker working project]) '''
 
