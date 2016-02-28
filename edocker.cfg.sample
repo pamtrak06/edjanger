@@ -1,3 +1,9 @@
+# ----------------------------------------------------
+# The MIT License (MIT)
+#
+# Copyright (c) 2016 copyright pamtrak06@gmail.com
+# ----------------------------------------------------
+
 # current working docker project directory
 curdir=$PWD
 # image name used for edockerbuild and edockerrun commands
