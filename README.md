@@ -5,9 +5,6 @@ Annoying about repeating docker commands with long parameters ?
 Don't want to write a docker-compose yaml for your testing Dockerfile ?
 
 Try edocker !
-## ! Warning !
-Script edocker_install.sh is updating your bash environnement (~/.bash_aliases, ...) at your own risk.
-Please read the script edocker-installation.sh before any installation.
 
 ## How to install edocker
 edocker must be installed in /usr/local/edocker, like:
@@ -16,13 +13,25 @@ cd /usr/local; git clone https://github.com/pamtrak06/edocker.git
 cd edocker; chmod 755 *.sh
 ```
 
-Put edocker in your PATH:
+Run edocker installation
 ```bash
-export PATH=$PATH:/usr/local/edocker
+cd /usr/local/edocker; chmod 755 *.sh; chmod 755 edockerinstall
+./edockerinstall
 ```
+
 Put edocker in your bash sessions:
 ```bash
-echo "export PATH=$PATH:/usr/local/edocker" >> ~/.bashrc
+echo "source /usr/local/edocker/edocker.alias" >> ~/.bashrc
+```
+
+Execute the generated alias file:
+```bash
+source /usr/local/edocker/edocker.alias
+```
+
+You could remove those aliases by executing:
+```bash
+source /usr/local/edocker/edocker.unalias
 ```
 
 ## How to activate edocker for a project
@@ -30,63 +39,53 @@ Go to your working docker folder:
 ```bash
 cd [docker working project]
 ```
+
 Copy the edocker.cfg model in your working docker folder:
 ```bash
-cp /usr/local/edocker/edocker.cfg [docker working project] 
+edockerinit 
 ```
+Equivalent to 
+```bash
+cp /usr/local/edocker/edocker.cfg.sample [docker working project]/edocker.cfg
+```
+
 Configure your edocker.cfg with correct parameters
 By example, you could create a Dockerfile with this path:
 ```bash
 vi [docker working project]/build/Dockerfile
 ```
-Run the edocker installation from your working docker folder:
-```bash
-edcoker-install.sh
-```
-Execute the generated alias file:
-```bash
-source [basename for <docker working project>].alias
-```
-You could remove those aliases by executing:
-```bash
-source [basename for <docker working project>].unalias
-```
-Your ~/bash_aliases contain alias activation for future bash sessions like:
-```bash
-source [basename for <docker working project>].alias
-```
 
-## How to use edocker for a project
+## How to use edocker in a docker a project working directory
 Now you've got aliases to run all your docker commands like:
-- d[basename for \<docker working project\>]build
-- d[basename for \<docker working project\>]images
-- d[basename for \<docker working project\>]rmi
-- d[basename for \<docker working project\>]run
-- d[basename for \<docker working project\>]ps
-- d[basename for \<docker working project\>]rm
-- d[basename for \<docker working project\>]start
-- d[basename for \<docker working project\>]stop
-- d[basename for \<docker working project\>]logs
-- d[basename for \<docker working project\>]inspect
+- edockerbuild
+- edockerimages
+- edockerrmi
+- edockerrun
+- edockerps
+- edockerrm
+- edockerstart
+- edockerstop
+- edockerlogs
+- edockerinspect
 
-!!! All thoses aliases are available only when you're in your project folder ([docker working project]) '''
+!!! All thoses aliases are available only when you've got an edocker.cfg file in your project folder ([docker working project]) '''
 
-### #build alias
-Alias d[basename for \<docker working project\>]build use following parameters readed from edocker.cfg:
+### #alias edockerbuild
+Alias edockerbuild use following parameters readed from edocker.cfg:
 - build_args: give build_args option to docker build command 
 - build_path: folder containing Dockerfile
 - image_name: image name used for build
 
-### #images alias
-Alias d[basename for \<docker working project\>]images use following parameters readed from edocker.cfg:
+### #alias edockerimages
+Alias edockerimages use following parameters readed from edocker.cfg:
 - image_name: image name used to grep for docker images command 
 
-### #rmi alias
-Alias d[basename for \<docker working project\>]rmi do not use parameters readed from edocker.cfg.
+### #alias edockerrmi
+Alias edockerrmi do not use parameters readed from edocker.cfg.
 This alias delete all images tagged with "none" attribute
 
-### #run alias
-Alias d[basename for \<docker working project\>]run use following parameters readed from edocker.cfg:
+### #alias edockerrun
+Alias edockerrun use following parameters readed from edocker.cfg:
 - image_name: image name to create a container used by docker run command
 - container_name: name of the container for option --name used by docker run command
 - exposed_ports: port mapping option (-p/-P) used by docker run command
@@ -94,7 +93,7 @@ Alias d[basename for \<docker working project\>]run use following parameters rea
 - environment_variables: environement variables option (-e) used by docker run command
 - linked_containers: linked container mapping option (--link) used by docker run command
 
-### #ps alias
+### #alias edockerps
 Alias d[basename for \<docker working project\>]ps use following parameters readed from edocker.cfg:
 - container_name: name of the container
 
