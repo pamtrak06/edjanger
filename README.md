@@ -26,12 +26,12 @@ All is done !!! Run this command to see your edocker aliases
 alias|grep edocker
 ```
 
-<Option>: add edocker in your bash sessions:
+Recommanded: add edocker alias activation in your bash sessions:
 ```bash
 echo "source [edocker path]/edocker.alias" >> ~/.bashrc
 ```
 
-<Option>: remove edocker aliases by executing:
+Tips: remove edocker aliases by executing:
 ```bash
 source edocker.unalias
 ```
