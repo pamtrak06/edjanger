@@ -37,10 +37,6 @@ source edocker.unalias
 ```
 
 ## How to activate edocker for a project
-Go to your working docker folder:
-```bash
-cd [docker working project]
-```
 
 Copy the edocker.cfg model in your working docker folder:
 ```bash
