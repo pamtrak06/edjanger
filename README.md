@@ -6,31 +6,34 @@ Annoying about repeating docker commands with long parameters ?
 Try edocker !
 
 ## How to install edocker
-edocker must be installed in /usr/local/edocker, like:
 ```bash
-cd /usr/local; git clone https://github.com/pamtrak06/edocker.git
-cd edocker; chmod 755 *.sh
+git clone https://github.com/pamtrak06/edocker.git
+cd edocker; chmod 755 *.sh; chmod 755 edockerinstall
 ```
 
 Run edocker installation
 ```bash
-cd /usr/local/edocker; chmod 755 *.sh; chmod 755 edockerinstall
 ./edockerinstall
-```
-
-Put edocker in your bash sessions:
-```bash
-echo "source /usr/local/edocker/edocker.alias" >> ~/.bashrc
 ```
 
 Execute the generated alias file:
 ```bash
-source /usr/local/edocker/edocker.alias
+source [edocker path]/edocker.alias
 ```
 
-You could remove those aliases by executing:
+All is done !!! Run this command to see your edocker aliases
 ```bash
-source /usr/local/edocker/edocker.unalias
+alias|grep edocker
+```
+
+<Option>: add edocker in your bash sessions:
+```bash
+echo "source [edocker path]/edocker.alias" >> ~/.bashrc
+```
+
+<Option>: remove edocker aliases by executing:
+```bash
+source [edocker path]/edocker.unalias
 ```
 
 ## How to activate edocker for a project
@@ -45,7 +48,7 @@ edockerinit
 ```
 Equivalent to 
 ```bash
-cp /usr/local/edocker/edocker.cfg.sample [docker working project]/edocker.cfg
+cp [edocker path]/edocker.cfg.sample [docker working project]/edocker.cfg
 ```
 
 Configure your edocker.cfg with correct parameters
@@ -119,8 +122,8 @@ Alias edockerinspect use following parameters readed from edocker.cfg:
 ## Tips
 create those two aliases and give the correct path for your project
 ```bash
-alias cdedocker='cd /usr/local/edocker'
-alias cd[basename for <docker working project>]='cd [docker working project]'
+alias cdedocker='cd [edocker path]'
+alias cd[basename for your docker working project]='cd [your docker working project]'
 ```
 ## Work in progress
 Please contribute !
@@ -128,6 +131,7 @@ Please contribute !
 - daemon               => TO BE Implemented
 - attach               => TO BE Implemented
 - build                => OK
+- clean                => OK
 - commit               => TO BE Implemented
 - cp                   => OK
 - create               => TO BE Implemented
@@ -135,10 +139,12 @@ Please contribute !
 - events               => TO BE Implemented
 - exec                 => OK
 - export               => TO BE Implemented
+- help                 => OK
 - history              => TO BE Implemented
 - images               => OK
 - import               => TO BE Implemented
 - info                 => TO BE Implemented
+- init                 => OK
 - inspect              => OK
 - kill                 => TO BE Implemented
 - load                 => TO BE Implemented
