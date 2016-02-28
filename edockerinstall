@@ -7,7 +7,7 @@
 # global edocker
 edockerpath=$PWD
 prefix=edocker
-mode=debug
+mode=release
 
 # Replace absolute paths of edocker in all scripts
 function updatePaths() {
