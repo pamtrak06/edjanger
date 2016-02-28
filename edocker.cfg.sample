@@ -1,20 +1,20 @@
 # current working docker project directory
 curdir=$PWD
-# image name used for docker build and docker run
+# image name used for edockerbuild and edockerrun commands
 image_name="organisation/projectName:version"
-# path where is finded Dockerfile
+# path where is found Dockerfile
 build_path=build
-# container name used for all docker command
+# container name used for all edocker commands
 container_name="projectName"
-# exposed port used for docker run command
+# exposed port used for edockerrun command
 exposed_ports="-p <mapped port for port 22>:22 -p <mapped port for port 80>:80"
-# shared volumes used for docker run command
+# shared volumes used for edockerrun command
 shared_volumes="-v <host path>:<container path>"
-# environnment varaibles used in docker run command
+# environnment variables used in edockerrun command
 environment_variables="-e <variable name 1>=<value 1> -e <variable name 2>=<value 2>"
-# linked container used for docker run command
+# linked container used for edockerrun command
 linked_containers="--link <external container name>:<alias in container>"
-# option for docker rmi 
+# option for edockerclean command
 force_rmi="--force"
-# command for docker run command
-command_run="/bin/bash -c \"cd $ROCKET_HOME; . _install/deploy.sh -r $ROCKET_TARGET -F\""
+# command for edockerrun commands
+command_run="/bin/bash -c \"cd /usr/local/; ls -la"
