@@ -5,7 +5,11 @@ prefix=edocker
 # Replace absolute paths of edocker in all scripts
 function updatePaths() {
   script="$1"
-  sed -i '' "s|{edockerpath}|$PWD|g" ${script}
+  if [ "$(uname)" = "Linux" ]; then
+    sed -i "s|{edockerpath}|$PWD|g" ${script}
+  elif [ "$(uname)" = "Darwin" ]; then
+    sed -i '' "s|{edockerpath}|$PWD|g" ${script}
+  fi
 }
 
 # Build aliases files
