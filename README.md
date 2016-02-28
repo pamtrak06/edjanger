@@ -184,4 +184,4 @@ Please contribute !
 - wait                 => TO BE Implemented
 
 ## License
-edocker is under  "MIT License (MIT)" see LICENSE file.
+edocker is under  "MIT License (MIT)" see [LICENSE file](https://github.com/pamtrak06/edocker/blob/master/LICENSE).
