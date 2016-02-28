@@ -1,7 +1,7 @@
 # edocker
 Scripts for easyest docker commands in a docker working folder (Dockerfile)
 
-Annoying about repeating docker commands with long parameters ?
+Tired about repeating docker commands with long parameters ?
 
 Try edocker !
 
