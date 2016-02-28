@@ -2,7 +2,6 @@
 Scripts for easyest docker commands in a docker working folder (Dockerfile)
 
 Annoying about repeating docker commands with long parameters ?
-Don't want to write a docker-compose yaml for your testing Dockerfile ?
 
 Try edocker !
 
@@ -59,7 +58,7 @@ vi [docker working project]/build/Dockerfile
 Now you've got aliases to run all your docker commands like:
 - edockerbuild
 - edockerimages
-- edockerrmi
+- edockerclean
 - edockerrun
 - edockerps
 - edockerrm
@@ -80,8 +79,8 @@ Alias edockerbuild use following parameters readed from edocker.cfg:
 Alias edockerimages use following parameters readed from edocker.cfg:
 - image_name: image name used to grep for docker images command 
 
-### #alias edockerrmi
-Alias edockerrmi do not use parameters readed from edocker.cfg.
+### #alias edockerclean
+Alias edockerclean do not use parameters readed from edocker.cfg.
 This alias delete all images tagged with "none" attribute
 
 ### #alias edockerrun
@@ -97,24 +96,24 @@ Alias edockerrun use following parameters readed from edocker.cfg:
 Alias d[basename for \<docker working project\>]ps use following parameters readed from edocker.cfg:
 - container_name: name of the container
 
-### #rm alias
-Alias d[basename for \<docker working project\>]rm use following parameters readed from edocker.cfg:
+### #alias edockerrm
+Alias edockerrm use following parameters readed from edocker.cfg:
 - container_name: name of the container to be deleted
 
-### #start alias
-Alias d[basename for \<docker working project\>]start use following parameters readed from edocker.cfg:
+### #alias edockerstart
+Alias edockerstart use following parameters readed from edocker.cfg:
 - container_name: name of the container to be started
  
-### #stop alias
-Alias d[basename for \<docker working project\>]stop use following parameters readed from edocker.cfg:
+### #alias edockerstop
+Alias edockerstop use following parameters readed from edocker.cfg:
 - container_name: name of the container to be stopped
 
-### #logs alias
-Alias d[basename for \<docker working project\>]logs use following parameters readed from edocker.cfg:
+### #alias edockerlogs
+Alias edockerlogs use following parameters readed from edocker.cfg:
 - container_name: name of the container to be logged 
 
-### #inspect alias
-Alias d[basename for \<docker working project\>]inspect use following parameters readed from edocker.cfg:
+### #alias edockerinspect
+Alias edockerinspect use following parameters readed from edocker.cfg:
 - container_name: name of the container to be inspected 
 
 ## Tips
