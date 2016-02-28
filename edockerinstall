@@ -19,7 +19,7 @@ function buildAliases() {
   scripts=$(ls $edockerpath/*.sh | grep -v $(basename $0))
 
   # delete all previous aliases files in edocker path
-  rm -f ${edaliasFile} {edunaliasFile}
+  rm -f ${edaliasFile} ${edunaliasFile}
   
   echo -e "\n--- Build aliases..."
   
