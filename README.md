@@ -18,7 +18,7 @@ Run edocker installation
 
 Execute the generated alias file:
 ```bash
-source [edocker path]/edocker.alias
+source edocker.alias
 ```
 
 All is done !!! Run this command to see your edocker aliases
@@ -33,7 +33,7 @@ echo "source [edocker path]/edocker.alias" >> ~/.bashrc
 
 <Option>: remove edocker aliases by executing:
 ```bash
-source [edocker path]/edocker.unalias
+source edocker.unalias
 ```
 
 ## How to activate edocker for a project
