@@ -1,4 +1,3 @@
-source edocker.cfg
 echo "Images with \"none\" name will be deleted, is it ok for you (y/n) ?"
 read response
 if [ "y" = "$response" ]; then
