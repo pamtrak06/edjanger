@@ -1,7 +1,7 @@
 # edocker
 Scripts for easyest docker commands in a docker working folder (Dockerfile)
 
-Annoying about repeating docker commands with long parameters ?
+Tired about repeating docker commands with long parameters ?
 
 Try edocker !
 
@@ -37,10 +37,6 @@ source edocker.unalias
 ```
 
 ## How to activate edocker for a project
-Go to your working docker folder:
-```bash
-cd [docker working project]
-```
 
 Copy the edocker.cfg model in your working docker folder:
 ```bash
@@ -48,27 +44,31 @@ edockerinit
 ```
 Equivalent to 
 ```bash
-cp [edocker path]/edocker.cfg.sample [docker working project]/edocker.cfg
+cp [edocker path]/edocker.cfg.sample [your docker working project]/edocker.cfg
 ```
 
-Configure your [edocker.cfg](https://github.com/pamtrak06/edocker/blob/master/edocker.cfg.sample) with correct parameters
+Configure your [edocker.cfg](https://github.com/pamtrak06/edocker/blob/master/edocker.cfg.sample) with correct parameters.
 By example, you could create a Dockerfile with this path:
 ```bash
-vi [docker working project]/build/Dockerfile
+vi [your docker working project]/build/Dockerfile
 ```
 
 ## How to use edocker in a docker a project working directory
 Now you've got aliases to run all your docker commands like:
 - edockerbuild
-- edockerimages
 - edockerclean
-- edockerrun
+- edockercopy
+- edockerexec
+- edockerhelp
+- edockerimages
+- edockerinit
+- edockerinspect
+- edockerlogs
 - edockerps
 - edockerrm
+- edockerrun
 - edockerstart
 - edockerstop
-- edockerlogs
-- edockerinspect
 
 !!! All thoses aliases are available only when you've got an [edocker.cfg](https://github.com/pamtrak06/edocker/blob/master/edocker.cfg.sample) file in your project folder ([docker working project]) '''
 
@@ -184,4 +184,4 @@ Please contribute !
 - wait                 => TO BE Implemented
 
 ## License
-edocker is under  "MIT License (MIT)" see LICENSE file.
+edocker is under  "MIT License (MIT)" see [LICENSE file](https://github.com/pamtrak06/edocker/blob/master/LICENSE).
