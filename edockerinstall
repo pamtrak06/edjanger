@@ -12,6 +12,7 @@ mode=release
 # Replace absolute paths of edocker in all scripts
 function updatePaths() {
   script="$1"
+  mode="$2"
   
   if [ "${mode}" = "release" ]; then
     if [ "$(uname)" = "Linux" ]; then
@@ -19,7 +20,7 @@ function updatePaths() {
     elif [ "$(uname)" = "Darwin" ]; then
       sed -i '' "s|{edockerpath}|$PWD|g" ${script}
     fi
-  elif [ "${mode}" = "dev" ]; then 
+  elif [ "${mode}" = "dev" ]; then
     if [ "$(uname)" = "Linux" ]; then
       # reverse for github uploading
       sed -i "s|$PWD|{edockerpath}|g" ${script}
@@ -29,12 +30,14 @@ function updatePaths() {
       sed -i '' "s|$PWD|{edockerpath}|g" ${script}
     fi
   else
-    echo -e "edocker:WARNING: unindentified mode: ${mode}"
+    echo "edocker:WARNING: unidentified mode: ${mode}"
   fi
 }
 
 # Build aliases files
 function buildAliases() {
+  
+  mode=$1
   
   # edocker alias/unalias files
   edaliasFile=${edockerpath}/${prefix}.alias
@@ -99,4 +102,8 @@ function buildAliases() {
 }
 
 # update (un)alias files in edocker path
-buildAliases "$1"
+if [ -n "$1" ] && [ "$1" = "dev" ]; then
+  mode=dev
+  echo -e "edocker:WARNING: you are in contribution mode, all absolute paths will be replaced by path pattern {edockerpath} in all scripts. After, you could upload your files."
+fi
+buildAliases ${mode}
