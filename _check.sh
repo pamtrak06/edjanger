@@ -1,0 +1,1 @@
+grep -nrw '.' -e "$PWD"
