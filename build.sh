@@ -1,3 +1,4 @@
+#!/bin/bash
 # ----------------------------------------------------
 # The MIT License (MIT)
 #
@@ -12,6 +13,10 @@ else
   if [ ! -d ${build_path} ]; then
     echo "Build path must exist and be a folder, configure variable build_path in edocker.cfg"
   else
-    docker build -t ${image_name} ${build_args} ${build_path}
+    . {edockerpath}/proxy.sh
+    build_arguments="${proxy_args} ${build_args}"
+    docker build -t ${image_name} ${build_arguments} ${build_path}
+    build_arguments=""
+    . {edockerpath}/proxy_reset.sh
   fi
 fi

@@ -19,7 +19,7 @@ function updatePaths() {
     elif [ "$(uname)" = "Darwin" ]; then
       sed -i '' "s|{edockerpath}|$PWD|g" ${script}
     fi
-  else
+  elif [ "${mode}" = "dev" ]; then 
     if [ "$(uname)" = "Linux" ]; then
       # reverse for github uploading
       sed -i "s|$PWD|{edockerpath}|g" ${script}
@@ -28,6 +28,8 @@ function updatePaths() {
       # reverse for github uploading
       sed -i '' "s|$PWD|{edockerpath}|g" ${script}
     fi
+  else
+    echo -e "edocker:WARNING: unindentified mode: ${mode}"
   fi
 }
 
@@ -41,12 +43,17 @@ function buildAliases() {
   echo -e "\n--- edocker: easy docker ---"
   echo -e "\n--- Installation..."
   
+  if [ -n "$1" ] && [ "dev" = "$1" ]; then
+    mode=$1
+    echo -e "edocker:WARING: Contribution mode. All current path of all scripts will be replaced by pattern {edockerpath}. You could upload after that."
+  fi
+  
   echo -e "\nProcess will create alias command in files:"
   echo -e "  - ${edaliasFile}, containing all edocker alias"
   echo -e "  - ${edunaliasFile}, containing all edocker unalias"
   
   # list all *.sh scripts from edocker path
-  scripts=$(ls $edockerpath/*.sh | grep -v $(basename $0) | grep -v common)
+  scripts=$(ls $edockerpath/*.sh | grep -v $(basename $0))
 
   # delete all previous aliases files in edocker path
   rm -f ${edaliasFile} ${edunaliasFile}
@@ -56,17 +63,21 @@ function buildAliases() {
   # create aliases files (*.alias and *.unalias)
   for s in ${scripts}; do
 
-    updatePaths "${s}"
+    updatePaths "${s}" "${mode}"
     
     base=$(basename ${s})
     
-    edalias=${prefix}${base%.sh}
+    if [ "$base" != "\_*" ]; then
+      
+      edalias=${prefix}${base%.sh}
+      
+      echo -e "  - updating aliases ${edalias} in files..."    
+      
+      echo "alias ${edalias}=\". ${edockerpath}/${base}\"" >> ${edaliasFile}
+      
+      echo "unalias ${edalias}" >> ${edunaliasFile}
     
-    echo -e "  - updating aliases ${edalias} in files..."    
-
-    echo "alias ${edalias}=\". ${edockerpath}/${base}\"" >> ${edaliasFile}
-    
-    echo "unalias ${edalias}" >> ${edunaliasFile}
+    fi
     
   done
   
@@ -88,4 +99,4 @@ function buildAliases() {
 }
 
 # update (un)alias files in edocker path
-buildAliases
+buildAliases "$1"

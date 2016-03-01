@@ -10,6 +10,8 @@ curdir=$PWD
 image_name="organisation/projectName:version"
 # path where is found Dockerfile
 build_path=build
+# build arguments
+build_args="--build-arg VAR1='value1' --build-arg VAR2='value2'"
 # container name used for all edocker commands
 container_name="projectName"
 # exposed port used for edockerrun command
