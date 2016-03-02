@@ -4,6 +4,16 @@
 #
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
+# SCRIPT           : _common.sh
+# DESCRIPTION      : common scripts for edocker scripts
+# CREATOR          : pamtrak06@gmail.com
+# --------------------------------
+# VERSION          : 1.0
+# DATE             : 2016-03-02
+# COMMENT          : creation
+# --------------------------------
+# USAGE            : source _common.sh
+# ----------------------------------------------------
 
 function dockerbasicimage()
 {
