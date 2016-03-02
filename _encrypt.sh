@@ -4,6 +4,16 @@
 #
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
+# SCRIPT           : _encrypt.sh
+# DESCRIPTION      : encrypt proxy.cfg file with zip --encrypt
+# CREATOR          : pamtrak06@gmail.com
+# --------------------------------
+# VERSION          : 1.0
+# DATE             : 2016-03-02
+# COMMENT          : creation
+# --------------------------------
+# USAGE            : ./_encrypt.sh
+# ----------------------------------------------------
 
 if [ ! -f "{edockerpath}/proxy.cfg" ]; then
   echo -e "edocker:ERROR {edockerpath}/proxy.cfg must exist and does container proxy parameters:"
