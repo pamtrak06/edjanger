@@ -1,15 +1,15 @@
 #!/bin/bash
 # --------------------------------
 # SCRIPT           : rmi.sh
-# DESCRIPTION      : docker rmi script (read parameters from config.cfg)
-# CREATOR          : jp.janecek@akka.eu
+# DESCRIPTION      : docker rmi script (read parameters from edocker.cfg)
+# CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0
-# DATE             : 2016-02-26
+# DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : alias "d[docker working folder]rmi"
+# USAGE            : alias edockerrmi
 # --------------------------------
-source config.cfg
-echo delete images with none...
+source edocker.cfg
+echo "delete images with \"none\" attribute..."
 docker rmi ${force_rmi} $(docker images | grep none| awk '{print $3}')
