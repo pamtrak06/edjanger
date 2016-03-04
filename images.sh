@@ -14,6 +14,5 @@
 # --------------------------------
 # USAGE            : alias edockerimages
 # ----------------------------------------------------
-
 source {edockerpath}/_common.sh
 dockerbasicimage "images" "List image which name name contains: "

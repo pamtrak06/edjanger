@@ -14,6 +14,5 @@
 # --------------------------------
 # USAGE            : alias edockerlogs
 # ----------------------------------------------------
-
 source {edockerpath}/_common.sh
 dockerbasiccontainer "logs" "Logs of container: " "0"

@@ -14,16 +14,20 @@
 # --------------------------------
 # USAGE            : alias edockerexec
 # ----------------------------------------------------
-
-if [ ! -f edocker.cfg ]; then
-  echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
+if [ "$1" = "--help" ] || [ "$1" = "-help" ] || [ "$1" = "-h" ]; then
+  source {edockerpath}/help.sh  
+  usage_exec
 else
-  source edocker.cfg
-  idx=$(echo "$(docker ps | grep ${image_name} | wc -l)+0" | bc)
-  echo enter in container_name: ${container_name}_${idx}...
-  if [ -n "$1" ]; then
-    docker exec -t ${container_name}_${idx} bash -c "$1" 
+  if [ ! -f edocker.cfg ]; then
+    echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
   else
-    docker exec -it ${container_name}_${idx} bash
+    source edocker.cfg
+    idx=$(echo "$(docker ps | grep ${container_name} | wc -l)+0" | bc)
+    echo enter in container_name: ${container_name}_${idx}...
+    if [ -n "$1" ]; then
+      docker exec -t ${container_name}_${idx} bash -c "$1"
+    else
+      docker exec -it ${container_name}_${idx} bash
+    fi
   fi
 fi

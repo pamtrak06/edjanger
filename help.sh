@@ -15,6 +15,17 @@
 # USAGE            : alias edockerhelp <shord docker command name>
 # ----------------------------------------------------
 
+function usage_alias()
+{
+  echo -e "-- edockeralias --"
+  echo -e "  # Purpose"
+  echo -e "     Show all edocker alias"
+  echo -e "  # Usage"
+  echo -e "     edockeralias"
+  echo -e "  # Configuration"
+  echo -e "     No parameters in edocker.cfg"
+}
+
 function usage_build()
 {
   echo -e "-- edockerbuild --"
@@ -27,6 +38,17 @@ function usage_build()
   echo -e "       - image_name: name of image to be build"
   echo -e "       - build_args: arguments give to building image"
   echo -e "       - build_path: path where to find Dockerfile and his context"
+}
+
+function usage_check()
+{
+  echo -e "-- edockercheck --"
+  echo -e "  # Purpose"
+  echo -e "     Check if no parameters are missing in edocker.cfg configuration file"
+  echo -e "  # Usage"
+  echo -e "     edockercheck"
+  echo -e "  # Configuration"
+  echo -e "     No parameters in edocker.cfg"
 }
 
 function usage_clean()
@@ -52,18 +74,134 @@ function usage_copy {
   echo -e "     No parameters in edocker.cfg"
 }
 
+function usage_exec()
+{
+  echo -e "-- edockerexec --"
+  echo -e "  # Purpose"
+  echo -e "     Enter in a container or execute a command in a container"
+  echo -e "  # Usage"
+  echo -e "     edockerexec <command to execute in container>"
+  echo -e "  # Configuration"
+  echo -e "     Parameters in edocker.cfg:"
+  echo -e "       - container_name: name of the container"
+}
+
+function usage_images()
+{
+  echo -e "-- edockerimages --"
+  echo -e "  # Purpose"
+  echo -e "     List images with name specified in configuration"
+  echo -e "  # Usage"
+  echo -e "     edockerimage"
+  echo -e "  # Configuration"
+  echo -e "     Parameters in edocker.cfg:"
+  echo -e "       - image_name: name of the image"
+}
+
+function usage_init()
+{
+  echo -e "-- edockerinit --"
+  echo -e "  # Purpose"
+  echo -e "     Initialize a configuration file edocker.cfg in curretn directory"
+  echo -e "  # Usage"
+  echo -e "     edockerinit"
+  echo -e "  # Configuration"
+    echo -e "     No parameters in edocker.cfg"
+}
+
+function usage_basic()
+{
+  command="$1"
+  
+  echo -e "-- edocker${command} --"
+  echo -e "  # Purpose"
+  echo -e "     Command docker ${command} in the container with name specified in configuration"
+  echo -e "  # Usage"
+  echo -e "     edocker${command}"
+  echo -e "  # Configuration"
+  echo -e "     Parameters in edocker.cfg:"
+  echo -e "       - container_name: name of the container"
+}
+
+function usage_inspect()
+{
+  usage_basic "inspect"
+}
+
+function usage_logs()
+{
+  usage_basic "logs"
+}
+
+function usage_ps()
+{
+  usage_basic "ps"
+}
+
+function usage_psa()
+{
+  usage_basic "psa"
+}
+
+function usage_rm()
+{
+  usage_basic "rm"
+}
+
+function usage_run()
+{
+  usage_basic "run"
+}
+
+function usage_start()
+{
+  usage_basic "start"
+}
+
+function usage_stop()
+{
+  usage_basic "stop"
+}
+
 function usage()
 {
+  commands=()
+
+  # list all *.sh scripts from edocker path
+  scripts=$(ls $edockerpath/*.sh | grep -v $(basename $0) -e "\_")
+
+  for s in ${scripts}; do
+
+    base=$(basename ${s})
+    
+    commands+=("${base}")
+  
+  done
+  
   if [ -z "$1" ]; then
-    echo "Help must have one argument in list: build, clean"
-  elif [ "$1" = "build" ]; then
-    usage_build
-  elif [ "$1" = "copy" ]; then
-    usage_copy
-  elif [ "$1" = "clean" ]; then
-    usage_clean
+    echo "Help must have one argument in list: ${commands}"
   else
-    echo -e "help for edocker, please enter a short docker command like: build, clean, copy"
+  
+    for s in ${scripts}; do
+
+      base=$(basename ${s})
+    
+      edalias=${prefix}${base%.sh}
+      
+      if [ "$1" = "${edalias}" ]; then
+      
+        usage_${edalias}
+        
+        find=true
+        
+      fi
+      
+    done
+    
+    if [ "${founded}" != "true" ]; then
+      echo -e "help for edocker, please enter a short docker command like: build, clean, copy"
+    fi
+    
   fi
 }
 

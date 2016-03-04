@@ -14,6 +14,5 @@
 # --------------------------------
 # USAGE            : alias edockerinspect
 # ----------------------------------------------------
-
 source {edockerpath}/_common.sh
 dockerbasiccontainer "inspect" "Inspection of container: " "0"

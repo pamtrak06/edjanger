@@ -20,7 +20,7 @@ if [ -f "{edockerpath}/proxy.zip" ]; then
     echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
   else
     source edocker.cfg
-    echo Initialize proxy parameters...
+    echo -e "Initialize proxy parameters..."
     unzip {edockerpath}/proxy.zip -d {edockerpath}/
     source {edockerpath}/proxy.cfg
     rm -f {edockerpath}/proxy.cfg

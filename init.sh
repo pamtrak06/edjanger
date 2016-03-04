@@ -14,9 +14,15 @@
 # --------------------------------
 # USAGE            : alias edockerinit
 # ----------------------------------------------------
-
-if [ ! -f "edocker.cfg" ] && [ "{edockerpath}" != "$PWD" ]; then
-  cp {edockerpath}/edocker.cfg.sample ./edocker.cfg
+if [ "$1" = "--help" ] || [ "$1" = "-help" ] || [ "$1" = "-h" ]; then
+  source {edockerpath}/help.sh  
+  usage_init
 else
-  echo -e "File edocker.cfg is already in your current directory !"
+  if [ ! -f "edocker.cfg" ] && [ "{edockerpath}" != "$PWD" ]; then
+    cp {edockerpath}/edocker.cfg.sample ./edocker.cfg
+  else
+    source {edockerpath}/_common.sh
+    echo -e "File edocker.cfg is already in your current directory !"
+    checkconfig
+  fi
 fi
