@@ -163,47 +163,64 @@ function usage_stop()
   usage_basic "stop"
 }
 
-function usage()
+function usage_list()
 {
-  commands=()
 
   # list all *.sh scripts from edocker path
-  scripts=$(ls $edockerpath/*.sh | grep -v $(basename $0) -e "\_")
+  script=$1
 
+  scripts=$(ls {edockerpath}/*.sh | grep -v -e "${script}" -e "\_")
+  
+  echo -e "Help must have one argument in list:"
+    
   for s in ${scripts}; do
 
     base=$(basename ${s})
     
-    commands+=("${base}")
+    echo "  command: ${base%.sh}"
   
   done
-  
-  if [ -z "$1" ]; then
-    echo "Help must have one argument in list: ${commands}"
+
+}
+
+
+function usage()
+{
+
+  commands=()
+
+  script=$1
+
+  if [ -z "$2" ]; then
+
+    usage_list $script
+
   else
-  
+
+    scripts=$(ls {edockerpath}/*.sh | grep -v -e "${script}" -e "\_")
+
     for s in ${scripts}; do
 
       base=$(basename ${s})
     
       edalias=${prefix}${base%.sh}
       
-      if [ "$1" = "${edalias}" ]; then
+      if [ "$2" = "${edalias}" ]; then
       
         usage_${edalias}
         
-        find=true
+        founded=true
         
       fi
       
     done
     
     if [ "${founded}" != "true" ]; then
-      echo -e "help for edocker, please enter a short docker command like: build, clean, copy"
+      usage_list $script
     fi
     
   fi
 }
 
-usage $1
+usage $0 $1
 
