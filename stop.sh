@@ -15,4 +15,4 @@
 # USAGE            : ./stop.sh
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
-dockerbasiccontainer "start" "Starting container: " "1"
+dockerbasiccontainer "stop" "Stopping container: " "1"
