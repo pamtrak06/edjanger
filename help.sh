@@ -40,14 +40,30 @@ function usage_clean()
   echo -e "     No parameters in edocker.cfg"
 }
 
+function usage_copy {
+  echo -e "-- edockercopy --"
+  echo -e "  # Purpose"
+  echo -e "     Copy file from host to container or from container to host"
+  echo -e "  # Usage"
+  echo -e "     edockercopy <order from host to container (h), from container to host (c)> <path from h or c> <path from c or h>"
+  echo -e "     If argument 1=h, arg2=filename from host,    arg3=container path"
+  echo -e "     If argument 1=c, arg2=filename in container, arg3=host path"
+  echo -e "  # Configuration"
+  echo -e "     No parameters in edocker.cfg"
+}
+
 function usage()
 {
   if [ -z "$1" ]; then
     echo "Help must have one argument in list: build, clean"
   elif [ "$1" = "build" ]; then
     usage_build
+  elif [ "$1" = "copy" ]; then
+    usage_copy
   elif [ "$1" = "clean" ]; then
     usage_clean
+  else
+    echo -e "help for edocker, please enter a short docker command like: build, clean, copy"
   fi
 }
 

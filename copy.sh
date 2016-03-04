@@ -15,11 +15,7 @@
 # USAGE            : alias edockercopy
 # ----------------------------------------------------
 
-function usage {
-  echo "Arguments: <order from host to container (h), from container to host (c)> <path from h or c> <path from c or h>"$
-  echo "If argument 1=h, arg2=filename from host,    arg3=container path"$
-  echo "If argument 1=c, arg2=filename in container, arg3=host path"$
-}
+source {edockerpath}/help.sh
 
 if [ ! -f edocker.cfg ]; then
   echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
@@ -27,7 +23,7 @@ else
   source edocker.cfg
 
   if [ -z "$1" ] && [ -z "$2" ] && [ -z "$3" ]; then
-    usage
+    usage_copy
   else
     idx=$(echo "$(docker ps | grep ${image_name} | wc -l)+0" | bc)
     if [ "$1" = "c" ]; then
@@ -37,7 +33,7 @@ else
       echo copy file from host:$2 to container ${container_name}_${idx}:$3
       docker cp $2 ${container_name}_${idx}:$3
     else
-      usage
+      usage_copy
     fi
   fi
 fi
