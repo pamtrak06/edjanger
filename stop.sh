@@ -14,5 +14,5 @@
 # --------------------------------
 # USAGE            : ./stop.sh
 # ----------------------------------------------------
-source /usr/local/edocker/_common.sh
+source {edockerpath}/_common.sh
 dockerbasiccontainer "start" "Starting container: " "1"
