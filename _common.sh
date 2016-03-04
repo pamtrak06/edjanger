@@ -69,19 +69,20 @@ function checkconfig()
     echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
   else
     source edocker.cfg
-    checkparameter "image_name"
-    checkparameter "build_path"
-    checkparameter "build_args"
-    checkparameter "container_name"
-    checkparameter "exposed_ports"
-    checkparameter "shared_volumes"
-    checkparameter "volumes_from"
-    checkparameter "environment_variables"
-    checkparameter "linked_containers"
-    checkparameter "force_rmi"
-    checkparameter "command_run"
-    if [ "$?" = "-1" ]; then
-      return -1
+    local res
+    checkparameter "image_name";            if [ "$?" = "255" ]; then res=255; fi
+    checkparameter "build_path";            if [ "$?" = "255" ]; then res=255; fi
+    checkparameter "build_args";            if [ "$?" = "255" ]; then res=255; fi
+    checkparameter "container_name";        if [ "$?" = "255" ]; then res=255; fi
+    checkparameter "exposed_ports";         if [ "$?" = "255" ]; then res=255; fi
+    checkparameter "shared_volumes";        if [ "$?" = "255" ]; then res=255; fi
+    checkparameter "volumes_from";          if [ "$?" = "255" ]; then res=255; fi
+    checkparameter "environment_variables"; if [ "$?" = "255" ]; then res=255; fi
+    checkparameter "linked_containers";     if [ "$?" = "255" ]; then res=255; fi
+    checkparameter "force_rmi";             if [ "$?" = "255" ]; then res=255; fi
+    checkparameter "command_run";           if [ "$?" = "255" ]; then res=255; fi
+    if [ "$res" = "255" ]; then
+      return 255
     fi
   fi
 }
@@ -91,9 +92,9 @@ function checkparameter()
 {
   parameter="$1"
   
-  check_${parameter}=$(cat edocker.cfg|grep "${parameter}")
-  if [ -z "check_${parameter}" ]; then
-    echo "Parameter: ${parameter} is missing in edocker.cfg !!!"
-    return -1
+  export check=$(cat edocker.cfg|grep -v "#"|grep "${parameter}"|cut -d '=' -f1)
+  if [ -z ${check} ]; then
+    echo "  - parameter: \"${parameter}\" is missing !!!"
+    return 255
   fi
 }

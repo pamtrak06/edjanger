@@ -22,7 +22,7 @@ else
     source {edockerpath}/_common.sh
     echo -e "Check edocker.cfg..."
     checkconfig
-    if [ "$?" != "-1" ]; then
+    if [ "$?" != "255" ]; then
       echo -e "  -> configuration is OK"
     fi
   fi
