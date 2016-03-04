@@ -3,7 +3,16 @@
 #
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
-
+# CONFIGURATION    : edocker.cfg.sample
+# DESCRIPTION      : project configuration file for edocker
+# CREATOR          : pamtrak06@gmail.com
+# --------------------------------
+# VERSION          : 1.0
+# DATE             : 2016-03-02
+# COMMENT          : creation
+# --------------------------------
+# USAGE            : read by edocker scripts
+# ----------------------------------------------------
 # current working docker project directory
 curdir=$PWD
 # image name used for edockerbuild and edockerrun commands
@@ -18,6 +27,8 @@ container_name="projectName"
 exposed_ports="-p <mapped port for port 22>:22 -p <mapped port for port 80>:80"
 # shared volumes used for edockerrun command
 shared_volumes="-v <host path>:<container path>"
+# expose volumes from another container into current container
+volumes_from="--volumes-from <container name with exposed volumes>"
 # environnment variables used in edockerrun command
 environment_variables="-e <variable name 1>=<value 1> -e <variable name 2>=<value 2>"
 # linked container used for edockerrun command
