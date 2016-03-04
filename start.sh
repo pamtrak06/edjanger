@@ -15,4 +15,4 @@
 # USAGE            : ./start.sh
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
-dockerbasiccontainer "start" "Starting container: " "0"
+dockerbasiccontainer "start" "Starting container: " "1"

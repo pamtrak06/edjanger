@@ -48,13 +48,14 @@ function dockerbasiccontainer()
       echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
     else
       source edocker.cfg
-      echo "${comment} ${ct}..."
       if [ "${initidx}" != "-1" ]; then
-        idx=$(echo "$(docker ps | grep ${image_name} | wc -l)+${initidx}" | bc)
+        idx=$(echo "$(docker ps -a | grep ${image_name} | wc -l)+${initidx}" | bc)
         ct=${container_name}_${idx}
+        echo "${comment} ${ct}..."
         docker ${command} ${ct}
       else
         ct=${container_name}
+        echo "${comment} ${ct}..."$
         docker ${command} | grep ${ct}
       fi
     fi
