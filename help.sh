@@ -163,6 +163,28 @@ function usage_stop()
   usage_basic "stop"
 }
 
+function usage_command()
+{
+
+  script=$1
+  command=$2
+
+  scripts=$(ls {edockerpath}/*.sh | grep -v -e "${script}" -e "help" -e "\_")
+  
+  for s in ${scripts}; do
+
+    base=$(basename ${s})
+    
+    found=$(grep -e ${command} ${s})
+    
+    if [ -n "${found}" ]; then
+      echo -e "      - command: \"edocker${base%.sh}\""
+    fi
+  
+  done
+  
+}
+
 function usage_list()
 {
 
@@ -171,18 +193,56 @@ function usage_list()
 
   scripts=$(ls {edockerpath}/*.sh | grep -v -e "${script}" -e "\_")
   
-  echo -e "Help must have one argument in list:"
-    
   for s in ${scripts}; do
 
     base=$(basename ${s})
     
-    echo "  command: ${base%.sh}"
+    echo -e "  command: ${base%.sh}"
   
   done
 
 }
 
+function usage_config()
+{
+  script=$1
+
+  echo -e "Parameters in edocker.cfg configuration file"
+  echo -e ""
+  echo -e "  - image_name: image name, used by:"
+  usage_command "${script}" "image_name"
+  echo -e ""
+  echo -e "  - build_path: path where is found Dockerfile, used by:"
+  usage_command "${script}" "image_name"
+  echo -e ""
+  echo -e "  - build_args: build arguments, used by:"
+  usage_command "${script}" "image_name"
+  echo -e ""
+  echo -e "  - container_name: container name, used by:"
+  usage_command "${script}" "image_name"
+  echo -e ""
+  echo -e "  - exposed_ports: exposed port, used by:"
+  usage_command "${script}" "exposed_ports"
+  echo -e ""
+  echo -e "  - shared_volumes: shared volumes, used by:"
+  usage_command "${script}" "shared_volumes"
+  echo -e ""
+  echo -e "  - volumes_from: expose volumes from another container into current container, used by:"
+  usage_command "${script}" "volumes_from"
+  echo -e ""
+  echo -e "  - environment_variables: environnment variables, used by:"
+  usage_command "${script}" "environment_variables"
+  echo -e ""
+  echo -e "  - linked_containers: linked container, used by:"
+  usage_command "${script}" "linked_containers"
+  echo -e ""
+  echo -e "  - force_rmi: force deletion, used by:"
+  usage_command "${script}" "force_rmi"
+  echo -e ""
+  echo -e "  - command_run: bash command to run, used by:"
+  usage_command "${script}" "command_run"
+  echo -e ""
+}
 
 function usage()
 {
@@ -192,7 +252,9 @@ function usage()
   script=$1
 
   if [ -z "$2" ]; then
-
+  
+    echo -e "Help must have one argument in list:"
+    echo -e "  command: config"
     usage_list $script
 
   else
@@ -214,6 +276,14 @@ function usage()
       fi
       
     done
+    
+    if [ "$2" = "config" ]; then
+    
+      usage_config "$script"
+    
+      founded=true
+      
+    fi
     
     if [ "${founded}" != "true" ]; then
       usage_list $script
