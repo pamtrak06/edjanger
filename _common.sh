@@ -70,18 +70,17 @@ function checkconfig()
     echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
   else
     source edocker.cfg
+    
+    parameters=$(cat {edockerpath}/edocker.cfg.sample|grep -v "#"|grep "="|cut -d '=' -f1)
+
     local res
-    checkparameter "image_name";            if [ "$?" = "255" ]; then res=255; fi
-    checkparameter "build_path";            if [ "$?" = "255" ]; then res=255; fi
-    checkparameter "build_args";            if [ "$?" = "255" ]; then res=255; fi
-    checkparameter "container_name";        if [ "$?" = "255" ]; then res=255; fi
-    checkparameter "exposed_ports";         if [ "$?" = "255" ]; then res=255; fi
-    checkparameter "shared_volumes";        if [ "$?" = "255" ]; then res=255; fi
-    checkparameter "volumes_from";          if [ "$?" = "255" ]; then res=255; fi
-    checkparameter "environment_variables"; if [ "$?" = "255" ]; then res=255; fi
-    checkparameter "linked_containers";     if [ "$?" = "255" ]; then res=255; fi
-    checkparameter "force_rmi";             if [ "$?" = "255" ]; then res=255; fi
-    checkparameter "command_run";           if [ "$?" = "255" ]; then res=255; fi
+    for p in ${parameters}; do
+    
+      echo -e "  - check \"${p}\""
+      checkparameter "${p}"; if [ "$?" = "255" ]; then res=255; fi
+      
+    done
+
     if [ "$res" = "255" ]; then
       return 255
     fi
@@ -95,7 +94,8 @@ function checkparameter()
   
   export check=$(cat edocker.cfg|grep -v "#"|grep "${parameter}"|cut -d '=' -f1)
   if [ -z ${check} ]; then
-    echo "  - parameter: \"${parameter}\" is missing !!!"
+    #echo "    ERROR:     parameter: \"${parameter}\" is missing !!!"
+    echo "    ERROR: parameter is missing !!!"
     return 255
   fi
 }
