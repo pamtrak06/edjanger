@@ -1,0 +1,8 @@
+  echo -e "-- edockerstop --"
+  echo -e "  # Purpose"
+  echo -e "     Command docker stop in the container with name specified in configuration"
+  echo -e "  # Usage"
+  echo -e "     edockerstop"
+  echo -e "  # Configuration"
+  echo -e "     Parameters in edocker.cfg:"
+  echo -e "       - container_name: name of the container"

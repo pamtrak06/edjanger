@@ -1,0 +1,7 @@
+  echo -e "-- edockerinit --"
+  echo -e "  # Purpose"
+  echo -e "     Initialize a configuration file edocker.cfg in curretn directory"
+  echo -e "  # Usage"
+  echo -e "     edockerinit"
+  echo -e "  # Configuration"
+  echo -e "     No parameters in edocker.cfg"

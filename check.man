@@ -1,0 +1,7 @@
+  echo -e "-- edockercheck --"
+  echo -e "  # Purpose"
+  echo -e "     Check if no parameters are missing in edocker.cfg configuration file"
+  echo -e "  # Usage"
+  echo -e "     edockercheck"
+  echo -e "  # Configuration"
+  echo -e "     No parameters in edocker.cfg"

@@ -1,0 +1,7 @@
+  echo -e "-- edockerclean --"
+  echo -e "  # Purpose"
+  echo -e "     Clean all images with \"none\" attribute"
+  echo -e "  # Usage"
+  echo -e "     edockerclean"
+  echo -e "  # Configuration"
+  echo -e "     No parameters in edocker.cfg"

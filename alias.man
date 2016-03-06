@@ -1,0 +1,7 @@
+  echo -e "-- edockeralias --"
+  echo -e "  # Purpose"
+  echo -e "     Show all edocker alias"
+  echo -e "  # Usage"
+  echo -e "     edockeralias"
+  echo -e "  # Configuration"
+  echo -e "     No parameters in edocker.cfg"
