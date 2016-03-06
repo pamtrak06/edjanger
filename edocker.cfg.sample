@@ -13,25 +13,27 @@
 # --------------------------------
 # USAGE            : read by edocker scripts
 # ----------------------------------------------------
-# image name used for edockerbuild and edockerrun commands
+#docker_command:show docker command when edocker is used
+docker_command=true
+#image_name:image name
 image_name="organisation/projectName:version"
-# path where is found Dockerfile
+#build_path:path where is found Dockerfile
 build_path=build
-# build arguments
+#build_args:build arguments
 build_args="--build-arg VAR1='value1' --build-arg VAR2='value2'"
-# container name used for all edocker commands
+#container_name:container
 container_name="projectName"
-# exposed port used for edockerrun command
+#exposed_ports:exposed port
 exposed_ports="-p <mapped port for port 22>:22 -p <mapped port for port 80>:80"
-# shared volumes used for edockerrun command
+#shared_volumes:shared volumes
 shared_volumes="-v <host path>:<container path>"
-# expose volumes from another container into current container
+#volumes_from:expose volumes from another container into current container
 volumes_from="--volumes-from <container name with exposed volumes>"
-# environnment variables used in edockerrun command
+#environment_variables:environnment variables
 environment_variables="-e <variable name 1>=<value 1> -e <variable name 2>=<value 2>"
-# linked container used for edockerrun command
+#linked_containers:linked container
 linked_containers="--link <external container name>:<alias in container>"
-# option for edockerclean command
+#force_rmi:force deletion
 force_rmi="--force"
-# command for edockerrun commands
+#command_run:bash command(s) to run
 command_run="/bin/bash -c \"cd /usr/local/; ls -la"
