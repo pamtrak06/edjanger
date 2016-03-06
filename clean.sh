@@ -24,8 +24,8 @@ else
     echo "Delete images with attribute \"none\"..."
     docker rmi ${force_rmi} $(docker images | grep none| awk '{print $3}')
     if [ "true" = "${docker_command}" ]; then
-      echo -e "Executed docker command:"
-      echo -e "docker rmi ${force_rmi} $(docker images | grep none| awk '{print $3}')"
+      echo -e "> Executed docker command:"
+      echo -e "> docker rmi ${force_rmi} $(docker images | grep none| awk '{print $3}')"
     fi
   elif [ "n" != "$response" ]; then
     echo "Response must be \"y\" or \"n\""

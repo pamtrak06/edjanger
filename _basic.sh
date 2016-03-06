@@ -20,7 +20,6 @@ sed "s/{command}/logs/g" basic.man > logs.man
 sed "s/{command}/ps/g" basic.man > ps.man
 sed "s/{command}/psa/g" basic.man > psa.man
 sed "s/{command}/rm/g" basic.man > rm.man
-sed "s/{command}/rmi/g" basic.man > rmi.man
 sed "s/{command}/run/g" basic.man > run.man
 sed "s/{command}/start/g" basic.man > start.man
 sed "s/{command}/stop/g" basic.man > stop.man

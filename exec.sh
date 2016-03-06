@@ -27,14 +27,14 @@ else
     if [ -n "$1" ]; then
       docker exec -t ${container_name}_${idx} bash -c "$1"
       if [ "true" = "${docker_command}" ]; then
-        echo -e "Executed docker command:"
-        echo -e "docker exec -t ${container_name}_${idx} bash -c \"$1\""
+        echo -e "> Executed docker command:"
+        echo -e "> docker exec -t ${container_name}_${idx} bash -c \"$1\""
       fi
     else
       docker exec -it ${container_name}_${idx} bash
       if [ "true" = "${docker_command}" ]; then
-        echo -e "Executed docker command:"
-        echo -e "docker exec -it ${container_name}_${idx} bash"
+        echo -e "> Executed docker command:"
+        echo -e "> docker exec -it ${container_name}_${idx} bash"
       fi
     fi
   fi

@@ -31,8 +31,8 @@ function dockerbasicimage()
       echo "${comment} $(echo ${image_name} | cut -d ':' -f1)..."
       docker ${command} | grep $(echo ${image_name} | cut -d ':' -f1)
       if [ "true" = "${docker_command}" ]; then
-          echo -e "Executed docker command:"
-          echo -e "docker ${command} | grep $(echo ${image_name} | cut -d ':' -f1)"
+          echo -e "> Executed docker command:"
+          echo -e "> docker ${command} | grep $(echo ${image_name} | cut -d ':' -f1)"
       fi
     fi
   fi
@@ -57,13 +57,17 @@ function dockerbasiccontainer()
         ct=${container_name}_${idx}
         echo "${comment} ${ct}..."
         docker ${command} ${ct}
+        if [ "true" = "${docker_command}" ]; then
+          echo -e "> Executed docker command:"
+          echo -e "> docker ${command} ${ct}"
+        fi
       else
         ct=${container_name}
         echo "${comment} ${ct}..."$
         docker ${command} | grep ${ct}
         if [ "true" = "${docker_command}" ]; then
-          echo -e "Executed docker command:"
-          echo -e "docker ${command} | grep ${ct}"
+          echo -e "> Executed docker command:"
+          echo -e "> docker ${command} | grep ${ct}"
         fi
       fi
     fi
