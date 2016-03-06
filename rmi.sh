@@ -27,6 +27,10 @@ else
     if [ "y" = "$response" ]; then
       echo "Deleting image: ${image_name}..."
       docker rmi ${force_rmi} ${image_name}
+      if [ "true" = "${docker_command}" ]; then
+        echo -e "Executed docker command:"
+        echo -e "docker rmi ${force_rmi} ${image_name}"
+      fi
     elif [ "n" != "$response" ]; then
         echo "Response must be \"y\" or \"n\""
     fi

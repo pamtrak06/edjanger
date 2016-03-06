@@ -32,6 +32,10 @@ else
         if [ -n "$(docker ps -a|grep ${container_name}_${idx})" ]; then
           echo "Deleting container: \"${container_name}_${idx}\"..."
           docker rm $(docker stop ${container_name}_${idx})
+          if [ "true" = "${docker_command}" ]; then
+            echo -e "Executed docker command:"
+            echo -e "docker rm $(docker stop ${container_name}_${idx})"
+          fi
         else
           echo "Container \"${container_name}_${idx}\" does not exist"
         fi

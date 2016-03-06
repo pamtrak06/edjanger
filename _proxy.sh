@@ -15,7 +15,7 @@
 # USAGE            : _proxy.sh
 # ----------------------------------------------------
 
-if [ -f "{edockerpath}/proxy.zip" ]; then
+if [ -f {edockerpath}/proxy.zip ]; then
   if [ ! -f edocker.cfg ]; then
     echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
   else

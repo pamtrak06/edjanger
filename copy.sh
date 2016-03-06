@@ -31,9 +31,17 @@ else
       if [ "$1" = "c" ]; then
         echo copy from container_name: ${container_name}_${idx} file $2 to host:$3...
         docker cp ${container_name}_${idx}:$2 $3
+        if [ "true" = "${docker_command}" ]; then
+          echo -e "Executed docker command:"
+          echo -e "docker cp ${container_name}_${idx}:$2 $3"
+        fi
       elif [ "$1" = "h" ]; then
         echo copy file from host:$2 to container ${container_name}_${idx}:$3
         docker cp $2 ${container_name}_${idx}:$3
+        if [ "true" = "${docker_command}" ]; then
+          echo -e "Executed docker command:"
+          echo -e "docker cp $2 ${container_name}_${idx}:$3"
+        fi
       else
         usage_copy
       fi
