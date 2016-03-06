@@ -87,7 +87,7 @@ function buildAliases() {
       
       echo -e "  - updating aliases ${edalias} in files..."    
       
-      echo "alias ${edalias}=\". ${edockerpath}/${base}\"" >> ${edaliasFile}
+      echo "alias ${edalias}=\"source ${edockerpath}/${base}\"" >> ${edaliasFile}
       
       echo "unalias ${edalias}" >> ${edunaliasFile}
     

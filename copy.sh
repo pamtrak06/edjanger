@@ -14,10 +14,9 @@
 # --------------------------------
 # USAGE            : alias edockercopy
 # ----------------------------------------------------
-source {edockerpath}/help.sh
-
+. {edockerpath}/_common.sh
 if [ "$1" = "--help" ] || [ "$1" = "-help" ] || [ "$1" = "-h" ]; then
-  usage_copy
+  usage $0 copy
 else
   if [ ! -f edocker.cfg ]; then
     echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"

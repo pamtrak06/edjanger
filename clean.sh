@@ -14,9 +14,9 @@
 # --------------------------------
 # USAGE            : alias edockerclean
 # ----------------------------------------------------
+. {edockerpath}/_common.sh
 if [ "$1" = "--help" ] || [ "$1" = "-help" ] || [ "$1" = "-h" ]; then
-  source {edockerpath}/help.sh  
-  usage_clean
+  usage $0 clean
 else
   echo "Images with \"none\" name will be deleted, is it ok for you (y/n) ?"
   read response

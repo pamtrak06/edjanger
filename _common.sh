@@ -104,10 +104,127 @@ function checkparameter()
 {
   parameter="$1"
   
+  # grep parameter found in edocker.cfg
   export check=$(cat edocker.cfg|grep -v "#"|grep "${parameter}"|cut -d '=' -f1)
   if [ -z ${check} ]; then
-    #echo "    ERROR:     parameter: \"${parameter}\" is missing !!!"
     echo "    ERROR: parameter is missing !!!"
     return 255
+  fi
+}
+
+
+function usage_command()
+{
+
+  script=$1
+  command=$2
+
+  # list all *.sh scripts from edocker path
+  scripts=$(ls {edockerpath}/*.sh | grep -v -e "${script}" -e "help" -e "\_")
+  
+  for s in ${scripts}; do
+
+    base=$(basename ${s})
+    
+    found=$(grep -e ${command} ${s})
+    
+    if [ -n "${found}" ]; then
+      echo -e "      - command: \"edocker${base%.sh}\""
+    fi
+  
+  done
+  
+}
+
+function usage_list()
+{
+
+  script=$1
+
+  # list all *.sh scripts from edocker path
+  scripts=$(ls {edockerpath}/*.sh | grep -v -e "\_")
+  
+  echo -e "Help must have one argument in list:"
+  echo -e "  command: config"
+  
+  for s in ${scripts}; do
+
+    base=$(basename ${s})
+    
+    echo -e "  command: ${base%.sh}"
+  
+  done
+
+}
+
+function usage_config()
+{
+  script=$1
+
+  echo -e "Parameters in edocker.cfg configuration file"
+ 
+  parameters=$(cat {edockerpath}/edocker.cfg.sample|grep -v "#"|grep "="|cut -d '=' -f1)
+
+  for p in ${parameters}; do
+    
+    comment=$(cat {edockerpath}/edocker.cfg.sample|grep -e "#${p}"|cut -d ':' -f2)
+    echo -e ""
+    echo -e "  - ${p}: ${comment}, used by:"
+    usage_command "${script}" "${p}"
+
+  done
+
+}
+
+function usage()
+{
+
+  commands=()
+
+  script=$1
+  command=$2
+
+  if [ -z "${command}" ]; then
+  
+    usage_list ${script}
+
+  else
+    
+    found=false
+    
+    scripts=$(ls {edockerpath}/*.sh | grep -v -e "\_")
+
+    for s in ${scripts}; do
+
+      base=$(basename ${s})
+    
+      edalias=${prefix}${base%.sh}
+      
+      if [ "$2" = "${edalias}" ]; then
+      
+        if [ -f {edockerpath}/${edalias}.man ]; then
+          source {edockerpath}/${edalias}.man
+        else
+          echo "ERROR: no help file for ${edalias}"
+        fi
+        
+        found=true
+        
+      fi
+      
+    done
+    
+    if [ "$2" = "config" ]; then
+    
+      usage_config "${script}"
+    
+      found=true
+      
+    fi
+    
+    if [ "${found}" != "true" ]; then
+      usage_list ${script}
+    fi
+    
   fi
 }

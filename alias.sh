@@ -14,9 +14,9 @@
 # --------------------------------
 # USAGE            : alias edockeralias
 # ----------------------------------------------------
+. {edockerpath}/_common.sh
 if [ "$1" = "--help" ] || [ "$1" = "-help" ] || [ "$1" = "-h" ]; then
-  source {edockerpath}/help.sh  
-  usage_alias
+  usage $0 alias
 else
   alias | grep edocker
 fi

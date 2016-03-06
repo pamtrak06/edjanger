@@ -14,9 +14,9 @@
 # --------------------------------
 # USAGE            : alias edockerinit
 # ----------------------------------------------------
+. {edockerpath}/_common.sh
 if [ "$1" = "--help" ] || [ "$1" = "-help" ] || [ "$1" = "-h" ]; then
-  source {edockerpath}/help.sh  
-  usage_init
+  usage $0 init
 else
   if [ ! -f "edocker.cfg" ] && [ "{edockerpath}" != "$PWD" ]; then
     cp {edockerpath}/edocker.cfg.sample ./edocker.cfg

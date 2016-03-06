@@ -14,9 +14,9 @@
 # --------------------------------
 # USAGE            : ./run.sh
 # ----------------------------------------------------
+. {edockerpath}/_common.sh
 if [ "$1" = "--help" ] || [ "$1" = "-help" ] || [ "$1" = "-h" ]; then
-  source {edockerpath}/help.sh  
-  usage_run
+  usage $0 run
 else
   if [ ! -f edocker.cfg ]; then
     echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
