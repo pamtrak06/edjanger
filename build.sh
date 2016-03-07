@@ -28,10 +28,10 @@ else
     else
       . {edockerpath}/_proxy.sh
       build_arguments="${proxy_args} ${build_args}"
-      docker build -t "${image_name}" ${build_arguments} ${build_path}
+      docker build -t "${image_name}" ${build_arguments} ${build_forcerm} ${build_rm} ${build_nocache} ${buil_file} ${build_path}
       if [ "true" = "${docker_command}" ]; then
         echo -e "> Executed docker command:"
-        echo -e "> docker build -t "${image_name}" ${build_arguments} ${build_path}"
+        echo -e "> docker build -t "${image_name}" ${build_arguments} ${build_forcerm} ${build_rm} ${build_nocache} ${buil_file} ${build_path}"
       fi
       build_arguments=""
       . {edockerpath}/_proxy_reset.sh

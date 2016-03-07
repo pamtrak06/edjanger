@@ -21,6 +21,14 @@ image_name="organisation/projectName:version"
 build_path=build
 #build_args:build arguments
 build_args="--build-arg VAR1='value1' --build-arg VAR2='value2'"
+#build_forcerm:always remove intermediate containers
+build_forcerm="--force-rm"
+#build_rm: Remove intermediate containers after a successful build
+build_rm="--rm=true"
+#build_nocache:do not use cache when building the image
+build_nocache="--no-cache"
+#build_file:name of the Dockerfile (Default is 'PATH/Dockerfile')
+build_file="--file Dockerfile"
 #container_name:container
 container_name="projectName"
 #exposed_ports:exposed port
@@ -36,4 +44,4 @@ linked_containers="--link <external container name>:<alias in container>"
 #force_rmi:force deletion
 force_rmi="--force"
 #command_run:bash command(s) to run
-command_run="/bin/bash -c \"cd /usr/local/; ls -la"
+command_run="/bin/bash -c \"cd /; ls -la"
