@@ -34,7 +34,7 @@ else
           docker rm $(docker stop ${container_name}_${idx})
           if [ "true" = "${docker_command}" ]; then
             echo -e "Executed docker command:"
-            echo -e "docker rm $(docker stop ${container_name}_${idx})"
+            echo -e "docker rm \$(docker stop ${container_name}_${idx})"
           fi
         else
           echo "Container \"${container_name}_${idx}\" does not exist"
