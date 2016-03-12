@@ -74,6 +74,17 @@ function dockerbasiccontainer()
   fi
 }
 
+function checkparameter()
+{
+  parameter="$1"
+  
+  # grep parameter found in edocker.cfg
+  export check=$(cat edocker.cfg|grep -v "#"|grep "${parameter}"|cut -d '=' -f1)
+  if [ -z ${check} ]; then
+    echo "    ERROR: parameter is missing !!!"
+    return 255
+  fi
+}
 
 function checkconfig()
 {
@@ -98,20 +109,6 @@ function checkconfig()
     fi
   fi
 }
-
-
-function checkparameter()
-{
-  parameter="$1"
-  
-  # grep parameter found in edocker.cfg
-  export check=$(cat edocker.cfg|grep -v "#"|grep "${parameter}"|cut -d '=' -f1)
-  if [ -z ${check} ]; then
-    echo "    ERROR: parameter is missing !!!"
-    return 255
-  fi
-}
-
 
 function usage_command()
 {

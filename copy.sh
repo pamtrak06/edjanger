@@ -24,7 +24,7 @@ else
     source edocker.cfg
     
     if [ -z "$1" ] && [ -z "$2" ] && [ -z "$3" ]; then
-      usage_copy
+      usage $0 copy
     else
       idx=$(echo "$(docker ps | grep ${image_name} | wc -l)+0" | bc)
       if [ "$1" = "c" ]; then
@@ -42,7 +42,7 @@ else
           echo -e "> docker cp $2 ${container_name}_${idx}:$3"
         fi
       else
-        usage_copy
+        usage $0 copy
       fi
     fi
   fi
