@@ -225,3 +225,45 @@ function usage()
     
   fi
 }
+
+
+# Build path aliases files
+function buildPathAliases() {
+  
+  working_path=$1
+  base_path=$(basename $1)
+  
+  # edocker alias/unalias files
+  pathaliasFile=${working_path}/${base_path}.alias
+  pathunaliasFile=${working_path}/${base_path}.unalias
+ 
+  # list all *.sh scripts from edocker path
+  scripts=$(ls $working_path)
+
+  # delete all previous aliases files path
+  rm -f ${pathaliasFile} ${pathunaliasFile}
+  
+  #echo -e "\n--- Build aliases for subfolders of directory $working_path..."
+  
+  # create aliases files (*.alias and *.unalias)
+  for s in ${scripts}; do
+
+    base=$(basename ${s})
+    
+    if [ -d $working_path/${s} ]; then
+      
+      pathalias=cd${base}
+      
+      #echo -e "  - updating path aliases ${pathalias} in files..."    
+      
+      echo "alias ${pathalias}=\"cd ${working_path}/${base}; pwd\"" >> ${pathaliasFile}
+      
+      echo "unalias ${pathalias}" >> ${pathunaliasFile}
+    
+    fi
+    
+  done
+  
+  echo $pathaliasFile
+  
+}
