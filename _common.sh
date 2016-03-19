@@ -63,7 +63,7 @@ function dockerbasiccontainer()
         fi
       else
         ct=${container_name}
-        echo "${comment} ${ct}..."$
+        echo "${comment} ${ct}..."
         docker ${command} | grep ${ct}
         if [ "true" = "${docker_command}" ]; then
           echo -e "> Executed docker command:"
