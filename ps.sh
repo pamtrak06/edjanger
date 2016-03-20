@@ -19,4 +19,4 @@
 # USAGE            : alias edockerps
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
-dockerbasiccontainer "ps" "State of containers with name like: " "-1"
+dockerbasiccontainer "ps" "State of running containers with name like: " "-1"
