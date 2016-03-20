@@ -1,8 +1,0 @@
-  echo -e "-- edockerimages --"
-  echo -e "  # Purpose"
-  echo -e "     List images with name specified in configuration"
-  echo -e "  # Usage"
-  echo -e "     edockerimage"
-  echo -e "  # Configuration"
-  echo -e "     Parameters in edocker.cfg:"
-  echo -e "       - image_name: name of the image"

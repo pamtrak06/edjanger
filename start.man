@@ -1,8 +1,0 @@
-  echo -e "-- edockerstart --"
-  echo -e "  # Purpose"
-  echo -e "     Command docker start in the container with name specified in configuration"
-  echo -e "  # Usage"
-  echo -e "     edockerstart"
-  echo -e "  # Configuration"
-  echo -e "     Parameters in edocker.cfg:"
-  echo -e "       - container_name: name of the container"
