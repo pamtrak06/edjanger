@@ -19,4 +19,4 @@
 # USAGE            : alias edockerpsa
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
-dockerbasiccontainer "ps -a" "State of all ontainers (started/stoped) with name like: " "-1"
+dockerbasiccontainer "ps -a" "State of all containers (started/stoped) with name like: " "-1"
