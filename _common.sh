@@ -110,6 +110,23 @@ function checkconfig()
   fi
 }
 
+function init_config()
+{
+  if [ ! -f edocker.cfg ]; then
+    echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
+  else
+    parameters=$(cat {edockerpath}/edocker.cfg.sample|grep -v "#"|grep "="|cut -d '=' -f1)
+
+    for p in ${parameters}; do
+      unset -v ${p}
+    done
+  
+    source edocker.cfg
+    
+  fi
+
+}
+
 function usage_command()
 {
 
