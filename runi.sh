@@ -4,8 +4,17 @@
 #
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
-# SCRIPT           : run.sh
-# DESCRIPTION      : docker run script (read parameters from edocker.cfg)
+# SCRIPT           : runi.sh
+# ALIAS            : edockerruni
+# DESCRIPTION      : run command "docker run -it" interactive mode, with parameters readed from local edocker.cfg
+#   PARAMETER      : image_name
+#   PARAMETER      : exposed_ports
+#   PARAMETER      : shared_volumes
+#   PARAMETER      : environment_variables
+#   PARAMETER      : linked_containers
+#   PARAMETER      : exposed_ports
+#   PARAMETER      : container_name
+#   PARAMETER      : docker_command
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0
@@ -14,8 +23,9 @@
 # --------------------------------
 # USAGE            : ./run.sh
 # ----------------------------------------------------
-. {edockerpath}/_common.sh
-if [ "$1" = "--help" ] || [ "$1" = "-help" ] || [ "$1" = "-h" ]; then
+source {edockerpath}/_common.sh
+
+if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 runi
 else
   if [ ! -f edocker.cfg ]; then

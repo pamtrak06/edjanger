@@ -5,7 +5,11 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : inspect.sh
-# DESCRIPTION      : docker inspect script (read parameters from edocker.cfg)
+# ALIAS            : edockerinspect
+# DESCRIPTION      : run command "docker inspect" with parameters readed from local edocker.cfg
+#   PARAMETER      : image_name
+#   PARAMETER      : container_name
+#   PARAMETER      : docker_command
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0

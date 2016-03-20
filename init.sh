@@ -5,7 +5,8 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : init.sh
-# DESCRIPTION      : initailize a edocker.cfg file
+# ALIAS            : edockerinit
+# DESCRIPTION      : create a edocker.cfg file
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0
@@ -15,7 +16,7 @@
 # USAGE            : alias edockerinit
 # ----------------------------------------------------
 . {edockerpath}/_common.sh
-if [ "$1" = "--help" ] || [ "$1" = "-help" ] || [ "$1" = "-h" ]; then
+if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 init
 else
   if [ ! -f "edocker.cfg" ] && [ "{edockerpath}" != "$PWD" ]; then

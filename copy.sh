@@ -5,7 +5,11 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : copy.sh
-# DESCRIPTION      : docker copy script (read parameters from edocker.cfg)
+# ALIAS            : edockercopy
+# DESCRIPTION      : run command "docker copy" with parameters readed from local edocker.cfg
+#   PARAMETER      : image_name
+#   PARAMETER      : container_name
+#   PARAMETER      : docker_command
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0
@@ -15,7 +19,7 @@
 # USAGE            : alias edockercopy
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
-if [ "$1" = "--help" ] || [ "$1" = "-help" ] || [ "$1" = "-h" ]; then
+if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 copy
 else
   if [ ! -f edocker.cfg ]; then

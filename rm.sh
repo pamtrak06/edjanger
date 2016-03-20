@@ -5,7 +5,10 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : rm.sh
-# DESCRIPTION      : docker rm script (read parameters from edocker.cfg)
+# ALIAS            : edockerrm
+# DESCRIPTION      : run command "docker rm" with parameters readed from local edocker.cfg
+#   PARAMETER      : container_name
+#   PARAMETER      : docker_command
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0
@@ -15,7 +18,7 @@
 # USAGE            : alias edockerrm
 # ----------------------------------------------------
 . {edockerpath}/_common.sh
-if [ "$1" = "--help" ] || [ "$1" = "-help" ] || [ "$1" = "-h" ]; then
+if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 rm
 else
   if [ ! -f edocker.cfg ]; then

@@ -37,7 +37,7 @@ function dockerbasicimage()
   command="$1"
   comment="$2"
  
-  if [ "$1" = "--help" ] || [ "$1" = "-help" ] || [ "$1" = "-h" ]; then
+  if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
     source {edockerpath}/help.sh  
     usage_${command}
   else
@@ -61,7 +61,7 @@ function dockerbasiccontainer()
   comment="$2"
   initidx="$3"
 
-  if [ "$1" = "--help" ] || [ "$1" = "-help" ] || [ "$1" = "-h" ]; then
+  if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
     source {edockerpath}/help.sh  
     usage_${command}
   else
@@ -216,12 +216,31 @@ function usage()
       edalias=${prefix}${base%.sh}
       
       if [ "$2" = "${edalias}" ]; then
-      
-        if [ -f {edockerpath}/${edalias}.man ]; then
-          source {edockerpath}/${edalias}.man
-        else
-          echo "ERROR: no help file for ${edalias}"
+        
+        alias_txt=$(grep "ALIAS" ${s}|cut -d ':' -f2)        
+        echo -e "Usage       :"$alias_txt
+        
+        desc_txt=$(grep "DESCRIPTION" ${s}|cut -d ':' -f2)
+        echo -e "Description :"$desc_txt
+
+        params=$(grep "PARAMETER" ${s}|cut -d ":" -f2)
+        echo -e "Parameters  :"
+        echo -e "  - help"
+        for p in $params; do
+          echo -e "  - $(echo $p)"
+        done
+        
+        SAVEIFS=$IFS
+        IFS=$'\n'
+        args=$(grep "ARGUMENT" ${s})
+        if [ -n "$args" ]; then
+          echo -e "Arguments   :"
+          for arg in $args; do
+            val=$(echo $arg|cut -d ':' -f2)
+            echo -e "  - $val"
+          done
         fi
+        IFS=$SAVEIFS
         
         found=true
         

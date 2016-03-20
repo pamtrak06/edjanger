@@ -5,7 +5,11 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : exec.sh
-# DESCRIPTION      : docker exec script (read parameters from edocker.cfg)
+# ALIAS            : edockerexec
+# DESCRIPTION      : run command "docker exec" with parameters readed from local edocker.cfg
+#   ARGUMENT       : script argument passed to container, by example <edockerexec "ls -la /">
+#   PARAMETER      : container_name
+#   PARAMETER      : docker_command
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0
@@ -15,7 +19,7 @@
 # USAGE            : alias edockerexec
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
-if [ "$1" = "--help" ] || [ "$1" = "-help" ] || [ "$1" = "-h" ]; then
+if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 exec
 else
   if [ ! -f edocker.cfg ]; then

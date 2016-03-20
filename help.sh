@@ -5,7 +5,9 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : copy.sh
-# DESCRIPTION      :help script for edocker command
+# ALIAS            : edockerhelp
+# DESCRIPTION      : help script for edocker command
+#   PARAMETER      : config
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0
@@ -16,5 +18,9 @@
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
 
-usage $0 $1
+if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
+  usage $0 copy
+else
+  usage $0 $1
+fi
 

@@ -5,7 +5,8 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : check.sh
-# DESCRIPTION      : validate a edocker.cfg file
+# ALIAS            : edockercheck
+# DESCRIPTION      : check missing parameters in edocker.cfg
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0
@@ -15,7 +16,7 @@
 # USAGE            : alias edockercheck
 # ----------------------------------------------------
 . {edockerpath}/_common.sh
-if [ "$1" = "--help" ] || [ "$1" = "-help" ] || [ "$1" = "-h" ]; then
+if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 check
 else
   if [ -f "edocker.cfg" ] && [ "{edockerpath}" != "$PWD" ]; then

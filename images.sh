@@ -5,7 +5,10 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : images.sh
-# DESCRIPTION      : docker images script (read parameters from edocker.cfg)
+# ALIAS            : edockerps
+# DESCRIPTION      : run command "docker images" with parameters readed from local edocker.cfg
+#   PARAMETER      : image_name
+#   PARAMETER      : docker_command
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0

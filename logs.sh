@@ -5,7 +5,11 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : logs.sh
-# DESCRIPTION      : docker logs script (read parameters from edocker.cfg)
+# ALIAS            : edockerlogs
+# DESCRIPTION      : run command "docker logs" with parameters readed from local edocker.cfg
+#   PARAMETER      : image_name
+#   PARAMETER      : container_name
+#   PARAMETER      : docker_command
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0

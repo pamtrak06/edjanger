@@ -5,7 +5,15 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : build.sh
-# DESCRIPTION      : docker build script (read parameters from edocker.cfg)
+# ALIAS            : edockerbuild
+# DESCRIPTION      : run command "docker build" with parameters readed from local edocker.cfg
+#   PARAMETER      : image_name
+#   PARAMETER      : proxy_args
+#   PARAMETER      : build_args
+#   PARAMETER      : build_forcerm
+#   PARAMETER      : build_nocache
+#   PARAMETER      : build_file
+#   PARAMETER      : build_path
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0
@@ -15,7 +23,7 @@
 # USAGE            : alias edockerbuild
 # ----------------------------------------------------
 . {edockerpath}/_common.sh
-if [ "$1" = "--help" ] || [ "$1" = "-help" ] || [ "$1" = "-h" ]; then
+if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 build
 else
   if [ ! -f edocker.cfg ]; then
@@ -28,10 +36,10 @@ else
     else
       . {edockerpath}/_proxy.sh
       build_arguments="${proxy_args} ${build_args}"
-      docker build -t "${image_name}" ${build_arguments} ${build_forcerm} ${build_rm} ${build_nocache} ${buil_file} ${build_path}
+      docker build -t "${image_name}" ${build_arguments} ${build_forcerm} ${build_rm} ${build_nocache} ${build_file} ${build_path}
       if [ "true" = "${docker_command}" ]; then
         echo -e "> Executed docker command:"
-        echo -e "> docker build -t "${image_name}" ${build_arguments} ${build_forcerm} ${build_rm} ${build_nocache} ${buil_file} ${build_path}"
+        echo -e "> docker build -t "${image_name}" ${build_arguments} ${build_forcerm} ${build_rm} ${build_nocache} ${build _file} ${build_path}"
       fi
       build_arguments=""
       . {edockerpath}/_proxy_reset.sh

@@ -5,7 +5,11 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : rmi.sh
-# DESCRIPTION      : docker rmi script (read parameters from edocker.cfg)
+# ALIAS            : edockerrmi
+# DESCRIPTION      : run command "docker rmi" with parameters readed from local edocker.cfg
+#   PARAMETER      : image_name
+#   PARAMETER      : force_rmi
+#   PARAMETER      : docker_command
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0
@@ -15,7 +19,7 @@
 # USAGE            : alias edockerrmi
 # ----------------------------------------------------
 . {edockerpath}/_common.sh
-if [ "$1" = "--help" ] || [ "$1" = "-help" ] || [ "$1" = "-h" ]; then
+if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 rmi
 else
   if [ ! -f edocker.cfg ]; then

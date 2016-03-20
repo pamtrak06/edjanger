@@ -5,7 +5,10 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : clean.sh
-# DESCRIPTION      : clean all images with none attribute
+# ALIAS            : edockerclean
+# DESCRIPTION      : clean all images with none attribute (run docker rmi with "none" filter)
+#   PARAMETER      : force_rmi
+#   PARAMETER      : docker_command
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0
@@ -15,7 +18,7 @@
 # USAGE            : alias edockerclean
 # ----------------------------------------------------
 . {edockerpath}/_common.sh
-if [ "$1" = "--help" ] || [ "$1" = "-help" ] || [ "$1" = "-h" ]; then
+if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 clean
 else
   echo "Images with \"none\" name will be deleted, is it ok for you (y/n) ?"

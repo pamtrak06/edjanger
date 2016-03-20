@@ -5,6 +5,7 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : alias.sh
+# ALIAS            : edockeralias
 # DESCRIPTION      : print edocker aliases
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
@@ -15,7 +16,7 @@
 # USAGE            : alias edockeralias
 # ----------------------------------------------------
 . {edockerpath}/_common.sh
-if [ "$1" = "--help" ] || [ "$1" = "-help" ] || [ "$1" = "-h" ]; then
+if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 alias
 else
   alias | grep edocker
