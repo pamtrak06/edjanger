@@ -14,12 +14,12 @@
 # --------------------------------
 # USAGE            : _proxy.sh
 # ----------------------------------------------------
-
+source {edockerpath}/_common.sh
 if [ -f {edockerpath}/proxy.zip ]; then
   if [ ! -f edocker.cfg ]; then
     echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
   else
-    source edocker.cfg
+    read_config
     echo -e "Initialize proxy parameters..."
     unzip {edockerpath}/proxy.zip -d {edockerpath}/
     source {edockerpath}/proxy.cfg

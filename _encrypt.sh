@@ -14,7 +14,7 @@
 # --------------------------------
 # USAGE            : ./_encrypt.sh
 # ----------------------------------------------------
-
+source {edockerpath}/_common.sh
 if [ ! -f "{edockerpath}/proxy.cfg" ]; then
   echo -e "edocker:ERROR {edockerpath}/proxy.cfg must exist and does container proxy parameters:"
   echo -e "  - http_proxy=..."
@@ -25,7 +25,7 @@ else
   if [ ! -f edocker.cfg ]; then
     echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
   else
-    source edocker.cfg
+    read_config
     echo "Encrypt {edockerpath}/proxy.cfg..."
     zip --encrypt {edockerpath}/proxy.zip {edockerpath}/proxy.cfg
     rm -f {edockerpath}/proxy.cfg

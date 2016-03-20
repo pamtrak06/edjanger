@@ -15,6 +15,23 @@
 # USAGE            : source _common.sh
 # ----------------------------------------------------
 
+function read_config()
+{
+  if [ ! -f edocker.cfg ]; then
+    echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
+  else
+    parameters=$(cat {edockerpath}/edocker.cfg.sample|grep -v "#"|grep "="|cut -d '=' -f1)
+
+    for p in ${parameters}; do
+      unset -v ${p}
+    done
+  
+    source edocker.cfg
+ 
+  fi
+
+}
+
 function dockerbasicimage()
 {
   command="$1"
@@ -27,7 +44,7 @@ function dockerbasicimage()
     if [ ! -f edocker.cfg ]; then
       echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
     else
-      source edocker.cfg
+      read_config
       echo "${comment} $(echo ${image_name} | cut -d ':' -f1)..."
       docker ${command} | grep $(echo ${image_name} | cut -d ':' -f1)
       if [ "true" = "${docker_command}" ]; then
@@ -51,7 +68,7 @@ function dockerbasiccontainer()
     if [ ! -f edocker.cfg ]; then
       echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
     else
-      source edocker.cfg
+      read_config
       if [ "${initidx}" != "-1" ]; then
         idx=$(echo "$(docker ps -a | grep ${image_name} | wc -l)+${initidx}" | bc)
         ct=${container_name}_${idx}
@@ -92,7 +109,8 @@ function checkconfig()
   if [ ! -f edocker.cfg ]; then
     echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
   else
-    source edocker.cfg
+  
+    read_config
     
     parameters=$(cat {edockerpath}/edocker.cfg.sample|grep -v "#"|grep "="|cut -d '=' -f1)
 
@@ -108,23 +126,6 @@ function checkconfig()
       return 255
     fi
   fi
-}
-
-function init_config()
-{
-  if [ ! -f edocker.cfg ]; then
-    echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
-  else
-    parameters=$(cat {edockerpath}/edocker.cfg.sample|grep -v "#"|grep "="|cut -d '=' -f1)
-
-    for p in ${parameters}; do
-      unset -v ${p}
-    done
-  
-    source edocker.cfg
-    
-  fi
-
 }
 
 function usage_command()

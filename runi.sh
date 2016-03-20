@@ -16,12 +16,12 @@
 # ----------------------------------------------------
 . {edockerpath}/_common.sh
 if [ "$1" = "--help" ] || [ "$1" = "-help" ] || [ "$1" = "-h" ]; then
-  usage $0  run
+  usage $0 runi
 else
   if [ ! -f edocker.cfg ]; then
     echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
   else
-    source edocker.cfg
+    read_config
     idx=$(echo "$(docker ps | grep ${image_name} | wc -l)+1" | bc)
     echo "Run container_name: ${container_name}_${idx}..."
     command_run="/bin/bash"

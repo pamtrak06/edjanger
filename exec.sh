@@ -14,14 +14,14 @@
 # --------------------------------
 # USAGE            : alias edockerexec
 # ----------------------------------------------------
-. {edockerpath}/_common.sh
+source {edockerpath}/_common.sh
 if [ "$1" = "--help" ] || [ "$1" = "-help" ] || [ "$1" = "-h" ]; then
   usage $0 exec
 else
   if [ ! -f edocker.cfg ]; then
     echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
   else
-    source edocker.cfg
+    read_config
     idx=$(echo "$(docker ps | grep ${container_name} | wc -l)+0" | bc)
     echo enter in container_name: ${container_name}_${idx}...
     if [ -n "$1" ]; then
