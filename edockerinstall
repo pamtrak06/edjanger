@@ -81,7 +81,7 @@ function buildAliases() {
     
     base=$(basename ${s})
     
-    if [ "$base" != "\_*" ]; then
+    if [[ ! "$base" =~ [_]{1}.* ]]; then
       
       edalias=${prefix}${base%.sh}
       
