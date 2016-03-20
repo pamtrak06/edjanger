@@ -224,22 +224,22 @@ function usage()
         echo -e "Description :"$desc_txt
 
         params=$(grep "PARAMETER" ${s}|cut -d ":" -f2)
-        echo -e "Parameters  :"
-        echo -e "  - help"
-        for p in $params; do
-          echo -e "  - $(echo $p)"
-        done
+        if [ -n "$params" ]; then
+          echo -e "parameters  "
+          for p in $params; do
+            echo -e "  - $(echo $p)"
+          done
+        fi
         
         SAVEIFS=$IFS
         IFS=$'\n'
         args=$(grep "ARGUMENT" ${s})
-        if [ -n "$args" ]; then
-          echo -e "Arguments   :"
-          for arg in $args; do
-            val=$(echo $arg|cut -d ':' -f2)
-            echo -e "  - $val"
-          done
-        fi
+        echo -e "Argument    "
+        echo -e "  - help"
+        for arg in $args; do
+          val=$(echo $arg|cut -d ':' -f2)
+          echo -e "  - $val"
+        done
         IFS=$SAVEIFS
         
         found=true
