@@ -21,14 +21,14 @@
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 clean
 else
-  echo "Images with \"none\" name will be deleted, is it ok for you (y/n) ?"
+  echo "Images with attribute name=\"none\" will be deleted, is it ok for you (y/n) ?"
   read response
   if [ "y" = "$response" ]; then
-    echo "Delete images with attribute \"none\"..."
-    docker rmi ${force_rmi} $(docker images | grep none| awk '{print $3}')
+    echo "Delete images with attribute name=\"none\"..."
+    docker rmi ${force_rmi} $(docker images --format="{{.Repository}} {{.ID}}" | grep -e '.none..[a-zA-Z0-9_].*'| awk '{print $2}')
     if [ "true" = "${docker_command}" ]; then
       echo -e "> Executed docker command:"
-      echo -e "> docker rmi ${force_rmi} $(docker images | grep none| awk '{print $3}')"
+      echo -e "> docker rmi ${force_rmi} $(docker images --format=\"{{.Repository}}:{{.ID}}\" | grep -e '.none..[a-zA-Z0-9_].*')"
     fi
   elif [ "n" != "$response" ]; then
     echo "Response must be \"y\" or \"n\""
