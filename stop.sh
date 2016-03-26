@@ -19,9 +19,9 @@
 # USAGE            : edockerstop
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
+
 if [ -n "$1" ]; then
-  command="help"
+  dockerbasiccontainer "help" "stop"
 else
-  command="stop"
+  dockerbasiccontainer "stop" "Stopping container: " "0"
 fi
-dockerbasiccontainer "$command" "Stopping container: " "0"

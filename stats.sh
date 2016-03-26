@@ -18,9 +18,9 @@
 # USAGE            : edockerstats
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
+
 if [ -n "$1" ]; then
-  command="help"
+  dockerbasiccontainer "help" "stats"
 else
-  command="stats"
+  dockerbasiccontainer "stats" "Statistics of container: " "0"
 fi
-dockerbasiccontainer "$command" "Starting container: " "0"

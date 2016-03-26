@@ -19,9 +19,9 @@
 # USAGE            : edockerinspect
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
+
 if [ -n "$1" ]; then
-  command="help"
+  dockerbasiccontainer "help" "inspect"
 else
-  command="inspect"
+  dockerbasiccontainer "inspect" "Inspection of container: " "0"
 fi
-dockerbasiccontainer "$command" "Inspection of container: " "0"

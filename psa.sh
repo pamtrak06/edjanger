@@ -19,9 +19,9 @@
 # USAGE            : edockerpsa
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
+
 if [ -n "$1" ]; then
-  command="help"
+  dockerbasiccontainer "help" "ps"
 else
-  command="ps -a"
+  dockerbasiccontainer "ps -a" "State of all containers (started/stoped) with name like: " "-1"
 fi
-dockerbasiccontainer "$command" "State of all containers (started/stoped) with name like: " "-1"

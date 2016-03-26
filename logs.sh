@@ -19,9 +19,9 @@
 # USAGE            : edockerlogs
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
+
 if [ -n "$1" ]; then
-  command="help"
+  dockerbasiccontainer "help" "logs"
 else
-  command="logs"
+  dockerbasiccontainer "logs" "Logs of container: " "0"
 fi
-dockerbasiccontainer "$command" "Logs of container: " "0"

@@ -19,9 +19,9 @@
 # USAGE            : edockerrestart
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
+
 if [ -n "$1" ]; then
-  command="help"
+  dockerbasiccontainer "help" "restart"
 else
-  command="restart"
+  dockerbasiccontainer "restart" "Starting container: " "0"
 fi
-dockerbasiccontainer "$command" "Starting container: " "0"

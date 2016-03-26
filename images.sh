@@ -19,8 +19,8 @@
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
 if [ -n "$1" ]; then
-  command="help"
+  dockerbasicimage "help" "images"
 else
-  command="images"
+  dockerbasicimage "images" "List image which name contains: "
 fi
-dockerbasicimage "$command" "List image which name contains: "
+
