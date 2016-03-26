@@ -16,7 +16,7 @@
 # DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : alias edockerinspect
+# USAGE            : edockerinspect
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
 if [ -n "$1" ]; then

@@ -16,7 +16,7 @@
 # DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : alias edockerrename
+# USAGE            : edockerrename
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
 

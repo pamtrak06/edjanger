@@ -21,7 +21,7 @@
 # DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : ./run.sh
+# USAGE            : edockerruni
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
 

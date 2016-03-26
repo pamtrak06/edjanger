@@ -13,7 +13,7 @@
 # DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : ./unalias.sh
+# USAGE            : edockerunalias
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
 

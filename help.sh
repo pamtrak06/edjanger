@@ -7,14 +7,14 @@
 # SCRIPT           : copy.sh
 # ALIAS            : edockerhelp
 # DESCRIPTION      : help script for edocker command
-#   PARAMETER      : config
+#   ARGUMENT       : config
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0
 # DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : alias edockerhelp <shord docker command name>
+# USAGE            : edockerhelp <short docker command name>
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
 

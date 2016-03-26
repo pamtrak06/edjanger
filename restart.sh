@@ -16,7 +16,7 @@
 # DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : ./start.sh
+# USAGE            : edockerrestart
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
 if [ -n "$1" ]; then

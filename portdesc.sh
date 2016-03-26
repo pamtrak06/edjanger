@@ -4,16 +4,17 @@
 #
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
-# SCRIPT           : ports.sh
-# ALIAS            : edockerports
-# DESCRIPTION      : show standarad ports attribution
+# SCRIPT           : portdesc.sh
+# ALIAS            : edockerportdesc
+# DESCRIPTION      : description of port
+#   ARGUMENT       : port number
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0
 # DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : alias edockerlogs
+# USAGE            : edockerportdesc [port number]
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
 

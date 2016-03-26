@@ -16,7 +16,7 @@
 # DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : alias edockerrmi
+# USAGE            : edockerrmi
 # ----------------------------------------------------
 . {edockerpath}/_common.sh
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then

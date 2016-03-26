@@ -14,7 +14,7 @@
 # DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : alias edockerlogs
+# USAGE            : edockerports
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
 

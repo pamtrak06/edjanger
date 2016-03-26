@@ -5,7 +5,7 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : images.sh
-# ALIAS            : edockerps
+# ALIAS            : edockerimages
 # DESCRIPTION      : run command "docker images" with parameters readed from local edocker.cfg
 #   PARAMETER      : image_name
 #   PARAMETER      : docker_command
@@ -15,7 +15,7 @@
 # DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : alias edockerimages
+# USAGE            : edockerimages
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
 if [ -n "$1" ]; then
