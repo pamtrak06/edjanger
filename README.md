@@ -154,6 +154,7 @@ Description : run command "docker build" with parameters readed from local edock
 
 ### #alias edockercheck
 Description : check missing parameters in edocker.cfg.
+Remark : even when parameters are missing in edocker.cfg, they are initialized empty.
 
 ### #alias edockerclean
 Description : clean all images with none attribute (run docker rmi with "none" filter)
