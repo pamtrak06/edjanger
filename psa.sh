@@ -21,7 +21,7 @@
 source {edockerpath}/_common.sh
 
 if [ -n "$1" ]; then
-  dockerbasiccontainer "help" "ps"
+  dockerbasiccontainer "help" "psa"
 else
   dockerbasiccontainer "ps -a" "State of all containers (started/stoped) with name like: " "-1"
 fi
