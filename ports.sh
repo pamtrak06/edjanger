@@ -20,7 +20,7 @@ source {edockerpath}/_common.sh
 
 ports=
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
-  usage $0  run
+  usage $0 ports
 else
   # list all container
   containers=$(docker ps --filter "status=running" -aq)

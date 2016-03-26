@@ -20,7 +20,7 @@ source {edockerpath}/_common.sh
 
 if [ -n "$1" ]; then
   if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
-    usage $0  run
+    usage $0 portdesc
   else
     echo -e "\n--- Port description for $1"
     title="Service Name,Port Number,Transport Protocol,Description,Assignee,Contact,Registration Date,Modification Date,Reference,Service Code,Known Unauthorized Uses,Assignment Notes"
