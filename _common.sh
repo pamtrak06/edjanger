@@ -38,8 +38,8 @@ function dockerbasicimage()
   comment="$2"
  
   if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
-    source {edockerpath}/help.sh  
-    usage_${command}
+    source {edockerpath}/_common.sh  
+    usage $0 ${command}
   else
     if [ ! -f edocker.cfg ]; then
       echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
@@ -62,8 +62,8 @@ function dockerbasiccontainer()
   initidx="$3"
 
   if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
-    source {edockerpath}/help.sh  
-    usage_${command}
+    source {edockerpath}/_common.sh  
+    usage $0 ${command}
   else
     if [ ! -f edocker.cfg ]; then
       echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"

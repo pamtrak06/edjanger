@@ -18,4 +18,9 @@
 # USAGE            : alias edockerimages
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
-dockerbasicimage "images" "List image which name name contains: "
+if [ -n "$1" ]; then
+  command="help"
+else
+  command="images"
+fi
+dockerbasicimage "$command" "List image which name contains: "

@@ -18,4 +18,9 @@
 # USAGE            : edockertop
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
-dockerbasiccontainer "top" "Starting container: " "0"
+if [ -n "$1" ]; then
+  command="help"
+else
+  command="top"
+fi
+dockerbasiccontainer "$command" "Starting container: " "0"

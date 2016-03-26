@@ -18,4 +18,9 @@
 # USAGE            : ./start.sh
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
-dockerbasiccontainer "stats" "Starting container: " "0"
+if [ -n "$1" ]; then
+  command="help"
+else
+  command="stats"
+fi
+dockerbasiccontainer "$command" "Starting container: " "0"

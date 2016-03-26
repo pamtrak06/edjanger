@@ -18,7 +18,7 @@
 # --------------------------------
 # USAGE            : alias edockerrename
 # ----------------------------------------------------
-. {edockerpath}/_common.sh
+source {edockerpath}/_common.sh
 
 name=$1
 
