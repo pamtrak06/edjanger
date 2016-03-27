@@ -21,7 +21,7 @@ if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 clean
 else
   echo "Following stopped containers will be deleted, is it ok for you (y/n) ?"
-  docker ps -a --filter "status=exited" --format "{{.Names}} {{.ID}} {{.Image}} {{.Ports}}"
+  docker ps -a --filter "status=exited" --format "Container {{.Names}}/id:{{.ID}} from image:{{.Image}}"
   read response
   if [ "y" = "$response" ]; then
     echo "Delete stopped containers..."
