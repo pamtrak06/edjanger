@@ -200,6 +200,9 @@ Description : run command "docker restart" with parameters readed from local edo
 
 ### #alias edockerm
 Description : run command "docker rm" with parameters readed from local edocker.cfg
+
+### #alias edockermexiteds
+Description : run docker rm with list of container with exited status
  
 ### #alias edockermi
 Description : run command "docker rmi" with parameters readed from local edocker.cfg
