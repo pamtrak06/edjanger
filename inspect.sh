@@ -23,5 +23,5 @@ source {edockerpath}/_common.sh
 if [ -n "$1" ]; then
   dockerbasiccontainer "help" "inspect"
 else
-  dockerbasiccontainer "inspect" "Inspection of container: " "0"
+  dockerbasiccontainer "inspect" "Inspection of container: " "0" "container"
 fi

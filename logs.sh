@@ -23,5 +23,5 @@ source {edockerpath}/_common.sh
 if [ -n "$1" ]; then
   dockerbasiccontainer "help" "logs"
 else
-  dockerbasiccontainer "logs" "Logs of container: " "0"
+  dockerbasiccontainer "logs" "Logs of container: " "0" "container"
 fi

@@ -22,5 +22,5 @@ source {edockerpath}/_common.sh
 if [ -n "$1" ]; then
   dockerbasiccontainer "help" "stats"
 else
-  dockerbasiccontainer "stats" "Statistics of container: " "0"
+  dockerbasiccontainer "stats" "Statistics of container: " "0" "container"
 fi

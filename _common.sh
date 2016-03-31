@@ -60,6 +60,7 @@ function dockerbasiccontainer()
   command="$1"
   comment="$2"
   initidx="$3"
+  type="$4"
 
   if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
     source {edockerpath}/_common.sh  
@@ -70,7 +71,13 @@ function dockerbasiccontainer()
     else
       read_config
       if [ "${initidx}" != "-1" ]; then
-        idx=$(echo "$(docker ps -a | grep ${image_name} | wc -l)+${initidx}" | bc)
+        if [ "$type" = "image" ]; then
+          idx=$(echo "$(docker ps -a | grep ${image_name} | wc -l)+${initidx}" | bc)
+        elif [ "$type" = "container" ]; then
+          idx=$(echo "$(docker ps -a | grep ${container_name} | wc -l)+${initidx}" | bc)
+        else
+          echo -e "edocker:ERROR unidentified type: $type"
+        fi
         ct=${container_name}_${idx}
         echo "${comment} ${ct}..."
         docker ${command} ${ct}

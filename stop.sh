@@ -23,5 +23,5 @@ source {edockerpath}/_common.sh
 if [ -n "$1" ]; then
   dockerbasiccontainer "help" "stop"
 else
-  dockerbasiccontainer "stop" "Stopping container: " "0"
+  dockerbasiccontainer "stop" "Stopping container: " "0" "container" "container"
 fi

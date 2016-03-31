@@ -23,5 +23,5 @@ source {edockerpath}/_common.sh
 if [ -n "$1" ]; then
   dockerbasiccontainer "help" "restart"
 else
-  dockerbasiccontainer "restart" "Starting container: " "0"
+  dockerbasiccontainer "restart" "Starting container: " "0" "container"
 fi
