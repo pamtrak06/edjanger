@@ -41,6 +41,8 @@ volumes_from="--volumes-from <container name with exposed volumes>"
 environment_variables="-e <variable name 1>=<value 1> -e <variable name 2>=<value 2>"
 #linked_containers:linked container
 linked_containers="--link <external container name>:<alias in container>"
+#network:network where the contaner will be connected on
+#network=bridge
 #force_rmi:force deletion
 force_rmi="--force"
 #command_run:bash command(s) to run

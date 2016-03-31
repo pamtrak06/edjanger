@@ -13,6 +13,7 @@
 #   PARAMETER      : environment_variables
 #   PARAMETER      : linked_containers
 #   PARAMETER      : exposed_ports
+#   PARAMETER      : network
 #   PARAMETER      : container_name
 #   PARAMETER      : docker_command
 # CREATOR          : pamtrak06@gmail.com
@@ -35,10 +36,10 @@ else
     idx=$(echo "$(docker ps | grep ${image_name} | wc -l)+1" | bc)
     echo "Run container_name: ${container_name}_${idx}..."
     command_run="/bin/bash"
-    docker run -it --name ${container_name}_${idx} ${exposed_ports} ${volumes_from} ${shared_volumes} ${environment_variables} ${linked_containers} ${image_name} ${command_run}
+    docker run -it --name ${container_name}_${idx} ${exposed_ports} ${volumes_from} ${shared_volumes} ${environment_variables} ${linked_containers} ${network} ${image_name} ${command_run}
     if [ "true" = "${docker_command}" ]; then
       echo -e "> Executed docker command:"
-      echo -e "> docker run ${exemode} --name ${container_name}_${idx} ${exposed_ports} ${volumes_from} ${shared_volumes} ${environment_variables} ${linked_containers} ${image_name} ${command_run}"
+      echo -e "> docker run ${exemode} --name ${container_name}_${idx} ${exposed_ports} ${volumes_from} ${shared_volumes} ${environment_variables} ${linked_containers} ${network} ${image_name} ${command_run}"
     fi
   fi
 fi
