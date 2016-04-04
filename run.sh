@@ -33,7 +33,7 @@ else
     echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
   else
     read_config
-    idx=$(echo "$(docker ps | grep ${image_name} | wc -l)+1" | bc)
+    idx=$(echo "$(docker ps | grep ${container_name} | wc -l)+1" | bc)
     echo "Run container_name: ${container_name}_${idx}..."
     docker run -dt --name ${container_name}_${idx} ${exposed_ports} ${volumes_from} ${shared_volumes} ${environment_variables} ${linked_containers} ${network} ${image_name} ${command_run}
     if [ "true" = "${docker_command}" ]; then
