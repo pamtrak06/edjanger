@@ -38,16 +38,16 @@ source edocker.unalias
 
 ## How to activate edocker for a project
 
-Copy the edocker.${config_extension} model in your working docker folder:
+Copy the edocker.properties model in your working docker folder:
 ```bash
-edockerinit 
+edockerinit
 ```
-Equivalent to 
+Equivalent to
 ```bash
-cp [edocker path]/edocker_template.${config_extension} [your docker working project]/edocker.${config_extension}
+cp [edocker path]/edocker_template.properties [your docker working project]/edocker.properties
 ```
 
-Configure your [edocker.${config_extension}](https://github.com/pamtrak06/edocker/blob/master/edocker_template.${config_extension}) with correct parameters.
+Configure your [edocker.properties](https://github.com/pamtrak06/edocker/blob/master/edocker_template.properties) with correct parameters.
 By example, you could create a Dockerfile with this path:
 ```bash
 vi [your docker working project]/build/Dockerfile
@@ -56,7 +56,7 @@ Example of a minimal edocker configuration:
 ```bash
 mkdir -p elk/build
 cd elk; edockerinit
-vi edocker.${config_extension}
+vi edocker.properties
 ```
 ```bash
 &#35; ----------------------------------------------------
@@ -64,7 +64,7 @@ vi edocker.${config_extension}
 &#35;
 &#35; Copyright (c) 2016 copyright pamtrak06@gmail.com
 &#35; ----------------------------------------------------
-&#35; CONFIGURATION    : edocker_template.${config_extension}
+&#35; CONFIGURATION    : edocker_template.properties
 &#35; DESCRIPTION      : project configuration file for edocker
 &#35; CREATOR          : pamtrak06@gmail.com
 &#35; --------------------------------
@@ -142,43 +142,43 @@ Now you've got aliases to run all your docker commands like:
 - edockertop
 - edockerunalias
 
-!!! All thoses aliases are available only when you've got an [edocker.${config_extension}](https://github.com/pamtrak06/edocker/blob/master/edocker_template.${config_extension}) file in your project folder ([docker working project]) '''
+!!! All thoses aliases are available only when you've got an [edocker.properties](https://github.com/pamtrak06/edocker/blob/master/edocker_template.properties) file in your project folder ([docker working project]) '''
 
-For each commands, see edockerhelp 'command' for list of parameters read in edocker.${config_extension} and arguments.
+For each commands, see edockerhelp 'command' for list of parameters read in edocker.properties and arguments.
 
 ### #alias edockeralias
 Description : print edocker aliases.
 
 ### #alias edockerbuild
-Description : run command "docker build" with parameters readed from local edocker.${config_extension}.
+Description : run command "docker build" with parameters readed from local edocker.properties.
 
 ### #alias edockercheck
-Description : check missing parameters in edocker.${config_extension}.
-Remark : even when parameters are missing in edocker.${config_extension}, they are initialized empty.
+Description : check missing parameters in edocker.properties.
+Remark : even when parameters are missing in edocker.properties, they are initialized empty.
 
 ### #alias edockerclean
 Description : clean all images with none attribute (run docker rmi with "none" filter)
 
 ### #alias edockercopy
-Description : run command "docker copy" with parameters readed from local edocker.${config_extension}
+Description : run command "docker copy" with parameters readed from local edocker.properties
 
 ### #alias edockerexec
-Description : run command "docker exec" with parameters readed from local edocker.${config_extension}
+Description : run command "docker exec" with parameters readed from local edocker.properties
 
 ### #alias edockerhelp
 Description : help script for edocker command
 
 ### #alias edockerimages
-Description : run command "docker images" with parameters readed from local edocker.${config_extension}
+Description : run command "docker images" with parameters readed from local edocker.properties
 
 ### #alias edockerinit
-Description : create a edocker.${config_extension} file
+Description : create a edocker.properties file
 
 ### #alias edockerinspect
-Description : run command "docker inspect" with parameters readed from local edocker.${config_extension}
+Description : run command "docker inspect" with parameters readed from local edocker.properties
 
 ### #alias edockerlogs
-Description : run command "docker logs" with parameters readed from local edocker.${config_extension}
+Description : run command "docker logs" with parameters readed from local edocker.properties
 
 ### #alias edockerportdesc
 Description : run command "docker ports" on all running container
@@ -187,43 +187,43 @@ Description : run command "docker ports" on all running container
 Description : description of port
 
 ### #alias edockerps
-Description : run command "docker ps" with parameters readed from local edocker.${config_extension}
+Description : run command "docker ps" with parameters readed from local edocker.properties
 
 ### #alias edockerpsa
-Description : run command "docker ps -a" with parameters readed from local edocker.${config_extension}
+Description : run command "docker ps -a" with parameters readed from local edocker.properties
 
 ### #alias edockerrename
-Description : run command "docker rename" with parameters readed from local edocker.${config_extension}
+Description : run command "docker rename" with parameters readed from local edocker.properties
 
 ### #alias edockerrestart
-Description : run command "docker restart" with parameters readed from local edocker.${config_extension}
+Description : run command "docker restart" with parameters readed from local edocker.properties
 
 ### #alias edockerm
-Description : run command "docker rm" with parameters readed from local edocker.${config_extension}
+Description : run command "docker rm" with parameters readed from local edocker.properties
 
 ### #alias edockermexiteds
 Description : run docker rm with list of container with exited status
- 
+
 ### #alias edockermi
-Description : run command "docker rmi" with parameters readed from local edocker.${config_extension}
+Description : run command "docker rmi" with parameters readed from local edocker.properties
 
 ### #alias edockerun
-Description : run command "docker run -id" daemon mode, with parameters readed from local edocker.${config_extension}
+Description : run command "docker run -id" daemon mode, with parameters readed from local edocker.properties
 
 ### #alias edockeruni
-Description : run command "docker run -it" interactive mode, with parameters readed from local edocker.${config_extension}
+Description : run command "docker run -it" interactive mode, with parameters readed from local edocker.properties
 
 ### #alias edockestart
-Description : run command "docker start" with parameters readed from local edocker.${config_extension}
+Description : run command "docker start" with parameters readed from local edocker.properties
 
 ### #alias edockestop
-Description : run command "docker stop" with parameters readed from local edocker.${config_extension}
+Description : run command "docker stop" with parameters readed from local edocker.properties
 
 ### #alias edockertag
-Description : run command "docker tag" with parameters readed from local edocker.${config_extension}
+Description : run command "docker tag" with parameters readed from local edocker.properties
 
 ### #alias edockertop
-Description : run command "docker top" with parameters readed from local edocker.${config_extension}
+Description : run command "docker top" with parameters readed from local edocker.properties
 
 ### #alias edockerunalias
 Description : help script for edocker command
@@ -239,10 +239,10 @@ Or create all possible aliases for subfolders in a folder:
 source /usr/local/edocker/_common.sh
 source $(buildPathAliases "/opt/docker/")
 ```
-Check missing parameters in edocker.${config_extension}
+Check missing parameters in edocker.properties
 ```bash
 edockercheck
-Check edocker.${config_extension}...
+Check edocker.properties...
   - check "docker_command"
   - check "image_name"
   - check "build_path"
@@ -284,7 +284,7 @@ Help for commands, example for edockerbuild
 ```bash
 edockerhelp build
 ```
-Help for parameters in edocker.${config_extension} used by commands
+Help for parameters in edocker.properties used by commands
 ```bash
 edockerhelp config
 ```
