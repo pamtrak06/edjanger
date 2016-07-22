@@ -106,7 +106,7 @@ function checkparameter()
   # grep parameter found in edocker.${config_extension}
   export check=$(cat edocker.${config_extension}|grep -v "#"|grep "${parameter}"|cut -d '=' -f1)
   if [ -z ${check} ]; then
-    echo "    ERROR: parameter is missing !!!"
+    echo "    WARNING: parameter is missing !!!"
     return 255
   fi
 }
