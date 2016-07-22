@@ -247,30 +247,30 @@ Check edocker.properties...
   - check "image_name"
   - check "build_path"
   - check "build_args"
-    ERROR: parameter is missing !!!
+    WARNING: parameter is missing !!!
   - check "build_forcerm"
-    ERROR: parameter is missing !!!
+    WARNING: parameter is missing !!!
   - check "build_rm"
-    ERROR: parameter is missing !!!
+    WARNING: parameter is missing !!!
   - check "build_nocache"
-    ERROR: parameter is missing !!!
+    WARNING: parameter is missing !!!
   - check "build_file"
-    ERROR: parameter is missing !!!
+    WARNING: parameter is missing !!!
   - check "container_name"
   - check "exposed_ports"
   - check "shared_volumes"
-    ERROR: parameter is missing !!!
+    WARNING: parameter is missing !!!
   - check "volumes_from"
-    ERROR: parameter is missing !!!
+    WARNING: parameter is missing !!!
   - check "environment_variables"
-    ERROR: parameter is missing !!!
+    WARNING: parameter is missing !!!
   - check "linked_containers"
-    ERROR: parameter is missing !!!
+    WARNING: parameter is missing !!!
   - check "force_rmi"
-    ERROR: parameter is missing !!!
+    WARNING: parameter is missing !!!
   - check "command_run"
-    ERROR: parameter is missing !!!
-  -> configuration is NOK
+    WARNING: parameter is missing !!!
+  => STATUS of configuration is: some parameters are undefined
 ```
 Help commands
 ```bash
