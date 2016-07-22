@@ -24,9 +24,9 @@ else
     echo -e "Check edocker.${config_extension}..."
     checkconfig
     if [ "$?" != "255" ]; then
-      echo -e "  -> configuration is OK"
+      echo -e "  => STATUS of configuration is: OK"
     else
-      echo -e "  -> configuration is NOK"
+      echo -e "  => STATUS of configuration is: some parameters are undefined"
     fi
   fi
 fi
