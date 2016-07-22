@@ -21,7 +21,7 @@ function read_config()
   if [ ! -f edocker.${config_extension} ]; then
     echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
   else
-    parameters=$(cat {edockerpath}/edocker_template.${config_extension}|grep -v "#"|grep "="|cut -d '=' -f1)
+    parameters=$(cat {edockerpath}/edocker_template.${config_extension}|grep "="|cut -d '=' -f1|cut -d '#' -f2)
 
     for p in ${parameters}; do
       unset -v ${p}
