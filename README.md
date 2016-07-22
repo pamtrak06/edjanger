@@ -59,53 +59,53 @@ cd elk; edockerinit
 vi edocker.properties
 ```
 ```bash
-&#35; ----------------------------------------------------
-&#35; The MIT License (MIT)
-&#35;
-&#35; Copyright (c) 2016 copyright pamtrak06@gmail.com
-&#35; ----------------------------------------------------
-&#35; CONFIGURATION    : edocker_template.properties
-&#35; DESCRIPTION      : project configuration file for edocker
-&#35; CREATOR          : pamtrak06@gmail.com
-&#35; --------------------------------
-&#35; VERSION          : 1.0
-&#35; DATE             : 2016-03-02
-&#35; COMMENT          : creation
-&#35; --------------------------------
-&#35; USAGE            : read by edocker scripts
-&#35; ----------------------------------------------------
-&#35;docker_command:show docker command when edocker is used
+#  ----------------------------------------------------
+#  The MIT License (MIT)
+#
+#  Copyright (c) 2016 copyright pamtrak06@gmail.com
+#  ----------------------------------------------------
+#  CONFIGURATION    : edocker_template.properties
+#  DESCRIPTION      : project configuration file for edocker
+#  CREATOR          : pamtrak06@gmail.com
+#  --------------------------------
+#  VERSION          : 1.0
+#  DATE             : 2016-03-02
+#  COMMENT          : creation
+#  --------------------------------
+#  USAGE            : read by edocker scripts
+#  ----------------------------------------------------
+# docker_command:show docker command when edocker is used
 docker_command=true
-&#35;image_name:image name
+# image_name:image name
 image_name="pamtrak06/elk"
-&#35;build_path:path where is found Dockerfile
+# build_path:path where is found Dockerfile
 build_path=build
-&#35;build_args:build arguments
-&#35;build_args="--build-arg VAR1='value1' --build-arg VAR2='value2'"
-&#35;build_forcerm:always remove intermediate containers
-&#35;build_forcerm="--force-rm"
-&#35;build_rm: Remove intermediate containers after a successful build
-&#35;build_rm="--rm=true"
-&#35;build_nocache:do not use cache when building the image
-&#35;build_nocache="--no-cache"
-&#35;build_file:name of the Dockerfile (Default is 'PATH/Dockerfile')
-&#35;build_file="--file Dockerfile"
-&#35;container_name:container
+# build_args:build arguments
+# build_args="--build-arg VAR1='value1' --build-arg VAR2='value2'"
+# build_forcerm:always remove intermediate containers
+# build_forcerm="--force-rm"
+# build_rm: Remove intermediate containers after a successful build
+# build_rm="--rm=true"
+# build_nocache:do not use cache when building the image
+# build_nocache="--no-cache"
+# build_file:name of the Dockerfile (Default is 'PATH/Dockerfile')
+# build_file="--file Dockerfile"
+# container_name:container
 container_name="elk"
-&#35;exposed_ports:exposed port
+# exposed_ports:exposed port
 exposed_ports="-p 32000:80"
-&#35;shared_volumes:shared volumes
-&#35;shared_volumes="-v <host path>:<container path>"
-&#35;volumes_from:expose volumes from another container into current container
-&#35;volumes_from="--volumes-from <container name with exposed volumes>"
-&#35;environment_variables:environnment variables
-&#35;environment_variables="-e <variable name 1>=<value 1> -e <variable name 2>=<value 2>"
-&#35;linked_containers:linked container
-&#35;linked_containers="--link <external container name>:<alias in container>"
-&#35;force_rmi:force deletion
-&#35;force_rmi="--force"
-&#35;command_run:bash command(s) to run
-&#35;command_run="/bin/bash -c \"cd /; ls -la"
+# shared_volumes:shared volumes
+# shared_volumes="-v <host path>:<container path>"
+# volumes_from:expose volumes from another container into current container
+# volumes_from="--volumes-from <container name with exposed volumes>"
+# environment_variables:environnment variables
+# environment_variables="-e <variable name 1>=<value 1> -e <variable name 2>=<value 2>"
+# linked_containers:linked container
+# linked_containers="--link <external container name>:<alias in container>"
+# force_rmi:force deletion
+# force_rmi="--force"
+# command_run:bash command(s) to run
+# command_run="/bin/bash -c \"cd /; ls -la"
 ```
 ```bash
 touch build/Dockerfile
