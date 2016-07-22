@@ -28,7 +28,7 @@ else
     checkconfig
   fi
   if [ ! -d "build" ] && [ "{edockerpath}" != "$PWD" ]; then
-    echo -e "> Initialize edocker configuration folder for Dockerfile: /build ..."
+    echo -e "> Initialize edocker build folder for Dockerfile: /build ..."
     mkdir build/
   fi
   if [ ! -f "build/Dockerfile" ] && [ "{edockerpath}" != "$PWD" ]; then
