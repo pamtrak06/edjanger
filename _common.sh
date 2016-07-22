@@ -14,20 +14,21 @@
 # --------------------------------
 # USAGE            : source _common.sh
 # ----------------------------------------------------
+config_extension=properties
 
 function read_config()
 {
-  if [ ! -f edocker.cfg ]; then
-    echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
+  if [ ! -f edocker.${config_extension} ]; then
+    echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
   else
-    parameters=$(cat {edockerpath}/edocker.cfg.sample|grep -v "#"|grep "="|cut -d '=' -f1)
+    parameters=$(cat {edockerpath}/edocker_template.${config_extension}|grep -v "#"|grep "="|cut -d '=' -f1)
 
     for p in ${parameters}; do
       unset -v ${p}
     done
-  
-    source edocker.cfg
- 
+
+    source edocker.${config_extension}
+
   fi
 
 }
@@ -36,13 +37,13 @@ function dockerbasicimage()
 {
   command="$1"
   comment="$2"
- 
+
   if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
-    source {edockerpath}/_common.sh  
+    source {edockerpath}/_common.sh
     usage $0 $2
   else
-    if [ ! -f edocker.cfg ]; then
-      echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
+    if [ ! -f edocker.${config_extension} ]; then
+      echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
     else
       read_config
       echo "${comment} $(echo ${image_name} | cut -d ':' -f1)..."
@@ -63,11 +64,11 @@ function dockerbasiccontainer()
   type="$4"
 
   if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
-    source {edockerpath}/_common.sh  
+    source {edockerpath}/_common.sh
     usage $0 $2
   else
-    if [ ! -f edocker.cfg ]; then
-      echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
+    if [ ! -f edocker.${config_extension} ]; then
+      echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
     else
       read_config
       if [ "${initidx}" != "-1" ]; then
@@ -101,9 +102,9 @@ function dockerbasiccontainer()
 function checkparameter()
 {
   parameter="$1"
-  
-  # grep parameter found in edocker.cfg
-  export check=$(cat edocker.cfg|grep -v "#"|grep "${parameter}"|cut -d '=' -f1)
+
+  # grep parameter found in edocker.${config_extension}
+  export check=$(cat edocker.${config_extension}|grep -v "#"|grep "${parameter}"|cut -d '=' -f1)
   if [ -z ${check} ]; then
     echo "    ERROR: parameter is missing !!!"
     return 255
@@ -112,21 +113,21 @@ function checkparameter()
 
 function checkconfig()
 {
- 
-  if [ ! -f edocker.cfg ]; then
-    echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
+
+  if [ ! -f edocker.${config_extension} ]; then
+    echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
   else
-  
+
     read_config
-    
-    parameters=$(cat {edockerpath}/edocker.cfg.sample|grep -v "#"|grep "="|cut -d '=' -f1)
+
+    parameters=$(cat {edockerpath}/edocker_template.${config_extension}|grep -v "#"|grep "="|cut -d '=' -f1)
 
     local res
     for p in ${parameters}; do
-    
+
       echo -e "  - check \"${p}\""
       checkparameter "${p}"; if [ "$?" = "255" ]; then res=255; fi
-      
+
     done
 
     if [ "$res" = "255" ]; then
@@ -143,19 +144,19 @@ function usage_command()
 
   # list all *.sh scripts from edocker path
   scripts=$(ls {edockerpath}/*.sh | grep -v -e "${script}" -e "help" -e "\_")
-  
+
   for s in ${scripts}; do
 
     base=$(basename ${s})
-    
+
     found=$(grep -e ${command} ${s})
-    
+
     if [ -n "${found}" ]; then
       echo -e "      - command: \"edocker${base%.sh}\""
     fi
-  
+
   done
-  
+
 }
 
 function usage_list()
@@ -165,16 +166,16 @@ function usage_list()
 
   # list all *.sh scripts from edocker path
   scripts=$(ls {edockerpath}/*.sh | grep -v -e "\_")
-  
+
   echo -e "Help must have one argument in list:"
   echo -e "  command: config"
-  
+
   for s in ${scripts}; do
 
     base=$(basename ${s})
-    
+
     echo -e "  command: ${base%.sh}"
-  
+
   done
 
 }
@@ -183,13 +184,13 @@ function usage_config()
 {
   script=$1
 
-  echo -e "Parameters in edocker.cfg configuration file"
- 
-  parameters=$(cat {edockerpath}/edocker.cfg.sample|grep -v "#"|grep "="|cut -d '=' -f1)
+  echo -e "Parameters in edocker.${config_extension} configuration file"
+
+  parameters=$(cat {edockerpath}/edocker_template.${config_extension}|grep -v "#"|grep "="|cut -d '=' -f1)
 
   for p in ${parameters}; do
-    
-    comment=$(cat {edockerpath}/edocker.cfg.sample|grep -e "#${p}"|cut -d ':' -f2)
+
+    comment=$(cat {edockerpath}/edocker_template.${config_extension}|grep -e "#${p}"|cut -d ':' -f2)
     echo -e ""
     echo -e "  - ${p}: ${comment}, used by:"
     usage_command "${script}" "${p}"
@@ -207,26 +208,26 @@ function usage()
   command=$2
 
   if [ -z "${command}" ]; then
-  
+
     usage_list ${script}
 
   else
-    
+
     found=false
-    
+
     scripts=$(ls {edockerpath}/*.sh | grep -v -e "\_")
 
     for s in ${scripts}; do
 
       base=$(basename ${s})
-    
+
       edalias=${prefix}${base%.sh}
-      
+
       if [ "$2" = "${edalias}" ]; then
-        
-        alias_txt=$(grep "ALIAS" ${s}|cut -d ':' -f2)        
+
+        alias_txt=$(grep "ALIAS" ${s}|cut -d ':' -f2)
         echo -e "Usage       :"$alias_txt
-        
+
         desc_txt=$(grep "DESCRIPTION" ${s}|cut -d ':' -f2)
         echo -e "Description :"$desc_txt
 
@@ -237,7 +238,7 @@ function usage()
             echo -e "  - $(echo $p)"
           done
         fi
-        
+
         SAVEIFS=$IFS
         IFS=$'\n'
         args=$(grep "ARGUMENT" ${s})
@@ -248,66 +249,66 @@ function usage()
           echo -e "  - $val"
         done
         IFS=$SAVEIFS
-        
+
         found=true
-        
+
       fi
-      
+
     done
-    
+
     if [ "$2" = "config" ]; then
-    
+
       usage_config "${script}"
-    
+
       found=true
-      
+
     fi
-    
+
     if [ "${found}" != "true" ]; then
       usage_list ${script}
     fi
-    
+
   fi
 }
 
 
 # Build path aliases files
 function buildPathAliases() {
-  
+
   working_path=$1
   base_path=$(basename $1)
-  
+
   # edocker alias/unalias files
   pathaliasFile=${working_path}/${base_path}.alias
   pathunaliasFile=${working_path}/${base_path}.unalias
- 
+
   # list all *.sh scripts from edocker path
   scripts=$(ls $working_path)
 
   # delete all previous aliases files path
   rm -f ${pathaliasFile} ${pathunaliasFile}
-  
+
   #echo -e "\n--- Build aliases for subfolders of directory $working_path..."
-  
+
   # create aliases files (*.alias and *.unalias)
   for s in ${scripts}; do
 
     base=$(basename ${s})
-    
+
     if [ -d $working_path/${s} ]; then
-      
+
       pathalias=cd${base}
-      
-      #echo -e "  - updating path aliases ${pathalias} in files..."    
-      
+
+      #echo -e "  - updating path aliases ${pathalias} in files..."
+
       echo "alias ${pathalias}=\"cd ${working_path}/${base}; pwd\"" >> ${pathaliasFile}
-      
+
       echo "unalias ${pathalias}" >> ${pathunaliasFile}
-    
+
     fi
-    
+
   done
-  
+
   echo $pathaliasFile
-  
+
 }

@@ -16,7 +16,8 @@
 # --------------------------------
 # USAGE            : edockerrmexiteds
 # ----------------------------------------------------
-. {edockerpath}/_common.sh
+source {edockerpath}/_common.sh
+
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 clean
 else

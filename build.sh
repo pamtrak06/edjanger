@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : build.sh
 # ALIAS            : edockerbuild
-# DESCRIPTION      : run command "docker build" with parameters readed from local edocker.cfg
+# DESCRIPTION      : run command "docker build" with parameters readed from local edocker.${config_extension}
 #   PARAMETER      : image_name
 #   PARAMETER      : proxy_args
 #   PARAMETER      : build_args
@@ -22,17 +22,18 @@
 # --------------------------------
 # USAGE            : edockerbuild
 # ----------------------------------------------------
-. {edockerpath}/_common.sh
+source {edockerpath}/_common.sh
+
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 build
 else
-  if [ ! -f edocker.cfg ]; then
-    echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
+  if [ ! -f edocker.${config_extension} ]; then
+    echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
   else
     read_config
     echo build image_name: ${image_name}...
     if [ ! -d ${build_path} ]; then
-      echo "Build path must exist and be a folder, configure variable build_path in edocker.cfg"
+      echo "Build path must exist and be a folder, configure variable build_path in edocker.${config_extension}"
     else
       . {edockerpath}/_proxy.sh
       build_arguments="${proxy_args} ${build_args}"

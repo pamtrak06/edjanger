@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : run.sh
 # ALIAS            : edockerrun
-# DESCRIPTION      : run command "docker run -id" daemon mode, with parameters readed from local edocker.cfg
+# DESCRIPTION      : run command "docker run -id" daemon mode, with parameters readed from local edocker.${config_extension}
 #   PARAMETER      : image_name
 #   PARAMETER      : exposed_ports
 #   PARAMETER      : shared_volumes
@@ -29,8 +29,8 @@ source {edockerpath}/_common.sh
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0  run
 else
-  if [ ! -f edocker.cfg ]; then
-    echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
+  if [ ! -f edocker.${config_extension} ]; then
+    echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
   else
     read_config
     idx=$(echo "$(docker ps | grep ${container_name} | wc -l)+1" | bc)

@@ -5,7 +5,7 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : _proxy.sh
-# DESCRIPTION      : set proxy env. var. from unarchive proxy.zip wich contain proxy.cfg
+# DESCRIPTION      : set proxy env. var. from unarchive proxy.zip wich contain proxy.${config_extension}
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0
@@ -16,14 +16,14 @@
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
 if [ -f {edockerpath}/proxy.zip ]; then
-  if [ ! -f edocker.cfg ]; then
-    echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
+  if [ ! -f edocker.${config_extension} ]; then
+    echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
   else
     read_config
     echo -e "Initialize proxy parameters..."
     unzip {edockerpath}/proxy.zip -d {edockerpath}/
-    source {edockerpath}/proxy.cfg
-    rm -f {edockerpath}/proxy.cfg
+    source {edockerpath}/proxy.${config_extension}
+    rm -f {edockerpath}/proxy.${config_extension}
     proxy_args="--build-arg http_proxy=$http_proxy --build-arg https_proxy=$https_proxy"
   fi
 else

@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : check.sh
 # ALIAS            : edockercheck
-# DESCRIPTION      : check missing parameters in edocker.cfg
+# DESCRIPTION      : check missing parameters in edocker.${config_extension}
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0
@@ -15,12 +15,13 @@
 # --------------------------------
 # USAGE            : edockercheck
 # ----------------------------------------------------
-. {edockerpath}/_common.sh
+source {edockerpath}/_common.sh
+
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 check
 else
-  if [ -f "edocker.cfg" ] && [ "{edockerpath}" != "$PWD" ]; then
-    echo -e "Check edocker.cfg..."
+  if [ -f "edocker.${config_extension}" ] && [ "{edockerpath}" != "$PWD" ]; then
+    echo -e "Check edocker.${config_extension}..."
     checkconfig
     if [ "$?" != "255" ]; then
       echo -e "  -> configuration is OK"

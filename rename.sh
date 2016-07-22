@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : rename.sh
 # ALIAS            : edockerrename
-# DESCRIPTION      : run command "docker rename" with parameters readed from local edocker.cfg
+# DESCRIPTION      : run command "docker rename" with parameters readed from local edocker.${config_extension}
 #  ARGUMENT        : new name of container
 #  PARAMETER       : container_name
 #  PARAMETER       : docker_command
@@ -28,8 +28,8 @@ else
   if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
     usage $0 rename
   else
-    if [ ! -f edocker.cfg ]; then
-      echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
+    if [ ! -f edocker.${config_extension} ]; then
+      echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
     else
       read_config
       idx=$(echo "$(docker ps -a|grep ${container_name}|wc -l)+0"|bc)

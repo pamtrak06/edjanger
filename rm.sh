@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : rm.sh
 # ALIAS            : edockerrm
-# DESCRIPTION      : run command "docker rm" with parameters readed from local edocker.cfg
+# DESCRIPTION      : run command "docker rm" with parameters readed from local edocker.${config_extension}
 #   PARAMETER      : container_name
 #   PARAMETER      : docker_command
 # CREATOR          : pamtrak06@gmail.com
@@ -17,12 +17,13 @@
 # --------------------------------
 # USAGE            : edockerrm
 # ----------------------------------------------------
-. {edockerpath}/_common.sh
+source {edockerpath}/_common.sh
+
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 rm
 else
-  if [ ! -f edocker.cfg ]; then
-    echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
+  if [ ! -f edocker.${config_extension} ]; then
+    echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
   else
     read_config
     idx=$(echo "$(docker ps -a|grep ${container_name}|wc -l)+0"|bc)

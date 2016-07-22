@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : inspect.sh
 # ALIAS            : edockerinspect
-# DESCRIPTION      : run command "docker inspect" with parameters readed from local edocker.cfg
+# DESCRIPTION      : run command "docker inspect" with parameters readed from local edocker.${config_extension}
 #   PARAMETER      : image_name
 #   PARAMETER      : container_name
 #   PARAMETER      : docker_command

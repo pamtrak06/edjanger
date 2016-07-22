@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : tag.sh
 # ALIAS            : edockertag
-# DESCRIPTION      : run command "docker tag" with parameters readed from local edocker.cfg
+# DESCRIPTION      : run command "docker tag" with parameters readed from local edocker.${config_extension}
 #  ARGUMENT        : new name of container
 #  PARAMETER       : image_name
 #  PARAMETER       : docker_command
@@ -18,7 +18,7 @@
 # --------------------------------
 # USAGE            : edockertag
 # ----------------------------------------------------
-. {edockerpath}/_common.sh
+source {edockerpath}/_common.sh
 
 tag=$1
 
@@ -28,8 +28,8 @@ else
   if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
     usage $0 tag
   else
-    if [ ! -f edocker.cfg ]; then
-      echo -e "edocker:ERROR No edocker.cfg available, use \"<edockerinit>\" command to initialize one in this directory"
+    if [ ! -f edocker.${config_extension} ]; then
+      echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
     else
       read_config
       idx=$(echo "$(docker images|grep ${image_name}|wc -l)+0"|bc)

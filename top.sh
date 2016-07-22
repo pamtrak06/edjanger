@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : top.sh
 # ALIAS            : edockertop
-# DESCRIPTION      : run command "docker top" with parameters readed from local edocker.cfg
+# DESCRIPTION      : run command "docker top" with parameters readed from local edocker.${config_extension}
 #   PARAMETER      : container_name
 #   PARAMETER      : docker_command
 # CREATOR          : pamtrak06@gmail.com

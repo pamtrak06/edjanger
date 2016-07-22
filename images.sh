@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : images.sh
 # ALIAS            : edockerimages
-# DESCRIPTION      : run command "docker images" with parameters readed from local edocker.cfg
+# DESCRIPTION      : run command "docker images" with parameters readed from local edocker.${config_extension}
 #   PARAMETER      : image_name
 #   PARAMETER      : docker_command
 # CREATOR          : pamtrak06@gmail.com
