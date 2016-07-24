@@ -89,10 +89,10 @@ function dockerbasiccontainer()
       else
         ct=${container_name}
         echo "${comment} ${ct}..."
-        docker ${command} | grep ${ct}
+        docker ${command} | grep -w "${ct}_[0-9]"
         if [ "true" = "${docker_command}" ]; then
           echo -e "> Executed docker command:"
-          echo -e "> docker ${command} | grep ${ct}"
+          echo -e "> docker ${command} | grep -w \"${ct}_[0-9]\""
         fi
       fi
     fi
