@@ -13,7 +13,8 @@
 #   PARAMETER      : environment_variables
 #   PARAMETER      : linked_containers
 #   PARAMETER      : exposed_ports
-#   PARAMETER      : network
+#   PARAMETER      : network_settings
+#   PARAMETER      : runtime_constraints_on_resources
 #   PARAMETER      : container_name
 #   PARAMETER      : docker_command
 # CREATOR          : pamtrak06@gmail.com
@@ -21,6 +22,10 @@
 # VERSION          : 1.0
 # DATE             : 2016-03-02
 # COMMENT          : creation
+# --------------------------------
+# VERSION          : 1.0.1
+# DATE             : 2016-08-01
+# COMMENT          : add options for run : network_settings and network_settings
 # --------------------------------
 # USAGE            : edockerruni
 # ----------------------------------------------------
@@ -36,10 +41,10 @@ else
     idx=$(echo "$(docker ps | grep ${container_name} | wc -l)+1" | bc)
     echo "Run container_name: ${container_name}_${idx}..."
     command_run="/bin/bash"
-    docker run -it --name ${container_name}_${idx} ${exposed_ports} ${volumes_from} ${shared_volumes} ${environment_variables} ${linked_containers} ${network} ${image_name} ${command_run}
+    docker run -it --name ${container_name}_${idx} ${network_settings} ${runtime_constraints_on_resources} ${exposed_ports} ${volumes_from} ${shared_volumes} ${environment_variables} ${linked_containers} ${image_name} ${command_run}
     if [ "true" = "${docker_command}" ]; then
       echo -e "> Executed docker command:"
-      echo -e "> docker run ${exemode} --name ${container_name}_${idx} ${exposed_ports} ${volumes_from} ${shared_volumes} ${environment_variables} ${linked_containers} ${network} ${image_name} ${command_run}"
+      echo -e "> docker run ${exemode} --name ${container_name}_${idx} ${network_settings} ${runtime_constraints_on_resources} ${exposed_ports} ${volumes_from} ${shared_volumes} ${environment_variables} ${linked_containers} ${image_name} ${command_run}"
     fi
   fi
 fi
