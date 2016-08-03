@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : compose.sh
 # ALIAS            : edockerexec
-# DESCRIPTION      : generate docker compose yaml from all local edocker.${config_extension}
+# DESCRIPTION      : generate docker compose yaml from all local edocker.poperties
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0.2
