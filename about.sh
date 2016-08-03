@@ -5,9 +5,8 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : about.sh
-# ALIAS            : edockerhelp
+# ALIAS            : edockerabout
 # DESCRIPTION      : about script for edocker
-#   ARGUMENT       : config
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0
