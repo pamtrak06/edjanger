@@ -102,6 +102,10 @@ exposed_ports="-p 32000:80"
 # environment_variables="-e <variable name 1>=<value 1> -e <variable name 2>=<value 2>"
 # linked_containers:linked container
 # linked_containers="--link <external container name>:<alias in container>"
+#network_settings:all network settings options
+#network_settings=--dns [] --net host --network-alias [] --add-host "" --mac-address "" --ip "" --ip6 "" --link-local-ip []
+#runtime_constraints_on_resources: runtime constraints on resources
+#runtime_constraints_on_resources=-m, --memory "" --memory-swap "" --memory-reservation "" --kernel-memory "" ...
 # force_rmi:force deletion
 # force_rmi="--force"
 # command_run:bash command(s) to run
@@ -114,11 +118,13 @@ echo "FROM willdurand/docker-elk" > build/Dockerfile
 
 ## How to use edocker in a docker a project working directory
 Now you've got aliases to run all your docker commands like:
+- edockerabout
 - edockeralias
 - edockerbuild
 - edockercheck
 - edockerclean
 - edockercopy
+- edockercompose
 - edockerexec
 - edockerhelp
 - edockerimages
@@ -146,6 +152,9 @@ Now you've got aliases to run all your docker commands like:
 
 For each commands, see edockerhelp 'command' for list of parameters read in edocker.properties and arguments.
 
+### #alias edockerabout
+Description : about script for edocker.
+
 ### #alias edockeralias
 Description : print edocker aliases.
 
@@ -157,19 +166,22 @@ Description : check missing parameters in edocker.properties.
 Remark : even when parameters are missing in edocker.properties, they are initialized empty.
 
 ### #alias edockerclean
-Description : clean all images with none attribute (run docker rmi with "none" filter)
+Description : clean all images with none attribute (run docker rmi with "none" filter).
 
 ### #alias edockercopy
-Description : run command "docker copy" with parameters readed from local edocker.properties
+Description : run command "docker copy" with parameters readed from local edocker.properties.
+
+### #alias edockercompose
+Description : generate docker compose yaml from all local edocker.poperties.
 
 ### #alias edockerexec
-Description : run command "docker exec" with parameters readed from local edocker.properties
+Description : run command "docker exec" with parameters readed from local edocker.properties.
 
 ### #alias edockerhelp
-Description : help script for edocker command
+Description : help script for edocker command.
 
 ### #alias edockerimages
-Description : run command "docker images" with parameters readed from local edocker.properties
+Description : run command "docker images" with parameters readed from local edocker.properties.
 
 ### #alias edockerinit
 Description : create a edocker.properties file
@@ -184,49 +196,49 @@ Description : run command "docker logs" with parameters readed from local edocke
 Description : run command "docker ports" on all running container
 
 ### #alias edockerports
-Description : description of port
+Description : description of port.
 
 ### #alias edockerps
-Description : run command "docker ps" with parameters readed from local edocker.properties
+Description : run command "docker ps" with parameters readed from local edocker.properties.
 
 ### #alias edockerpsa
-Description : run command "docker ps -a" with parameters readed from local edocker.properties
+Description : run command "docker ps -a" with parameters readed from local edocker.properties.
 
 ### #alias edockerrename
-Description : run command "docker rename" with parameters readed from local edocker.properties
+Description : run command "docker rename" with parameters readed from local edocker.properties.
 
 ### #alias edockerrestart
-Description : run command "docker restart" with parameters readed from local edocker.properties
+Description : run command "docker restart" with parameters readed from local edocker.properties.
 
 ### #alias edockerm
-Description : run command "docker rm" with parameters readed from local edocker.properties
+Description : run command "docker rm" with parameters readed from local edocker.properties.
 
 ### #alias edockermexiteds
-Description : run docker rm with list of container with exited status
+Description : run docker rm with list of container with exited status.
 
 ### #alias edockermi
-Description : run command "docker rmi" with parameters readed from local edocker.properties
+Description : run command "docker rmi" with parameters readed from local edocker.properties.
 
 ### #alias edockerun
-Description : run command "docker run -id" daemon mode, with parameters readed from local edocker.properties
+Description : run command "docker run -id" daemon mode, with parameters readed from local edocker.properties.
 
 ### #alias edockeruni
-Description : run command "docker run -it" interactive mode, with parameters readed from local edocker.properties
+Description : run command "docker run -it" interactive mode, with parameters readed from local edocker.properties.
 
 ### #alias edockestart
-Description : run command "docker start" with parameters readed from local edocker.properties
+Description : run command "docker start" with parameters readed from local edocker.properties.
 
 ### #alias edockestop
-Description : run command "docker stop" with parameters readed from local edocker.properties
+Description : run command "docker stop" with parameters readed from local edocker.properties.
 
 ### #alias edockertag
-Description : run command "docker tag" with parameters readed from local edocker.properties
+Description : run command "docker tag" with parameters readed from local edocker.properties.
 
 ### #alias edockertop
-Description : run command "docker top" with parameters readed from local edocker.properties
+Description : run command "docker top" with parameters readed from local edocker.properties.
 
 ### #alias edockerunalias
-Description : help script for edocker command
+Description : help script for edocker command.
 
 ## Tips
 Create those two aliases and give the correct path for your project:
