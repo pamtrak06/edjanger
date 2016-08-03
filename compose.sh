@@ -83,7 +83,7 @@ function create_compose()
     # Process environment configuration
     if [ -n "${environment_variables}" ]; then
       echo "    environment:" >> $CURDIR/docker-compose.yaml
-      envarray=(${environment_variables//-p/ })
+      envarray=(${environment_variables//-e/ })
       for envnum in "${!envarray[@]}"
       do
         echo "      - \"${envarray[envnum]//[[:space:]]/}\"" >> $CURDIR/docker-compose.yaml
