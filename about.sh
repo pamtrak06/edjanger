@@ -4,22 +4,24 @@
 #
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
-# SCRIPT           : help.sh
+# SCRIPT           : about.sh
 # ALIAS            : edockerhelp
-# DESCRIPTION      : help script for edocker command
+# DESCRIPTION      : about script for edocker
 #   ARGUMENT       : config
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0
-# DATE             : 2016-03-02
+# DATE             : 2016-08-03
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : edockerhelp <short docker command name>
+# USAGE            : edockerabout
 # ----------------------------------------------------
-source {edockerpath}/_common.sh
 
-if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
-  usage $0 help
-else
-  usage $0 $1
-fi
+echo "        _            _              "
+echo " ___  __| | ___   ___| | _____ _ __ "
+echo "/ _ \/  _`|/  _\ / __| |/ / _ | '__|"
+echo "|  __| (_| | (_) | (_|  |   __| |   "
+echo "\___|\__,_|\___/ \___|_|\_\___|_|   "
+echo ""
+echo "Licence: The MIT License (MIT)"
+echo "Copyright (c) 2016 copyright pamtrak06@gmail.com"
