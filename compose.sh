@@ -129,14 +129,14 @@ function create_compose()
     fi
 
     # Process linked containers configuration
-    if [ -n "${linked_containers}" ]; then
-      echo "    depends_on:" >> $CURDIR/docker-compose.yaml
-      linkedarray=(${linked_containers//--link/ })
-      for linknum in "${!linkedarray[@]}"
-      do
-        echo "      - $(echo ${linkedarray[linknum]//[[:space:]]/}|cut -d ':' -f1)" >> $CURDIR/docker-compose.yaml
-      done
-    fi
+    # if [ -n "${linked_containers}" ]; then
+    #   echo "    depends_on:" >> $CURDIR/docker-compose.yaml
+    #   linkedarray=(${linked_containers//--link/ })
+    #   for linknum in "${!linkedarray[@]}"
+    #   do
+    #     echo "      - $(echo ${linkedarray[linknum]//[[:space:]]/}|cut -d ':' -f1)" >> $CURDIR/docker-compose.yaml
+    #   done
+    # fi
 
     # Process linked containers configuration
     if [ -n "${linked_containers}" ]; then
