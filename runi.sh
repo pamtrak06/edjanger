@@ -44,7 +44,7 @@ else
     docker run -it --name ${container_name}_${idx} ${network_settings} ${runtime_constraints_on_resources} ${exposed_ports} ${volumes_from} ${shared_volumes} ${environment_variables} ${linked_containers} ${image_name} ${command_run}
     if [ "true" = "${docker_command}" ]; then
       echo -e "> Executed docker command:"
-      echo -e "> docker run ${exemode} --name ${container_name}_${idx} ${network_settings} ${runtime_constraints_on_resources} ${exposed_ports} ${volumes_from} ${shared_volumes} ${environment_variables} ${linked_containers} ${image_name} ${command_run}"
+      echo -e "> docker run -it --name ${container_name}_${idx} ${network_settings} ${runtime_constraints_on_resources} ${exposed_ports} ${volumes_from} ${shared_volumes} ${environment_variables} ${linked_containers} ${image_name} ${command_run}"
     fi
   fi
 fi

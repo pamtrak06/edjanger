@@ -8,6 +8,7 @@
 # ALIAS            : edockerstats
 # DESCRIPTION      : run command "docker stats" with parameters readed from local edocker.${config_extension}
 #   PARAMETER      : container_name
+#   PARAMETER      : stats_options
 #   PARAMETER      : docker_command
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
@@ -18,9 +19,9 @@
 # USAGE            : edockerstats
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
-
+read_config
 if [ -n "$1" ]; then
   dockerbasiccontainer "help" "stats"
 else
-  dockerbasiccontainer "stats" "Statistics of container: " "0" "container"
+  dockerbasiccontainer "stats ${stats_options}" "Statistics of container: " "0" "container"
 fi

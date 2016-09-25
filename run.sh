@@ -32,7 +32,7 @@
 source {edockerpath}/_common.sh
 
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
-  usage $0  run
+  usage $0 run
 else
   if [ ! -f edocker.${config_extension} ]; then
     echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
@@ -43,7 +43,7 @@ else
     docker run -dt --name ${container_name}_${idx} ${network_settings} ${network_settings} ${exposed_ports} ${volumes_from} ${shared_volumes} ${environment_variables} ${linked_containers} ${image_name} ${command_run}
     if [ "true" = "${docker_command}" ]; then
       echo -e "> Executed docker command:"
-      echo -e "> docker run ${exemode} --name ${container_name}_${idx} ${network_settings} ${runtime_constraints_on_resources} ${exposed_ports} ${volumes_from} ${shared_volumes} ${environment_variables} ${linked_containers} ${image_name} ${command_run}"
+      echo -e "> docker run -dt --name ${container_name}_${idx} ${network_settings} ${runtime_constraints_on_resources} ${exposed_ports} ${volumes_from} ${shared_volumes} ${environment_variables} ${linked_containers} ${image_name} ${command_run}"
     fi
   fi
 fi

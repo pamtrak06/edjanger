@@ -4,12 +4,12 @@
 #
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
-# SCRIPT           : stop.sh
-# ALIAS            : edockerstop
-# DESCRIPTION      : run command "docker stop" with parameters readed from local edocker.${config_extension}
+# SCRIPT           : update.sh
+# ALIAS            : edockerupdate
+# DESCRIPTION      : run command "docker update" with parameters readed from local edocker.${config_extension}
 #   PARAMETER      : image_name
 #   PARAMETER      : container_name
-#   PARAMETER      : stop_options
+#   PARAMETER      : update_options
 #   PARAMETER      : docker_command
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
@@ -17,12 +17,12 @@
 # DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : edockerstop
+# USAGE            : edockerupdate
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
 
 if [ -n "$1" ]; then
-  dockerbasiccontainer "help" "stop"
+  dockerbasiccontainer "help" "update"
 else
-  dockerbasiccontainer "stop ${stop_options}" "Stopping container: " "0" "container" "container"
+  dockerbasiccontainer "update ${update_options}" "updateing container: " "0" "container"
 fi
