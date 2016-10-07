@@ -44,7 +44,12 @@ edockerinit
 ```
 Equivalent to
 ```bash
+> Initialize edocker configuration file: edocker.properties ...
 cp [edocker path]/edocker_template.properties [your docker working project]/edocker.properties
+> Initialize edocker build folder for Dockerfile: /build ...
+mkdir [your docker working project]/build
+> Initialize Dockerfile: build/Dockerfile ...
+touch [your docker working project]/build/Dockerfile
 ```
 
 Configure your [edocker.properties](https://github.com/pamtrak06/edocker/blob/master/edocker_template.properties) with correct parameters.
@@ -120,24 +125,33 @@ echo "FROM willdurand/docker-elk" > build/Dockerfile
 Now you've got aliases to run all your docker commands like:
 - edockerabout
 - edockeralias
+- edockerattach
 - edockerbuild
 - edockercheck
 - edockerclean
-- edockercopy
+- edockercommit
 - edockercompose
+- edockercopy
+- edockerdiff
+- edockerevents
 - edockerexec
 - edockerhelp
+- edockerhistory
 - edockerimages
+- edockerinfo
 - edockerinit
 - edockerinspect
+- edockerkill
 - edockerlogs
+- edockerpause
 - edockerportdesc
-- edockerport
+- edockerports
 - edockerps
 - edockerpsa
 - edockerrename
 - edockerrestart
 - edockerrm
+- edockerrmexiteds
 - edockerrmi
 - edockerrun
 - edockerruni
@@ -147,6 +161,9 @@ Now you've got aliases to run all your docker commands like:
 - edockertag
 - edockertop
 - edockerunalias
+- edockerunpause
+- edockerupdate
+- edockerwait
 
 !!! All thoses aliases are available only when you've got an [edocker.properties](https://github.com/pamtrak06/edocker/blob/master/edocker_template.properties) file in your project folder ([docker working project]) '''
 
