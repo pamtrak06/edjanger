@@ -35,10 +35,13 @@ else
         echo -e "> docker exec -t ${container_name}_${idx} bash -c \"$1\""
       fi
     else
-      docker exec -it ${container_name}_${idx} bash
+      if [ -z "${command_run}" ]; then
+        command_run="/bin/bash"
+      fi
+      docker exec -it ${container_name}_${idx} ${command_run}
       if [ "true" = "${docker_command}" ]; then
         echo -e "> Executed docker command:"
-        echo -e "> docker exec -it ${container_name}_${idx} bash"
+        echo -e "> docker exec -it ${container_name}_${idx} ${command_run}"
       fi
     fi
   fi
