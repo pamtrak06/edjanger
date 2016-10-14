@@ -44,7 +44,12 @@ edockerinit
 ```
 Equivalent to
 ```bash
+> Initialize edocker configuration file: edocker.properties ...
 cp [edocker path]/edocker_template.properties [your docker working project]/edocker.properties
+> Initialize edocker build folder for Dockerfile: /build ...
+mkdir [your docker working project]/build
+> Initialize Dockerfile: build/Dockerfile ...
+touch [your docker working project]/build/Dockerfile
 ```
 
 Configure your [edocker.properties](https://github.com/pamtrak06/edocker/blob/master/edocker_template.properties) with correct parameters.
@@ -120,24 +125,33 @@ echo "FROM willdurand/docker-elk" > build/Dockerfile
 Now you've got aliases to run all your docker commands like:
 - edockerabout
 - edockeralias
+- edockerattach
 - edockerbuild
 - edockercheck
 - edockerclean
-- edockercopy
+- edockercommit
 - edockercompose
+- edockercopy
+- edockerdiff
+- edockerevents
 - edockerexec
 - edockerhelp
+- edockerhistory
 - edockerimages
+- edockerinfo
 - edockerinit
 - edockerinspect
+- edockerkill
 - edockerlogs
+- edockerpause
 - edockerportdesc
-- edockerport
+- edockerports
 - edockerps
 - edockerpsa
 - edockerrename
 - edockerrestart
 - edockerrm
+- edockerrmexiteds
 - edockerrmi
 - edockerrun
 - edockerruni
@@ -147,6 +161,9 @@ Now you've got aliases to run all your docker commands like:
 - edockertag
 - edockertop
 - edockerunalias
+- edockerunpause
+- edockerupdate
+- edockerwait
 
 !!! All thoses aliases are available only when you've got an [edocker.properties](https://github.com/pamtrak06/edocker/blob/master/edocker_template.properties) file in your project folder ([docker working project]) '''
 
@@ -305,24 +322,24 @@ edockerhelp config
 Please contribute !
 
 - daemon               => TO BE Implemented
-- attach               => TO BE Implemented
+- attach               => OK
 - build                => OK
 - clean                => OK
-- commit               => TO BE Implemented
+- commit               => OK
 - cp                   => OK
 - create               => TO BE Implemented
-- diff                 => TO BE Implemented
-- events               => TO BE Implemented
+- diff                 => OK
+- events               => OK
 - exec                 => OK
 - export               => TO BE Implemented
 - help                 => OK
-- history              => TO BE Implemented
+- history              => OK
 - images               => OK
 - import               => TO BE Implemented
-- info                 => TO BE Implemented
+- info                 => OK
 - init                 => OK
 - inspect              => OK
-- kill                 => TO BE Implemented
+- kill                 => OK
 - load                 => TO BE Implemented
 - login                => TO BE Implemented
 - logout               => TO BE Implemented
@@ -350,14 +367,14 @@ Please contribute !
 - stop                 => OK
 - tag                  => OK
 - top                  => OK
-- unpause              => TO BE Implemented
-- update               => TO BE Implemented ?
+- unpause              => OK
+- update               => OK
 - version              => TO BE Implemented ?
 - volume create        => TO BE Implemented
 - volume inspect       => TO BE Implemented
 - volume ls            => TO BE Implemented
 - volume rm            => TO BE Implemented
-- wait                 => TO BE Implemented
+- wait                 => OK
 
 ## License
 edocker is under  "MIT License (MIT)" see [LICENSE file](https://github.com/pamtrak06/edocker/blob/master/LICENSE).

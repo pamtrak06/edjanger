@@ -4,23 +4,23 @@
 #
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
-# SCRIPT           : exec.sh
-# ALIAS            : edockerexec
-# DESCRIPTION      : run command "docker exec" with parameters readed from local edocker.${config_extension}
-#   ARGUMENT       : script argument passed to container, by example <edockerexec "ls -la /">
+# SCRIPT           : commit.sh
+# ALIAS            : edockercommit
+# DESCRIPTION      : run command "docker commit" with parameters readed from local edocker.${config_extension}
+#   ARGUMENT       : [REPOSITORY[:TAG]], script argument passed to container, by example <edockercommit "V12.97">
 #   PARAMETER      : container_name
-#   PARAMETER      : docker_command
+#   PARAMETER      : commit_options
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0
-# DATE             : 2016-03-02
+# DATE             : 2016-09-25
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : edockerexec
+# USAGE            : edockercommit
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
-  usage $0 exec
+  usage $0 commit
 else
   if [ ! -f edocker.${config_extension} ]; then
     echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
@@ -29,20 +29,13 @@ else
     idx=$(echo "$(docker ps | grep ${container_name} | wc -l)+0" | bc)
     echo enter in container_name: ${container_name}_${idx}...
     if [ -n "$1" ]; then
-      docker exec -t ${container_name}_${idx} bash -c "$1"
+      docker commit ${commit_options} ${container_name}_${idx} "$1"
       if [ "true" = "${docker_command}" ]; then
-        echo -e "> Executed docker command:"
-        echo -e "> docker exec -t ${container_name}_${idx} bash -c \"$1\""
+        echo -e "> commituted docker command:"
+        echo -e "> docker commit ${commit_options} ${container_name}_${idx} \"$1\""
       fi
     else
-      if [ -z "${command_run}" ]; then
-        command_run="/bin/bash"
-      fi
-      docker exec -it ${container_name}_${idx} ${command_run}
-      if [ "true" = "${docker_command}" ]; then
-        echo -e "> Executed docker command:"
-        echo -e "> docker exec -it ${container_name}_${idx} ${command_run}"
-      fi
+      usage $0 commit
     fi
   fi
 fi

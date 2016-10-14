@@ -23,6 +23,5 @@ source {edockerpath}/_common.sh
 if [ -n "$1" ]; then
   dockerbasiccontainer "help" "ps"
 else
-  dockerbasiccontainer "ps" "State of running containers with name like: " "-1" "container"
+  dockerbasiccontainer "ps ${ps_options}" "State of running containers with name like: " "-1" "container"
 fi
-

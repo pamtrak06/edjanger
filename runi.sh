@@ -40,11 +40,13 @@ else
     read_config
     idx=$(echo "$(docker ps | grep ${container_name} | wc -l)+1" | bc)
     echo "Run container_name: ${container_name}_${idx}..."
-    command_run="/bin/bash"
-    docker run -it --name ${container_name}_${idx} ${network_settings} ${runtime_constraints_on_resources} ${exposed_ports} ${volumes_from} ${shared_volumes} ${environment_variables} ${linked_containers} ${image_name} ${command_run}
+    if [ -z "${command_run}" ]; then
+      command_run="/bin/bash"
+    fi
+    docker run -it --name ${container_name}_${idx} ${run_other_options} ${network_settings} ${runtime_constraints_on_resources} ${exposed_ports} ${volumes_from} ${shared_volumes} ${environment_variables} ${linked_containers} ${image_name} ${command_run}
     if [ "true" = "${docker_command}" ]; then
       echo -e "> Executed docker command:"
-      echo -e "> docker run ${exemode} --name ${container_name}_${idx} ${network_settings} ${runtime_constraints_on_resources} ${exposed_ports} ${volumes_from} ${shared_volumes} ${environment_variables} ${linked_containers} ${image_name} ${command_run}"
+      echo -e "> docker run -it --name ${container_name}_${idx} ${run_other_options} ${network_settings} ${runtime_constraints_on_resources} ${exposed_ports} ${volumes_from} ${shared_volumes} ${environment_variables} ${linked_containers} ${image_name} ${command_run}"
     fi
   fi
 fi

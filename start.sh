@@ -9,6 +9,7 @@
 # DESCRIPTION      : run command "docker start" with parameters readed from local edocker.${config_extension}
 #   PARAMETER      : image_name
 #   PARAMETER      : container_name
+#   PARAMETER      : start_options
 #   PARAMETER      : docker_command
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
@@ -23,5 +24,5 @@ source {edockerpath}/_common.sh
 if [ -n "$1" ]; then
   dockerbasiccontainer "help" "start"
 else
-  dockerbasiccontainer "start" "Starting container: " "0" "container"
+  dockerbasiccontainer "start ${start_options}" "Starting container: " "0" "container"
 fi

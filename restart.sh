@@ -9,6 +9,7 @@
 # DESCRIPTION      : run command "docker restart" with parameters readed from local edocker.${config_extension}
 #   PARAMETER      : image_name
 #   PARAMETER      : container_name
+#   PARAMETER      : restart_options
 #   PARAMETER      : docker_command
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
@@ -23,5 +24,5 @@ source {edockerpath}/_common.sh
 if [ -n "$1" ]; then
   dockerbasiccontainer "help" "restart"
 else
-  dockerbasiccontainer "restart" "Starting container: " "0" "container"
+  dockerbasiccontainer "restart ${restart_options}" "Starting container: " "0" "container"
 fi
