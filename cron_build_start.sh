@@ -36,7 +36,7 @@ function start() {
 
 if [ -n "$1" ] && [ -d "$1" ]; then
   for prop in $(find $1 -name edocker.properties); do
-    active=$(cat $prop | grep -v "#" | grep "cron_start=true")
+    active=$(cat $prop | grep -v "#" | grep "cron_build=true")
     if  [ -n "$active" ]; then
       dock_path=$(dirname $prop)
       start "$dock_path"
