@@ -1,5 +1,0 @@
-# edocker installations steps
-git clone https://github.com/pamtrak06/edocker.git
-cd edocker; chmod 755 *.sh; chmod 755 edockerinstall
-./edockerinstall
-source edocker.alias

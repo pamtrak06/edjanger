@@ -17,7 +17,8 @@
 # ----------------------------------------------------
 
 # global edocker
-edockerpath=$PWD
+edockerpath=$PWD/scripts
+aliaspath=$PWD
 prefix=edocker
 mode=release
 source _common.sh
@@ -29,18 +30,18 @@ function updatePaths() {
 
   if [ "${mode}" = "release" ]; then
     if [ "$(uname)" = "Linux" ]; then
-      sed -i "s|{edockerpath}|$PWD|g" ${script}
+      sed -i "s|{edockerpath}|${edockerpath}|g" ${script}
     elif [ "$(uname)" = "Darwin" ]; then
-      sed -i '' "s|{edockerpath}|$PWD|g" ${script}
+      sed -i '' "s|{edockerpath}|${edockerpath}|g" ${script}
     fi
   elif [ "${mode}" = "dev" ]; then
     if [ "$(uname)" = "Linux" ]; then
       # reverse for github uploading
-      sed -i "s|$PWD|{edockerpath}|g" ${script}
+      sed -i "s|${edockerpath}|{edockerpath}|g" ${script}
     elif [ "$(uname)" = "Darwin" ]; then
-      sed -i '' "s|{edockerpath}|$PWD|g" ${script}
+      sed -i '' "s|{edockerpath}|${edockerpath}|g" ${script}
       # reverse for github uploading
-      sed -i '' "s|$PWD|{edockerpath}|g" ${script}
+      sed -i '' "s|${edockerpath}|{edockerpath}|g" ${script}
     fi
   else
     echo "edocker:WARNING: unidentified mode: ${mode}"
@@ -53,8 +54,8 @@ function buildAliases() {
   mode=$1
 
   # edocker alias/unalias files
-  edaliasFile=${edockerpath}/${prefix}.alias
-  edunaliasFile=${edockerpath}/${prefix}.unalias
+  edaliasFile=${aliaspath}/${prefix}.alias
+  edunaliasFile=${aliaspath}/${prefix}.unalias
 
   echo -e "\n--- edocker: easy docker ---"
   echo -e "\n--- Installation..."
@@ -77,7 +78,7 @@ function buildAliases() {
   echo -e "\n--- Build aliases..."
 
   # create aliases files (*.alias and *.unalias)
-  for s in ${scripts}; do
+  for s in scripts/${scripts}; do
 
     updatePaths "${s}" "${mode}"
 
@@ -98,8 +99,8 @@ function buildAliases() {
   done
 
   echo -e "\n--- Aliases files created. Run commands for (un)activation:"
-  echo -e "  - \"<source ${edockerpath}/${prefix}.alias>\"   => aliases ${prefix}[docker command] are added"
-  echo -e "  - \"<source ${edockerpath}/${prefix}.unalias>\" => aliases ${prefix}[docker command] are removed"
+  echo -e "  - \"<source ${aliaspath}/${prefix}.alias>\"   => aliases ${prefix}[docker command] are added"
+  echo -e "  - \"<source ${aliaspath}/${prefix}.unalias>\" => aliases ${prefix}[docker command] are removed"
 
   # check if alias are activated
   echo -e "\n--- Check if aliases are activated or removed in your session by running:"
@@ -119,4 +120,5 @@ if [ -n "$1" ] && [ "$1" = "dev" ]; then
   mode=dev
   echo -e "edocker:WARNING: you are in contribution mode, all absolute paths will be replaced by path pattern {edockerpath} in all scripts. After, you could upload your files."
 fi
+
 buildAliases ${mode}
