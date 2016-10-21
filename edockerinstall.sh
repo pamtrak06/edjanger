@@ -21,7 +21,7 @@ edockerpath=$PWD/scripts
 aliaspath=$PWD
 prefix=edocker
 mode=release
-source _common.sh
+source scripts/_common.sh
 
 # Replace absolute paths of edocker in all scripts
 function updatePaths() {
@@ -60,17 +60,12 @@ function buildAliases() {
   echo -e "\n--- edocker: easy docker ---"
   echo -e "\n--- Installation..."
 
-  if [ -n "$1" ] && [ "dev" = "$1" ]; then
-    mode=$1
-    echo -e "edocker:WARING: Contribution mode. All current path of all scripts will be replaced by pattern {edockerpath}. You could upload after that."
-  fi
-
   echo -e "\nProcess will create alias command in files:"
   echo -e "  - ${edaliasFile}, containing all edocker alias"
   echo -e "  - ${edunaliasFile}, containing all edocker unalias"
 
   # list all *.sh scripts from edocker path
-  scripts=$(ls $edockerpath/*.sh | grep -v $(basename $0))
+  scripts=$(ls ${edockerpath}/*.sh)
 
   # delete all previous aliases files in edocker path
   rm -f ${edaliasFile} ${edunaliasFile}
@@ -78,7 +73,7 @@ function buildAliases() {
   echo -e "\n--- Build aliases..."
 
   # create aliases files (*.alias and *.unalias)
-  for s in scripts/${scripts}; do
+  for s in ${scripts}; do
 
     updatePaths "${s}" "${mode}"
 
@@ -99,8 +94,8 @@ function buildAliases() {
   done
 
   echo -e "\n--- Aliases files created. Run commands for (un)activation:"
-  echo -e "  - \"<source ${aliaspath}/${prefix}.alias>\"   => aliases ${prefix}[docker command] are added"
-  echo -e "  - \"<source ${aliaspath}/${prefix}.unalias>\" => aliases ${prefix}[docker command] are removed"
+  echo -e "  - \"source ${aliaspath}/${prefix}.alias\"   => aliases ${prefix}[docker command] are added"
+  echo -e "  - \"source ${aliaspath}/${prefix}.unalias\" => aliases ${prefix}[docker command] are removed"
 
   # check if alias are activated
   echo -e "\n--- Check if aliases are activated or removed in your session by running:"
@@ -118,7 +113,10 @@ function buildAliases() {
 # update (un)alias files in edocker path
 if [ -n "$1" ] && [ "$1" = "dev" ]; then
   mode=dev
-  echo -e "edocker:WARNING: you are in contribution mode, all absolute paths will be replaced by path pattern {edockerpath} in all scripts. After, you could upload your files."
+  echo -e "### edocker:WARNING: you are in contribution mode"
+  echo -e "### All absolute paths (${edockerpath}) will be replaced by path pattern {edockerpath} in all scripts."
+  echo -e "### After, you could upload your files to github."
+  echo -e "### Do: \"git status\" and read INSTALL.md, contribution part..."
 fi
 
 buildAliases ${mode}
