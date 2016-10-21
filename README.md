@@ -5,38 +5,30 @@ Tired about repeating docker commands with long parameters ?
 
 Try edocker ! Example :
 
-Configure edocker.properties with docker parameters once and run
-
+Configure edocker.properties with docker parameters once and run edocker alias command.
+> Example docker build
+```bash
+edockerbuild
+```
+instead of:
+```bash
+docker run build
+```
+> Example docker run
 ```bash
 edockerrun
 ```
-intead of:
+instead of:
 ```bash
 docker run -d --name webserver -v $PWD/volumes/html:/var/www/hml -p 85:80 httpd:latest
 ```
-
-```bash
-edockerexec
-```
-intead of:
-```bash
-docker run -it  webserver /bin/bash
-```
-
+> Example docker stop
 ```bash
 edockerstop
 ```
-intead of:
+instead of:
 ```bash
-docker stop webserver
-```
-
-```bash
-edockerstart
-```
-intead of:
-```bash
-docker start $(docker ps -aq | grep "httpd:lastest")
+docker stop $(docker ps -aq | grep "httpd:lastest")
 ```
 
 ## How to install edocker
