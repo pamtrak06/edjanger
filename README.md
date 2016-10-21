@@ -3,7 +3,41 @@ Scripts for easyest docker commands in a docker working folder (Dockerfile)
 
 Tired about repeating docker commands with long parameters ?
 
-Try edocker !
+Try edocker ! Example :
+
+Configure edocker.properties with docker parameters once and run
+
+```bash
+edockerrun
+```
+intead of:
+```bash
+docker run -d --name webserver -v $PWD/volumes/html:/var/www/hml -p 85:80 httpd:latest
+```
+
+```bash
+edockerexec
+```
+intead of:
+```bash
+docker run -it  webserver /bin/bash
+```
+
+```bash
+edockerstop
+```
+intead of:
+```bash
+docker stop webserver
+```
+
+```bash
+edockerstart
+```
+intead of:
+```bash
+docker start $(docker ps -aq | grep "httpd:lastest")
+```
 
 ## How to install edocker
 ```bash
