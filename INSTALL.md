@@ -1,4 +1,4 @@
-# edocker installations steps
+# edocker installation steps
 ```bash
 git clone https://github.com/pamtrak06/edocker.git
 cd edocker; chmod 755 *.sh scripts/*.sh
