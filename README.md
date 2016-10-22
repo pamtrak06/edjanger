@@ -1,6 +1,7 @@
 # Table of content
 - [Presentation](#presentation)
 - [How to install edocker](#how-to-install-edocker)
+- [How to uninstall edocker](#how-to-uninstall-edocker)
 - [How to initialize an edocker project](#how-to-initialize-an-edocker-project)
 - [How to use edocker in a docker project working directory](#how-to-use-edocker-in-a-docker-project-working-directory)
 - [Create edocker path project aliases](#create-edocker-path-project-aliases)
@@ -71,12 +72,25 @@ alias|grep edocker
 
 Recommanded: add edocker alias activation in your bash sessions:
 ```bash
-echo "source [edocker path]/edocker.alias" >> ~/.bashrc
+echo "source {edocker path}/edocker.alias" >> ~/.bash_aliases
 ```
 
-Tips: remove edocker aliases by executing:
+## How to uninstall edocker
+([go up to table of content](#table-of-content))
+
+Remove edocker aliases by executing:
 ```bash
 source edocker.unalias
+```
+
+Remove references to source command in ~/.bash_aliases
+```bash
+vi ~/.bash_aliases
+```
+
+Remove edocker files
+```bash
+rm -rf {edocker path}/
 ```
 
 ## How to initialize an edocker project
