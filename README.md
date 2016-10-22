@@ -7,7 +7,7 @@
 - [Create edocker path project aliases](#create-edocker-path-project-aliases)
 - [Check missing parameters in edocker.properties](#check-missing-parameters-in-edockerproperties)
 - [Call help commands](#call-help-commands)
-- [Create an docker-compose.yaml file from edocker structure](#Create-an-docker-composeyaml-file-from-edocker-structure)
+- [Create an docker-compose.yaml file from edocker structure](#create-an-docker-composeyaml-file-from-edocker-structure)
 - [Configure automatic container restart at boot](#configure-automatic-container-restart-at-boot)
 - [Work in progress](#work-in-progress)
 - [License](#license)
