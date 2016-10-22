@@ -5,7 +5,7 @@
 4. [How to use edocker in a docker a project working directory](#How to use edocker in a docker a project working directory)
 5. [Tips] (#Tips)
 6. [Work in progress] (#Work in progress)
-7. [license] (#license)
+7. [license] (#License)
 
 ## Presentation
 Scripts for easyest docker commands in a docker working folder (Dockerfile)
@@ -411,5 +411,5 @@ Please contribute !
 - volume rm            => TO BE Implemented
 - wait                 => OK
 
-## License
+##License
 edocker is under  "MIT License (MIT)" see [LICENSE file](https://github.com/pamtrak06/edocker/blob/master/LICENSE).
