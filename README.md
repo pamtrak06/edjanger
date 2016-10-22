@@ -7,7 +7,7 @@
 - [Work in progress](#work-in-progress)
 - [License](#license)
 
-## Presentation ([TOC](#table-of-content))
+## Presentation ([toc](#table-of-content))
 Scripts for easyest docker commands in a docker working folder (Dockerfile)
 
 Tired about repeating docker commands with long parameters ?
@@ -40,7 +40,7 @@ instead of:
 docker stop $(docker ps -aq | grep "devops/jenkins")
 ```
 
-## How to install edocker
+## How to install edocker ([toc](#table-of-content))
 ```bash
 git clone https://github.com/pamtrak06/edocker.git
 cd edocker; chmod 755 *.sh; chmod 755 edockerinstall
