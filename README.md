@@ -8,7 +8,7 @@
 - [License](#license)
 
 ## Presentation
-([go up](#table-of-content))
+([go up to table of content](#table-of-content))
 
 Scripts for easyest docker commands in a docker working folder (Dockerfile)
 
@@ -43,7 +43,7 @@ docker stop $(docker ps -aq | grep "devops/jenkins")
 ```
 
 ## How to install edocker
-([go up](#table-of-content))
+([go up to table of content](#table-of-content))
 
 ```bash
 git clone https://github.com/pamtrak06/edocker.git
@@ -76,7 +76,7 @@ source edocker.unalias
 ```
 
 ## How to use edocker for a project
-([go up](#table-of-content))
+([go up to table of content](#table-of-content))
 
 Copy the edocker.properties model in your working docker folder:
 ```bash
@@ -162,7 +162,7 @@ echo "FROM willdurand/docker-elk" > build/Dockerfile
 ```
 
 ## How to use edocker in a docker project working directory
-([go up](#table-of-content))
+([go up to table of content](#table-of-content))
 
 Now you've got aliases to run all your docker commands like:
 - edockerabout
@@ -300,7 +300,7 @@ Description : run command "docker top" with parameters readed from local edocker
 Description : help script for edocker command.
 
 ## Tips
-([go up](#table-of-content))
+([go up to table of content](#table-of-content))
 
 Create those two aliases and give the correct path for your project:
 ```bash
@@ -363,7 +363,7 @@ edockerhelp config
 ```
 
 ## Work in progress
-([go up](#table-of-content))
+([go up to table of content](#table-of-content))
 
 Please contribute !
 
@@ -423,6 +423,6 @@ Please contribute !
 - wait                 => OK
 
 ## License
-([go up](#table-of-content))
+([go up to table of content](#table-of-content))
 
 edocker is under  "MIT License (MIT)" see [LICENSE file](https://github.com/pamtrak06/edocker/blob/master/LICENSE).
