@@ -397,6 +397,11 @@ edockerhelp config
 From an existing edocker root path project structure, call edcokercompose.
 Script will parse all edocker.properties in subfolders and create docker-compose.yaml at upper path.
 
+```bash
+edockercompose
+vi docker-compose.yaml
+```
+
 ## Configure automatic container restart at boot
 ([go up to table of content](#table-of-content))
 
