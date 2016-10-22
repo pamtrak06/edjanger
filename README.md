@@ -22,7 +22,7 @@ Tired about repeating docker commands with long parameters ?
 Try edocker ! Example :
 
 Configure edocker.properties with docker parameters once and run edocker alias command.
-> Example docker build
+> Example 1: docker build
 ```bash
 edockerbuild
 ```
@@ -30,7 +30,7 @@ instead of:
 ```bash
 docker build -t "devops/jenkins"       build
 ```
-> Example docker run
+> Example 2: docker run
 ```bash
 edockerrun
 ```
@@ -38,7 +38,7 @@ instead of:
 ```bash
 docker run -dt --name jenkins_1    -p 8080:8080 -p 50000:50000  -v /root/workspace/docker/devops/continuous_integration/jenkins/volumes/jenkins_home:/var/jenkins_home  --link dind_1:docker devops/jenkins
 ```
-> Example docker stop
+> Example 3: docker stop
 ```bash
 edockerstop
 ```
