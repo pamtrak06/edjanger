@@ -411,12 +411,14 @@ To configure automatic restart of container at boot, configure edocker.propertie
 
 Configure crontab with following parameters
 ```bash
+crontab -e
 @reboot {edockerpath}/cron_build_start.sh {edocker properties path}
 @reboot {edockerpath}/cron_start_only.sh {edocker properties path}
 ```
 
 Example:
 ```bash
+crontab -e
 @reboot /opt/edocker/scripts/cron_build_start.sh /root/workspace/docker
 @reboot /opt/edocker/scripts/cron_start_only.sh /root/workspace/docker
 ```
