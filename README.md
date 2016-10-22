@@ -12,7 +12,7 @@ edockerbuild
 ```
 instead of:
 ```bash
-docker run build
+docker build -t "devops/jenkins"       build
 ```
 > Example docker run
 ```bash
@@ -20,7 +20,7 @@ edockerrun
 ```
 instead of:
 ```bash
-docker run -d --name webserver -v $PWD/volumes/html:/var/www/hml -p 85:80 httpd:latest
+docker run -dt --name jenkins_1    -p 8080:8080 -p 50000:50000  -v /root/workspace/docker/devops/continuous_integration/jenkins/volumes/jenkins_home:/var/jenkins_home  --link dind_1:docker devops/jenkins
 ```
 > Example docker stop
 ```bash
@@ -28,7 +28,7 @@ edockerstop
 ```
 instead of:
 ```bash
-docker stop $(docker ps -aq | grep "httpd:lastest")
+docker stop $(docker ps -aq | grep "devops/jenkins")
 ```
 
 ## How to install edocker
