@@ -1,12 +1,3 @@
-# Table of contents
-1. [Presentation](#Presentation)
-2. [How to install edocker](#How to install edocker)
-3. [How to use edocker for a project](#How to use edocker for a project)
-4. [How to use edocker in a docker project working directory](#How to use edocker in a docker project working directory)
-5. [Tips](#Tips)
-6. [Work in progress](#Work in progress)
-7. [license](#License)
-
 ## Presentation
 Scripts for easyest docker commands in a docker working folder (Dockerfile)
 
