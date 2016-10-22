@@ -1,9 +1,10 @@
 # Table of content
 - [Presentation](#presentation)
 - [How to install edocker](#how-to-install-edocker)
-- [How to use edocker for a project](#how-to-use-edocker-for-a-project)
+- [How to initialize an edocker project](#how-to-initialize-an-edocker-project)
 - [How to use edocker in a docker project working directory](#how-to-use-edocker-in-a-docker-project-working-directory)
 - [Tips](#tips)
+- [Configure automatic container restart at boot](#Configure-automatic-container-restart-at-boot)
 - [Work in progress](#work-in-progress)
 - [License](#license)
 
@@ -75,7 +76,7 @@ Tips: remove edocker aliases by executing:
 source edocker.unalias
 ```
 
-## How to use edocker for a project
+## How to initialize an edocker project
 ([go up to table of content](#table-of-content))
 
 Copy the edocker.properties model in your working docker folder:
@@ -360,6 +361,23 @@ edockerhelp build
 Help for parameters in edocker.properties used by commands
 ```bash
 edockerhelp config
+```
+
+## Configure automatic container restart at boot
+To configure automatic restart of container at boot, configure edocker.properties files :
+- activate cron_start=true to start existing container at boot
+- activate cron_build=true to start existing container at boot
+
+Configure crontab with following parameters
+```bash
+@reboot {edockerpath}/cron_build_start.sh {edocker properties path}
+@reboot {edockerpath}/cron_start_only.sh {edocker properties path}
+```
+
+Example:
+```bash
+@reboot /opt/edocker/scripts/cron_build_start.sh /root/workspace/docker
+@reboot /opt/edocker/scripts/cron_start_only.sh /root/workspace/docker
 ```
 
 ## Work in progress
