@@ -382,7 +382,7 @@ Script will parse all edocker.properties in subfolders and create docker-compose
 
 To configure automatic restart of container at boot, configure edocker.properties files :
 - activate cron_start=true to start existing container at boot
-- activate cron_build=true to start existing container at boot
+- activate cron_build=true to build and start a new container at boot
 
 Configure crontab with following parameters
 ```bash
