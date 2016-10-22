@@ -30,6 +30,7 @@ instead of:
 ```bash
 docker build -t "devops/jenkins"       build
 ```
+
 > Example 2: docker run
 ```bash
 edockerrun
@@ -38,6 +39,7 @@ instead of:
 ```bash
 docker run -dt --name jenkins_1    -p 8080:8080 -p 50000:50000  -v /root/workspace/docker/devops/continuous_integration/jenkins/volumes/jenkins_home:/var/jenkins_home  --link dind_1:docker devops/jenkins
 ```
+
 > Example 3: docker stop
 ```bash
 edockerstop
