@@ -3,7 +3,10 @@
 - [How to install edocker](#how-to-install-edocker)
 - [How to initialize an edocker project](#how-to-initialize-an-edocker-project)
 - [How to use edocker in a docker project working directory](#how-to-use-edocker-in-a-docker-project-working-directory)
-- [Tips](#tips)
+- [Create edocker path project aliases](#create-edocker-path-project-aliases)
+- [Check missing parameters in edocker.properties](#check-missing-parameters-in-edocker.properties)
+- [Call help commands](#call-help-commands)
+- [Create an docker-compose.yaml file from edocker structure](#Create-an-docker-compose.yaml-file-from-edocker-structure)
 - [Configure automatic container restart at boot](#configure-automatic-container-restart-at-boot)
 - [Work in progress](#work-in-progress)
 - [License](#license)
@@ -300,7 +303,7 @@ Description : run command "docker top" with parameters readed from local edocker
 ### #alias edockerunalias
 Description : help script for edocker command.
 
-## Tips
+## Create edocker path project aliases
 ([go up to table of content](#table-of-content))
 
 Create those two aliases and give the correct path for your project:
@@ -313,7 +316,10 @@ Or create all possible aliases for subfolders in a folder:
 source /usr/local/edocker/_common.sh
 source $(buildPathAliases "/opt/docker/")
 ```
-Check missing parameters in edocker.properties
+
+## Check missing parameters in edocker.properties
+([go up to table of content](#table-of-content))
+
 ```bash
 edockercheck
 Check edocker.properties...
@@ -346,7 +352,11 @@ Check edocker.properties...
     WARNING: parameter is missing !!!
   => STATUS of configuration is: some parameters are undefined
 ```
-Help commands
+
+## Call help commands
+([go up to table of content](#table-of-content))
+
+Main help commands
 ```bash
 edockerhelp
 ```
@@ -362,8 +372,14 @@ Help for parameters in edocker.properties used by commands
 ```bash
 edockerhelp config
 ```
+## Create an docker-compose.yaml file from edocker structure
+([go up to table of content](#table-of-content))
+From an existing edocker root path project structure, call edcokercompose.
+Script will parse all edocker.properties in subfolders and create docker-compose.yaml at upper path.
 
 ## Configure automatic container restart at boot
+([go up to table of content](#table-of-content))
+
 To configure automatic restart of container at boot, configure edocker.properties files :
 - activate cron_start=true to start existing container at boot
 - activate cron_build=true to start existing container at boot
