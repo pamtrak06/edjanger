@@ -1,4 +1,13 @@
-# edocker
+# Table of contents
+1. [Presentation](#Presentation)
+2. [How to install edocker](#How to install edocker)
+3. [How to use edocker for a project](#How to use edocker for a project)
+4. [How to use edocker in a docker a project working directory](#How to use edocker in a docker a project working directory)
+5. [Tips] (#Tips)
+6. [Work in progress] (#Work in progress)
+7. [license] (#license)
+
+## Presentation
 Scripts for easyest docker commands in a docker working folder (Dockerfile)
 
 Tired about repeating docker commands with long parameters ?
@@ -62,7 +71,7 @@ Tips: remove edocker aliases by executing:
 source edocker.unalias
 ```
 
-## How to activate edocker for a project
+## How to use edocker for a project
 
 Copy the edocker.properties model in your working docker folder:
 ```bash
