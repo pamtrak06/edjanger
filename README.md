@@ -96,7 +96,7 @@ rm -rf {edocker path}/
 ## How to initialize an edocker project
 ([go up to table of content](#table-of-content))
 
-Copy the edocker.properties model in your working docker folder:
+Create an uninitialized edocker.properties file in your working docker folder:
 ```bash
 edockerinit
 ```
@@ -110,15 +110,15 @@ mkdir [your docker working project]/build
 touch [your docker working project]/build/Dockerfile
 ```
 
-Configure your [edocker.properties](https://github.com/pamtrak06/edocker/blob/master/edocker_template.properties) with correct parameters.
+Configure your [edocker.properties](https://github.com/pamtrak06/edocker/blob/master/scripts/edocker_template.properties) with correct parameters.
 By example, you could create a Dockerfile with this path:
 ```bash
 vi [your docker working project]/build/Dockerfile
 ```
 Example of a minimal edocker configuration:
 ```bash
-mkdir -p elk/build
-cd elk; edockerinit
+mkdir -p jenkins
+cd jenkins; edockerinit
 vi edocker.properties
 ```
 ```bash
@@ -137,10 +137,14 @@ vi edocker.properties
 #  --------------------------------
 #  USAGE            : read by edocker scripts
 #  ----------------------------------------------------
+#cron_build: flag to start container at boot
+#cron_build=true
+#cron_start: flag to start container at boot
+cron_start=true
 # docker_command:show docker command when edocker is used
 docker_command=true
 # image_name:image name
-image_name="pamtrak06/elk"
+image_name="devops/jenkins"
 # build_path:path where is found Dockerfile
 build_path=build
 # build_args:build arguments
@@ -154,17 +158,17 @@ build_path=build
 # build_file:name of the Dockerfile (Default is 'PATH/Dockerfile')
 # build_file="--file Dockerfile"
 # container_name:container
-container_name="elk"
+container_name="jenkins"
 # exposed_ports:exposed port
-exposed_ports="-p 32000:80"
+exposed_ports="-p 8080:8080 -p 50000:50000"
 # shared_volumes:shared volumes
-# shared_volumes="-v <host path>:<container path>"
+shared_volumes="-v $PWD/volumes/jenkins_home:/var/jenkins_home"
 # volumes_from:expose volumes from another container into current container
 # volumes_from="--volumes-from <container name with exposed volumes>"
 # environment_variables:environnment variables
 # environment_variables="-e <variable name 1>=<value 1> -e <variable name 2>=<value 2>"
 # linked_containers:linked container
-# linked_containers="--link <external container name>:<alias in container>"
+#linked_containers="--link dind_1:docker"
 #network_settings:all network settings options
 #network_settings=--dns [] --net host --network-alias [] --add-host "" --mac-address "" --ip "" --ip6 "" --link-local-ip []
 #runtime_constraints_on_resources: runtime constraints on resources
@@ -174,9 +178,11 @@ exposed_ports="-p 32000:80"
 # command_run:bash command(s) to run
 # command_run="/bin/bash -c \"cd /; ls -la"
 ```
+
+Update Dockerfile with jenkins reference from [docker hub](https://hub.docker.com/_/jenkins/)
 ```bash
 touch build/Dockerfile
-echo "FROM willdurand/docker-elk" > build/Dockerfile
+echo "FROM jenkins:latest" > build/Dockerfile
 ```
 
 ## How to use edocker in a docker project working directory
