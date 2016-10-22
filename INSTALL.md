@@ -11,7 +11,7 @@ alias|grep edocker
 ```bash
 ./edockerinstall dev
 ```
-Replace all path from $PWD (edocker path installation) with {edockerpath} and then make it possible to package for final packaging and push to github
+This script will replace all path from $PWD (edocker path installation) with {edockerpath} and then make it possible to package for final packaging and push to github
 
 ```bash
 git status
