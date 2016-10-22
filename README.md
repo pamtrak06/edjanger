@@ -4,7 +4,7 @@
 - [How to initialize an edocker project](#how-to-initialize-an-edocker-project)
 - [How to use edocker in a docker project working directory](#how-to-use-edocker-in-a-docker-project-working-directory)
 - [Tips](#tips)
-- [Configure automatic container restart at boot](#Configure-automatic-container-restart-at-boot)
+- [Configure automatic container restart at boot](#configure-automatic-container-restart-at-boot)
 - [Work in progress](#work-in-progress)
 - [License](#license)
 
