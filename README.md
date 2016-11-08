@@ -1,4 +1,4 @@
-[Home page](http://pamtrak06.github.io/edocker/)
+[Web site official home page](http://pamtrak06.github.io/edocker/)
 
 # Table of content
 - [Presentation](#presentation)
