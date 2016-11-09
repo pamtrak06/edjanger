@@ -10,6 +10,7 @@
 - [Check missing parameters in edocker.properties](#check-missing-parameters-in-edockerproperties)
 - [Call help commands](#call-help-commands)
 - [Create an docker-compose.yaml file from edocker structure](#create-an-docker-composeyaml-file-from-edocker-structure)
+- [Use templates files to configure edocker.properties](#use-templates-files-to-configure-edockerproperties)
 - [Configure automatic container restart at boot](#configure-automatic-container-restart-at-boot)
 - [Work in progress](#work-in-progress)
 - [License](#license)
@@ -96,7 +97,7 @@ Bash as login shell will load /etc/profile, ~/.bash_profile, ~/.bash_login, ~/.p
 Bash as non-login interactive shell will load ~/.bashrc
 Bash as non-login non-interactive shell will load the configuration specified in environment variable $BASH_ENV
 
-Aadd lines at the bottom of one of the following files:  
+Add lines at the bottom of one of the following files:  
 ```bash
 echo "source {edocker path}/edocker.alias" >> /etc/profile
 ```
@@ -299,6 +300,7 @@ Now you've got aliases to run all your docker commands like:
 - edockerstats
 - edockerstop
 - edockertag
+- edockertemplate
 - edockertop
 - edockerunalias
 - edockerunpause
@@ -391,6 +393,9 @@ Description : run command "docker stop" with parameters readed from local edocke
 ### #alias edockertag
 Description : run command "docker tag" with parameters readed from local edocker.properties.
 
+### #alias edockertemplate
+Description : create edocker.properties from edocker.template and properties files containing variables definition.
+
 ### #alias edockertop
 Description : run command "docker top" with parameters readed from local edocker.properties.
 
@@ -474,6 +479,48 @@ Script will parse all edocker.properties in subfolders and create docker-compose
 ```bash
 edockercompose
 vi docker-compose.yaml
+```
+## Use templates files to configure edocker.properties
+([go up to table of content](#table-of-content))
+
+! Prerequisities : install gettext (for envsubst)
+
+From an existing edocker root path project structure, do following
+- rename all edocker.properties to edocker.template
+- define variable for element to be substitute with variable value from configuration file 
+- create configuration files (<name>.properties) containing SHELL-FORMAT variable
+    - in each folder containing edocker.properties (each configuration file must hase same name e.g.: production.properties)
+    or
+    - only in root folder (e.g.: production.properties)
+- call edockertemplate with name of configuration file
+```bash
+edockertemplate <name>.properties
+```
+
+Example of edockertemplate invocation
+```bash
+edockertemplate production.properties
+```
+
+Example of production.properties content
+```bash
+#!/bin/bash
+export HTTPD_PORT_80=80
+export HTTPD_PORT_443=443
+```
+
+Example of edocker.template content
+```bash
+#exposed_ports:exposed port
+exposed_ports="-p ${HTTPD_PORT_80}:80 -p ${HTTPD_PORT_443}:443"
+```
+
+Script will find all edocker.template and replace variables from root or folder(s) configuration(s) file(s) to produce edocker.properties files.
+
+Example of edocker.properties produced
+```bash
+#exposed_ports:exposed port
+exposed_ports="-p 80:80 -p 443:443"
 ```
 
 ## Configure automatic container restart at boot
