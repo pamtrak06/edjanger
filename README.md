@@ -478,6 +478,9 @@ vi docker-compose.yaml
 ```
 ## Use templates files to configure edocker.properties
 ([go up to table of content](#table-of-content))
+
+! Prerequisities : install gettext (for envsubst)
+
 From an existing edocker root path project structure, do following
 - rename all edocker.properties to edocker.template
 - define variable for element to be substitute with variable value from configuration file 
