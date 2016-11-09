@@ -56,6 +56,10 @@ docker stop $(docker ps -aq | grep "devops/jenkins")
 ### Prerequisities
 - install bc command
 - install tree command (from binaries or from sources http://mama.indstate.edu/users/ice/tree/)
+- install gettext (for envsubst)
+    osx:
+      brew install gettext
+      brew link --force gettext 
 
 ### OS compliant
 - os x El Capitan 10.11.6
