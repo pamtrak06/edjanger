@@ -60,8 +60,8 @@ docker stop $(docker ps -aq | grep "devops/jenkins")
     osx:
       brew install gettext
       brew link --force gettext 
-      echo "alias envsubst='/usr/local/Cellar/gettext/0.19.8.1/bin/envsubst'" >> ~/.bash_aliases
-      source ~/.bash_aliases
+      echo "PATH=/usr/local/Cellar/gettext/0.19.8.1/bin/envsubst:$PATH" >> ~/.bashrc
+      source ~/.bashrc
 
 ### OS compliant
 - os x El Capitan 10.11.6
