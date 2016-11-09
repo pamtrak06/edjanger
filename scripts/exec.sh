@@ -6,8 +6,9 @@
 # ----------------------------------------------------
 # SCRIPT           : exec.sh
 # ALIAS            : edockerexec
-# DESCRIPTION      : run command "docker exec" with parameters readed from local edocker.${config_extension}
+# DESCRIPTION      : run command "docker exec" with parameters readed from local edocker.properties
 #   ARGUMENT       : script argument passed to container, by example <edockerexec "ls -la /">
+#   ARGUMENT       : index=<index of container>, exec on specific container index
 #   PARAMETER      : container_name
 #   PARAMETER      : docker_command
 # CREATOR          : pamtrak06@gmail.com
@@ -28,7 +29,14 @@ else
     read_config
     idx=$(echo "$(docker ps | grep ${container_name} | wc -l)+0" | bc)
     echo enter in container_name: ${container_name}_${idx}...
-    if [ -n "$1" ]; then
+    if [[ "$1" == *"index"* ]]; then
+      idx=$(echo "$(echo $1 | cut -d '=' -f2)" | bc)
+      docker exec -t ${container_name}_${idx} bash -c "$1"
+      if [ "true" = "${docker_command}" ]; then
+        echo -e "> Executed docker command:"
+        echo -e "> docker exec -t ${container_name}_${idx} bash -c \"$1\""
+      fi
+    elif [ -n "$1" ]; then
       docker exec -t ${container_name}_${idx} bash -c "$1"
       if [ "true" = "${docker_command}" ]; then
         echo -e "> Executed docker command:"

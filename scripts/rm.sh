@@ -6,7 +6,8 @@
 # ----------------------------------------------------
 # SCRIPT           : rm.sh
 # ALIAS            : edockerrm
-# DESCRIPTION      : run command "docker rm" with parameters readed from local edocker.${config_extension}
+# DESCRIPTION      : run command "docker rm" with parameters readed from local edocker.properties
+#   ARGUMENT       : index=<index of container>, rm on specific container index
 #   PARAMETER      : container_name
 #   PARAMETER      : docker_command
 # CREATOR          : pamtrak06@gmail.com
@@ -26,7 +27,11 @@ else
     echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
   else
     read_config
-    idx=$(echo "$(docker ps -a|grep ${container_name}|wc -l)+0"|bc)
+    if [[ "$1" == *"index"* ]]; then
+      idx=$(echo "$(echo $1 | cut -d '=' -f2)" | bc)
+    else
+      idx=$(echo "$(docker ps -a|grep ${container_name}|wc -l)+0"|bc)
+    fi
     if [ "0" = "${idx}" ]; then
       echo "No running or stopped container which name contains: \"${container_name}\" available"
     else
