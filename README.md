@@ -486,30 +486,35 @@ From an existing edocker root path project structure, do following
     or
     - only in root folder (e.g.: production.properties)
 - call edockertemplate with name of configuration file
-'''bash
+```bash
 edockertemplate <name>.properties
-'''
-Example
-'''bash
+```
+
+Example of edockertemplate invocation
+```bash
 edockertemplate production.properties
-'''
+```
+
 Example of production.properties content
-'''bash
+```bash
 #!/bin/bash
 export HTTPD_PORT_80=80
 export HTTPD_PORT_443=443
-'''
+```
+
 Example of edocker.template content
-'''bash
+```bash
 #exposed_ports:exposed port$
 exposed_ports="-p ${HTTPD_PORT_80}:80 -p ${HTTPD_PORT_443}:443"$
-'''
+```
+
 Script will find all edocker.template and replace variables from root or folder(s) configuration(s) file(s) to produce edocker.properties files.
+
 Example of edocker.properties produced
-'''bash
+```bash
 #exposed_ports:exposed port$
 exposed_ports="-p 80:80 -p 443:443"
-'''
+```
 
 ## Configure automatic container restart at boot
 ([go up to table of content](#table-of-content))
