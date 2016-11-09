@@ -1,3 +1,5 @@
+[Web site official home page](http://pamtrak06.github.io/edocker/)
+
 # Table of content
 - [Presentation](#presentation)
 - [How to install edocker](#how-to-install-edocker)
@@ -51,15 +53,29 @@ docker stop $(docker ps -aq | grep "devops/jenkins")
 
 ## How to install edocker
 ([go up to table of content](#table-of-content))
+### Prerequisities
+- install bc command
+- install tree command (from binaries or from sources http://mama.indstate.edu/users/ice/tree/)
+- install gettext (for envsubst)
+    osx:
+      brew install gettext
+      brew link --force gettext 
+      echo "PATH=/usr/local/Cellar/gettext/0.19.8.1/bin/envsubst:$PATH" >> ~/.bashrc
+      source ~/.bashrc
 
+### OS compliant
+- os x El Capitan 10.11.6
+- ubuntu > 14.04
+
+### Installation
 ```bash
 git clone https://github.com/pamtrak06/edocker.git
-cd edocker; chmod 755 *.sh; chmod 755 edockerinstall
+cd edocker; chmod 755 scripts/*.sh; chmod 755 edockerinstall.sh
 ```
 
 Run edocker installation
 ```bash
-./edockerinstall
+./edockerinstall.sh
 ```
 
 Execute the generated alias file:
@@ -72,9 +88,65 @@ All is done !!! Run this command to see your edocker aliases
 alias|grep edocker
 ```
 
-Recommanded: add edocker alias activation in your bash sessions:
+### Configuration
+
+**bash**
+
+Bash as login shell will load /etc/profile, ~/.bash_profile, ~/.bash_login, ~/.profile in the order
+Bash as non-login interactive shell will load ~/.bashrc
+Bash as non-login non-interactive shell will load the configuration specified in environment variable $BASH_ENV
+
+Aadd lines at the bottom of one of the following files:  
+```bash
+echo "source {edocker path}/edocker.alias" >> /etc/profile
+```
+or
+```bash
+echo "source {edocker path}/edocker.alias" >> ~/.bash_profile
+```
+or
+```bash
+echo "source {edocker path}/edocker.alias" >> ~/.bash_login
+```
+or
+```bash
+echo "source {edocker path}/edocker.alias" >> ~/.profile
+```
+or
+```bash
+echo "source {edocker path}/edocker.alias" >> ~/.bashrc
+```
+or
 ```bash
 echo "source {edocker path}/edocker.alias" >> ~/.bash_aliases
+```
+
+**zsh**
+
+Add lines at the bottom of the file ~/.zshrc 
+```bash
+echo "source {edocker path}/edocker.alias" >> ~/.zshrc
+```
+
+**ksh**
+
+Add lines at the bottom of the file ~/.profile  
+```bash
+echo "source {edocker path}/edocker.alias" >> ~/.profile
+```
+
+**bourne**
+
+Add lines at the bottom of the file ~/.profile  
+```bash
+echo "source {edocker path}/edocker.alias" >> ~/.profile
+```
+
+**csh or tcsh**
+
+Add lines at the bottom of the file ~/.login
+```bash
+echo "source {edocker path}/edocker.alias" >> ~/.login
 ```
 
 ## How to uninstall edocker
