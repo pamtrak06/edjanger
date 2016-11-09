@@ -97,7 +97,7 @@ Bash as login shell will load /etc/profile, ~/.bash_profile, ~/.bash_login, ~/.p
 Bash as non-login interactive shell will load ~/.bashrc
 Bash as non-login non-interactive shell will load the configuration specified in environment variable $BASH_ENV
 
-Aadd lines at the bottom of one of the following files:  
+Add lines at the bottom of one of the following files:  
 ```bash
 echo "source {edocker path}/edocker.alias" >> /etc/profile
 ```
