@@ -60,6 +60,22 @@ function buildAliases() {
   echo -e "\n--- edocker: easy docker ---"
   echo -e "\n--- Installation..."
 
+  echo -e "\n--- Check prerequisities..."
+  bcpresent=$(command -v bc)
+  if [ -z "$bcpresent" ]; then
+    echo -e "edocker:ERROR: bc is not present, please install it, installation aborted"
+    exit -1
+  else
+    echo -e "  - bc is present: $bcpresent"
+  fi
+  espresent=$(command -v envsubst)
+  if [ -z "$espresent" ]; then
+    echo -e "edocker:ERROR: envsubst is not present, please install it, installation aborted"
+    exit -1
+  else
+    echo -e "  - envsubst is present: $espresent"
+  fi
+
   echo -e "\nProcess will create alias command in files:"
   echo -e "  - ${edaliasFile}, containing all edocker alias"
   echo -e "  - ${edunaliasFile}, containing all edocker unalias"
@@ -104,9 +120,12 @@ function buildAliases() {
   # configuration of docker project
   echo -e "\n--- Do following actions in your favorite docker working directory:"
   echo -e "  - run \"<edockerinit>\" your docker working directory,"
-  echo -e "    it copy model edocker_template.${config_extension} in your docker working directory with name edocker.${config_extension}"
+  echo -e "    it copy template edocker_template.${config_extension} in your docker working directory with name edocker.${config_extension}"
   echo -e "  - configure parameters inside edocker.${config_extension}, most important: image_name and container_name"
   echo -e "  - try an edocker command, like edockerbuild..."
+  echo -e "  - New: see how to create docker-compose.yaml from edocker.properties with edockercompose !"
+  echo -e "  - New: take a look at cron capabilities at https://github.com/pamtrak06/edocker#configure-automatic-container-restart-at-boot !"
+  echo -e "  - New: take a look at edockertemplate to make yours edocker.properties highly configurable !"
 
 }
 
