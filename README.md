@@ -70,12 +70,12 @@ docker stop $(docker ps -aq | grep "devops/jenkins")
 ### Installation
 ```bash
 git clone https://github.com/pamtrak06/edocker.git
-cd edocker; chmod 755 *.sh; chmod 755 edockerinstall
+cd edocker; chmod 755 scripts/*.sh; chmod 755 edockerinstall.sh
 ```
 
 Run edocker installation
 ```bash
-./edockerinstall
+./edockerinstall.sh
 ```
 
 Execute the generated alias file:
