@@ -511,7 +511,7 @@ export HTTPD_PORT_443=443
 
 Example of edocker.template content
 ```bash
-#exposed_ports:exposed port$
+#exposed_ports:exposed port
 exposed_ports="-p ${HTTPD_PORT_80}:80 -p ${HTTPD_PORT_443}:443"$
 ```
 
@@ -519,7 +519,7 @@ Script will find all edocker.template and replace variables from root or folder(
 
 Example of edocker.properties produced
 ```bash
-#exposed_ports:exposed port$
+#exposed_ports:exposed port
 exposed_ports="-p 80:80 -p 443:443"
 ```
 
