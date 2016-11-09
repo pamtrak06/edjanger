@@ -300,6 +300,7 @@ Now you've got aliases to run all your docker commands like:
 - edockerstats
 - edockerstop
 - edockertag
+- edockertemplate
 - edockertop
 - edockerunalias
 - edockerunpause
@@ -391,6 +392,9 @@ Description : run command "docker stop" with parameters readed from local edocke
 
 ### #alias edockertag
 Description : run command "docker tag" with parameters readed from local edocker.properties.
+
+### #alias edockertemplate
+Description : create edocker.properties from edocker.template and properties files containing variables definition.
 
 ### #alias edockertop
 Description : run command "docker top" with parameters readed from local edocker.properties.
