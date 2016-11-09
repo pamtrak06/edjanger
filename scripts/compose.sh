@@ -5,7 +5,7 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : compose.sh
-# ALIAS            : edockerexec
+# ALIAS            : edockercompose
 # DESCRIPTION      : generate docker compose yaml from all local edocker.poperties
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
@@ -13,7 +13,7 @@
 # DATE             : 2016-08-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : edockerexec
+# USAGE            : edockercompose
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
 
