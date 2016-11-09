@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : pause.sh
 # ALIAS            : edockerpause
-# DESCRIPTION      : run command "docker pause" with parameters readed from local edocker.${config_extension}
+# DESCRIPTION      : run command "docker pause" with parameters readed from local edocker.properties
 #   PARAMETER      : image_name
 #   PARAMETER      : container_name
 #   PARAMETER      : docker_command

@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : tag.sh
 # ALIAS            : edockertag
-# DESCRIPTION      : run command "docker tag" with parameters readed from local edocker.${config_extension}
+# DESCRIPTION      : run command "docker tag" with parameters readed from local edocker.properties
 #  ARGUMENT        : new name of container
 #  PARAMETER       : image_name
 #  PARAMETER       : docker_command

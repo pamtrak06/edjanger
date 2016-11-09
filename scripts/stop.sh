@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : stop.sh
 # ALIAS            : edockerstop
-# DESCRIPTION      : run command "docker stop" with parameters readed from local edocker.${config_extension}
+# DESCRIPTION      : run command "docker stop" with parameters readed from local edocker.properties
 #   PARAMETER      : image_name
 #   PARAMETER      : container_name
 #   PARAMETER      : stop_options

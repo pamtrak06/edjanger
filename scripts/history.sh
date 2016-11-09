@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : history.sh
 # ALIAS            : edockerhistory
-# DESCRIPTION      : history command "docker history", with parameters readed from local edocker.${config_extension}
+# DESCRIPTION      : history command "docker history", with parameters readed from local edocker.properties
 #   PARAMETER      : history_options
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------

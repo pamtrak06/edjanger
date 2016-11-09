@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : init.sh
 # ALIAS            : edockerinit
-# DESCRIPTION      : create a edocker.${config_extension} file
+# DESCRIPTION      : create a edocker.properties file
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0

@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : runi.sh
 # ALIAS            : edockerruni
-# DESCRIPTION      : run command "docker run -it" interactive mode, with parameters readed from local edocker.${config_extension}
+# DESCRIPTION      : run command "docker run -it" interactive mode, with parameters readed from local edocker.properties
 #   PARAMETER      : image_name
 #   PARAMETER      : exposed_ports
 #   PARAMETER      : shared_volumes

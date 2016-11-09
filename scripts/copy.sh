@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : copy.sh
 # ALIAS            : edockercopy
-# DESCRIPTION      : run command "docker copy" with parameters readed from local edocker.${config_extension}
+# DESCRIPTION      : run command "docker copy" with parameters readed from local edocker.properties
 #   PARAMETER      : image_name
 #   PARAMETER      : container_name
 #   PARAMETER      : docker_command
@@ -28,9 +28,9 @@ else
   if [ ! -f edocker.${config_extension} ]; then
     echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
   else
-  
+
     read_config
-    
+
     if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
       usage $0 copy
     else

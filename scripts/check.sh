@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : check.sh
 # ALIAS            : edockercheck
-# DESCRIPTION      : check missing parameters in edocker.${config_extension}
+# DESCRIPTION      : check missing parameters in edocker.properties
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0

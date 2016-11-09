@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : rmi.sh
 # ALIAS            : edockerrmi
-# DESCRIPTION      : run command "docker rmi" with parameters readed from local edocker.${config_extension}
+# DESCRIPTION      : run command "docker rmi" with parameters readed from local edocker.properties
 #   PARAMETER      : image_name
 #   PARAMETER      : force_rmi
 #   PARAMETER      : docker_command

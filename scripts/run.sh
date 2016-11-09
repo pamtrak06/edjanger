@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : run.sh
 # ALIAS            : edockerrun
-# DESCRIPTION      : run command "docker run -id" daemon mode, with parameters readed from local edocker.${config_extension}
+# DESCRIPTION      : run command "docker run -id" daemon mode, with parameters readed from local edocker.properties
 #   PARAMETER      : image_name
 #   PARAMETER      : exposed_ports
 #   PARAMETER      : shared_volumes

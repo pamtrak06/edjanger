@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : attach.sh
 # ALIAS            : edockerattach
-# DESCRIPTION      : attach command "docker attach", with parameters readed from local edocker.${config_extension}
+# DESCRIPTION      : attach command "docker attach", with parameters readed from local edocker.properties
 #   PARAMETER      : attach_options
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------

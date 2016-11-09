@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : start.sh
 # ALIAS            : edockerstart
-# DESCRIPTION      : run command "docker start" with parameters readed from local edocker.${config_extension}
+# DESCRIPTION      : run command "docker start" with parameters readed from local edocker.properties
 #   PARAMETER      : image_name
 #   PARAMETER      : container_name
 #   PARAMETER      : start_options

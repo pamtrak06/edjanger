@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : rename.sh
 # ALIAS            : edockerrename
-# DESCRIPTION      : run command "docker rename" with parameters readed from local edocker.${config_extension}
+# DESCRIPTION      : run command "docker rename" with parameters readed from local edocker.properties
 #  ARGUMENT        : new name of container
 #  PARAMETER       : container_name
 #  PARAMETER       : docker_command

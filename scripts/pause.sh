@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : unpause.sh
 # ALIAS            : edockerunpause
-# DESCRIPTION      : run command "docker unpause" with parameters readed from local edocker.${config_extension}
+# DESCRIPTION      : run command "docker unpause" with parameters readed from local edocker.properties
 #   PARAMETER      : image_name
 #   PARAMETER      : container_name
 #   PARAMETER      : docker_command

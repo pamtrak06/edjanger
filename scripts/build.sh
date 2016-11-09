@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : build.sh
 # ALIAS            : edockerbuild
-# DESCRIPTION      : run command "docker build" with parameters readed from local edocker.${config_extension}
+# DESCRIPTION      : run command "docker build" with parameters readed from local edocker.properties
 #   PARAMETER      : image_name
 #   PARAMETER      : proxy_args
 #   PARAMETER      : build_args

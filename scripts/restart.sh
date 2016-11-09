@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : restart.sh
 # ALIAS            : edockerrestart
-# DESCRIPTION      : run command "docker restart" with parameters readed from local edocker.${config_extension}
+# DESCRIPTION      : run command "docker restart" with parameters readed from local edocker.properties
 #   PARAMETER      : image_name
 #   PARAMETER      : container_name
 #   PARAMETER      : restart_options

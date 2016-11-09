@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : ps.sh
 # ALIAS            : edockerps
-# DESCRIPTION      : run command "docker ps" with parameters readed from local edocker.${config_extension}
+# DESCRIPTION      : run command "docker ps" with parameters readed from local edocker.properties
 #   PARAMETER      : image_name
 #   PARAMETER      : container_name
 #   PARAMETER      : docker_command

@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : commit.sh
 # ALIAS            : edockercommit
-# DESCRIPTION      : run command "docker commit" with parameters readed from local edocker.${config_extension}
+# DESCRIPTION      : run command "docker commit" with parameters readed from local edocker.properties
 #   ARGUMENT       : [REPOSITORY[:TAG]], script argument passed to container, by example <edockercommit "V12.97">
 #   PARAMETER      : container_name
 #   PARAMETER      : commit_options

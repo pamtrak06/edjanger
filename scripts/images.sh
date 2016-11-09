@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : images.sh
 # ALIAS            : edockerimages
-# DESCRIPTION      : run command "docker images" with parameters readed from local edocker.${config_extension}
+# DESCRIPTION      : run command "docker images" with parameters readed from local edocker.properties
 #   PARAMETER      : image_name
 #   PARAMETER      : docker_command
 # CREATOR          : pamtrak06@gmail.com
@@ -23,4 +23,3 @@ if [ -n "$1" ]; then
 else
   dockerbasicimage "images" "List image which name contains: "
 fi
-

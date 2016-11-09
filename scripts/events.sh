@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : events.sh
 # ALIAS            : edockerevents
-# DESCRIPTION      : events command "docker events", with parameters readed from local edocker.${config_extension}
+# DESCRIPTION      : events command "docker events", with parameters readed from local edocker.properties
 #   PARAMETER      : events_options
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------

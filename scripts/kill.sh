@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : kill.sh
 # ALIAS            : edockerkill
-# DESCRIPTION      : kill command "docker kill", with parameters readed from local edocker.${config_extension}
+# DESCRIPTION      : kill command "docker kill", with parameters readed from local edocker.properties
 #   PARAMETER      : kill_options
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------

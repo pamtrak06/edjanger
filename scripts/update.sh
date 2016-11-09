@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : update.sh
 # ALIAS            : edockerupdate
-# DESCRIPTION      : run command "docker update" with parameters readed from local edocker.${config_extension}
+# DESCRIPTION      : run command "docker update" with parameters readed from local edocker.properties
 #   PARAMETER      : image_name
 #   PARAMETER      : container_name
 #   PARAMETER      : update_options

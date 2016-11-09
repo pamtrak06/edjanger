@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : info.sh
 # ALIAS            : edockerinfo
-# DESCRIPTION      : run command "docker info" with parameters readed from local edocker.${config_extension}
+# DESCRIPTION      : run command "docker info" with parameters readed from local edocker.properties
 #   PARAMETER      : image_name
 #   PARAMETER      : container_name
 #   PARAMETER      : docker_command

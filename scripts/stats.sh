@@ -6,7 +6,7 @@
 # ----------------------------------------------------
 # SCRIPT           : stats.sh
 # ALIAS            : edockerstats
-# DESCRIPTION      : run command "docker stats" with parameters readed from local edocker.${config_extension}
+# DESCRIPTION      : run command "docker stats" with parameters readed from local edocker.properties
 #   PARAMETER      : container_name
 #   PARAMETER      : stats_options
 #   PARAMETER      : docker_command
