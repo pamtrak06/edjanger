@@ -1,0 +1,83 @@
+# ----------------------------------------------------
+# The MIT License (MIT)
+#
+# Copyright (c) 2016 copyright pamtrak06@gmail.com
+# ----------------------------------------------------
+# CONFIGURATION    : edocker_template.${config_extension}
+# DESCRIPTION      : project configuration file for edocker
+# CREATOR          : pamtrak06@gmail.com
+# --------------------------------
+# VERSION          : 1.0
+# DATE             : 2016-03-02
+# COMMENT          : creation
+# --------------------------------
+# VERSION          : 1.0.1
+# DATE             : 2016-08-01
+# COMMENT          : add options for run : network_settings and network_settings
+# --------------------------------
+# USAGE            : read by edocker scripts
+# ----------------------------------------------------
+#cron_start: start active containers from crontab with @reboot cron_start_only.sh <edocker.properties paths>
+#cron_start=true
+#cron_build: build and start containers from crontab with @reboot cron_build_start.sh <edocker.properties paths>
+#cron_build=true
+#docker_command:show docker command when edocker is used
+#docker_command=true
+#image_name:image name
+image_name="test/web"
+#build_path:path where is found Dockerfile
+build_path=build
+#build_args:build arguments
+#build_args="--build-arg VAR1='value1' --build-arg VAR2='value2'"
+#build_forcerm:always remove intermediate containers
+#build_forcerm="--force-rm"
+#build_rm: Remove intermediate containers after a successful build
+#build_rm="--rm=true"
+#build_nocache:do not use cache when building the image
+#build_nocache="--no-cache"
+#build_file:name of the Dockerfile (Default is 'PATH/Dockerfile')
+#build_file="--file build/Dockerfile"
+#container_name:container
+container_name="web2"
+#exposed_ports:exposed port
+exposed_ports="-p ${web2_port_80}:80"
+#shared_volumes:shared volumes
+shared_volumes="-v ${web2_vol_data}:/usr/local/apache2/htdocs"
+#volumes_from:expose volumes from another container into current container
+#volumes_from="--volumes-from <container name with exposed volumes>"
+#environment_variables:environnment variables
+#environment_variables="-e <variable name 1>=<value 1> -e <variable name 2>=<value 2>"
+#linked_containers:linked container
+#linked_containers="--link <external container name>:<alias in container>"
+#network_settings:all network settings options
+#network_settings=--dns [] --net host --network-alias [] --add-host "" --mac-address "" --ip "" --ip6 "" --link-local-ip []
+#runtime_constraints_on_resources: runtime constraints on resources
+#runtime_constraints_on_resources=-m, --memory "" --memory-swap "" --memory-reservation "" --kernel-memory "" ...
+#force_rmi:force deletion
+#force_rmi="--force"
+#command_run:bash command(s) to run
+#command_run="/bin/bash -c \"cd /; ls -la"
+#kill_options:kill options to a running container
+#kill_options="--help  -s,--signal string"
+#attach_options:attach options to a running container
+#attach_options="--detach-keys string --help --no-stdin --sig-proxy"
+#commit_options:commit options to a running container
+#commit_options="-a, --author string -c, --change value --help -m, --message string -p, --pause"
+#events_options:events options to a running container
+#events_options="-f, --filter value --help --since string --until string"
+#history_options:history options to a running container
+#history_options="--help -H, --human --no-trunc -q, --quiet"
+#ps_options:ps options to a running or stopped container
+#ps_options="-f, --filter value --format string --help --no-trunc -q, --quiet -s, --size"
+#restart_options:stop options to a running container
+#restart_options="--help -t, --time int"
+#start_options:start options to a running container
+#start_options="-a, --attach --detach-keys string --help -i, --interactive"
+#stats_options:stats options to a running container
+#stats_options="-a, --all --help -H --no-stream"
+#stop_options:stop options to a running container
+#stop_options="--help -t, --time int"
+#update_options:update options to a running container
+#update_options="--blkio-weight value --cpu-period int --cpu-quota int -c, --cpu-shares int --cpuset-cpus string --cpuset-mems string --help --kernel-memory string -m, --memory string --memory-reservation string --memory-swap string --restart string"
+#run_other_options: all other available options for docker run
+#run_other_options="all available options for docker run"
