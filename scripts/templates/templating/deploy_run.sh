@@ -1,6 +1,6 @@
 #/bin/bash
 shopt -s expand_aliases
-source {edockerpath}/edocker.alias
+source {edockerpath}/../edocker.alias
 
 mode=$1
 
