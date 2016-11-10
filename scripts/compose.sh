@@ -179,6 +179,8 @@ else
     echo -e "edocker:WARNING $CURDIR/docker-compose.yaml already available, do you want to override it (y/n) ?"
     read response
     if [ "y" = "$response" ]; then
+      date_time=$(date +"%Y%m%d_%H%M%S")
+      cp docker-compose.yaml docker-compose.yaml_${date_time}.bak
       create_compose
     fi
   else
