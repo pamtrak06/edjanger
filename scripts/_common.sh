@@ -21,7 +21,7 @@ function read_config()
   if [ ! -f edocker.${config_extension} ]; then
     echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
   else
-    parameters=$(cat {edockerpath}/edocker_template.${config_extension}|grep "="|cut -d '=' -f1|cut -d '#' -f2)
+    parameters=$(cat {edockerpath}/templates/edocker_template.${config_extension}|grep "="|cut -d '=' -f1|cut -d '#' -f2)
 
     for p in ${parameters}; do
       unset -v ${p}
@@ -120,7 +120,7 @@ function checkconfig()
 
     read_config
 
-    parameters=$(cat {edockerpath}/edocker_template.${config_extension}|grep -v "#"|grep "="|cut -d '=' -f1)
+    parameters=$(cat {edockerpath}/templates/edocker_template.${config_extension}|grep -v "#"|grep "="|cut -d '=' -f1)
 
     local res
     for p in ${parameters}; do
@@ -186,11 +186,11 @@ function usage_config()
 
   echo -e "Parameters in edocker.${config_extension} configuration file"
 
-  parameters=$(cat {edockerpath}/edocker_template.${config_extension}|grep -v "#"|grep "="|cut -d '=' -f1)
+  parameters=$(cat {edockerpath}/templates/edocker_template.${config_extension}|grep -v "#"|grep "="|cut -d '=' -f1)
 
   for p in ${parameters}; do
 
-    comment=$(cat {edockerpath}/edocker_template.${config_extension}|grep -e "#${p}"|cut -d ':' -f2)
+    comment=$(cat {edockerpath}/templates/edocker_template.${config_extension}|grep -e "#${p}"|cut -d ':' -f2)
     echo -e ""
     echo -e "  - ${p}: ${comment}, used by:"
     usage_command "${script}" "${p}"
