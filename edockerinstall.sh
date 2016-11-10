@@ -109,6 +109,17 @@ function buildAliases() {
 
   done
 
+  # update templates
+  echo -e "\n--- Update templates path in shell scripts..."
+
+  listtmpl=$(find ${edockerpath}/templates -name "*.sh")
+
+  for t in ${listtmpl}; do
+
+    updatePaths "${t}" "${mode}"
+
+  done
+
   echo -e "\n--- Aliases files created. Run commands for (un)activation:"
   echo -e "  - \"source ${aliaspath}/${prefix}.alias\"   => aliases ${prefix}[docker command] are added"
   echo -e "  - \"source ${aliaspath}/${prefix}.unalias\" => aliases ${prefix}[docker command] are removed"
