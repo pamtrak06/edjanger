@@ -3,11 +3,24 @@ shopt -s expand_aliases
 source {edockerpath}/../edocker.alias
 
 mode=$1
+step=$2
 
 function usage(){
-  echo "run must have argument one of integration or production"
+  echo "usage: $0 <configuration name> <step index to run>"
+  echo "run must have following arguments:"
+  echo "  - configuration name : \"integration\" or \"production\""
+  echo "  - step index         : index number of step(s) to run (5 max)"
+  echo "    - 1: remove all edocker.properties from web1/web2"
+  echo "    - 2: generate edocker.properties from template and properties"
+  echo "    - 3: compare we1 and web2 configuration"
+  echo "    - 4: generate docker-compose.yaml from edocker.properties"
+  echo "    - 5: run docker compose"
   exit -1
 }
+
+if [ "$#" -ne 2 ]; then
+  usage
+fi
 
 if [ -z "$mode" ]; then
   usage
@@ -17,20 +30,42 @@ if [ ! "$mode" = "production" ] && [ ! "$mode" = "integration" ]; then
   usage
 fi
 
-echo "cleaning edocker.properties..."
-rm -f web*/edocker.properties
-rm -f web*/*.bak
+bitwise=$(echo "$step / 1" |bc)
+if [ $bitwise -ge 0 ]; then
+  echo "#1 cleaning edocker.properties..."
+  rm -f docker-compose.yaml
+  rm -f web1/edocker.properties
+  rm -f web2/edocker.properties
+  rm -f web1/*.bak
+  rm -f web2/*.bak
+fi
 
-echo "generate edocker.properties from template and production properties..."
-edockertemplate $mode
+bitwise=$(echo "$step / 2" |bc)
+if [ $bitwise -ne 0 ]; then
+  echo "#2 generate edocker.properties from template and properties..."
+  edockertemplate $mode
+fi
 
-echo "compare we1 and web2 configuration"
-./diff_conf.sh
+bitwise=$(echo "$step / 3" |bc)
+if [ $bitwise -ne 0 ]; then
+  echo "#3 compare we1 and web2 configuration..."
+  ./diff_conf.sh
+fi
 
-echo "generate docker-compose.yaml from edocker.properties"
-edockercompose
+bitwise=$(echo "$step / 4" |bc)
+if [ $bitwise -ne 0 ]; then
+  echo "#4 generate docker-compose.yaml from edocker.properties..."
+  edockercompose
+fi
 
-echo "run docker compose"
-docker-compose stop -p "$mode"
-docker-compose build -p "$mode"
-docker-compose up -p "$mode"
+bitwise=$(echo "$step / 5" |bc)
+if [ $bitwise -ne 0 ]; then
+  echo "#5 run docker compose"
+  status=$(docker-compose ps|grep "web")
+  if [ -n "$status" ]; then
+    docker-compose -p "$mode" stop
+  fi
+  docker-compose -p "$mode" rm
+  docker-compose -p "$mode" build
+  docker-compose -p "$mode" up
+fi

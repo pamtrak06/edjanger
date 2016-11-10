@@ -3,7 +3,7 @@
 #
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
-# CONFIGURATION    : edocker_template.${config_extension}
+# CONFIGURATION    : edocker_template.properties
 # DESCRIPTION      : project configuration file for edocker
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
@@ -38,7 +38,7 @@ build_path=build
 #build_file:name of the Dockerfile (Default is 'PATH/Dockerfile')
 #build_file="--file build/Dockerfile"
 #container_name:container
-container_name="web1"
+container_name="${web1_name}"
 #exposed_ports:exposed port
 exposed_ports="-p ${web1_port_80}:80"
 #shared_volumes:shared volumes
