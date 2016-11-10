@@ -60,7 +60,7 @@ function create_edocker_properties()
       # replace variable from configuration file in template
       # if configuration file exist (global or local)
       if [ -f "${prop_file}" ]; then
-        edockerproperties=${file%.template}.properties
+        edockerproperties=${template%.template}.properties
         echo "edockerproperties: ${edockerproperties}"
         # check if edocker.properties exist
         if [ -f "${edockerproperties}" ]; then
@@ -68,7 +68,7 @@ function create_edocker_properties()
           read response
           if [ "y" = "${response}" ]; then
             date_time=$(date +"%Y%m%d_%H%M%S")
-            cp ${edockerproperties} ${file%.template}_${date_time}.bak
+            cp ${edockerproperties} ${template%.template}_${date_time}.bak
             echo -e "edocker:INFO create \"${edockerproperties}\" file from template \"${template}\" and configuration file \"${prop_file}\""
             source ${prop_file} && envsubst < "${template}" | tee "${edockerproperties}" > /dev/null
           fi
