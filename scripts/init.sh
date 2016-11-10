@@ -21,7 +21,7 @@ if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
 else
   if [ ! -f "edocker.${config_extension}" ] && [ "{edockerpath}" != "$PWD" ]; then
     echo -e "> Initialize edocker configuration file: edocker.${config_extension} ..."
-    cp {edockerpath}/edocker_template.${config_extension} ./edocker.${config_extension}
+    cp {edockerpath}/templates/edocker_template.${config_extension} ./edocker.${config_extension}
   else
     source {edockerpath}/_common.sh
     echo -e "File edocker.${config_extension} is already in your current directory !"

@@ -60,7 +60,7 @@ docker stop $(docker ps -aq | grep "devops/jenkins")
 - install gettext (for envsubst)
     osx:
       brew install gettext
-      brew link --force gettext 
+      brew link --force gettext
       echo "PATH=/usr/local/Cellar/gettext/0.19.8.1/bin/envsubst:$PATH" >> ~/.bashrc
       source ~/.bashrc
 
@@ -124,7 +124,7 @@ echo "source {edocker path}/edocker.alias" >> ~/.bash_aliases
 
 **zsh**
 
-Add lines at the bottom of the file ~/.zshrc 
+Add lines at the bottom of the file ~/.zshrc
 ```bash
 echo "source {edocker path}/edocker.alias" >> ~/.zshrc
 ```
@@ -178,14 +178,14 @@ edockerinit
 Equivalent to
 ```bash
 > Initialize edocker configuration file: edocker.properties ...
-cp [edocker path]/edocker_template.properties [your docker working project]/edocker.properties
+cp [edocker path]/temlates/edocker_template.properties [your docker working project]/edocker.properties
 > Initialize edocker build folder for Dockerfile: /build ...
 mkdir [your docker working project]/build
 > Initialize Dockerfile: build/Dockerfile ...
 touch [your docker working project]/build/Dockerfile
 ```
 
-Configure your [edocker.properties](https://github.com/pamtrak06/edocker/blob/master/scripts/edocker_template.properties) with correct parameters.
+Configure your [edocker.properties](https://github.com/pamtrak06/edocker/blob/master/scripts/templates/edocker_template.properties) with correct parameters.
 By example, you could create a Dockerfile with this path:
 ```bash
 vi [your docker working project]/build/Dockerfile
@@ -307,7 +307,7 @@ Now you've got aliases to run all your docker commands like:
 - edockerupdate
 - edockerwait
 
-!!! All thoses aliases are available only when you've got an [edocker.properties](https://github.com/pamtrak06/edocker/blob/master/edocker_template.properties) file in your project folder ([docker working project]) '''
+!!! All thoses aliases are available only when you've got an [edocker.properties](https://github.com/pamtrak06/edocker/blob/master/templates/edocker_template.properties) file in your project folder ([docker working project]) '''
 
 For each commands, see edockerhelp 'command' for list of parameters read in edocker.properties and arguments.
 
@@ -487,7 +487,7 @@ vi docker-compose.yaml
 
 From an existing edocker root path project structure, do following
 - rename all edocker.properties to edocker.template
-- define variable for element to be substitute with variable value from configuration file 
+- define variable for element to be substitute with variable value from configuration file
 - create configuration files (<name>.properties) containing SHELL-FORMAT variable
     - in each folder containing edocker.properties (each configuration file must hase same name e.g.: production.properties)
     or
