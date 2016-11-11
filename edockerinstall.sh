@@ -64,14 +64,14 @@ function buildAliases() {
   bcpresent=$(command -v bc)
   if [ -z "$bcpresent" ]; then
     echo -e "edocker:ERROR: bc is not present, please install it, installation aborted"
-    exit -1
+    return -1;
   else
     echo -e "  - bc is present: $bcpresent"
   fi
   espresent=$(command -v envsubst)
   if [ -z "$espresent" ]; then
     echo -e "edocker:ERROR: envsubst is not present, please install it, installation aborted"
-    exit -1
+    return -1
   else
     echo -e "  - envsubst is present: $espresent"
   fi

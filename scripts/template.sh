@@ -41,7 +41,7 @@ function create_edocker_properties()
 
   if [[ ! "$command" == *"properties="* ]]; then
     echo -e "edocker:ERROR argument must be set with following form: properties=\"<basename or properties name>\"."
-    exit -1
+    return -1
   else
     configuration=${command##properties=}
   fi
@@ -52,14 +52,14 @@ function create_edocker_properties()
 
   if [ "${configuration}" = "edocker" ]; then
     echo -e "edocker:ERROR this name could not be used for this purpose. Please choose another one."
-    exit -1
+    return -1
   fi
 
   # Retrieve all edocker configuration files from current directory
   listconf=$(find $PWD -name "edocker.template")
   if [ -z "$listconf" ]; then
     echo -e "edocker:ERROR No edocker.template available recursively in this directory"
-    exit -1
+    return -1
   fi
 
   for template in ${listconf[@]}
