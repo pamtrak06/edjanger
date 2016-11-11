@@ -111,14 +111,14 @@ function create_edocker_properties()
             date_time=$(date +"%Y%m%d_%H%M%S")
             cp ${edockerproperties} ${template%.template}_${date_time}.bak
             echo -e "edocker:INFO create \"${edockerproperties}\" file from template \"${template}\" and configuration file \"${prop_file}\""
-            source ${prop_file} && envsubst < "${template}" | tee "${edockerproperties}" > /dev/null
+            . ${prop_file} && envsubst < "${template}" | tee "${edockerproperties}" > /dev/null
           fi
 
         # else create edocker.properties
         else
 
           echo -e "edocker:INFO create \"${edockerproperties}\" file from template \"${template}\" and configuration file \"${prop_file}\""
-          source ${prop_file} && envsubst < "${template}" | tee "${edockerproperties}" > /dev/null
+          . ${prop_file} && envsubst < "${template}" | tee "${edockerproperties}" > /dev/null
 
         fi
       # else configuration file doe not exist

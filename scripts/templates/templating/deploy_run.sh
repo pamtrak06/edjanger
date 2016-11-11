@@ -47,7 +47,7 @@ if [ $bitwise -ne 0 ]; then
   edockertemplate properties=$mode 2>&1 | tee edocker.log
   if [ -n "$(cat edocker.log|grep ERR)" ]; then
     rm -f edocker.log
-    return -1
+    step=-1
   fi
 fi
 
@@ -57,7 +57,7 @@ if [ $bitwise -ne 0 ]; then
   ./diff_conf.sh 2>&1 | tee edocker.log
   if [ -n "$(cat edocker.log|grep ERR)" ]; then
     rm -f edocker.log
-    return -1
+    step=-1
   fi
 fi
 
@@ -67,7 +67,7 @@ if [ $bitwise -ne 0 ]; then
   edockercompose 2>&1 | tee edocker.log
   if [ -n "$(cat edocker.log|grep ERR)" ]; then
     rm -f edocker.log
-    return -1
+    step=-1
   fi
 fi
 
@@ -79,25 +79,25 @@ if [ $bitwise -ne 0 ]; then
     docker-compose -p "$mode" stop 2>&1 | tee edocker.log
     if [ -n "$(cat edocker.log|grep ERR)" ]; then
       rm -f edocker.log
-      return -1
+      step=-1
     fi
   fi
   docker-compose -p "$mode" rm 2>&1 | tee edocker.log
   if [ -n "$(cat edocker.log|grep ERR)" ]; then
     rm -f edocker.log
-    return -1
+    step=-1
   fi
 
   docker-compose -p "$mode" build 2>&1 | tee edocker.log
   if [ -n "$(cat edocker.log|grep ERR)" ]; then
     rm -f edocker.log
-    return -1
+    step=-1
   fi
 
   docker-compose -p "$mode" up 2>&1 | tee edocker.log
   if [ -n "$(cat edocker.log|grep ERR)" ]; then
     rm -f edocker.log
-    return -1
+    step=-1
   fi
 
   rm -f edocker.log
