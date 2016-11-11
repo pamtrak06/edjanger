@@ -485,17 +485,19 @@ vi docker-compose.yaml
 
 ! Prerequisities : install gettext (for envsubst)
 
-Download and try example from https://github.com/pamtrak06/edocker/tree/master/scripts/templates/templating, run:
+> Download and try example from https://github.com/pamtrak06/edocker/tree/master/scripts/templates/templating, run:
+
+> Deploy 2 apache web sever (web1 and web2) with specific ports and shared volumes for a "production" environement.
 ```bash
 ./deploy_run.sh production 5
 ```
-Deploy 2 apache web sever (web1 and web2) with specific ports and shared volumes for a "production" environement.
 
+> Deploy 2 apache web server (web1 and web2) with specific ports and shared volumes for an "integration" environement.
 ```bash
 ./deploy_run.sh integration 5
 ```
-Deploy 2 apache web sever (web1 and web2) with specific ports and shared volumes for an "integration" environement.
 
+> Instructions
 From an existing edocker root path project structure, do following
 - rename all edocker.properties to edocker.template
 - define variable for element to be substitute with variable value from configuration file
