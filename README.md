@@ -485,55 +485,55 @@ vi docker-compose.yaml
 
 ! Prerequisities : install gettext (for envsubst)
 
-> Download and try example from https://github.com/pamtrak06/edocker/tree/master/scripts/templates/templating, run:
+- Download and try example from https://github.com/pamtrak06/edocker/tree/master/scripts/templates/templating, run:
 
-> Deploy 2 apache web sever (web1 and web2) with specific ports and shared volumes for a "production" environement.
+- Deploy 2 apache web sever (web1 and web2) with specific ports and shared volumes for a "production" environement.
 ```bash
 ./deploy_run.sh production 5
 ```
 
-> Deploy 2 apache web server (web1 and web2) with specific ports and shared volumes for an "integration" environement.
+- Deploy 2 apache web server (web1 and web2) with specific ports and shared volumes for an "integration" environement.
 ```bash
 ./deploy_run.sh integration 5
 ```
 
-> Instructions
+- Instructions
 From an existing edocker root path project structure, do following
 - rename all edocker.properties to edocker.template
-- define variable for element to be substitute with variable value from configuration file
-- create configuration files (<name>.properties) containing SHELL-FORMAT variable
-    - in each folder containing edocker.properties (each configuration file must hase same name e.g.: production.properties)
-    or
-    - only in root folder (e.g.: production.properties)
-- call edockertemplate with name of configuration file
-```bash
-edockertemplate <name>.properties
-```
+    - define variable for element to be substitute with variable value from configuration file
+    - create configuration files (<name>.properties) containing SHELL-FORMAT variable
+        - in each folder containing edocker.properties (each configuration file must hase same name e.g.: production.properties)
+        or
+        - only in root folder (e.g.: production.properties)
+    - call edockertemplate with name of configuration file
+    ```bash
+    edockertemplate <name>.properties
+    ```
 
-Example of edockertemplate invocation
-```bash
-edockertemplate production.properties
-```
+    Example of edockertemplate invocation
+    ```bash
+    edockertemplate production.properties
+    ```
 
-Example of production.properties content
-```bash
-#!/bin/bash
-export HTTPD_PORT_80=80
-export HTTPD_PORT_443=443
-```
+    Example of production.properties content
+    ```bash
+    #!/bin/bash
+    export HTTPD_PORT_80=80
+    export HTTPD_PORT_443=443
+    ```
 
-Example of edocker.template content
-```bash
-#exposed_ports:exposed port
-exposed_ports="-p ${HTTPD_PORT_80}:80 -p ${HTTPD_PORT_443}:443"
-```
+    Example of edocker.template content
+    ```bash
+    #exposed_ports:exposed port
+    exposed_ports="-p ${HTTPD_PORT_80}:80 -p ${HTTPD_PORT_443}:443"
+    ```
 
-Script will find all edocker.template and replace variables from root or folder(s) configuration(s) file(s) to produce edocker.properties files.
+    Script will find all edocker.template and replace variables from root or folder(s) configuration(s) file(s) to produce edocker.properties files.
 
-Example of edocker.properties produced
-```bash
-#exposed_ports:exposed port
-exposed_ports="-p 80:80 -p 443:443"
+    Example of edocker.properties produced
+    ```bash
+    #exposed_ports:exposed port
+    exposed_ports="-p 80:80 -p 443:443"
 ```
 
 ## Configure automatic container restart at boot
