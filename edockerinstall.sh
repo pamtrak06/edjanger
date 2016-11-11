@@ -68,6 +68,13 @@ function buildAliases() {
   else
     echo -e "  - bc is present: $bcpresent"
   fi
+  trpresent=$(command -v tree)
+  if [ -z "$trpresent" ]; then
+    echo -e "edocker:ERROR: tree is not present, please install it, installation aborted"
+    return -1;
+  else
+    echo -e "  - tree is present: $trpresent"
+  fi
   espresent=$(command -v envsubst)
   if [ -z "$espresent" ]; then
     echo -e "edocker:ERROR: envsubst is not present, please install it, installation aborted"
