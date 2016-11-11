@@ -53,7 +53,7 @@ fi
 
 bitwise=$(echo "$step / 3" |bc)
 if [ $bitwise -ne 0 ]; then
-  echo "#3 compare we1 and web2 configuration..."
+  echo "#3 compare web1 and web2 configuration..."
   ./diff_conf.sh 2>&1 | tee edocker.log
   if [ -n "$(cat edocker.log|grep ERR)" ]; then
     rm -f edocker.log
