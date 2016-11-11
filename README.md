@@ -499,8 +499,8 @@ vi docker-compose.yaml
 
 - Instructions
 From an existing edocker root path project structure, do following
-- rename all edocker.properties to edocker.template
-    - define variable for element to be substitute with variable value from configuration file
+    - rename all edocker.properties to edocker.template
+    - define variable for element to be replaced with variable value from configuration file
     - create configuration files (<name>.properties) containing SHELL-FORMAT variable
         - in each folder containing edocker.properties (each configuration file must hase same name e.g.: production.properties)
         or
