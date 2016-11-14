@@ -19,7 +19,7 @@ if [ -f {edockerpath}/proxy.zip ]; then
   if [ ! -f edocker.${config_extension} ]; then
     echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
   else
-    read_config
+    read_edockerproperties
     echo -e "Initialize proxy parameters..."
     unzip {edockerpath}/proxy.zip -d {edockerpath}/
     source {edockerpath}/proxy.${config_extension}

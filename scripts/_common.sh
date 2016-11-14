@@ -16,7 +16,21 @@
 # ----------------------------------------------------
 config_extension=properties
 
-function read_config()
+
+function is_exec_present()
+{
+  execname="$1"
+  exepresent=$(command -v $execname)
+  if [ -z "$exepresent" ]; then
+    echo -e "edocker:ERROR: $execname is not present, please install it, installation aborted"
+    return -1;
+  else
+    echo -e "edocker:INFO: $execname is present: $exepresent"
+    return 0;
+  fi
+}
+
+function read_edockerproperties()
 {
   if [ ! -f edocker.${config_extension} ]; then
     echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
@@ -45,7 +59,7 @@ function dockerbasicimage()
     if [ ! -f edocker.${config_extension} ]; then
       echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
     else
-      read_config
+      read_edockerproperties
       echo "${comment} $(echo ${image_name} | cut -d ':' -f1)..."
       docker ${command} | grep $(echo ${image_name} | cut -d ':' -f1)
       if [ "true" = "${docker_command}" ]; then
@@ -70,7 +84,7 @@ function dockerbasiccontainer()
     if [ ! -f edocker.${config_extension} ]; then
       echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
     else
-      read_config
+      read_edockerproperties
       if [ "${initidx}" != "-1" ]; then
         if [ "$type" = "image" ]; then
           idx=$(echo "$(docker ps -a | grep ${image_name} | wc -l)+${initidx}" | bc)
@@ -118,7 +132,7 @@ function checkconfig()
     echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
   else
 
-    read_config
+    read_edockerproperties
 
     parameters=$(cat {edockerpath}/templates/edocker_template.${config_extension}|grep -v "#"|grep "="|cut -d '=' -f1)
 

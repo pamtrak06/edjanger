@@ -29,7 +29,7 @@ else
     echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
   else
 
-    read_config
+    read_edockerproperties
 
     if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
       usage $0 copy

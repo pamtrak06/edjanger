@@ -37,7 +37,7 @@ else
   if [ ! -f edocker.${config_extension} ]; then
     echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
   else
-    read_config
+    read_edockerproperties
     idx=$(echo "$(docker ps | grep ${container_name} | wc -l)+1" | bc)
     echo "Run container_name: ${container_name}_${idx}..."
     if [ -z "${command_run}" ]; then

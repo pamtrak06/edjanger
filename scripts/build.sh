@@ -30,7 +30,7 @@ else
   if [ ! -f edocker.${config_extension} ]; then
     echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
   else
-    read_config
+    read_edockerproperties
     echo build image_name: ${image_name}...
     if [ ! -d ${build_path} ]; then
       echo "Build path must exist and be a folder, configure variable build_path in edocker.${config_extension}"

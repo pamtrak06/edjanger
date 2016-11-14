@@ -25,7 +25,7 @@ else
   if [ ! -f edocker.${config_extension} ]; then
     echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
   else
-    read_config
+    read_edockerproperties
     echo "Encrypt {edockerpath}/proxy.${config_extension}..."
     zip --encrypt {edockerpath}/proxy.zip {edockerpath}/proxy.${config_extension}
     rm -f {edockerpath}/proxy.${config_extension}
