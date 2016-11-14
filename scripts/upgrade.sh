@@ -39,22 +39,22 @@ else
     date_time=$(date +"%Y%m%d_%H%M%S")
     echo -e "edocker:INFO: UPGRADE: archiving current version..."
     cd {edockerpath}/..
-    zip -r edocker-${date_time}.zip ./scripts
+    zip -r edocker-${date_time}.zip ./scripts 2>&1 {edockerpath}/../edocker.log
     echo -e "edocker:INFO: UPGRADE: upgrading edocker..."
-    ./edockerinstall.sh dev
-    git pull origin master 2>&1 {edockerpath}/edocker.log
+    ./edockerinstall.sh dev >> {edockerpath}/../edocker.log 2>&1
+    git pull origin master >> {edockerpath}/../edocker.log 2>&1
     if [ $? != 0 ]; then
       echo -e "edocker:ERROR UPGRADE: upgrade could not be perform due to git error, see {edockerpath}/edocker.log"
       echo -e "edocker:INFO UPGRADE: restoring previous version..."
-      ./edockerinstall.sh
-      unzip edocker-${date_time}.zip -d {edockerpath}
+      ./edockerinstall.sh >> {edockerpath}/../edocker.log 2>&1
+      unzip edocker-${date_time}.zip -d {edockerpath} >> {edockerpath}/../edocker.log 2>&1
     else
       echo -e "edocker:INFO: UPGRADE: activating edocker..."
-      ./edockerinstall.sh
-      . edocker.alias
-      rm -f {edockerpath}/edocker.log
-      cd $CURDIR
+      ./edockerinstall.sh >> {edockerpath}/../edocker.log 2>&1
+      . edocker.alias >> {edockerpath}/../edocker.log 2>&1
+      rm -f {edockerpath}/edocker.log >> {edockerpath}/../edocker.log 2>&1
     fi
+    cd $CURDIR
   fi
 
 fi
