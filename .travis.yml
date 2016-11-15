@@ -2,9 +2,9 @@ language: bash
 
 before_script:
     - git clone --branch=master https://github.com/sstephenson/bats.git /tmp/bats
-    - cd /tmp/bats; ./install.sh /home/travis
-    #- PATH=$PATH:/home/travis/bats/libexec:/home/travis/bats/bin
+    - cd /tmp/bats; ./install.sh /home/travis: rm -rf /tmp/bats
+    - cd /home/travis/pamtrak06/edocker
 
 script:
-    - bats pamtrak06/edocker/tests/edockerinit_test.bats
+    - bats --tap tests/edockerinit_test.bats
 
