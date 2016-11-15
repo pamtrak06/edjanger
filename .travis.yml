@@ -1,9 +1,8 @@
 language: bash
 
 before_script:
-    - curl -o /home/travis/master.zip "https://github.com/sstephenson/bats/archive/master.zip"
-    - cd /home/travis/ && unzip master.zip
-    - PATH=$PATH:/home/travis/bats-master/libexec:/home/travis/bats-master/bin
+    - git clone --branch=master https://github.com/sstephenson/bats.git /home/travis/bats
+    - PATH=$PATH:/home/travis/bats/bats-master/libexec:/home/travis/bats/bats-master/bin
 
 script:
     - bats tests/edockerinit_test.bats
