@@ -1,11 +1,15 @@
 language: bash
 
+sudo: required
+
+services:
+  - docker
+
 before_script:
     - CURDIR=$PWD
     - ./edockerinstall.sh
     - git clone --branch=master https://github.com/sstephenson/bats.git /tmp/bats
     - cd /tmp/bats; ./install.sh /home/travis; rm -rf /tmp/bats
-    - curl -sSL https://get.docker.com/ | sh
     - cd $CURDIR/tests
 
 script:
