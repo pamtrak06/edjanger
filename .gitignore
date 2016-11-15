@@ -2,3 +2,4 @@ edocker.alias
 edocker.unalias
 *.zip
 *.log
+tests/tmp*
