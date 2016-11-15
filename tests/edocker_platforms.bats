@@ -7,7 +7,7 @@
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
   . ../../scripts/init.sh
   echo "FROM gitlab/dind" > build/Dockerfile
-  echo "RUN apt-get -y update && apt-get install -y bc zip unzip wget curl git" >> build/Dockerfile
+  echo "RUN apt-get -y update && apt-get install -y bc zip unzip wget curl git gettext" >> build/Dockerfile
   echo "WORKDIR /usr/local/bin" >> build/Dockerfile
   echo "RUN git clone https://github.com/pamtrak06/edocker.git" >> build/Dockerfile
   echo "WORKDIR /usr/local/bin/edocker" >> build/Dockerfile
@@ -15,8 +15,7 @@
   echo "RUN ./edockerinstall.sh" >> build/Dockerfile
   echo "RUN git clone --branch=master https://github.com/sstephenson/bats.git /tmp/bats" >> build/Dockerfile
   echo "RUN cd /tmp/bats; ./install.sh /usr/local; rm -rf /tmp/bats" >> build/Dockerfile
-  - cd $CURDIR/tests
-  echo "RUN CMD []" >> build/Dockerfile
+  echo "CMD [ "run_tests.sh" ]" >> build/Dockerfile
   PROP=edocker.properties
   TMPP=edocker.tmp
   sed -e "s/\(docker_command=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
