@@ -1,6 +1,7 @@
 
 
 @test "edocker @ubuntu       : cross platorm tests " {
+  skip
   shopt -s expand_aliases
   . ../edocker.alias
   TMP=tmp_edockerinit
