@@ -621,6 +621,11 @@ Please contribute !
 - volume rm            => TO BE Implemented
 - wait                 => OK
 
+## Tests
+Tests use following
+- [travis](https://travis-ci.org/pamtrak06/edocker)
+- [bats](https://github.com/sstephenson/bats)
+
 ## License
 ([go up to table of content](#table-of-content))
 
