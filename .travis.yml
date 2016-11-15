@@ -5,5 +5,5 @@ before_script:
     - PATH=$PATH:$PWD/bats-master/libexec:$PWD/bats-master/bin
 
 script:
-    - bats tests/edockerinit_test.bats
+    - bats-master/bin/bats tests/edockerinit_test.bats
 
