@@ -2,12 +2,12 @@
 
 @test "edockerinit" {
   shopt -s expand_aliases
-  source ../edocker.alias
+  . ../edocker.alias
   mkdir tmp_edockerinit
-  cd tmp_dockerinit
+  cd tmp_edockerinit
   edockerinit
   result="$(ls edocker.properties)"
   [ -n "$result" ]
   cd ..
-  rm -rf tmp_dockerinit
+  #rm -rf tmp_dockerinit
 }
