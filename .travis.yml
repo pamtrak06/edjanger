@@ -1,8 +1,8 @@
 language: bash
 
 before_script:
-    - git clone --branch=master https://github.com/sstephenson/bats.git /tmp/bats
     - CURDIR=$PWD
+    - git clone --branch=master https://github.com/sstephenson/bats.git /tmp/bats
     - cd /tmp/bats; ./install.sh /home/travis; rm -rf /tmp/bats
     - cd $CURDIR
 
