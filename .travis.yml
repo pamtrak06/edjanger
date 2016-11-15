@@ -1,9 +1,8 @@
 language: bash
 
 before_script:
-    - curl -O "https://github.com/sstephenson/bats/archive/master.zip"
-    - unzip master.zip
-    - mv bats-master /home/travis/
+    - curl -o /home/travis/master.zip "https://github.com/sstephenson/bats/archive/master.zip"
+    - cd /home/travis/ && unzip master.zip
     - PATH=$PATH:/home/travis/bats-master/libexec:/home/travis/bats-master/bin
 
 script:
