@@ -1,0 +1,9 @@
+language: bash
+
+before_script:
+    - curl -L "https://github.com/sstephenson/bats/archive/master.zip" | unzip
+    - PATH=$PATH:$PWD/bats-master/libexec:$PWD/bats-master/bin
+
+script:
+    - bats tests/edockerinit_test.bats
+
