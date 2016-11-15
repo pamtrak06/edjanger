@@ -1,6 +1,6 @@
 
 
-@test "edocker @ubuntu: ares tests ok" {
+@test "edocker @ubuntu       : cross platorm tests " {
   shopt -s expand_aliases
   . ../edocker.alias
   TMP=tmp_edockerinit

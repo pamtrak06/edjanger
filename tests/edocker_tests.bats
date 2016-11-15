@@ -1,6 +1,6 @@
 #!/usr/bin/env bats
 
-@test "edocker init: presence edocker.properties" {
+@test "edocker init          : presence edocker.properties" {
   shopt -s expand_aliases
   . ../edocker.alias
   TMP=tmp_edockerinit
@@ -12,7 +12,7 @@
   rm -rf $TMP
 }
 
-@test "edocker init test: presence build/Dockerfile" {
+@test "edocker init          : presence build/Dockerfile" {
   shopt -s expand_aliases
   . ../edocker.alias
   TMP=tmp_edockerinit
@@ -24,7 +24,7 @@
   rm -rf $TMP
 }
 
-@test "edockerbuild: is image built" {
+@test "edocker build         : is image built" {
   shopt -s expand_aliases
   . ../edocker.alias
   TMP=tmp_edockerinit
@@ -51,7 +51,7 @@
   docker rmi pamtrak06/webtest
 }
 
-@test "edocker run: is container running" {
+@test "edocker run           : is container running" {
   shopt -s expand_aliases
   . ../edocker.alias
   TMP=tmp_edockerinit
@@ -80,7 +80,7 @@
   docker rmi pamtrak06/webtest
 }
 
-@test "edocker exec: is exec in container ok" {
+@test "edocker exec          : is exec in container" {
   skip
   shopt -s expand_aliases
   . ../edocker.alias
@@ -112,7 +112,7 @@
   docker rmi pamtrak06/webtest
 }
 
-@test "edocker start/stop: start/stop container ok" {
+@test "edocker start/stop    : start/stop container" {
   shopt -s expand_aliases
   . ../edocker.alias
   TMP=tmp_edockerinit
