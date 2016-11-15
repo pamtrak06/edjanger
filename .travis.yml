@@ -1,8 +1,9 @@
 language: bash
 
 before_script:
-    - git clone --branch=master https://github.com/sstephenson/bats.git /home/travis/bats
-    - PATH=$PATH:/home/travis/bats/bats-master/libexec:/home/travis/bats/bats-master/bin
+    - git clone --branch=master https://github.com/sstephenson/bats.git /tmp/bats
+    - cd /tmp/bats; ./install.sh /home/travis
+    - PATH=$PATH:/home/travis/bats/libexec:/home/travis/bats/bin
 
 script:
     - bats tests/edockerinit_test.bats
