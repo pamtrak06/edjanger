@@ -18,7 +18,7 @@
 ## Presentation
 ([go up to table of content](#table-of-content))
 
-Scripts for easyest docker commands in a docker working folder (Dockerfile)
+Scripts for shortest and easyest docker commands in a docker working folder (Dockerfile)
 
 Tired about repeating docker commands with long parameters ?
 
