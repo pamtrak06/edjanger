@@ -1,7 +1,8 @@
 [Web site official home page](http://pamtrak06.github.io/edocker/)
 
-Latest version
-[![Build Status](https://travis-ci.org/pamtrak06/edocker.svg?branch=latest)](https://travis-ci.org/pamtrak06/edocker)
+Latest version on master
+
+[![Build Status](https://travis-ci.org/pamtrak06/edocker.svg?branch=master)](https://travis-ci.org/pamtrak06/edocker)
 
 # Table of content
 - [Presentation](#presentation)
