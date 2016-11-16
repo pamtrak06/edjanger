@@ -81,6 +81,11 @@ Run edocker installation
 ./edockerinstall.sh
 ```
 
+Export edocker path in PATH
+```bash
+export PATH=$PATH:/usr/local/bin/edocker
+```
+
 This will install edocker in /usr/local/bin/edocker
 If installation fail to install in this directory, try to install it in another
 
