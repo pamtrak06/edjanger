@@ -114,7 +114,7 @@ function printConfiguration() {
 
 # Build symbolic links
 function buildSymbolicLinks() {
-  target=/usr/local/bin/edocker
+  target=${edockerpath}
 
   mode=$1
 
