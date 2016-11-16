@@ -636,6 +636,7 @@ Please contribute !
 
 ## Tests
 ([go up to table of content](#table-of-content))
+
 Tests use following
 - [travis](https://travis-ci.org/pamtrak06/edocker)
 - [bats](https://github.com/sstephenson/bats)
