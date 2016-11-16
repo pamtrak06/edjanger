@@ -15,6 +15,7 @@
 - [Use templates files to configure edocker.properties](#use-templates-files-to-configure-edockerproperties)
 - [Configure automatic container restart at boot](#configure-automatic-container-restart-at-boot)
 - [Work in progress](#work-in-progress)
+- [Tests](#tests)
 - [License](#license)
 
 ## Presentation
@@ -634,6 +635,7 @@ Please contribute !
 - wait                 => OK
 
 ## Tests
+([go up to table of content](#table-of-content))
 Tests use following
 - [travis](https://travis-ci.org/pamtrak06/edocker)
 - [bats](https://github.com/sstephenson/bats)
