@@ -1,8 +1,7 @@
 #!/usr/bin/env bats
+export PATH=$PATH:/usr/local/bin/edocker
 
 @test "edocker init          : presence edocker.properties" {
-  shopt -s expand_aliases
-  . ../edocker.alias
   TMP=tmp_edockerinit
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
   . ../../scripts/init.sh
@@ -13,8 +12,6 @@
 }
 
 @test "edocker init          : presence build/Dockerfile" {
-  shopt -s expand_aliases
-  . ../edocker.alias
   TMP=tmp_edockerinit
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
   . ../../scripts/init.sh
@@ -25,8 +22,6 @@
 }
 
 @test "edocker build         : is image built" {
-  shopt -s expand_aliases
-  . ../edocker.alias
   TMP=tmp_edockerinit
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
   . ../../scripts/init.sh
@@ -52,8 +47,6 @@
 }
 
 @test "edocker run           : is container running" {
-  shopt -s expand_aliases
-  . ../edocker.alias
   TMP=tmp_edockerinit
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
   . ../../scripts/init.sh
@@ -80,10 +73,36 @@
   docker rmi pamtrak06/webtest
 }
 
+@test "edocker run           : is port exposed" {
+  TMP=tmp_edockerinit
+  rm -rf $TMP &&  mkdir $TMP && cd $TMP
+  . ../../scripts/init.sh
+  echo "FROM httpd" > build/Dockerfile
+  PROP=edocker.properties
+  TMPP=edocker.tmp
+  sed -e "s/\(docker_command=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edocker.properties | grep docker_command
+  sed -e "s/\(image_name=\).*/\1\"pamtrak06\/webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edocker.properties | grep image_name
+  sed -e "s/\(container_name=\).*/\1\"webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edocker.properties | grep container_name
+  sed -e "s/\(exposed_ports\)=\.*/\1=85:80/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edocker.properties | grep exposed_ports
+  sed -e "s/\(shared_volumes=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  . ../../scripts/build.sh
+  . ../../scripts/run.sh
+  ip=$(nslookup $(hostname) | grep Address | grep -v "#" | awk '{ printf $2}')
+  result="$(curl $ip)"
+  [ -n "$result" ]
+  cd ..
+  rm -rf $TMP
+  docker stop $(docker ps -q --filter="name=webtest*")
+  docker rm $(docker ps -aq --filter="name=webtest*")
+  docker rmi pamtrak06/webtest
+}
+
 @test "edocker exec          : is exec in container" {
   skip
-  shopt -s expand_aliases
-  . ../edocker.alias
   TMP=tmp_edockerinit
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
   . ../../scripts/init.sh
@@ -113,8 +132,6 @@
 }
 
 @test "edocker start/stop    : start/stop container" {
-  shopt -s expand_aliases
-  . ../edocker.alias
   TMP=tmp_edockerinit
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
   . ../../scripts/init.sh
