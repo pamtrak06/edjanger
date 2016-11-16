@@ -1,6 +1,5 @@
 #/bin/bash
-shopt -s expand_aliases
-source {edockerpath}/../edocker.alias
+export PATH=$PATH:{edockerpath}
 
 mode=$1
 step=$2
