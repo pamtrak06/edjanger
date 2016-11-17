@@ -303,7 +303,10 @@ function buildAliases() {
   echo -e "\n-> edocker installation: done"
 
   echo -e "\n  !!! WARNING : THINK TO CONFIGURE ENVIRONEMENT TO LOAD ${aliaspath}/${prefix}.alias !!!"
-  echo -e "  This could be done here: ~/.bashrc, ~/.bash_aliases, ~/.bash_profile, /etc/environment, ..."
+  echo -e "  This could be done here: /etc/profile, /etc/environment, ..."
+  echo -e "  This could be done here: ~/.bashrc, ~/.bash_aliases, ..."
+  echo -e "  This could be done here: ~/.bash_profile, ~/.bash_login, ..."
+  echo -e "  This could be done here: ~/.profile, ~/.login, ~/.zshrc, ..."
 
   printConfiguration
 
