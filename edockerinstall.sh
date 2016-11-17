@@ -114,7 +114,7 @@ function printConfiguration() {
 
 # Build symbolic links
 function buildSymbolicLinks() {
-  target=${edockerpath}
+  target=$(dirname ${edockerpath})
 
   mode=$1
 
@@ -132,15 +132,17 @@ function buildSymbolicLinks() {
   if [ ! -d "$target" ]; then
     mkdir -p $target
     if [ $? = -1 ]; then
-      echo -e "\nCreating direcory $target failed, trying to install aliases method"
+      echo -e "\nCreating directory $target failed, trying to install aliases method"
       buildAliases ${mode}
       return -1;
     fi
   fi
 
+  symblnklist=$(ls -A $target/edocker*| grep -v sh | grep -v alias)
+
   # remove symbolic links
-  if [ -n "$(ls -A $target/edocker*)" ]; then
-   for s in $(ls ${target}/edocker*); do
+  if [ -n "$symblnklist" ]; then
+   for s in $symblnklist; do
      if [ -L "$s" ]; then
        rm -f $s
     fi
@@ -149,7 +151,7 @@ function buildSymbolicLinks() {
 
   #create symbolic links for all sh scripts
   echo -e "\n--- Build symbolic links..."
-  if [ -z "$(ls -A $target/edocker*)" ]; then
+  if [ -z "$symblnklist" ]; then
 
     for s in $(ls ${edockerpath}/*.sh); do
 
