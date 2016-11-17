@@ -79,12 +79,7 @@ cd edocker; chmod 755 scripts/*.sh; chmod 755 edockerinstall.sh
 
 Run edocker installation
 ```bash
-./edockerinstall.sh
-```
-
-Export edocker path in PATH
-```bash
-export PATH=$PATH:/usr/local/bin/edocker
+./edockerinstall.sh -a
 ```
 
 This will install edocker in /usr/local/bin/edocker
@@ -98,7 +93,7 @@ cd edocker; chmod 755 scripts/*.sh; chmod 755 edockerinstall.sh
 
 Execute the generated alias file:
 ```bash
-source edocker.alias
+. /usr/local/bin/edocker/edocker.alias
 ```
 
 All is done !!! Run this command to see your edocker aliases
