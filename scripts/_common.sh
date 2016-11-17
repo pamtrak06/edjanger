@@ -20,12 +20,11 @@ config_extension=properties
 function is_exec_present()
 {
   execname="$1"
-  exepresent=$(command -v $execname)
-  if [ -z "$exepresent" ]; then
-    echo -e "edocker:ERROR: $execname is not present, please install it, installation aborted"
+  exepath=$(command -v $execname)
+  if [ -z "$exepath" ]; then
+    echo -e "edocker:ERROR: $execname is not present (result: $exepath), please install it, installation aborted"
     return -1;
   else
-    echo -e "edocker:INFO: $execname is present: $exepresent"
     return 0;
   fi
 }
