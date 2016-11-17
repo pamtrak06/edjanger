@@ -130,7 +130,7 @@ function buildSymbolicLinks() {
 
   #create target if not exist
   if [ ! -d "$target" ]; then
-    mkdir $target
+    mkdir -p $target
     if [ $? = -1 ]; then
       echo -e "\nCreating direcory $target failed, trying to install aliases method"
       buildAliases ${mode}
@@ -139,8 +139,7 @@ function buildSymbolicLinks() {
   fi
 
   # remove symbolic links
-  if [ -n "$(ls -A $target)" ]; then
-   #rm -f $target/edocker*
+  if [ -n "$(ls -A $target/edocker*)" ]; then
    for s in $(ls ${target}/edocker*); do
      if [ -L "$s" ]; then
        rm -f $s
@@ -150,7 +149,7 @@ function buildSymbolicLinks() {
 
   #create symbolic links for all sh scripts
   echo -e "\n--- Build symbolic links..."
-  if [ -z "$(ls -A $target)" ]; then
+  if [ -z "$(ls -A $target/edocker*)" ]; then
 
     for s in $(ls ${edockerpath}/*.sh); do
 
