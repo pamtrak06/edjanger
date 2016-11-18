@@ -136,7 +136,6 @@ function printConfiguration() {
 
 function printContribution()
 {
-  echo -e "\n"
   echo -e "----------------------------"
   echo -e "- edocker / contribution   -"
   echo -e "----------------------------"
@@ -146,6 +145,7 @@ function printContribution()
 }
 
 # Build symbolic links
+#TODO: SymbolicLinks WORK IN PROGRESS
 function buildSymbolicLinks() {
 
   mode=$1
@@ -365,22 +365,30 @@ while getopts "hvdcas:-:" option; do
             contribution)
                 #val="${!OPTIND}"; OPTIND=$(( $OPTIND + 1 ))
                 #echo "Parsing option: '--${OPTARG}', value: '${val}'" >&2;
+                [ "$processing" = "install.aliases" ] && echo -e "edocker:ERROR: Cannot specify option \"alias\" after specifying option \"contribution\"" && exit -1
+                [ "$processing" = "install.symbolic_links" ] && echo -e "edocker:ERROR: Cannot specify option \"symboliclink\" after specifying option \"contribution\"" && exit -1
                 processing="config.contribution"
                 ;;
             alias)
                 #val="${!OPTIND}"; OPTIND=$(( $OPTIND + 1 ))
                 #echo "Parsing option: '--${OPTARG}', value: '${val}'" >&2;
+                [ "$processing" = "config.contribution" ] && echo -e "edocker:ERROR: Cannot specify option \"contribution\" after specifying option \"aliases\"" && exit -1
+                [ "$processing" = "install.symbolic_links" ] && echo -e "edocker:ERROR: Cannot specify option \"symboliclink\" after specifying option \"aliases\"" && exit -1
                 processing="install.aliases"
                 ;;
             symboliclink)
                 #val="${!OPTIND}"; OPTIND=$(( $OPTIND + 1 ))
                 #echo "Parsing option: '--${OPTARG}', value: '${val}'" >&2;
+                [ "$processing" = "config.contribution" ] && echo -e "edocker:ERROR: Cannot specify option \"contribution\" after specifying option \"aliases\"" && exit -1
+                [ "$processing" = "install.aliases" ] && echo -e "edocker:ERROR: Cannot specify option \"alias\" after specifying option \"symboliclink\"" && exit -1
                 processing="install.symbolic_links"
                 ;;
             symboliclink=*)
                 #val=${OPTARG#*=}
                 #opt=${OPTARG%=$val}
                 #echo "Parsing option: '--${opt}', value: '${val}'" >&2
+                [ "$processing" = "config.contribution" ] && echo -e "edocker:ERROR: Cannot specify option \"contribution\" after specifying option \"aliases\"" && exit -1
+                [ "$processing" = "install.aliases" ] && echo -e "edocker:ERROR: Cannot specify option \"alias\" after specifying option \"symboliclink\"" && exit -1
                 processing="install.symbolic_links"
                 install.symbolic_links.path=${OPTARG#*=}
                 ;;
@@ -400,13 +408,16 @@ while getopts "hvdcas:-:" option; do
       debug=true
       ;;
     c)
-      echo -e "(c), contribution mode\n" >&2
+      [ "$processing" = "install.aliases" ] && echo -e "edocker:ERROR: Cannot specify option \"alias\" after specifying option \"contribution\"" && exit -1
+      [ "$processing" = "install.symbolic_links" ] && echo -e "edocker:ERROR: Cannot specify option \"symboliclink\" after specifying option \"contribution\"" && exit -1
       processing="config.contribution"
       ;;
     a)
-      echo -e "(a), aliases mode\n" >&2
+      [ "$processing" = "config.contribution" ] && echo -e "edocker:ERROR: Cannot specify option \"contribution\" after specifying option \"aliases\"" && exit -1
+      [ "$processing" = "install.symbolic_links" ] && echo -e "edocker:ERROR: Cannot specify option \"symboliclink\" after specifying option \"aliases\"" && exit -1
       processing="install.aliases"
       ;;
+    #TODO: SymbolicLinks WORK IN PROGRESS
     # s)
     #   echo -e "(s), symbolic links mode\n" >&2
     #   processing="install.symbolic_links"
@@ -441,6 +452,7 @@ case $processing in
     buildAliases "release"
     ;;
   install.symbolic_links)
+    #TODO: SymbolicLinks WORK IN PROGRESS
     #buildSymbolicLinks "release" $install.symbolic_links.path
     echo -e "edocker:WARNING: WORK IN PROGRESS, PLEASE USE option --alias/-a instead" >&2
     ;;
