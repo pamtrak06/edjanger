@@ -7,7 +7,7 @@ services:
 
 before_script:
     - CURDIR=$PWD
-    - ./edockerinstall.sh
+    - ./edockerinstall.sh -a
     - git clone --branch=master https://github.com/sstephenson/bats.git /tmp/bats
     - cd /tmp/bats; ./install.sh /home/travis; rm -rf /tmp/bats
     - cd $CURDIR/tests
