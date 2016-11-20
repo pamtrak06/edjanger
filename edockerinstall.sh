@@ -365,7 +365,7 @@ function usage()
 # MAIN
 # -----------------------------------------
 
-if [ $? -eq 0 ]; then
+if [ $# -eq 0 ]; then
   usage
   exit 2
 fi
