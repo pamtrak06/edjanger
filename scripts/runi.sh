@@ -5,8 +5,8 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : runi.sh
-# ALIAS            : edockerruni
-# DESCRIPTION      : run command "docker run -it" interactive mode, with parameters readed from local edocker.properties
+# ALIAS            : edjangerruni
+# DESCRIPTION      : run command "docker run -it" interactive mode, with parameters readed from local edjanger.properties
 #   PARAMETER      : image_name
 #   PARAMETER      : exposed_ports
 #   PARAMETER      : shared_volumes
@@ -27,15 +27,15 @@
 # DATE             : 2016-08-01
 # COMMENT          : add options for run : network_settings and network_settings
 # --------------------------------
-# USAGE            : edockerruni
+# USAGE            : edjangerruni
 # ----------------------------------------------------
-source {edockerpath}/_common.sh
+source {edjangerpath}/_common.sh
 
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 runi
 else
-  if [ ! -f edocker.${config_extension} ]; then
-    echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
+  if [ ! -f edjanger.${config_extension} ]; then
+    echo -e "edjanger:ERROR No edjanger.${config_extension} available, use \"<edjangerinit>\" command to initialize one in this directory"
   else
     read_app_properties
     idx=$(echo "$(docker ps | grep ${container_name} | wc -l)+1" | bc)

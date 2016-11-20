@@ -1,25 +1,25 @@
 #!/bin/bash
 #shopt -s expand_aliases
-source {edockerpath}/edocker.alias
+source {edjangerpath}/edjanger.alias
 
 cur_path=$PWD
 
 function start() {
   echo "path: $1"
   #start
-  cmd=$(alias edockerstart|cut -d '=' -f2)
+  cmd=$(alias edjangerstart|cut -d '=' -f2)
   cmd=${cmd//\'}
   cmd=${cmd#source}
   ( cd ${1} && bash $cmd )
   #ps
-  cmd=$(alias edockerps|cut -d '=' -f2)
+  cmd=$(alias edjangerps|cut -d '=' -f2)
   cmd=${cmd//\'}
   cmd=${cmd#source}
   ( cd ${1} && bash $cmd )
 }
 
 if [ -n "$1" ] && [ -d "$1" ]; then
-  for prop in $(find $1 -name edocker.properties); do
+  for prop in $(find $1 -name edjanger.properties); do
     active=$(cat $prop | grep -v "#" | grep "cron_start=true")
     if  [ -n "$active" ]; then
       dock_path=$(dirname $prop)
@@ -27,5 +27,5 @@ if [ -n "$1" ] && [ -d "$1" ]; then
     fi
   done
 else
-  echo "ERROR: argument must be path of edocker.properties files"
+  echo "ERROR: argument must be path of edjanger.properties files"
 fi

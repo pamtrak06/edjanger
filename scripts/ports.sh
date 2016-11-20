@@ -5,7 +5,7 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : ports.sh
-# ALIAS            : edockerports
+# ALIAS            : edjangerports
 # DESCRIPTION      : run command "docker ports" on all running container
 #   ARGUMENT       : exposed -> print list sorted off all container's exposed ports
 # CREATOR          : pamtrak06@gmail.com
@@ -14,9 +14,9 @@
 # DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : edockerports
+# USAGE            : edjangerports
 # ----------------------------------------------------
-source {edockerpath}/_common.sh
+source {edjangerpath}/_common.sh
 
 ports=
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then

@@ -5,9 +5,9 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : commit.sh
-# ALIAS            : edockercommit
-# DESCRIPTION      : run command "docker commit" with parameters readed from local edocker.properties
-#   ARGUMENT       : [REPOSITORY[:TAG]], script argument passed to container, by example <edockercommit "V12.97">
+# ALIAS            : edjangercommit
+# DESCRIPTION      : run command "docker commit" with parameters readed from local edjanger.properties
+#   ARGUMENT       : [REPOSITORY[:TAG]], script argument passed to container, by example <edjangercommit "V12.97">
 #   PARAMETER      : container_name
 #   PARAMETER      : commit_options
 # CREATOR          : pamtrak06@gmail.com
@@ -16,14 +16,14 @@
 # DATE             : 2016-09-25
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : edockercommit
+# USAGE            : edjangercommit
 # ----------------------------------------------------
-source {edockerpath}/_common.sh
+source {edjangerpath}/_common.sh
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 commit
 else
-  if [ ! -f edocker.${config_extension} ]; then
-    echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
+  if [ ! -f edjanger.${config_extension} ]; then
+    echo -e "edjanger:ERROR No edjanger.${config_extension} available, use \"<edjangerinit>\" command to initialize one in this directory"
   else
     read_app_properties
     idx=$(echo "$(docker ps | grep ${container_name} | wc -l)+0" | bc)

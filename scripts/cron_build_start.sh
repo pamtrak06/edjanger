@@ -1,33 +1,33 @@
 #!/bin/bash
 #shopt -s expand_aliases
-source {edockerpath}/edocker.alias
+source {edjangerpath}/edjanger.alias
 
 cur_path=$PWD
 
 function start() {
   echo $1
   #build
-  cmd=$(alias edockerbuild|cut -d '=' -f2)
+  cmd=$(alias edjangerbuild|cut -d '=' -f2)
   cmd=${cmd//\'}
   cmd=${cmd#source}
   ( cd ${1} && bash $cmd )
   #rm
-  cmd=$(alias edockerrm|cut -d '=' -f2)
+  cmd=$(alias edjangerrm|cut -d '=' -f2)
   cmd=${cmd//\'}
   cmd=${cmd#source}
   ( cd ${1} && bash $cmd|yes)
   #run
-  cmd=$(alias edockerrm|cut -d '=' -f2)
+  cmd=$(alias edjangerrm|cut -d '=' -f2)
   cmd=${cmd//\'}
   cmd=${cmd#source}
   ( cd ${1} && bash $cmd|yes)
   #start
-  cmd=$(alias edockerstart|cut -d '=' -f2)
+  cmd=$(alias edjangerstart|cut -d '=' -f2)
   cmd=${cmd//\'}
   cmd=${cmd#source}
   ( cd ${1} && bash $cmd )
   #ps
-  cmd=$(alias edockerps|cut -d '=' -f2)
+  cmd=$(alias edjangerps|cut -d '=' -f2)
   cmd=${cmd//\'}
   cmd=${cmd#source}
   ( cd ${1} && bash $cmd )
@@ -35,7 +35,7 @@ function start() {
 }
 
 if [ -n "$1" ] && [ -d "$1" ]; then
-  for prop in $(find $1 -name edocker.properties); do
+  for prop in $(find $1 -name edjanger.properties); do
     active=$(cat $prop | grep -v "#" | grep "cron_build=true")
     if  [ -n "$active" ]; then
       dock_path=$(dirname $prop)
@@ -43,5 +43,5 @@ if [ -n "$1" ] && [ -d "$1" ]; then
     fi
   done
 else
-  echo "ERROR: argument must be path of edocker.properties files"
+  echo "ERROR: argument must be path of edjanger.properties files"
 fi

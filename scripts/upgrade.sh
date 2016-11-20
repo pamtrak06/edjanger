@@ -1,6 +1,6 @@
 # update script:
-# - zip edocker folder with date
-# - update edocker : git pull origin master
+# - zip edjanger folder with date
+# - update edjanger : git pull origin master
 
 #!/bin/bash
 # ----------------------------------------------------
@@ -9,17 +9,17 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : update.sh
-# ALIAS            : edockerupdate
-# DESCRIPTION      : archive edocker with date and update it from git
+# ALIAS            : edjangerupdate
+# DESCRIPTION      : archive edjanger with date and update it from git
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0
 # DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : edockerupdate
+# USAGE            : edjangerupdate
 # ----------------------------------------------------
-source {edockerpath}/_common.sh
+source {edjangerpath}/_common.sh
 
 if [ -n "$1" ]; then
   dockerbasiccontainer "help" "upgrade"
@@ -37,22 +37,22 @@ else
   if [ $status = 0 ]; then
     CURDIR=$PWD
     date_time=$(date +"%Y%m%d_%H%M%S")
-    echo -e "edocker:INFO: UPGRADE: archiving current version..."
-    cd {edockerpath}/..
-    zip -r edocker-${date_time}.zip ./scripts 2>&1 {edockerpath}/../edocker.log
-    echo -e "edocker:INFO: UPGRADE: upgrading edocker..."
-    ./edockerinstall.sh dev >> {edockerpath}/../edocker.log 2>&1
-    git pull origin master >> {edockerpath}/../edocker.log 2>&1
+    echo -e "edjanger:INFO: UPGRADE: archiving current version..."
+    cd {edjangerpath}/..
+    zip -r edjanger-${date_time}.zip ./scripts 2>&1 {edjangerpath}/../edjanger.log
+    echo -e "edjanger:INFO: UPGRADE: upgrading edjanger..."
+    ./edjangerinstall.sh dev >> {edjangerpath}/../edjanger.log 2>&1
+    git pull origin master >> {edjangerpath}/../edjanger.log 2>&1
     if [ $? != 0 ]; then
-      echo -e "edocker:ERROR UPGRADE: upgrade could not be perform due to git error, see {edockerpath}/edocker.log"
-      echo -e "edocker:INFO UPGRADE: restoring previous version..."
-      ./edockerinstall.sh >> {edockerpath}/../edocker.log 2>&1
-      unzip edocker-${date_time}.zip -d {edockerpath} >> {edockerpath}/../edocker.log 2>&1
+      echo -e "edjanger:ERROR UPGRADE: upgrade could not be perform due to git error, see {edjangerpath}/edjanger.log"
+      echo -e "edjanger:INFO UPGRADE: restoring previous version..."
+      ./edjangerinstall.sh >> {edjangerpath}/../edjanger.log 2>&1
+      unzip edjanger-${date_time}.zip -d {edjangerpath} >> {edjangerpath}/../edjanger.log 2>&1
     else
-      echo -e "edocker:INFO: UPGRADE: activating edocker..."
-      ./edockerinstall.sh >> {edockerpath}/../edocker.log 2>&1
-      . edocker.alias >> {edockerpath}/../edocker.log 2>&1
-      rm -f {edockerpath}/edocker.log >> {edockerpath}/../edocker.log 2>&1
+      echo -e "edjanger:INFO: UPGRADE: activating edjanger..."
+      ./edjangerinstall.sh >> {edjangerpath}/../edjanger.log 2>&1
+      . edjanger.alias >> {edjangerpath}/../edjanger.log 2>&1
+      rm -f {edjangerpath}/edjanger.log >> {edjangerpath}/../edjanger.log 2>&1
     fi
     cd $CURDIR
   fi

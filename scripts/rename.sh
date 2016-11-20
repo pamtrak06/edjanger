@@ -5,8 +5,8 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : rename.sh
-# ALIAS            : edockerrename
-# DESCRIPTION      : run command "docker rename" with parameters readed from local edocker.properties
+# ALIAS            : edjangerrename
+# DESCRIPTION      : run command "docker rename" with parameters readed from local edjanger.properties
 #  ARGUMENT        : new name of container
 #  PARAMETER       : container_name
 #  PARAMETER       : docker_command
@@ -16,9 +16,9 @@
 # DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : edockerrename
+# USAGE            : edjangerrename
 # ----------------------------------------------------
-source {edockerpath}/_common.sh
+source {edjangerpath}/_common.sh
 
 name=$1
 
@@ -28,8 +28,8 @@ else
   if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
     usage $0 rename
   else
-    if [ ! -f edocker.${config_extension} ]; then
-      echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
+    if [ ! -f edjanger.${config_extension} ]; then
+      echo -e "edjanger:ERROR No edjanger.${config_extension} available, use \"<edjangerinit>\" command to initialize one in this directory"
     else
       read_app_properties
       idx=$(echo "$(docker ps -a|grep ${container_name}|wc -l)+0"|bc)

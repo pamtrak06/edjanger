@@ -5,7 +5,7 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : clean.sh
-# ALIAS            : edockerclean
+# ALIAS            : edjangerclean
 # DESCRIPTION      : clean all images with none attribute (run docker rmi with "none" filter)
 #   PARAMETER      : force_rmi
 #   PARAMETER      : docker_command
@@ -15,9 +15,9 @@
 # DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : edockerclean
+# USAGE            : edjangerclean
 # ----------------------------------------------------
-source {edockerpath}/_common.sh
+source {edjangerpath}/_common.sh
 
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 clean

@@ -5,8 +5,8 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : copy.sh
-# ALIAS            : edockercopy
-# DESCRIPTION      : run command "docker copy" with parameters readed from local edocker.properties
+# ALIAS            : edjangercopy
+# DESCRIPTION      : run command "docker copy" with parameters readed from local edjanger.properties
 #   PARAMETER      : image_name
 #   PARAMETER      : container_name
 #   PARAMETER      : docker_command
@@ -19,14 +19,14 @@
 # DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : edockercopy [h|c] [source path: host or container] [destination path: container or host]
+# USAGE            : edjangercopy [h|c] [source path: host or container] [destination path: container or host]
 # ----------------------------------------------------
-source {edockerpath}/_common.sh
+source {edjangerpath}/_common.sh
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 copy
 else
-  if [ ! -f edocker.${config_extension} ]; then
-    echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
+  if [ ! -f edjanger.${config_extension} ]; then
+    echo -e "edjanger:ERROR No edjanger.${config_extension} available, use \"<edjangerinit>\" command to initialize one in this directory"
   else
 
     read_app_properties

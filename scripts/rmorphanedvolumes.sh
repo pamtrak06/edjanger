@@ -5,7 +5,7 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : rmdorphanedvolumes.sh
-# ALIAS            : edockerrmdorphanedvolumes
+# ALIAS            : edjangerrmdorphanedvolumes
 # DESCRIPTION      : remove all orphaned volumes
 #   PARAMETER      : docker_command
 # CREATOR          : pamtrak06@gmail.com
@@ -14,9 +14,9 @@
 # DATE             : 2016-10-10
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : edockerrmdorphanedvolumes
+# USAGE            : edjangerrmdorphanedvolumes
 # ----------------------------------------------------
-source {edockerpath}/_common.sh
+source {edjangerpath}/_common.sh
 
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 clean

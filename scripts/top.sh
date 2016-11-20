@@ -5,8 +5,8 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : top.sh
-# ALIAS            : edockertop
-# DESCRIPTION      : run command "docker top" with parameters readed from local edocker.${config_extension}
+# ALIAS            : edjangertop
+# DESCRIPTION      : run command "docker top" with parameters readed from local edjanger.${config_extension}
 #   PARAMETER      : container_name
 #   PARAMETER      : docker_command
 # CREATOR          : pamtrak06@gmail.com
@@ -15,9 +15,9 @@
 # DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : edockertop
+# USAGE            : edjangertop
 # ----------------------------------------------------
-source {edockerpath}/_common.sh
+source {edjangerpath}/_common.sh
 
 if [ -n "$1" ]; then
   dockerbasiccontainer "help" "top"

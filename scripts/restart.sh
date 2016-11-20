@@ -5,8 +5,8 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : restart.sh
-# ALIAS            : edockerrestart
-# DESCRIPTION      : run command "docker restart" with parameters readed from local edocker.properties
+# ALIAS            : edjangerrestart
+# DESCRIPTION      : run command "docker restart" with parameters readed from local edjanger.properties
 #   PARAMETER      : image_name
 #   PARAMETER      : container_name
 #   PARAMETER      : restart_options
@@ -17,9 +17,9 @@
 # DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : edockerrestart
+# USAGE            : edjangerrestart
 # ----------------------------------------------------
-source {edockerpath}/_common.sh
+source {edjangerpath}/_common.sh
 
 if [ -n "$1" ]; then
   dockerbasiccontainer "help" "restart"

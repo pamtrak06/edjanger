@@ -5,8 +5,8 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : help.sh
-# ALIAS            : edockerhelp
-# DESCRIPTION      : help script for edocker command
+# ALIAS            : edjangerhelp
+# DESCRIPTION      : help script for edjanger command
 #   ARGUMENT       : config
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
@@ -14,9 +14,9 @@
 # DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : edockerhelp <short docker command name>
+# USAGE            : edjangerhelp <short docker command name>
 # ----------------------------------------------------
-source {edockerpath}/_common.sh
+source {edjangerpath}/_common.sh
 
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 help

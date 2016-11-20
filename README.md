@@ -1,18 +1,18 @@
-[Web site official home page](http://pamtrak06.github.io/edocker/)
+[Web site official home page](http://pamtrak06.github.io/edjanger/)
 
-[![Build Status](https://travis-ci.org/pamtrak06/edocker.svg?branch=master)](https://travis-ci.org/pamtrak06/edocker)
+[![Build Status](https://travis-ci.org/pamtrak06/edjanger.svg?branch=master)](https://travis-ci.org/pamtrak06/edjanger)
 
 # Table of content
 - [Presentation](#presentation)
-- [How to install edocker](#how-to-install-edocker)
-- [How to uninstall edocker](#how-to-uninstall-edocker)
-- [How to initialize an edocker project](#how-to-initialize-an-edocker-project)
-- [How to use edocker in a docker project working directory](#how-to-use-edocker-in-a-docker-project-working-directory)
-- [Create edocker path project aliases](#create-edocker-path-project-aliases)
-- [Check missing parameters in edocker.properties](#check-missing-parameters-in-edockerproperties)
+- [How to install edjanger](#how-to-install-edjanger)
+- [How to uninstall edjanger](#how-to-uninstall-edjanger)
+- [How to initialize an edjanger project](#how-to-initialize-an-edjanger-project)
+- [How to use edjanger in a docker project working directory](#how-to-use-edjanger-in-a-docker-project-working-directory)
+- [Create edjanger path project aliases](#create-edjanger-path-project-aliases)
+- [Check missing parameters in edjanger.properties](#check-missing-parameters-in-edjangerproperties)
 - [Call help commands](#call-help-commands)
-- [Create an docker-compose.yaml file from edocker structure](#create-an-docker-composeyaml-file-from-edocker-structure)
-- [Use templates files to configure edocker.properties](#use-templates-files-to-configure-edockerproperties)
+- [Create an docker-compose.yaml file from edjanger structure](#create-an-docker-composeyaml-file-from-edjanger-structure)
+- [Use templates files to configure edjanger.properties](#use-templates-files-to-configure-edjangerproperties)
 - [Configure automatic container restart at boot](#configure-automatic-container-restart-at-boot)
 - [Work in progress](#work-in-progress)
 - [Tests](#tests)
@@ -25,12 +25,12 @@ Scripts for shortest and easyest docker commands in a docker working folder (Doc
 
 Tired about repeating docker commands with long parameters ?
 
-Try edocker ! Example :
+Try edjanger ! Example :
 
-Configure edocker.properties with docker parameters once and run edocker alias command.
+Configure edjanger.properties with docker parameters once and run edjanger alias command.
 > Example 1: docker build
 ```bash
-edockerbuild
+edjangerbuild
 ```
 instead of:
 ```bash
@@ -39,7 +39,7 @@ docker build -t "devops/jenkins"       build
 
 > Example 2: docker run
 ```bash
-edockerrun
+edjangerrun
 ```
 instead of:
 ```bash
@@ -48,14 +48,14 @@ docker run -dt --name jenkins_1    -p 8080:8080 -p 50000:50000  -v /root/workspa
 
 > Example 3: docker stop
 ```bash
-edockerstop
+edjangerstop
 ```
 instead of:
 ```bash
 docker stop $(docker ps -aq | grep "devops/jenkins")
 ```
 
-## How to install edocker
+## How to install edjanger
 ([go up to table of content](#table-of-content))
 ### Prerequisities
 - install bc command
@@ -73,32 +73,32 @@ docker stop $(docker ps -aq | grep "devops/jenkins")
 
 ### Installation
 ```bash
-git clone https://github.com/pamtrak06/edocker.git /usr/local/bin
-cd edocker; chmod 755 scripts/*.sh; chmod 755 edockerinstall.sh
+git clone https://github.com/pamtrak06/edjanger.git /usr/local/bin
+cd edjanger; chmod 755 scripts/*.sh; chmod 755 edjangerinstall.sh
 ```
 
-Run edocker installation
+Run edjanger installation
 ```bash
-./edockerinstall.sh -a
+./edjangerinstall.sh -a
 ```
 
-This will install edocker in /usr/local/bin/edocker
+This will install edjanger in /usr/local/bin/edjanger
 If installation fail to install in this directory, try to install it in another
 
 ```bash
-EDOCKER_INSTALL_PATH=<your path>
-git clone https://github.com/pamtrak06/edocker.git $EDOCKER_INSTALL_PATH
-cd edocker; chmod 755 scripts/*.sh; chmod 755 edockerinstall.sh
+edjanger_INSTALL_PATH=<your path>
+git clone https://github.com/pamtrak06/edjanger.git $edjanger_INSTALL_PATH
+cd edjanger; chmod 755 scripts/*.sh; chmod 755 edjangerinstall.sh
 ```
 
 Execute the generated alias file:
 ```bash
-. /usr/local/bin/edocker/edocker.alias
+. /usr/local/bin/edjanger/edjanger.alias
 ```
 
-All is done !!! Run this command to see your edocker aliases
+All is done !!! Run this command to see your edjanger aliases
 ```bash
-alias|grep edocker
+alias|grep edjanger
 ```
 
 ### Configuration
@@ -111,63 +111,63 @@ Bash as non-login non-interactive shell will load the configuration specified in
 
 Add lines at the bottom of one of the following files:  
 ```bash
-echo "source {edocker path}/edocker.alias" >> /etc/profile
+echo "source {edjanger path}/edjanger.alias" >> /etc/profile
 ```
 or
 ```bash
-echo "source {edocker path}/edocker.alias" >> ~/.bash_profile
+echo "source {edjanger path}/edjanger.alias" >> ~/.bash_profile
 ```
 or
 ```bash
-echo "source {edocker path}/edocker.alias" >> ~/.bash_login
+echo "source {edjanger path}/edjanger.alias" >> ~/.bash_login
 ```
 or
 ```bash
-echo "source {edocker path}/edocker.alias" >> ~/.profile
+echo "source {edjanger path}/edjanger.alias" >> ~/.profile
 ```
 or
 ```bash
-echo "source {edocker path}/edocker.alias" >> ~/.bashrc
+echo "source {edjanger path}/edjanger.alias" >> ~/.bashrc
 ```
 or
 ```bash
-echo "source {edocker path}/edocker.alias" >> ~/.bash_aliases
+echo "source {edjanger path}/edjanger.alias" >> ~/.bash_aliases
 ```
 
 **zsh**
 
 Add lines at the bottom of the file ~/.zshrc
 ```bash
-echo "source {edocker path}/edocker.alias" >> ~/.zshrc
+echo "source {edjanger path}/edjanger.alias" >> ~/.zshrc
 ```
 
 **ksh**
 
 Add lines at the bottom of the file ~/.profile  
 ```bash
-echo "source {edocker path}/edocker.alias" >> ~/.profile
+echo "source {edjanger path}/edjanger.alias" >> ~/.profile
 ```
 
 **bourne**
 
 Add lines at the bottom of the file ~/.profile  
 ```bash
-echo "source {edocker path}/edocker.alias" >> ~/.profile
+echo "source {edjanger path}/edjanger.alias" >> ~/.profile
 ```
 
 **csh or tcsh**
 
 Add lines at the bottom of the file ~/.login
 ```bash
-echo "source {edocker path}/edocker.alias" >> ~/.login
+echo "source {edjanger path}/edjanger.alias" >> ~/.login
 ```
 
-## How to uninstall edocker
+## How to uninstall edjanger
 ([go up to table of content](#table-of-content))
 
-Remove edocker aliases by executing:
+Remove edjanger aliases by executing:
 ```bash
-source edocker.unalias
+source edjanger.unalias
 ```
 
 Remove references to source command in ~/.bash_aliases
@@ -175,38 +175,38 @@ Remove references to source command in ~/.bash_aliases
 vi ~/.bash_aliases
 ```
 
-Remove edocker files
+Remove edjanger files
 ```bash
-rm -rf {edocker path}/
+rm -rf {edjanger path}/
 ```
 
-## How to initialize an edocker project
+## How to initialize an edjanger project
 ([go up to table of content](#table-of-content))
 
-Create an uninitialized edocker.properties file in your working docker folder:
+Create an uninitialized edjanger.properties file in your working docker folder:
 ```bash
-edockerinit
+edjangerinit
 ```
 Equivalent to
 ```bash
-> Initialize edocker configuration file: edocker.properties ...
-cp [edocker path]/templates/edocker_template.properties [your docker working project]/edocker.properties
-> Initialize edocker build folder for Dockerfile: /build ...
+> Initialize edjanger configuration file: edjanger.properties ...
+cp [edjanger path]/templates/edjanger_template.properties [your docker working project]/edjanger.properties
+> Initialize edjanger build folder for Dockerfile: /build ...
 mkdir [your docker working project]/build
 > Initialize Dockerfile: build/Dockerfile ...
 touch [your docker working project]/build/Dockerfile
 ```
 
-Configure your [edocker.properties](https://github.com/pamtrak06/edocker/blob/master/scripts/templates/edocker_template.properties) with correct parameters.
+Configure your [edjanger.properties](https://github.com/pamtrak06/edjanger/blob/master/scripts/templates/edjanger_template.properties) with correct parameters.
 By example, you could create a Dockerfile with this path:
 ```bash
 vi [your docker working project]/build/Dockerfile
 ```
-Example of a minimal edocker configuration:
+Example of a minimal edjanger configuration:
 ```bash
 mkdir -p jenkins
-cd jenkins; edockerinit
-vi edocker.properties
+cd jenkins; edjangerinit
+vi edjanger.properties
 ```
 ```bash
 #  ----------------------------------------------------
@@ -214,21 +214,21 @@ vi edocker.properties
 #
 #  Copyright (c) 2016 copyright pamtrak06@gmail.com
 #  ----------------------------------------------------
-#  CONFIGURATION    : edocker_template.properties
-#  DESCRIPTION      : project configuration file for edocker
+#  CONFIGURATION    : edjanger_template.properties
+#  DESCRIPTION      : project configuration file for edjanger
 #  CREATOR          : pamtrak06@gmail.com
 #  --------------------------------
 #  VERSION          : 1.0
 #  DATE             : 2016-03-02
 #  COMMENT          : creation
 #  --------------------------------
-#  USAGE            : read by edocker scripts
+#  USAGE            : read by edjanger scripts
 #  ----------------------------------------------------
 #cron_build: flag to start container at boot
 #cron_build=true
 #cron_start: flag to start container at boot
 cron_start=true
-# docker_command:show docker command when edocker is used
+# docker_command:show docker command when edjanger is used
 docker_command=true
 # image_name:image name
 image_name="devops/jenkins"
@@ -272,168 +272,168 @@ touch build/Dockerfile
 echo "FROM jenkins:latest" > build/Dockerfile
 ```
 
-## How to use edocker in a docker project working directory
+## How to use edjanger in a docker project working directory
 ([go up to table of content](#table-of-content))
 
 Now you've got aliases to run all your docker commands like:
-- edockerabout
-- edockeralias
-- edockerattach
-- edockerbuild
-- edockercheck
-- edockerclean
-- edockercommit
-- edockercompose
-- edockercopy
-- edockerdiff
-- edockerevents
-- edockerexec
-- edockerhelp
-- edockerhistory
-- edockerimages
-- edockerinfo
-- edockerinit
-- edockerinspect
-- edockerkill
-- edockerlogs
-- edockerpause
-- edockerportdesc
-- edockerports
-- edockerps
-- edockerpsa
-- edockerrename
-- edockerrestart
-- edockerrm
-- edockerrmexiteds
-- edockerrmi
-- edockerrun
-- edockerruni
-- edockerstart
-- edockerstats
-- edockerstop
-- edockertag
-- edockertemplate
-- edockertop
-- edockerunalias
-- edockerunpause
-- edockerupdate
-- edockerwait
+- edjangerabout
+- edjangeralias
+- edjangerattach
+- edjangerbuild
+- edjangercheck
+- edjangerclean
+- edjangercommit
+- edjangercompose
+- edjangercopy
+- edjangerdiff
+- edjangerevents
+- edjangerexec
+- edjangerhelp
+- edjangerhistory
+- edjangerimages
+- edjangerinfo
+- edjangerinit
+- edjangerinspect
+- edjangerkill
+- edjangerlogs
+- edjangerpause
+- edjangerportdesc
+- edjangerports
+- edjangerps
+- edjangerpsa
+- edjangerrename
+- edjangerrestart
+- edjangerrm
+- edjangerrmexiteds
+- edjangerrmi
+- edjangerrun
+- edjangerruni
+- edjangerstart
+- edjangerstats
+- edjangerstop
+- edjangertag
+- edjangertemplate
+- edjangertop
+- edjangerunalias
+- edjangerunpause
+- edjangerupdate
+- edjangerwait
 
-!!! All thoses aliases are available only when you've got an [edocker.properties](https://github.com/pamtrak06/edocker/blob/master/templates/edocker_template.properties) file in your project folder ([docker working project]) '''
+!!! All thoses aliases are available only when you've got an [edjanger.properties](https://github.com/pamtrak06/edjanger/blob/master/templates/edjanger_template.properties) file in your project folder ([docker working project]) '''
 
-For each commands, see edockerhelp 'command' for list of parameters read in edocker.properties and arguments.
+For each commands, see edjangerhelp 'command' for list of parameters read in edjanger.properties and arguments.
 
-### #alias edockerabout
-Description : about script for edocker.
+### #alias edjangerabout
+Description : about script for edjanger.
 
-### #alias edockeralias
-Description : print edocker aliases.
+### #alias edjangeralias
+Description : print edjanger aliases.
 
-### #alias edockerbuild
-Description : run command "docker build" with parameters readed from local edocker.properties.
+### #alias edjangerbuild
+Description : run command "docker build" with parameters readed from local edjanger.properties.
 
-### #alias edockercheck
-Description : check missing parameters in edocker.properties.
-Remark : even when parameters are missing in edocker.properties, they are initialized empty.
+### #alias edjangercheck
+Description : check missing parameters in edjanger.properties.
+Remark : even when parameters are missing in edjanger.properties, they are initialized empty.
 
-### #alias edockerclean
+### #alias edjangerclean
 Description : clean all images with none attribute (run docker rmi with "none" filter).
 
-### #alias edockercopy
-Description : run command "docker copy" with parameters readed from local edocker.properties.
+### #alias edjangercopy
+Description : run command "docker copy" with parameters readed from local edjanger.properties.
 
-### #alias edockercompose
-Description : generate docker compose yaml from all local edocker.poperties.
+### #alias edjangercompose
+Description : generate docker compose yaml from all local edjanger.poperties.
 
-### #alias edockerexec
-Description : run command "docker exec" with parameters readed from local edocker.properties.
+### #alias edjangerexec
+Description : run command "docker exec" with parameters readed from local edjanger.properties.
 
-### #alias edockerhelp
-Description : help script for edocker command.
+### #alias edjangerhelp
+Description : help script for edjanger command.
 
-### #alias edockerimages
-Description : run command "docker images" with parameters readed from local edocker.properties.
+### #alias edjangerimages
+Description : run command "docker images" with parameters readed from local edjanger.properties.
 
-### #alias edockerinit
-Description : create a edocker.properties file
+### #alias edjangerinit
+Description : create a edjanger.properties file
 
-### #alias edockerinspect
-Description : run command "docker inspect" with parameters readed from local edocker.properties
+### #alias edjangerinspect
+Description : run command "docker inspect" with parameters readed from local edjanger.properties
 
-### #alias edockerlogs
-Description : run command "docker logs" with parameters readed from local edocker.properties
+### #alias edjangerlogs
+Description : run command "docker logs" with parameters readed from local edjanger.properties
 
-### #alias edockerportdesc
+### #alias edjangerportdesc
 Description : run command "docker ports" on all running container
 
-### #alias edockerports
+### #alias edjangerports
 Description : description of port.
 
-### #alias edockerps
-Description : run command "docker ps" with parameters readed from local edocker.properties.
+### #alias edjangerps
+Description : run command "docker ps" with parameters readed from local edjanger.properties.
 
-### #alias edockerpsa
-Description : run command "docker ps -a" with parameters readed from local edocker.properties.
+### #alias edjangerpsa
+Description : run command "docker ps -a" with parameters readed from local edjanger.properties.
 
-### #alias edockerrename
-Description : run command "docker rename" with parameters readed from local edocker.properties.
+### #alias edjangerrename
+Description : run command "docker rename" with parameters readed from local edjanger.properties.
 
-### #alias edockerrestart
-Description : run command "docker restart" with parameters readed from local edocker.properties.
+### #alias edjangerrestart
+Description : run command "docker restart" with parameters readed from local edjanger.properties.
 
-### #alias edockerm
-Description : run command "docker rm" with parameters readed from local edocker.properties.
+### #alias edjangerm
+Description : run command "docker rm" with parameters readed from local edjanger.properties.
 
-### #alias edockermexiteds
+### #alias edjangermexiteds
 Description : run docker rm with list of container with exited status.
 
-### #alias edockermi
-Description : run command "docker rmi" with parameters readed from local edocker.properties.
+### #alias edjangermi
+Description : run command "docker rmi" with parameters readed from local edjanger.properties.
 
-### #alias edockerun
-Description : run command "docker run -id" daemon mode, with parameters readed from local edocker.properties.
+### #alias edjangerun
+Description : run command "docker run -id" daemon mode, with parameters readed from local edjanger.properties.
 
-### #alias edockeruni
-Description : run command "docker run -it" interactive mode, with parameters readed from local edocker.properties.
+### #alias edjangeruni
+Description : run command "docker run -it" interactive mode, with parameters readed from local edjanger.properties.
 
 ### #alias edockestart
-Description : run command "docker start" with parameters readed from local edocker.properties.
+Description : run command "docker start" with parameters readed from local edjanger.properties.
 
 ### #alias edockestop
-Description : run command "docker stop" with parameters readed from local edocker.properties.
+Description : run command "docker stop" with parameters readed from local edjanger.properties.
 
-### #alias edockertag
-Description : run command "docker tag" with parameters readed from local edocker.properties.
+### #alias edjangertag
+Description : run command "docker tag" with parameters readed from local edjanger.properties.
 
-### #alias edockertemplate
-Description : create edocker.properties from edocker.template and properties files containing variables definition.
+### #alias edjangertemplate
+Description : create edjanger.properties from edjanger.template and properties files containing variables definition.
 
-### #alias edockertop
-Description : run command "docker top" with parameters readed from local edocker.properties.
+### #alias edjangertop
+Description : run command "docker top" with parameters readed from local edjanger.properties.
 
-### #alias edockerunalias
-Description : help script for edocker command.
+### #alias edjangerunalias
+Description : help script for edjanger command.
 
-## Create edocker path project aliases
+## Create edjanger path project aliases
 ([go up to table of content](#table-of-content))
 
 Create those two aliases and give the correct path for your project:
 ```bash
-alias cdedocker='cd [edocker path]'
+alias cdedjanger='cd [edjanger path]'
 alias cd[basename for your docker working project]='cd [your docker working project]'
 ```
 Or create all possible aliases for subfolders in a folder:
 ```bash
-source /usr/local/edocker/_common.sh
+source /usr/local/edjanger/_common.sh
 source $(buildPathAliases "/opt/docker/")
 ```
 
-## Check missing parameters in edocker.properties
+## Check missing parameters in edjanger.properties
 ([go up to table of content](#table-of-content))
 
 ```bash
-edockercheck
-Check edocker.properties...
+edjangercheck
+Check edjanger.properties...
   - check "docker_command"
   - check "image_name"
   - check "build_path"
@@ -469,35 +469,35 @@ Check edocker.properties...
 
 Main help commands
 ```bash
-edockerhelp
+edjangerhelp
 ```
 Help for help
 ```bash
-edockerhelp help
+edjangerhelp help
 ```
-Help for commands, example for edockerbuild
+Help for commands, example for edjangerbuild
 ```bash
-edockerhelp build
+edjangerhelp build
 ```
-Help for parameters in edocker.properties used by commands
+Help for parameters in edjanger.properties used by commands
 ```bash
-edockerhelp config
+edjangerhelp config
 ```
-## Create an docker-compose.yaml file from edocker structure
+## Create an docker-compose.yaml file from edjanger structure
 ([go up to table of content](#table-of-content))
-From an existing edocker root path project structure, call edcokercompose.
-Script will parse all edocker.properties in subfolders and create docker-compose.yaml at upper path.
+From an existing edjanger root path project structure, call edcokercompose.
+Script will parse all edjanger.properties in subfolders and create docker-compose.yaml at upper path.
 
 ```bash
-edockercompose
+edjangercompose
 vi docker-compose.yaml
 ```
-## Use templates files to configure edocker.properties
+## Use templates files to configure edjanger.properties
 ([go up to table of content](#table-of-content))
 
 ! Prerequisities : install gettext (for envsubst)
 
-- Download and try example from https://github.com/pamtrak06/edocker/tree/master/scripts/templates/templating, run:
+- Download and try example from https://github.com/pamtrak06/edjanger/tree/master/scripts/templates/templating, run:
 
 - Deploy 2 apache web sever (web1 and web2) with specific ports and shared volumes for a "production" environement.
     ```bash
@@ -510,21 +510,21 @@ vi docker-compose.yaml
     ```
 
 - Instructions
-From an existing edocker root path project structure, do following
-    - rename all edocker.properties to edocker.template
+From an existing edjanger root path project structure, do following
+    - rename all edjanger.properties to edjanger.template
     - define variable for element to be replaced with variable value from configuration file
     - create configuration files (<name>.properties) containing SHELL-FORMAT variable
-        - in each folder containing edocker.properties (each configuration file must hase same name e.g.: production.properties)
+        - in each folder containing edjanger.properties (each configuration file must hase same name e.g.: production.properties)
         or
         - only in root folder (e.g.: production.properties)
-    - call edockertemplate with name of configuration file
+    - call edjangertemplate with name of configuration file
     ```bash
-    edockertemplate <name>.properties
+    edjangertemplate <name>.properties
     ```
 
-    Example of edockertemplate invocation
+    Example of edjangertemplate invocation
     ```bash
-    edockertemplate production.properties
+    edjangertemplate production.properties
     ```
 
     Example of production.properties content
@@ -534,15 +534,15 @@ From an existing edocker root path project structure, do following
     export HTTPD_PORT_443=443
     ```
 
-    Example of edocker.template content
+    Example of edjanger.template content
     ```bash
     #exposed_ports:exposed port
     exposed_ports="-p ${HTTPD_PORT_80}:80 -p ${HTTPD_PORT_443}:443"
     ```
 
-    Script will find all edocker.template and replace variables from root or folder(s) configuration(s) file(s) to produce edocker.properties files.
+    Script will find all edjanger.template and replace variables from root or folder(s) configuration(s) file(s) to produce edjanger.properties files.
 
-    Example of edocker.properties produced
+    Example of edjanger.properties produced
     ```bash
     #exposed_ports:exposed port
     exposed_ports="-p 80:80 -p 443:443"
@@ -551,22 +551,22 @@ From an existing edocker root path project structure, do following
 ## Configure automatic container restart at boot
 ([go up to table of content](#table-of-content))
 
-To configure automatic restart of container at boot, configure edocker.properties files :
+To configure automatic restart of container at boot, configure edjanger.properties files :
 - activate cron_start=true to start existing container at boot
 - activate cron_build=true to build and start a new container at boot
 
 Configure crontab with following parameters
 ```bash
 crontab -e
-@reboot {edockerpath}/cron_build_start.sh {edocker properties path}
-@reboot {edockerpath}/cron_start_only.sh {edocker properties path}
+@reboot {edjangerpath}/cron_build_start.sh {edjanger properties path}
+@reboot {edjangerpath}/cron_start_only.sh {edjanger properties path}
 ```
 
 Example:
 ```bash
 crontab -e
-@reboot /opt/edocker/scripts/cron_build_start.sh /root/workspace/docker
-@reboot /opt/edocker/scripts/cron_start_only.sh /root/workspace/docker
+@reboot /opt/edjanger/scripts/cron_build_start.sh /root/workspace/docker
+@reboot /opt/edjanger/scripts/cron_start_only.sh /root/workspace/docker
 ```
 
 ## Work in progress
@@ -633,10 +633,10 @@ Please contribute !
 ([go up to table of content](#table-of-content))
 
 Tests use following
-- [travis](https://travis-ci.org/pamtrak06/edocker)
+- [travis](https://travis-ci.org/pamtrak06/edjanger)
 - [bats](https://github.com/sstephenson/bats)
 
 ## License
 ([go up to table of content](#table-of-content))
 
-edocker is under  "MIT License (MIT)" see [LICENSE file](https://github.com/pamtrak06/edocker/blob/master/LICENSE).
+edjanger is under  "MIT License (MIT)" see [LICENSE file](https://github.com/pamtrak06/edjanger/blob/master/LICENSE).

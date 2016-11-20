@@ -5,17 +5,17 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : template.sh
-# ALIAS            : edockertemplate
-# DESCRIPTION      : generate edocker.poperties from edocker.template
+# ALIAS            : edjangertemplate
+# DESCRIPTION      : generate edjanger.poperties from edjanger.template
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0.3
 # DATE             : 2016-11-08
-# COMMENT          : creation of edockertemplate.sh
+# COMMENT          : creation of edjangertemplate.sh
 # --------------------------------
-# USAGE            : edockertemplate
+# USAGE            : edjangertemplate
 # ----------------------------------------------------
-source {edockerpath}/_common.sh
+source {edjangerpath}/_common.sh
 
 function check_export_presence_from_properties()
 {
@@ -27,7 +27,7 @@ function check_export_presence_from_properties()
   if [ "$nbvar" = "$nbexp" ]; then
     check_export_presence_from_properties=true;
   else
-    echo -e "edocker:ERROR one or several \"export\" command are absent(s) in the previous properties, please fix it"
+    echo -e "edjanger:ERROR one or several \"export\" command are absent(s) in the previous properties, please fix it"
     echo -e "\tvariable declaration must have this form: \"export <variable name>=<value>\""
     echo -e "\tcontent of the previous properties:"
     while read line; do echo -e "\t\t$line"; done < $prop_file
@@ -35,12 +35,12 @@ function check_export_presence_from_properties()
   fi
 }
 
-function create_edocker_properties()
+function create_edjanger_properties()
 {
   command=$1
 
   if [[ ! "$command" == *"properties="* ]]; then
-    echo -e "edocker:ERROR argument must be set with following form: properties=\"<basename or properties name>\"."
+    echo -e "edjanger:ERROR argument must be set with following form: properties=\"<basename or properties name>\"."
     return -1
   else
     configuration=${command##properties=}
@@ -50,22 +50,22 @@ function create_edocker_properties()
     configuration=$configuration.properties
   fi
 
-  if [ "${configuration}" = "edocker" ]; then
-    echo -e "edocker:ERROR this name could not be used for this purpose. Please choose another one."
+  if [ "${configuration}" = "edjanger" ]; then
+    echo -e "edjanger:ERROR this name could not be used for this purpose. Please choose another one."
     return -1
   fi
 
-  # Retrieve all edocker configuration files from current directory
-  listconf=$(find $PWD -name "edocker.template")
+  # Retrieve all edjanger configuration files from current directory
+  listconf=$(find $PWD -name "edjanger.template")
   if [ -z "$listconf" ]; then
-    echo -e "edocker:ERROR No edocker.template available recursively in this directory"
+    echo -e "edjanger:ERROR No edjanger.template available recursively in this directory"
     return -1
   fi
 
   for template in ${listconf[@]}
   do
 
-    echo -e "edocker:INFO Process informations of template: \"${template}\"  ..."
+    echo -e "edjanger:INFO Process informations of template: \"${template}\"  ..."
 
     continue=true
 
@@ -73,23 +73,23 @@ function create_edocker_properties()
     if [ -n "${configuration}" ] && [ -f "${configuration}" ]; then
 
       prop_file=${configuration}
-      echo -e "edocker:INFO Use main configuration file: \"${prop_file}\"  ..."
+      echo -e "edjanger:INFO Use main configuration file: \"${prop_file}\"  ..."
       check_export_presence_from_properties "$prop_file"
       continue=$?
 
-    # one configuration file by edocker.template
+    # one configuration file by edjanger.template
     elif [ -n "${configuration}" ]; then
 
       working_directory=$(dirname ${template})
       prop_file=${working_directory}/${configuration}
-      echo -e "edocker:INFO Use local configuration file: \"${prop_file}\"  ..."
+      echo -e "edjanger:INFO Use local configuration file: \"${prop_file}\"  ..."
       check_export_presence_from_properties "$prop_file"
       continue=$?
 
     else
 
       continue=false
-      echo -e "edocker:ERROR File configuration name must exist and be set as argument"
+      echo -e "edjanger:ERROR File configuration name must exist and be set as argument"
 
     fi
 
@@ -99,35 +99,35 @@ function create_edocker_properties()
       # if configuration file exist (global or local)
       if [ -f "${prop_file}" ]; then
 
-        edockerproperties=${template%.template}.properties
+        edjangerproperties=${template%.template}.properties
 
-        # check if edocker.properties exist
-        if [ -f "${edockerproperties}" ]; then
+        # check if edjanger.properties exist
+        if [ -f "${edjangerproperties}" ]; then
 
-          echo -e "edocker:WARNING edocker properties file \"${edockerproperties}\" already exist, do you want to replace it (y/n) ?"
+          echo -e "edjanger:WARNING edjanger properties file \"${edjangerproperties}\" already exist, do you want to replace it (y/n) ?"
           read response
 
           if [ "y" = "${response}" ]; then
             date_time=$(date +"%Y%m%d_%H%M%S")
-            cp ${edockerproperties} ${template%.template}_${date_time}.bak
-            echo -e "edocker:INFO create \"${edockerproperties}\" file from template \"${template}\" and configuration file \"${prop_file}\""
-            . ${prop_file} && envsubst < "${template}" | tee "${edockerproperties}" > /dev/null
+            cp ${edjangerproperties} ${template%.template}_${date_time}.bak
+            echo -e "edjanger:INFO create \"${edjangerproperties}\" file from template \"${template}\" and configuration file \"${prop_file}\""
+            . ${prop_file} && envsubst < "${template}" | tee "${edjangerproperties}" > /dev/null
           fi
 
-        # else create edocker.properties
+        # else create edjanger.properties
         else
 
-          echo -e "edocker:INFO create \"${edockerproperties}\" file from template \"${template}\" and configuration file \"${prop_file}\""
-          . ${prop_file} && envsubst < "${template}" | tee "${edockerproperties}" > /dev/null
+          echo -e "edjanger:INFO create \"${edjangerproperties}\" file from template \"${template}\" and configuration file \"${prop_file}\""
+          . ${prop_file} && envsubst < "${template}" | tee "${edjangerproperties}" > /dev/null
 
         fi
       # else configuration file doe not exist
       else
-        echo -e "edocker:ERROR properties file (${prop_file}) does not exist for template ${template}, edocker.properties could not be created"
+        echo -e "edjanger:ERROR properties file (${prop_file}) does not exist for template ${template}, edjanger.properties could not be created"
       fi
 
     else
-      echo -e "edocker:ERROR templating aborted, see previous reported errors"
+      echo -e "edjanger:ERROR templating aborted, see previous reported errors"
     fi
 
   done
@@ -136,5 +136,5 @@ function create_edocker_properties()
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 template
 else
-  create_edocker_properties $1
+  create_edjanger_properties $1
 fi

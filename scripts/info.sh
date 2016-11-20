@@ -5,8 +5,8 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : info.sh
-# ALIAS            : edockerinfo
-# DESCRIPTION      : run command "docker info" with parameters readed from local edocker.properties
+# ALIAS            : edjangerinfo
+# DESCRIPTION      : run command "docker info" with parameters readed from local edjanger.properties
 #   PARAMETER      : image_name
 #   PARAMETER      : container_name
 #   PARAMETER      : docker_command
@@ -16,9 +16,9 @@
 # DATE             : 2016-09-25
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : edockerinfo
+# USAGE            : edjangerinfo
 # ----------------------------------------------------
-source {edockerpath}/_common.sh
+source {edjangerpath}/_common.sh
 
 if [ -n "$1" ]; then
   dockerbasiccontainer "help" "info"

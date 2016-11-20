@@ -5,8 +5,8 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : psa.sh
-# ALIAS            : edockerpsa
-# DESCRIPTION      : run command "docker ps -a" with parameters readed from local edocker.properties
+# ALIAS            : edjangerpsa
+# DESCRIPTION      : run command "docker ps -a" with parameters readed from local edjanger.properties
 #   PARAMETER      : image_name
 #   PARAMETER      : container_name
 #   PARAMETER      : docker_command
@@ -16,9 +16,9 @@
 # DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : edockerpsa
+# USAGE            : edjangerpsa
 # ----------------------------------------------------
-source {edockerpath}/_common.sh
+source {edjangerpath}/_common.sh
 
 if [ -n "$1" ]; then
   dockerbasiccontainer "help" "psa"

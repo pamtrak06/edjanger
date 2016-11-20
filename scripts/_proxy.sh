@@ -14,16 +14,16 @@
 # --------------------------------
 # USAGE            : _proxy.sh
 # ----------------------------------------------------
-source {edockerpath}/_common.sh
-if [ -f {edockerpath}/proxy.zip ]; then
-  if [ ! -f edocker.${config_extension} ]; then
-    echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
+source {edjangerpath}/_common.sh
+if [ -f {edjangerpath}/proxy.zip ]; then
+  if [ ! -f edjanger.${config_extension} ]; then
+    echo -e "edjanger:ERROR No edjanger.${config_extension} available, use \"<edjangerinit>\" command to initialize one in this directory"
   else
     read_app_properties
     echo -e "Initialize proxy parameters..."
-    unzip {edockerpath}/proxy.zip -d {edockerpath}/
-    source {edockerpath}/proxy.${config_extension}
-    rm -f {edockerpath}/proxy.${config_extension}
+    unzip {edjangerpath}/proxy.zip -d {edjangerpath}/
+    source {edjangerpath}/proxy.${config_extension}
+    rm -f {edjangerpath}/proxy.${config_extension}
     proxy_args="--build-arg http_proxy=$http_proxy --build-arg https_proxy=$https_proxy"
   fi
 else

@@ -1,17 +1,17 @@
-# edocker installation steps
+# edjanger installation steps
 ```bash
-git clone https://github.com/pamtrak06/edocker.git
-cd edocker; chmod 755 *.sh scripts/*.sh
-./edockerinstall.sh
-source edocker.alias
-alias|grep edocker
+git clone https://github.com/pamtrak06/edjanger.git
+cd edjanger; chmod 755 *.sh scripts/*.sh
+./edjangerinstall.sh
+source edjanger.alias
+alias|grep edjanger
 ```
 
-# edocker github contribution mode
+# edjanger github contribution mode
 ```bash
-./edockerinstall dev
+./edjangerinstall dev
 ```
-This script will replace all path from $PWD (edocker path installation) with {edockerpath} and then make it possible to package for final packaging and push to github
+This script will replace all path from $PWD (edjanger path installation) with {edjangerpath} and then make it possible to package for final packaging and push to github
 
 ```bash
 git status

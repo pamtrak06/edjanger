@@ -5,7 +5,7 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : rmexiteds.sh
-# ALIAS            : edockerrmexiteds
+# ALIAS            : edjangerrmexiteds
 # DESCRIPTION      : run docker rm with list of container with exited status
 #   PARAMETER      : docker_command
 # CREATOR          : pamtrak06@gmail.com
@@ -14,9 +14,9 @@
 # DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : edockerrmexiteds
+# USAGE            : edjangerrmexiteds
 # ----------------------------------------------------
-source {edockerpath}/_common.sh
+source {edjangerpath}/_common.sh
 
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 clean

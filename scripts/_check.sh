@@ -5,7 +5,7 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : _check.sh
-# DESCRIPTION      : check path in edocker scripts
+# DESCRIPTION      : check path in edjanger scripts
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0

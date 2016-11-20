@@ -1,18 +1,18 @@
 #!/usr/bin/env bats
-export PATH=$PATH:/usr/local/bin/edocker
+export PATH=$PATH:/usr/local/bin/edjanger
 
-@test "edocker init          : presence edocker.properties" {
-  TMP=tmp_edockerinit
+@test "edjanger init          : presence edjanger.properties" {
+  TMP=tmp_edjangerinit
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
   . ../../scripts/init.sh
-  result="$(ls edocker.properties)"
+  result="$(ls edjanger.properties)"
   [ -n "$result" ]
   cd ..
   rm -rf $TMP
 }
 
-@test "edocker init          : presence build/Dockerfile" {
-  TMP=tmp_edockerinit
+@test "edjanger init          : presence build/Dockerfile" {
+  TMP=tmp_edjangerinit
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
   . ../../scripts/init.sh
   result="$(ls build/Dockerfile)"
@@ -21,23 +21,23 @@ export PATH=$PATH:/usr/local/bin/edocker
   rm -rf $TMP
 }
 
-@test "edocker build         : is image built" {
-  TMP=tmp_edockerinit
+@test "edjanger build         : is image built" {
+  TMP=tmp_edjangerinit
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
   . ../../scripts/init.sh
   echo "FROM httpd" > build/Dockerfile
-  PROP=edocker.properties
-  TMPP=edocker.tmp
+  PROP=edjanger.properties
+  TMPP=edjanger.tmp
   sed -e "s/\(docker_command=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
-  cat edocker.properties | grep docker_command
+  cat edjanger.properties | grep docker_command
   sed -e "s/\(image_name=\).*/\1\"pamtrak06\/webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
-  cat edocker.properties | grep image_name
+  cat edjanger.properties | grep image_name
   sed -e "s/\(container_name=\).*/\1\"webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
-  cat edocker.properties | grep container_name
+  cat edjanger.properties | grep container_name
   sed -e "s/\(exposed_ports=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
-  cat edocker.properties | grep exposed_ports
+  cat edjanger.properties | grep exposed_ports
   sed -e "s/\(shared_volumes=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
-  cat edocker.properties | grep shared_volumes
+  cat edjanger.properties | grep shared_volumes
   . ../../scripts/build.sh
   result="$(docker images | grep pamtrak06/webtest )"
   [ -n "$result" ]
@@ -46,21 +46,21 @@ export PATH=$PATH:/usr/local/bin/edocker
   docker rmi pamtrak06/webtest
 }
 
-@test "edocker run           : is container running" {
-  TMP=tmp_edockerinit
+@test "edjanger run           : is container running" {
+  TMP=tmp_edjangerinit
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
   . ../../scripts/init.sh
   echo "FROM httpd" > build/Dockerfile
-  PROP=edocker.properties
-  TMPP=edocker.tmp
+  PROP=edjanger.properties
+  TMPP=edjanger.tmp
   sed -e "s/\(docker_command=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
-  cat edocker.properties | grep docker_command
+  cat edjanger.properties | grep docker_command
   sed -e "s/\(image_name=\).*/\1\"pamtrak06\/webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
-  cat edocker.properties | grep image_name
+  cat edjanger.properties | grep image_name
   sed -e "s/\(container_name=\).*/\1\"webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
-  cat edocker.properties | grep container_name
+  cat edjanger.properties | grep container_name
   sed -e "s/\(exposed_ports=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
-  cat edocker.properties | grep exposed_ports
+  cat edjanger.properties | grep exposed_ports
   sed -e "s/\(shared_volumes=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   . ../../scripts/build.sh
   . ../../scripts/run.sh
@@ -73,22 +73,22 @@ export PATH=$PATH:/usr/local/bin/edocker
   docker rmi pamtrak06/webtest
 }
 
-@test "edocker run           : is port exposed" {
+@test "edjanger run           : is port exposed" {
   skip
-  TMP=tmp_edockerinit
+  TMP=tmp_edjangerinit
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
   . ../../scripts/init.sh
   echo "FROM httpd" > build/Dockerfile
-  PROP=edocker.properties
-  TMPP=edocker.tmp
+  PROP=edjanger.properties
+  TMPP=edjanger.tmp
   sed -e "s/\(docker_command=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
-  cat edocker.properties | grep docker_command
+  cat edjanger.properties | grep docker_command
   sed -e "s/\(image_name=\).*/\1\"pamtrak06\/webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
-  cat edocker.properties | grep image_name
+  cat edjanger.properties | grep image_name
   sed -e "s/\(container_name=\).*/\1\"webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
-  cat edocker.properties | grep container_name
+  cat edjanger.properties | grep container_name
   sed -e "s/\(exposed_ports\)=\.*/\1=85:80/" $PROP > $TMPP && mv $TMPP $PROP
-  cat edocker.properties | grep exposed_ports
+  cat edjanger.properties | grep exposed_ports
   sed -e "s/\(shared_volumes=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   . ../../scripts/build.sh
   . ../../scripts/run.sh
@@ -102,22 +102,22 @@ export PATH=$PATH:/usr/local/bin/edocker
   docker rmi pamtrak06/webtest
 }
 
-@test "edocker exec          : is exec in container" {
+@test "edjanger exec          : is exec in container" {
   skip
-  TMP=tmp_edockerinit
+  TMP=tmp_edjangerinit
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
   . ../../scripts/init.sh
   echo "FROM httpd" > build/Dockerfile
-  PROP=edocker.properties
-  TMPP=edocker.tmp
+  PROP=edjanger.properties
+  TMPP=edjanger.tmp
   sed -e "s/\(docker_command=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
-  cat edocker.properties | grep docker_command
+  cat edjanger.properties | grep docker_command
   sed -e "s/\(image_name=\).*/\1\"pamtrak06\/webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
-  cat edocker.properties | grep image_name
+  cat edjanger.properties | grep image_name
   sed -e "s/\(container_name=\).*/\1\"webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
-  cat edocker.properties | grep container_name
+  cat edjanger.properties | grep container_name
   sed -e "s/\(exposed_ports=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
-  cat edocker.properties | grep exposed_ports
+  cat edjanger.properties | grep exposed_ports
   sed -e "s/\(shared_volumes=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   . ../../scripts/build.sh
   . ../../scripts/run.sh
@@ -132,21 +132,21 @@ export PATH=$PATH:/usr/local/bin/edocker
   docker rmi pamtrak06/webtest
 }
 
-@test "edocker start/stop    : start/stop container" {
-  TMP=tmp_edockerinit
+@test "edjanger start/stop    : start/stop container" {
+  TMP=tmp_edjangerinit
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
   . ../../scripts/init.sh
   echo "FROM httpd" > build/Dockerfile
-  PROP=edocker.properties
-  TMPP=edocker.tmp
+  PROP=edjanger.properties
+  TMPP=edjanger.tmp
   sed -e "s/\(docker_command=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
-  cat edocker.properties | grep docker_command
+  cat edjanger.properties | grep docker_command
   sed -e "s/\(image_name=\).*/\1\"pamtrak06\/webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
-  cat edocker.properties | grep image_name
+  cat edjanger.properties | grep image_name
   sed -e "s/\(container_name=\).*/\1\"webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
-  cat edocker.properties | grep container_name
+  cat edjanger.properties | grep container_name
   sed -e "s/\(exposed_ports=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
-  cat edocker.properties | grep exposed_ports
+  cat edjanger.properties | grep exposed_ports
   sed -e "s/\(shared_volumes=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   . ../../scripts/build.sh
   . ../../scripts/run.sh

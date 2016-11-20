@@ -15,7 +15,7 @@
 # USAGE            : source _common.sh
 # ----------------------------------------------------
 config_extension=properties
-app_name=edocker
+app_name=edjanger
 
 function is_exec_present()
 {
@@ -34,7 +34,7 @@ function read_app_properties()
   if [ ! -f ${app_name}.${config_extension} ]; then
     echo -e "${app_name}:ERROR No ${app_name}.${config_extension} available, use \"<${app_name}init>\" command to initialize one in this directory"
   else
-    parameters=$(cat {edockerpath}/templates/${app_name}_template.${config_extension}|grep "="|cut -d '=' -f1|cut -d '#' -f2)
+    parameters=$(cat {edjangerpath}/templates/${app_name}_template.${config_extension}|grep "="|cut -d '=' -f1|cut -d '#' -f2)
 
     for p in ${parameters}; do
       unset -v ${p}
@@ -52,7 +52,7 @@ function dockerbasicimage()
   comment="$2"
 
   if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
-    source {edockerpath}/_common.sh
+    source {edjangerpath}/_common.sh
     usage $0 $2
   else
     if [ ! -f ${app_name}.${config_extension} ]; then
@@ -77,7 +77,7 @@ function dockerbasiccontainer()
   type="$4"
 
   if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
-    source {edockerpath}/_common.sh
+    source {edjangerpath}/_common.sh
     usage $0 $2
   else
     if [ ! -f ${app_name}.${config_extension} ]; then
@@ -133,7 +133,7 @@ function checkconfig()
 
     read_app_properties
 
-    parameters=$(cat {edockerpath}/templates/${app_name}_template.${config_extension}|grep -v "#"|grep "="|cut -d '=' -f1)
+    parameters=$(cat {edjangerpath}/templates/${app_name}_template.${config_extension}|grep -v "#"|grep "="|cut -d '=' -f1)
 
     local res
     for p in ${parameters}; do
@@ -156,7 +156,7 @@ function usage_command()
   command=$2
 
   # list all *.sh scripts from ${app_name} path
-  scripts=$(ls {edockerpath}/*.sh | grep -v -e "${script}" -e "help" -e "\_")
+  scripts=$(ls {edjangerpath}/*.sh | grep -v -e "${script}" -e "help" -e "\_")
 
   for s in ${scripts}; do
 
@@ -178,7 +178,7 @@ function usage_list()
   script=$1
 
   # list all *.sh scripts from ${app_name} path
-  scripts=$(ls {edockerpath}/*.sh | grep -v -e "\_")
+  scripts=$(ls {edjangerpath}/*.sh | grep -v -e "\_")
 
   echo -e "Help must have one argument in list:"
   echo -e "  command: config"
@@ -199,11 +199,11 @@ function usage_config()
 
   echo -e "Parameters in ${app_name}.${config_extension} configuration file"
 
-  parameters=$(cat {edockerpath}/templates/${app_name}_template.${config_extension}|grep -v "#"|grep "="|cut -d '=' -f1)
+  parameters=$(cat {edjangerpath}/templates/${app_name}_template.${config_extension}|grep -v "#"|grep "="|cut -d '=' -f1)
 
   for p in ${parameters}; do
 
-    comment=$(cat {edockerpath}/templates/${app_name}_template.${config_extension}|grep -e "#${p}"|cut -d ':' -f2)
+    comment=$(cat {edjangerpath}/templates/${app_name}_template.${config_extension}|grep -e "#${p}"|cut -d ':' -f2)
     echo -e ""
     echo -e "  - ${p}: ${comment}, used by:"
     usage_command "${script}" "${p}"
@@ -228,7 +228,7 @@ function usage()
 
     found=false
 
-    scripts=$(ls {edockerpath}/*.sh | grep -v -e "\_")
+    scripts=$(ls {edjangerpath}/*.sh | grep -v -e "\_")
 
     for s in ${scripts}; do
 
