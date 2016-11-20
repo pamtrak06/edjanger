@@ -35,7 +35,7 @@ function create_compose()
     working_directory=$(dirname ${file})
     relative_directory=$(echo "./${working_directory##${CURDIR}/}")
     cd ${working_directory}
-    read_edockerproperties
+    read_app_properties
 
     prj=$(basename ${working_directory})
     echo "  ${prj}:" >> $CURDIR/docker-compose.yaml

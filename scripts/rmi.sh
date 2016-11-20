@@ -26,7 +26,7 @@ else
   if [ ! -f edocker.${config_extension} ]; then
     echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
   else
-    read_edockerproperties
+    read_app_properties
     echo "Are you sure you want to delete image: ${image_name} (y/n)?"
     read response
     if [ "y" = "$response" ]; then

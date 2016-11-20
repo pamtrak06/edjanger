@@ -31,7 +31,7 @@ else
     if [ ! -f edocker.${config_extension} ]; then
       echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
     else
-      read_edockerproperties
+      read_app_properties
       idx=$(echo "$(docker images|grep ${image_name}|wc -l)+0"|bc)
       if [ "0" = "${idx}" ]; then
         echo "No image which name contains: \"${image_name}\" available"

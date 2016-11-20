@@ -5,7 +5,7 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : _common.sh
-# DESCRIPTION      : common scripts for edocker scripts
+# DESCRIPTION      : common scripts for ${app_name} scripts
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0
@@ -15,32 +15,32 @@
 # USAGE            : source _common.sh
 # ----------------------------------------------------
 config_extension=properties
-
+app_name=edocker
 
 function is_exec_present()
 {
   execname="$1"
   exepath=$(command -v $execname)
   if [ -z "$exepath" ]; then
-    echo -e "edocker:ERROR: $execname is not present (result: $exepath), please install it, installation aborted"
+    echo -e "${app_name}:ERROR: $execname is not present (result: $exepath), please install it, installation aborted"
     return -1;
   else
     return 0;
   fi
 }
 
-function read_edockerproperties()
+function read_app_properties()
 {
-  if [ ! -f edocker.${config_extension} ]; then
-    echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
+  if [ ! -f ${app_name}.${config_extension} ]; then
+    echo -e "${app_name}:ERROR No ${app_name}.${config_extension} available, use \"<${app_name}init>\" command to initialize one in this directory"
   else
-    parameters=$(cat {edockerpath}/templates/edocker_template.${config_extension}|grep "="|cut -d '=' -f1|cut -d '#' -f2)
+    parameters=$(cat {edockerpath}/templates/${app_name}_template.${config_extension}|grep "="|cut -d '=' -f1|cut -d '#' -f2)
 
     for p in ${parameters}; do
       unset -v ${p}
     done
 
-    source edocker.${config_extension}
+    source ${app_name}.${config_extension}
 
   fi
 
@@ -55,10 +55,10 @@ function dockerbasicimage()
     source {edockerpath}/_common.sh
     usage $0 $2
   else
-    if [ ! -f edocker.${config_extension} ]; then
-      echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
+    if [ ! -f ${app_name}.${config_extension} ]; then
+      echo -e "${app_name}:ERROR No ${app_name}.${config_extension} available, use \"<${app_name}init>\" command to initialize one in this directory"
     else
-      read_edockerproperties
+      read_app_properties
       echo "${comment} $(echo ${image_name} | cut -d ':' -f1)..."
       docker ${command} | grep $(echo ${image_name} | cut -d ':' -f1)
       if [ "true" = "${docker_command}" ]; then
@@ -80,17 +80,17 @@ function dockerbasiccontainer()
     source {edockerpath}/_common.sh
     usage $0 $2
   else
-    if [ ! -f edocker.${config_extension} ]; then
-      echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
+    if [ ! -f ${app_name}.${config_extension} ]; then
+      echo -e "${app_name}:ERROR No ${app_name}.${config_extension} available, use \"<${app_name}init>\" command to initialize one in this directory"
     else
-      read_edockerproperties
+      read_app_properties
       if [ "${initidx}" != "-1" ]; then
         if [ "$type" = "image" ]; then
           idx=$(echo "$(docker ps -a | grep ${image_name} | wc -l)+${initidx}" | bc)
         elif [ "$type" = "container" ]; then
           idx=$(echo "$(docker ps -a | grep ${container_name} | wc -l)+${initidx}" | bc)
         else
-          echo -e "edocker:ERROR unidentified type: $type"
+          echo -e "${app_name}:ERROR unidentified type: $type"
         fi
         ct=${container_name}_${idx}
         echo "${comment} ${ct}..."
@@ -116,8 +116,8 @@ function checkparameter()
 {
   parameter="$1"
 
-  # grep parameter found in edocker.${config_extension}
-  export check=$(cat edocker.${config_extension}|grep -v "#"|grep "${parameter}"|cut -d '=' -f1)
+  # grep parameter found in ${app_name}.${config_extension}
+  export check=$(cat ${app_name}.${config_extension}|grep -v "#"|grep "${parameter}"|cut -d '=' -f1)
   if [ -z ${check} ]; then
     echo "    WARNING: parameter is missing !!!"
     return 255
@@ -127,13 +127,13 @@ function checkparameter()
 function checkconfig()
 {
 
-  if [ ! -f edocker.${config_extension} ]; then
-    echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
+  if [ ! -f ${app_name}.${config_extension} ]; then
+    echo -e "${app_name}:ERROR No ${app_name}.${config_extension} available, use \"<${app_name}init>\" command to initialize one in this directory"
   else
 
-    read_edockerproperties
+    read_app_properties
 
-    parameters=$(cat {edockerpath}/templates/edocker_template.${config_extension}|grep -v "#"|grep "="|cut -d '=' -f1)
+    parameters=$(cat {edockerpath}/templates/${app_name}_template.${config_extension}|grep -v "#"|grep "="|cut -d '=' -f1)
 
     local res
     for p in ${parameters}; do
@@ -155,7 +155,7 @@ function usage_command()
   script=$1
   command=$2
 
-  # list all *.sh scripts from edocker path
+  # list all *.sh scripts from ${app_name} path
   scripts=$(ls {edockerpath}/*.sh | grep -v -e "${script}" -e "help" -e "\_")
 
   for s in ${scripts}; do
@@ -165,7 +165,7 @@ function usage_command()
     found=$(grep -e ${command} ${s})
 
     if [ -n "${found}" ]; then
-      echo -e "      - command: \"edocker${base%.sh}\""
+      echo -e "      - command: \"${app_name}${base%.sh}\""
     fi
 
   done
@@ -177,7 +177,7 @@ function usage_list()
 
   script=$1
 
-  # list all *.sh scripts from edocker path
+  # list all *.sh scripts from ${app_name} path
   scripts=$(ls {edockerpath}/*.sh | grep -v -e "\_")
 
   echo -e "Help must have one argument in list:"
@@ -197,13 +197,13 @@ function usage_config()
 {
   script=$1
 
-  echo -e "Parameters in edocker.${config_extension} configuration file"
+  echo -e "Parameters in ${app_name}.${config_extension} configuration file"
 
-  parameters=$(cat {edockerpath}/templates/edocker_template.${config_extension}|grep -v "#"|grep "="|cut -d '=' -f1)
+  parameters=$(cat {edockerpath}/templates/${app_name}_template.${config_extension}|grep -v "#"|grep "="|cut -d '=' -f1)
 
   for p in ${parameters}; do
 
-    comment=$(cat {edockerpath}/templates/edocker_template.${config_extension}|grep -e "#${p}"|cut -d ':' -f2)
+    comment=$(cat {edockerpath}/templates/${app_name}_template.${config_extension}|grep -e "#${p}"|cut -d ':' -f2)
     echo -e ""
     echo -e "  - ${p}: ${comment}, used by:"
     usage_command "${script}" "${p}"
@@ -291,11 +291,11 @@ function buildPathAliases() {
   working_path=$1
   base_path=$(basename $1)
 
-  # edocker alias/unalias files
+  # ${app_name} alias/unalias files
   pathaliasFile=${working_path}/${base_path}.alias
   pathunaliasFile=${working_path}/${base_path}.unalias
 
-  # list all *.sh scripts from edocker path
+  # list all *.sh scripts from ${app_name} path
   scripts=$(ls $working_path)
 
   # delete all previous aliases files path

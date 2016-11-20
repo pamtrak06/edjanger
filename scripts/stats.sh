@@ -19,7 +19,7 @@
 # USAGE            : edockerstats
 # ----------------------------------------------------
 source {edockerpath}/_common.sh
-read_edockerproperties
+read_app_properties
 if [ -n "$1" ]; then
   dockerbasiccontainer "help" "stats"
 else

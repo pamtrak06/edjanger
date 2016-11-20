@@ -26,7 +26,7 @@ else
   if [ ! -f edocker.${config_extension} ]; then
     echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
   else
-    read_edockerproperties
+    read_app_properties
     idx=$(echo "$(docker ps | grep ${container_name} | wc -l)+0" | bc)
     echo enter in container_name: ${container_name}_${idx}...
     if [[ "$1" == *"index"* ]]; then

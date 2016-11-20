@@ -140,7 +140,7 @@ function printContribution()
   echo -e "- edocker / contribution   -"
   echo -e "----------------------------"
   echo -e " Absolute paths (${edockerpath}) are replaced by {edockerpath} in all scripts."
-  echo -e " After, you could upload your modify source code and upload it to github."
+  echo -e " After, you could upload your modified source code and upload it to github."
   echo -e " Execute: \"git status\" and read INSTALL.md for contribution part..."
 }
 
@@ -314,38 +314,49 @@ function buildAliases() {
 
 function usage()
 {
-  echo "usage: $0 [--help|-h] ([--debug|-d] || ( ([--contribution|-c]) || ( ( [--alias|-a] ) || ( [--symboliclink|-s] || [--symboliclink[=]<path>]|-s[=]<path> ) ) ) )" >&2
+  #TODO: SymbolicLinks WORK IN PROGRESS
+  #echo "usage: $0 [--help|-h] ([--debug|-d] || ( ([--contribution|-c]) || ( ( [--alias|-a] ) || ( [--symboliclink|-s] || [--symboliclink[=]<path>]|-s[=]<path> ) ) ) )" >&2
+  echo "usage: $0 [--help|-h] ([--debug|-d] || ( ([--contribution|-c]) || ( ( [--alias|-a] ) ) ) )" >&2
   echo -e "  [-help|-h] : print help" >&2
-  echo -e "  [-debug|-d] : print debug informations (could be combined with -a -s -s=*)" >&2
+  #echo -e "  [-debug|-d] : print debug informations (could be combined with -a -s -s=*)" >&2
+  echo -e "  [-debug|-d] : print debug informations (could be combined with -a or -c)" >&2
+  echo -e "  [-contribution|-c] : revert paths in shell scripts to contribute for github (pull request)" >&2
   echo -e "  [-alias|-a] : initialize edocker from aliases file creation" >&2
-  echo -e "  [-symboliclink|-s<] : initialize edocker from symbolic links creation" >&2
-  echo -e "  [-symboliclink=<path>-s[=]<path>] : initialize edocker from symbolic links creation with a specified path" >&2
-  echo -e "\n  Examples:" >&2
-  echo -e "\n    print help" >&2
-  echo -e "      - $0 --help" >&2
-  echo -e "      - $0 -h" >&2
-  echo -e "\n    initialize edocker with alias " >&2
+  #echo -e "  [-symboliclink|-s<] : initialize edocker from symbolic links creation" >&2
+  #echo -e "  [-symboliclink=<path>-s[=]<path>] : initialize edocker from symbolic links creation with a specified path" >&2
+  echo -e "\n  1. How to" >&2
+  echo -e "\n    Install edocker ?" >&2
   echo -e "      - $0 --alias" >&2
   echo -e "      - $0 -a" >&2
-  echo -e "\n    initialize edocker with alias in debug mode" >&2
-  echo -e "      - $0 --debug --alias" >&2
-  echo -e "      - $0 -d -a" >&2
-  echo -e "\n    initialize edocker with symbolic links and default path" >&2
-  echo -e "      - $0 --symboliclink" >&2
-  echo -e "      - $0 -s" >&2
-  echo -e "\n    initialize edocker with symbolic links and default path in debug mode" >&2
-  echo -e "      - $0 --debug --symboliclink" >&2
-  echo -e "      - $0 -d -s" >&2
-  echo -e "\n    initialize edocker with symbolic links and specified path" >&2
-  echo -e "      - $0 --symboliclink=/usr/local/bin/edocker" >&2
-  echo -e "      - $0 -s=/usr/local/bin/edocker" >&2
-  echo -e "\n    initialize edocker with symbolic links and specified path in debug mode" >&2
-  echo -e "      - $0 --debug --symboliclink=/usr/local/bin/edocker" >&2
-  echo -e "      - $0 -d -s=/usr/local/bin/edocker" >&2
-  echo -e "\n    switch to edocker contribution mode " >&2
+  echo -e "\n    Make contribution to github repository (pull request) ?" >&2
   echo -e "      - $0 --contribution" >&2
   echo -e "      - $0 -c" >&2
-  echo -e "\n    switch to edocker contribution mode in debug mode" >&2
+  echo -e "\n  2. Running commands examples" >&2
+  echo -e "\n    Print help" >&2
+  echo -e "      - $0 --help" >&2
+  echo -e "      - $0 -h" >&2
+  echo -e "\n    Initialize edocker with alias " >&2
+  echo -e "      - $0 --alias" >&2
+  echo -e "      - $0 -a" >&2
+  echo -e "\n    Initialize edocker with alias in debug mode" >&2
+  echo -e "      - $0 --debug --alias" >&2
+  echo -e "      - $0 -d -a" >&2
+  # echo -e "\n    initialize edocker with symbolic links and default path" >&2
+  # echo -e "      - $0 --symboliclink" >&2
+  # echo -e "      - $0 -s" >&2
+  # echo -e "\n    initialize edocker with symbolic links and default path in debug mode" >&2
+  # echo -e "      - $0 --debug --symboliclink" >&2
+  # echo -e "      - $0 -d -s" >&2
+  # echo -e "\n    initialize edocker with symbolic links and specified path" >&2
+  # echo -e "      - $0 --symboliclink=/usr/local/bin/edocker" >&2
+  # echo -e "      - $0 -s=/usr/local/bin/edocker" >&2
+  # echo -e "\n    initialize edocker with symbolic links and specified path in debug mode" >&2
+  # echo -e "      - $0 --debug --symboliclink=/usr/local/bin/edocker" >&2
+  # echo -e "      - $0 -d -s=/usr/local/bin/edocker" >&2
+  echo -e "\n    Switch to edocker contribution mode " >&2
+  echo -e "      - $0 --contribution" >&2
+  echo -e "      - $0 -c" >&2
+  echo -e "\n    Switch to edocker contribution mode in debug mode" >&2
   echo -e "      - $0 --debug --contribution" >&2
   echo -e "      - $0 -d -c" >&2
 }
@@ -353,6 +364,12 @@ function usage()
 # -----------------------------------------
 # MAIN
 # -----------------------------------------
+
+if [ $? -eq 0 ]; then
+  usage
+  exit 2
+fi
+
 while getopts "hvdcas:-:" option; do
   case $option in
     -)
