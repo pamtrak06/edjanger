@@ -81,7 +81,7 @@ cd edjanger; chmod 755 scripts/*.sh; chmod 755 edjangerinstall.sh
 
 Run edjanger installation
 ```bash
-./edjangerinstall.sh -a
+./edjangerinstall.sh --alias
 ```
 
 This will install edjanger in /usr/local/bin/edjanger
