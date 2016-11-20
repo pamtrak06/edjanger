@@ -1,5 +1,7 @@
 [Web site official home page](http://pamtrak06.github.io/edjanger/)
 
+[New name of edocker repository](http://pamtrak06.github.io/edocker/)
+
 [![Build Status](https://travis-ci.org/pamtrak06/edjanger.svg?branch=master)](https://travis-ci.org/pamtrak06/edjanger)
 
 # Table of content
