@@ -5,20 +5,20 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : alias.sh
-# ALIAS            : edockeralias
-# DESCRIPTION      : print edocker aliases
+# ALIAS            : edjangeralias
+# DESCRIPTION      : print edjanger aliases
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0
 # DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : alias edockeralias
+# USAGE            : alias edjangeralias
 # ----------------------------------------------------
-source {edockerpath}/_common.sh
+source {edjangerpath}/_common.sh
 
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 alias
 else
-  alias | grep edocker
+  alias | grep edjanger
 fi

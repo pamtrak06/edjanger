@@ -1,5 +1,5 @@
-edocker.alias
-edocker.unalias
+edjanger.alias
+edjanger.unalias
 *.zip
 *.log
 tests/tmp*

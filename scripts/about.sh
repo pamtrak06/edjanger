@@ -5,15 +5,15 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : about.sh
-# ALIAS            : edockerabout
-# DESCRIPTION      : about script for edocker
+# ALIAS            : edjangerabout
+# DESCRIPTION      : about script for edjanger
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0
 # DATE             : 2016-08-03
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : edockerabout
+# USAGE            : edjangerabout
 # ----------------------------------------------------
 
 echo -e "        _            _              "

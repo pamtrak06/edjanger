@@ -5,33 +5,33 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : compose.sh
-# ALIAS            : edockercompose
-# DESCRIPTION      : generate docker compose yaml from all local edocker.poperties
+# ALIAS            : edjangercompose
+# DESCRIPTION      : generate docker compose yaml from all local edjanger.poperties
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
 # VERSION          : 1.0.2
 # DATE             : 2016-08-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : edockercompose
+# USAGE            : edjangercompose
 # ----------------------------------------------------
-source {edockerpath}/_common.sh
+source {edjangerpath}/_common.sh
 
 function create_compose()
 {
-  # Retrieve all edocker configuration files from current directory
-  listconf=$(find $PWD -name "edocker.properties")
+  # Retrieve all edjanger configuration files from current directory
+  listconf=$(find $PWD -name "edjanger.properties")
   if [ -z "$listconf" ]; then
-    echo -e "edocker:ERROR No edocker.${config_extension} available recursively in this directory"
+    echo -e "edjanger:ERROR No edjanger.${config_extension} available recursively in this directory"
   fi
-  echo -e "edocker:INFO Write $CURDIR/docker-compose.yaml ..."
+  echo -e "edjanger:INFO Write $CURDIR/docker-compose.yaml ..."
   CURDIR=$PWD
   echo "version: '2'" > $CURDIR/docker-compose.yaml
   echo "services:" >> $CURDIR/docker-compose.yaml
 
   for file in ${listconf[@]}
   do
-    echo -e "edocker:INFO Process informations of configuration: \"$file\"  ..."
+    echo -e "edjanger:INFO Process informations of configuration: \"$file\"  ..."
     working_directory=$(dirname ${file})
     relative_directory=$(echo "./${working_directory##${CURDIR}/}")
     cd ${working_directory}
@@ -176,7 +176,7 @@ if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 compose
 else
   if [ -f $CURDIR/docker-compose.yaml ]; then
-    echo -e "edocker:WARNING $CURDIR/docker-compose.yaml already available, do you want to override it (y/n) ?"
+    echo -e "edjanger:WARNING $CURDIR/docker-compose.yaml already available, do you want to override it (y/n) ?"
     read response
     if [ "y" = "$response" ]; then
       date_time=$(date +"%Y%m%d_%H%M%S")

@@ -14,7 +14,7 @@
 # --------------------------------
 # USAGE            : ./_proxy_reset.sh
 # ----------------------------------------------------
-if [ -f {edockerpath}/edocker.zip ]; then
+if [ -f {edjangerpath}/edjanger.zip ]; then
   http_proxy=
   https_proxy=
   HTTP_PROXY=

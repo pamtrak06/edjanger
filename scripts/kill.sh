@@ -5,8 +5,8 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : kill.sh
-# ALIAS            : edockerkill
-# DESCRIPTION      : kill command "docker kill", with parameters readed from local edocker.properties
+# ALIAS            : edjangerkill
+# DESCRIPTION      : kill command "docker kill", with parameters readed from local edjanger.properties
 #   PARAMETER      : kill_options
 # CREATOR          : pamtrak06@gmail.com
 # --------------------------------
@@ -14,15 +14,15 @@
 # DATE             : 2016-09-25
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : edockerkill
+# USAGE            : edjangerkill
 # ----------------------------------------------------
-source {edockerpath}/_common.sh
+source {edjangerpath}/_common.sh
 
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 kill
 else
-  if [ ! -f edocker.${config_extension} ]; then
-    echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
+  if [ ! -f edjanger.${config_extension} ]; then
+    echo -e "edjanger:ERROR No edjanger.${config_extension} available, use \"<edjangerinit>\" command to initialize one in this directory"
   else
     read_app_properties
     idx=$(echo "$(docker ps | grep ${container_name} | wc -l)+1" | bc)

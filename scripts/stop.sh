@@ -5,8 +5,8 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : stop.sh
-# ALIAS            : edockerstop
-# DESCRIPTION      : run command "docker stop" with parameters readed from local edocker.properties
+# ALIAS            : edjangerstop
+# DESCRIPTION      : run command "docker stop" with parameters readed from local edjanger.properties
 #   PARAMETER      : image_name
 #   PARAMETER      : container_name
 #   PARAMETER      : stop_options
@@ -17,9 +17,9 @@
 # DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : edockerstop
+# USAGE            : edjangerstop
 # ----------------------------------------------------
-source {edockerpath}/_common.sh
+source {edjangerpath}/_common.sh
 
 if [ -n "$1" ]; then
   dockerbasiccontainer "help" "stop"

@@ -1,7 +1,7 @@
 #!/bin/bash
 CURDIR=$PWD
-./edockerinstall.sh --alias
+./edjangerinstall.sh --alias
 cd tests
-/opt/bats/bin/bats edocker_tests.bats
-/opt/bats/bin/bats edocker_platforms.bats
+/opt/bats/bin/bats edjanger_tests.bats
+/opt/bats/bin/bats edjanger_platforms.bats
 cd $CURDIR

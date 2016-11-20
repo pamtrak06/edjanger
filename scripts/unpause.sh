@@ -5,8 +5,8 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : pause.sh
-# ALIAS            : edockerpause
-# DESCRIPTION      : run command "docker pause" with parameters readed from local edocker.properties
+# ALIAS            : edjangerpause
+# DESCRIPTION      : run command "docker pause" with parameters readed from local edjanger.properties
 #   PARAMETER      : image_name
 #   PARAMETER      : container_name
 #   PARAMETER      : docker_command
@@ -16,9 +16,9 @@
 # DATE             : 2016-09-25
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : edockerpause
+# USAGE            : edjangerpause
 # ----------------------------------------------------
-source {edockerpath}/_common.sh
+source {edjangerpath}/_common.sh
 
 if [ -n "$1" ]; then
   dockerbasiccontainer "help" "pause"

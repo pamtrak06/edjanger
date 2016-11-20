@@ -5,8 +5,8 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : rmi.sh
-# ALIAS            : edockerrmi
-# DESCRIPTION      : run command "docker rmi" with parameters readed from local edocker.properties
+# ALIAS            : edjangerrmi
+# DESCRIPTION      : run command "docker rmi" with parameters readed from local edjanger.properties
 #   PARAMETER      : image_name
 #   PARAMETER      : force_rmi
 #   PARAMETER      : docker_command
@@ -16,15 +16,15 @@
 # DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : edockerrmi
+# USAGE            : edjangerrmi
 # ----------------------------------------------------
-source {edockerpath}/_common.sh
+source {edjangerpath}/_common.sh
 
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 rmi
 else
-  if [ ! -f edocker.${config_extension} ]; then
-    echo -e "edocker:ERROR No edocker.${config_extension} available, use \"<edockerinit>\" command to initialize one in this directory"
+  if [ ! -f edjanger.${config_extension} ]; then
+    echo -e "edjanger:ERROR No edjanger.${config_extension} available, use \"<edjangerinit>\" command to initialize one in this directory"
   else
     read_app_properties
     echo "Are you sure you want to delete image: ${image_name} (y/n)?"

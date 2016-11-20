@@ -5,8 +5,8 @@
 # Copyright (c) 2016 copyright pamtrak06@gmail.com
 # ----------------------------------------------------
 # SCRIPT           : images.sh
-# ALIAS            : edockerimages
-# DESCRIPTION      : run command "docker images" with parameters readed from local edocker.properties
+# ALIAS            : edjangerimages
+# DESCRIPTION      : run command "docker images" with parameters readed from local edjanger.properties
 #   PARAMETER      : image_name
 #   PARAMETER      : docker_command
 # CREATOR          : pamtrak06@gmail.com
@@ -15,9 +15,9 @@
 # DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : edockerimages
+# USAGE            : edjangerimages
 # ----------------------------------------------------
-source {edockerpath}/_common.sh
+source {edjangerpath}/_common.sh
 if [ -n "$1" ]; then
   dockerbasicimage "help" "images"
 else
