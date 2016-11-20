@@ -13,7 +13,7 @@
 # DATE             : 2016-03-02
 # COMMENT          : creation
 # --------------------------------
-# USAGE            : ./edjangerinstall <dev>
+# USAGE            : ./edjangerinstall --alias || --contribution
 # ----------------------------------------------------
 
 # global edjanger
