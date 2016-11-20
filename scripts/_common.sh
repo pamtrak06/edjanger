@@ -29,8 +29,22 @@ function is_exec_present()
   fi
 }
 
+function rename_edocker_properties()
+{
+  if [ -f edocker.${config_extension} ]; then
+    echo -e "${app_name}:WARNING found edocker.${config_extension}, do you want to rename it to ${app_name}.${config_extension} (y/n)?"
+    read response
+    if [ "y" = "$response" ]; then
+      mv edocker.${config_extension} ${app_name}.${config_extension}
+    else
+      return -1;
+    fi
+  fi
+}
+
 function read_app_properties()
 {
+  rename_edocker_properties
   if [ ! -f ${app_name}.${config_extension} ]; then
     echo -e "${app_name}:ERROR No ${app_name}.${config_extension} available, use \"<${app_name}init>\" command to initialize one in this directory"
   else
@@ -55,6 +69,7 @@ function dockerbasicimage()
     source {edjangerpath}/_common.sh
     usage $0 $2
   else
+    rename_edocker_properties
     if [ ! -f ${app_name}.${config_extension} ]; then
       echo -e "${app_name}:ERROR No ${app_name}.${config_extension} available, use \"<${app_name}init>\" command to initialize one in this directory"
     else
@@ -80,6 +95,7 @@ function dockerbasiccontainer()
     source {edjangerpath}/_common.sh
     usage $0 $2
   else
+    rename_edocker_properties
     if [ ! -f ${app_name}.${config_extension} ]; then
       echo -e "${app_name}:ERROR No ${app_name}.${config_extension} available, use \"<${app_name}init>\" command to initialize one in this directory"
     else
@@ -126,7 +142,7 @@ function checkparameter()
 
 function checkconfig()
 {
-
+  rename_edocker_properties
   if [ ! -f ${app_name}.${config_extension} ]; then
     echo -e "${app_name}:ERROR No ${app_name}.${config_extension} available, use \"<${app_name}init>\" command to initialize one in this directory"
   else
