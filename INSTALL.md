@@ -2,14 +2,14 @@
 ```bash
 git clone https://github.com/pamtrak06/edjanger.git
 cd edjanger; chmod 755 *.sh scripts/*.sh
-./edjangerinstall.sh
+./edjangerinstall.sh --alias
 source edjanger.alias
 alias|grep edjanger
 ```
 
 # edjanger github contribution mode
 ```bash
-./edjangerinstall dev
+./edjangerinstall --contribution
 ```
 This script will replace all path from $PWD (edjanger path installation) with {edjangerpath} and then make it possible to package for final packaging and push to github
 
