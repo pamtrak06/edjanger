@@ -41,16 +41,17 @@ else
     cd {edjangerpath}/..
     zip -r edjanger-${date_time}.zip ./scripts 2>&1 {edjangerpath}/../edjanger.log
     echo -e "edjanger:INFO: UPGRADE: upgrading edjanger..."
-    ./edjangerinstall.sh dev >> {edjangerpath}/../edjanger.log 2>&1
+    ./edjangerinstall.sh --contribution >> {edjangerpath}/../edjanger.log 2>&1
     git pull origin master >> {edjangerpath}/../edjanger.log 2>&1
     if [ $? != 0 ]; then
       echo -e "edjanger:ERROR UPGRADE: upgrade could not be perform due to git error, see {edjangerpath}/edjanger.log"
       echo -e "edjanger:INFO UPGRADE: restoring previous version..."
-      ./edjangerinstall.sh >> {edjangerpath}/../edjanger.log 2>&1
+      ./edjangerinstall.sh --alias >> {edjangerpath}/../edjanger.log 2>&1
       unzip edjanger-${date_time}.zip -d {edjangerpath} >> {edjangerpath}/../edjanger.log 2>&1
     else
       echo -e "edjanger:INFO: UPGRADE: activating edjanger..."
-      ./edjangerinstall.sh >> {edjangerpath}/../edjanger.log 2>&1
+      ./edjangerinstall.sh  --alias >> {edjangerpath}/../edjanger.log 2>&1
+      . edjanger.unalias >> {edjangerpath}/../edjanger.log 2>&1
       . edjanger.alias >> {edjangerpath}/../edjanger.log 2>&1
       rm -f {edjangerpath}/edjanger.log >> {edjangerpath}/../edjanger.log 2>&1
     fi
