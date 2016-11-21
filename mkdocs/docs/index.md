@@ -1,7 +1,3 @@
-[Web site official home page](http://pamtrak06.github.io/edjanger/)
-
-[New name of edocker repository](http://pamtrak06.github.io/edocker/)
-
 [![Build Status](https://travis-ci.org/pamtrak06/edjanger.svg?branch=master)](https://travis-ci.org/pamtrak06/edjanger)
 
 # Table of content
@@ -59,7 +55,7 @@ docker stop $(docker ps -aq | grep "devops/jenkins")
 
 ## How to install edjanger
 ([go up to table of content](#table-of-content))
-### Prerequisities
+- Prerequisities
 - install bc command
 - install gettext (for envsubst)
     osx:
@@ -69,11 +65,11 @@ docker stop $(docker ps -aq | grep "devops/jenkins")
       source ~/.bashrc
 - optionnal: install tree command (from binaries or from sources http://mama.indstate.edu/users/ice/tree/)
 
-### OS compliant
+- OS compliant
 - os x El Capitan 10.11.6
 - ubuntu > 14.04
 
-### Installation
+- Installation
 ```bash
 git clone https://github.com/pamtrak06/edjanger.git /usr/local/bin
 cd edjanger; chmod 755 scripts/*.sh; chmod 755 edjangerinstall.sh
@@ -103,7 +99,7 @@ All is done !!! Run this command to see your edjanger aliases
 alias|grep edjanger
 ```
 
-### Configuration
+- Configuration
 
 **bash**
 
@@ -325,95 +321,95 @@ Now you've got aliases to run all your docker commands like:
 
 For each commands, see edjangerhelp 'command' for list of parameters read in edjanger.properties and arguments.
 
-### #alias edjangerabout
+- #alias edjangerabout
 Description : about script for edjanger.
 
-### #alias edjangeralias
+- #alias edjangeralias
 Description : print edjanger aliases.
 
-### #alias edjangerbuild
+- #alias edjangerbuild
 Description : run command "docker build" with parameters readed from local edjanger.properties.
 
-### #alias edjangercheck
+- #alias edjangercheck
 Description : check missing parameters in edjanger.properties.
 Remark : even when parameters are missing in edjanger.properties, they are initialized empty.
 
-### #alias edjangerclean
+- #alias edjangerclean
 Description : clean all images with none attribute (run docker rmi with "none" filter).
 
-### #alias edjangercopy
+- #alias edjangercopy
 Description : run command "docker copy" with parameters readed from local edjanger.properties.
 
-### #alias edjangercompose
+- #alias edjangercompose
 Description : generate docker compose yaml from all local edjanger.poperties.
 
-### #alias edjangerexec
+- #alias edjangerexec
 Description : run command "docker exec" with parameters readed from local edjanger.properties.
 
-### #alias edjangerhelp
+- #alias edjangerhelp
 Description : help script for edjanger command.
 
-### #alias edjangerimages
+- #alias edjangerimages
 Description : run command "docker images" with parameters readed from local edjanger.properties.
 
-### #alias edjangerinit
+- #alias edjangerinit
 Description : create a edjanger.properties file
 
-### #alias edjangerinspect
+- #alias edjangerinspect
 Description : run command "docker inspect" with parameters readed from local edjanger.properties
 
-### #alias edjangerlogs
+- #alias edjangerlogs
 Description : run command "docker logs" with parameters readed from local edjanger.properties
 
-### #alias edjangerportdesc
+- #alias edjangerportdesc
 Description : run command "docker ports" on all running container
 
-### #alias edjangerports
+- #alias edjangerports
 Description : description of port.
 
-### #alias edjangerps
+- #alias edjangerps
 Description : run command "docker ps" with parameters readed from local edjanger.properties.
 
-### #alias edjangerpsa
+- #alias edjangerpsa
 Description : run command "docker ps -a" with parameters readed from local edjanger.properties.
 
-### #alias edjangerrename
+- #alias edjangerrename
 Description : run command "docker rename" with parameters readed from local edjanger.properties.
 
-### #alias edjangerrestart
+- #alias edjangerrestart
 Description : run command "docker restart" with parameters readed from local edjanger.properties.
 
-### #alias edjangerm
+- #alias edjangerm
 Description : run command "docker rm" with parameters readed from local edjanger.properties.
 
-### #alias edjangermexiteds
+- #alias edjangermexiteds
 Description : run docker rm with list of container with exited status.
 
-### #alias edjangermi
+- #alias edjangermi
 Description : run command "docker rmi" with parameters readed from local edjanger.properties.
 
-### #alias edjangerun
+- #alias edjangerun
 Description : run command "docker run -id" daemon mode, with parameters readed from local edjanger.properties.
 
-### #alias edjangeruni
+- #alias edjangeruni
 Description : run command "docker run -it" interactive mode, with parameters readed from local edjanger.properties.
 
-### #alias edockestart
+- #alias edockestart
 Description : run command "docker start" with parameters readed from local edjanger.properties.
 
-### #alias edockestop
+- #alias edockestop
 Description : run command "docker stop" with parameters readed from local edjanger.properties.
 
-### #alias edjangertag
+- #alias edjangertag
 Description : run command "docker tag" with parameters readed from local edjanger.properties.
 
-### #alias edjangertemplate
+- #alias edjangertemplate
 Description : create edjanger.properties from edjanger.template and properties files containing variables definition.
 
-### #alias edjangertop
+- #alias edjangertop
 Description : run command "docker top" with parameters readed from local edjanger.properties.
 
-### #alias edjangerunalias
+- #alias edjangerunalias
 Description : help script for edjanger command.
 
 ## Create edjanger path project aliases
