@@ -1,893 +1,113 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="None">
-  
-  <link rel="shortcut icon" href="./img/favicon.ico">
-  <title>Home - edjanger</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-
-  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="./css/highlight.css">
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "Home";
-    var mkdocs_page_input_path = "index.md";
-    var mkdocs_page_url = "/";
-  </script>
-  
-  <script src="./js/jquery-2.1.1.min.js"></script>
-  <script src="./js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="./js/highlight.pack.js"></script> 
-  
-</head>
-
-<body class="wy-body-for-nav" role="document">
-
-  <div class="wy-grid-for-nav">
-
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-      <div class="wy-side-nav-search">
-        <a href="." class="icon icon-home"> edjanger</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-  </form>
-</div>
-      </div>
-
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-          
-            <li>
-    <li class="toctree-l1 current">
-        <a class="current" href=".">Home</a>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-            <ul>
+        
+        
+        <link rel="shortcut icon" href="./img/favicon.ico">
+
+	<title>edjanger</title>
+
+        <link href="./css/bootstrap-3.0.3.min.css" rel="stylesheet">
+        <link href="./css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="./css/highlight.css">
+        <link href="./css/base.css" rel="stylesheet">
+        <link href="./extra.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href=".">edjanger</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
             
-                <li class="toctree-l3"><a href="#table-of-content">Table of content</a></li>
-                
-                    <li><a class="toctree-l4" href="#presentation">Presentation</a></li>
-                
-                    <li><a class="toctree-l4" href="#how-to-install-edjanger">How to install edjanger</a></li>
-                
-                    <li><a class="toctree-l4" href="#how-to-uninstall-edjanger">How to uninstall edjanger</a></li>
-                
-                    <li><a class="toctree-l4" href="#how-to-initialize-an-edjanger-project">How to initialize an edjanger project</a></li>
-                
-                    <li><a class="toctree-l4" href="#how-to-use-edjanger-in-a-docker-project-working-directory">How to use edjanger in a docker project working directory</a></li>
-                
             
-                <li class="toctree-l3"><a href="#alias-edjangerabout">alias edjangerabout</a></li>
-                
+                <li class="active">
+                    <a href=".">Home</a>
+                </li>
             
-                <li class="toctree-l3"><a href="#alias-edjangeralias">alias edjangeralias</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edjangerbuild">alias edjangerbuild</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edjangercheck">alias edjangercheck</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edjangerclean">alias edjangerclean</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edjangercopy">alias edjangercopy</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edjangercompose">alias edjangercompose</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edjangerexec">alias edjangerexec</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edjangerhelp">alias edjangerhelp</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edjangerimages">alias edjangerimages</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edjangerinit">alias edjangerinit</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edjangerinspect">alias edjangerinspect</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edjangerlogs">alias edjangerlogs</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edjangerportdesc">alias edjangerportdesc</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edjangerports">alias edjangerports</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edjangerps">alias edjangerps</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edjangerpsa">alias edjangerpsa</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edjangerrename">alias edjangerrename</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edjangerrestart">alias edjangerrestart</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edjangerm">alias edjangerm</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edjangermexiteds">alias edjangermexiteds</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edjangermi">alias edjangermi</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edjangerun">alias edjangerun</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edjangeruni">alias edjangeruni</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edockestart">alias edockestart</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edockestop">alias edockestop</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edjangertag">alias edjangertag</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edjangertemplate">alias edjangertemplate</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edjangertop">alias edjangertop</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#alias-edjangerunalias">alias edjangerunalias</a></li>
-                
-                    <li><a class="toctree-l4" href="#create-edjanger-path-project-aliases">Create edjanger path project aliases</a></li>
-                
-                    <li><a class="toctree-l4" href="#check-missing-parameters-in-edjangerproperties">Check missing parameters in edjanger.properties</a></li>
-                
-                    <li><a class="toctree-l4" href="#call-help-commands">Call help commands</a></li>
-                
-                    <li><a class="toctree-l4" href="#create-an-docker-composeyaml-file-from-edjanger-structure">Create an docker-compose.yaml file from edjanger structure</a></li>
-                
-                    <li><a class="toctree-l4" href="#use-templates-files-to-configure-edjangerproperties">Use templates files to configure edjanger.properties</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#binbash">!/bin/bash</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#exposed_portsexposed-port">exposed_ports:exposed port</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#exposed_portsexposed-port_1">exposed_ports:exposed port</a></li>
-                
-                    <li><a class="toctree-l4" href="#work-in-progress">Work in progress</a></li>
-                
-                    <li><a class="toctree-l4" href="#tests">Tests</a></li>
-                
-                    <li><a class="toctree-l4" href="#license">License</a></li>
-                
             
             </ul>
-        
-    </li>
-<li>
-          
-        </ul>
-      </div>
-      &nbsp;
-    </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href=".">edjanger</a>
-      </nav>
-
-      
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href=".">Docs</a> &raquo;</li>
-    
-      
-    
-    <li>Home</li>
-    <li class="wy-breadcrumbs-aside">
-      
-    </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main">
-            <div class="section">
-              
-                <p><a href="https://travis-ci.org/pamtrak06/edjanger"><img alt="Build Status" src="https://travis-ci.org/pamtrak06/edjanger.svg?branch=master" /></a></p>
-<h1 id="table-of-content">Table of content</h1>
-<ul>
-<li><a href="#presentation">Presentation</a></li>
-<li><a href="#how-to-install-edjanger">How to install edjanger</a></li>
-<li><a href="#how-to-uninstall-edjanger">How to uninstall edjanger</a></li>
-<li><a href="#how-to-initialize-an-edjanger-project">How to initialize an edjanger project</a></li>
-<li><a href="#how-to-use-edjanger-in-a-docker-project-working-directory">How to use edjanger in a docker project working directory</a></li>
-<li><a href="#create-edjanger-path-project-aliases">Create edjanger path project aliases</a></li>
-<li><a href="#check-missing-parameters-in-edjangerproperties">Check missing parameters in edjanger.properties</a></li>
-<li><a href="#call-help-commands">Call help commands</a></li>
-<li><a href="#create-an-docker-composeyaml-file-from-edjanger-structure">Create an docker-compose.yaml file from edjanger structure</a></li>
-<li><a href="#use-templates-files-to-configure-edjangerproperties">Use templates files to configure edjanger.properties</a></li>
-<li><a href="#configure-automatic-container-restart-at-boot">Configure automatic container restart at boot</a></li>
-<li><a href="#work-in-progress">Work in progress</a></li>
-<li><a href="#tests">Tests</a></li>
-<li><a href="#license">License</a></li>
-</ul>
-<h2 id="presentation">Presentation</h2>
-<p>(<a href="#table-of-content">go up to table of content</a>)</p>
-<p>Scripts for shortest and easyest docker commands in a docker working folder (Dockerfile)</p>
-<p>Tired about repeating docker commands with long parameters ?</p>
-<p>Try edjanger ! Example :</p>
-<p>Configure edjanger.properties with docker parameters once and run edjanger alias command.</p>
-<blockquote>
-<p>Example 1: docker build</p>
-</blockquote>
-<pre><code class="bash">edjangerbuild
-</code></pre>
-
-<p>instead of:</p>
-<pre><code class="bash">docker build -t &quot;devops/jenkins&quot;       build
-</code></pre>
-
-<blockquote>
-<p>Example 2: docker run</p>
-</blockquote>
-<pre><code class="bash">edjangerrun
-</code></pre>
-
-<p>instead of:</p>
-<pre><code class="bash">docker run -dt --name jenkins_1    -p 8080:8080 -p 50000:50000  -v /root/workspace/docker/devops/continuous_integration/jenkins/volumes/jenkins_home:/var/jenkins_home  --link dind_1:docker devops/jenkins
-</code></pre>
-
-<blockquote>
-<p>Example 3: docker stop</p>
-</blockquote>
-<pre><code class="bash">edjangerstop
-</code></pre>
-
-<p>instead of:</p>
-<pre><code class="bash">docker stop $(docker ps -aq | grep &quot;devops/jenkins&quot;)
-</code></pre>
-
-<h2 id="how-to-install-edjanger">How to install edjanger</h2>
-<p>(<a href="#table-of-content">go up to table of content</a>)
-- Prerequisities
-- install bc command
-- install gettext (for envsubst)
-    osx:
-      brew install gettext
-      brew link --force gettext
-      echo "PATH=/usr/local/Cellar/gettext/0.19.8.1/bin/envsubst:$PATH" &gt;&gt; ~/.bashrc
-      source ~/.bashrc
-- optionnal: install tree command (from binaries or from sources http://mama.indstate.edu/users/ice/tree/)</p>
-<ul>
-<li>OS compliant</li>
-<li>os x El Capitan 10.11.6</li>
-<li>
-<p>ubuntu &gt; 14.04</p>
-</li>
-<li>
-<p>Installation</p>
-</li>
-</ul>
-<pre><code class="bash">git clone https://github.com/pamtrak06/edjanger.git /usr/local/bin
-cd edjanger; chmod 755 scripts/*.sh; chmod 755 edjangerinstall.sh
-</code></pre>
-
-<p>Run edjanger installation</p>
-<pre><code class="bash">./edjangerinstall.sh --alias
-</code></pre>
-
-<p>This will install edjanger in /usr/local/bin/edjanger
-If installation fail to install in this directory, try to install it in another</p>
-<pre><code class="bash">edjanger_INSTALL_PATH=&lt;your path&gt;
-git clone https://github.com/pamtrak06/edjanger.git $edjanger_INSTALL_PATH
-cd edjanger; chmod 755 scripts/*.sh; chmod 755 edjangerinstall.sh
-</code></pre>
-
-<p>Execute the generated alias file:</p>
-<pre><code class="bash">. /usr/local/bin/edjanger/edjanger.alias
-</code></pre>
-
-<p>All is done !!! Run this command to see your edjanger aliases</p>
-<pre><code class="bash">alias|grep edjanger
-</code></pre>
-
-<ul>
-<li>Configuration</li>
-</ul>
-<p><strong>bash</strong></p>
-<p>Bash as login shell will load /etc/profile, ~/.bash_profile, ~/.bash_login, ~/.profile in the order
-Bash as non-login interactive shell will load ~/.bashrc
-Bash as non-login non-interactive shell will load the configuration specified in environment variable $BASH_ENV</p>
-<p>Add lines at the bottom of one of the following files:  </p>
-<pre><code class="bash">echo &quot;source {edjanger path}/edjanger.alias&quot; &gt;&gt; /etc/profile
-</code></pre>
-
-<p>or</p>
-<pre><code class="bash">echo &quot;source {edjanger path}/edjanger.alias&quot; &gt;&gt; ~/.bash_profile
-</code></pre>
-
-<p>or</p>
-<pre><code class="bash">echo &quot;source {edjanger path}/edjanger.alias&quot; &gt;&gt; ~/.bash_login
-</code></pre>
-
-<p>or</p>
-<pre><code class="bash">echo &quot;source {edjanger path}/edjanger.alias&quot; &gt;&gt; ~/.profile
-</code></pre>
-
-<p>or</p>
-<pre><code class="bash">echo &quot;source {edjanger path}/edjanger.alias&quot; &gt;&gt; ~/.bashrc
-</code></pre>
-
-<p>or</p>
-<pre><code class="bash">echo &quot;source {edjanger path}/edjanger.alias&quot; &gt;&gt; ~/.bash_aliases
-</code></pre>
-
-<p><strong>zsh</strong></p>
-<p>Add lines at the bottom of the file ~/.zshrc</p>
-<pre><code class="bash">echo &quot;source {edjanger path}/edjanger.alias&quot; &gt;&gt; ~/.zshrc
-</code></pre>
-
-<p><strong>ksh</strong></p>
-<p>Add lines at the bottom of the file ~/.profile  </p>
-<pre><code class="bash">echo &quot;source {edjanger path}/edjanger.alias&quot; &gt;&gt; ~/.profile
-</code></pre>
-
-<p><strong>bourne</strong></p>
-<p>Add lines at the bottom of the file ~/.profile  </p>
-<pre><code class="bash">echo &quot;source {edjanger path}/edjanger.alias&quot; &gt;&gt; ~/.profile
-</code></pre>
-
-<p><strong>csh or tcsh</strong></p>
-<p>Add lines at the bottom of the file ~/.login</p>
-<pre><code class="bash">echo &quot;source {edjanger path}/edjanger.alias&quot; &gt;&gt; ~/.login
-</code></pre>
-
-<h2 id="how-to-uninstall-edjanger">How to uninstall edjanger</h2>
-<p>(<a href="#table-of-content">go up to table of content</a>)</p>
-<p>Remove edjanger aliases by executing:</p>
-<pre><code class="bash">source edjanger.unalias
-</code></pre>
-
-<p>Remove references to source command in ~/.bash_aliases</p>
-<pre><code class="bash">vi ~/.bash_aliases
-</code></pre>
-
-<p>Remove edjanger files</p>
-<pre><code class="bash">rm -rf {edjanger path}/
-</code></pre>
-
-<h2 id="how-to-initialize-an-edjanger-project">How to initialize an edjanger project</h2>
-<p>(<a href="#table-of-content">go up to table of content</a>)</p>
-<p>Create an uninitialized edjanger.properties file in your working docker folder:</p>
-<pre><code class="bash">edjangerinit
-</code></pre>
-
-<p>Equivalent to</p>
-<pre><code class="bash">&gt; Initialize edjanger configuration file: edjanger.properties ...
-cp [edjanger path]/templates/edjanger_template.properties [your docker working project]/edjanger.properties
-&gt; Initialize edjanger build folder for Dockerfile: /build ...
-mkdir [your docker working project]/build
-&gt; Initialize Dockerfile: build/Dockerfile ...
-touch [your docker working project]/build/Dockerfile
-</code></pre>
-
-<p>Configure your <a href="https://github.com/pamtrak06/edjanger/blob/master/scripts/templates/edjanger_template.properties">edjanger.properties</a> with correct parameters.
-By example, you could create a Dockerfile with this path:</p>
-<pre><code class="bash">vi [your docker working project]/build/Dockerfile
-</code></pre>
-
-<p>Example of a minimal edjanger configuration:</p>
-<pre><code class="bash">mkdir -p jenkins
-cd jenkins; edjangerinit
-vi edjanger.properties
-</code></pre>
-
-<pre><code class="bash">#  ----------------------------------------------------
-#  The MIT License (MIT)
-#
-#  Copyright (c) 2016 copyright pamtrak06@gmail.com
-#  ----------------------------------------------------
-#  CONFIGURATION    : edjanger_template.properties
-#  DESCRIPTION      : project configuration file for edjanger
-#  CREATOR          : pamtrak06@gmail.com
-#  --------------------------------
-#  VERSION          : 1.0
-#  DATE             : 2016-03-02
-#  COMMENT          : creation
-#  --------------------------------
-#  USAGE            : read by edjanger scripts
-#  ----------------------------------------------------
-#cron_build: flag to start container at boot
-#cron_build=true
-#cron_start: flag to start container at boot
-cron_start=true
-# docker_command:show docker command when edjanger is used
-docker_command=true
-# image_name:image name
-image_name=&quot;devops/jenkins&quot;
-# build_path:path where is found Dockerfile
-build_path=build
-# build_args:build arguments
-# build_args=&quot;--build-arg VAR1='value1' --build-arg VAR2='value2'&quot;
-# build_forcerm:always remove intermediate containers
-# build_forcerm=&quot;--force-rm&quot;
-# build_rm: Remove intermediate containers after a successful build
-# build_rm=&quot;--rm=true&quot;
-# build_nocache:do not use cache when building the image
-# build_nocache=&quot;--no-cache&quot;
-# build_file:name of the Dockerfile (Default is 'PATH/Dockerfile')
-# build_file=&quot;--file Dockerfile&quot;
-# container_name:container
-container_name=&quot;jenkins&quot;
-# exposed_ports:exposed port
-exposed_ports=&quot;-p 8080:8080 -p 50000:50000&quot;
-# shared_volumes:shared volumes
-shared_volumes=&quot;-v $PWD/volumes/jenkins_home:/var/jenkins_home&quot;
-# volumes_from:expose volumes from another container into current container
-# volumes_from=&quot;--volumes-from &lt;container name with exposed volumes&gt;&quot;
-# environment_variables:environnment variables
-# environment_variables=&quot;-e &lt;variable name 1&gt;=&lt;value 1&gt; -e &lt;variable name 2&gt;=&lt;value 2&gt;&quot;
-# linked_containers:linked container
-#linked_containers=&quot;--link dind_1:docker&quot;
-#network_settings:all network settings options
-#network_settings=--dns [] --net host --network-alias [] --add-host &quot;&quot; --mac-address &quot;&quot; --ip &quot;&quot; --ip6 &quot;&quot; --link-local-ip []
-#runtime_constraints_on_resources: runtime constraints on resources
-#runtime_constraints_on_resources=-m, --memory &quot;&quot; --memory-swap &quot;&quot; --memory-reservation &quot;&quot; --kernel-memory &quot;&quot; ...
-# force_rmi:force deletion
-# force_rmi=&quot;--force&quot;
-# command_run:bash command(s) to run
-# command_run=&quot;/bin/bash -c \&quot;cd /; ls -la&quot;
-</code></pre>
-
-<p>Update Dockerfile with jenkins reference from <a href="https://hub.docker.com/_/jenkins/">docker hub</a></p>
-<pre><code class="bash">touch build/Dockerfile
-echo &quot;FROM jenkins:latest&quot; &gt; build/Dockerfile
-</code></pre>
-
-<h2 id="how-to-use-edjanger-in-a-docker-project-working-directory">How to use edjanger in a docker project working directory</h2>
-<p>(<a href="#table-of-content">go up to table of content</a>)</p>
-<p>Now you've got aliases to run all your docker commands like:
-- edjangerabout
-- edjangeralias
-- edjangerattach
-- edjangerbuild
-- edjangercheck
-- edjangerclean
-- edjangercommit
-- edjangercompose
-- edjangercopy
-- edjangerdiff
-- edjangerevents
-- edjangerexec
-- edjangerhelp
-- edjangerhistory
-- edjangerimages
-- edjangerinfo
-- edjangerinit
-- edjangerinspect
-- edjangerkill
-- edjangerlogs
-- edjangerpause
-- edjangerportdesc
-- edjangerports
-- edjangerps
-- edjangerpsa
-- edjangerrename
-- edjangerrestart
-- edjangerrm
-- edjangerrmexiteds
-- edjangerrmi
-- edjangerrun
-- edjangerruni
-- edjangerstart
-- edjangerstats
-- edjangerstop
-- edjangertag
-- edjangertemplate
-- edjangertop
-- edjangerunalias
-- edjangerunpause
-- edjangerupdate
-- edjangerwait</p>
-<p>!!! All thoses aliases are available only when you've got an <a href="https://github.com/pamtrak06/edjanger/blob/master/templates/edjanger_template.properties">edjanger.properties</a> file in your project folder ([docker working project]) '''</p>
-<p>For each commands, see edjangerhelp 'command' for list of parameters read in edjanger.properties and arguments.</p>
-<ul>
-<li>
-<h1 id="alias-edjangerabout">alias edjangerabout</h1>
-<p>Description : about script for edjanger.</p>
-</li>
-<li>
-<h1 id="alias-edjangeralias">alias edjangeralias</h1>
-<p>Description : print edjanger aliases.</p>
-</li>
-<li>
-<h1 id="alias-edjangerbuild">alias edjangerbuild</h1>
-<p>Description : run command "docker build" with parameters readed from local edjanger.properties.</p>
-</li>
-<li>
-<h1 id="alias-edjangercheck">alias edjangercheck</h1>
-<p>Description : check missing parameters in edjanger.properties.
-Remark : even when parameters are missing in edjanger.properties, they are initialized empty.</p>
-</li>
-<li>
-<h1 id="alias-edjangerclean">alias edjangerclean</h1>
-<p>Description : clean all images with none attribute (run docker rmi with "none" filter).</p>
-</li>
-<li>
-<h1 id="alias-edjangercopy">alias edjangercopy</h1>
-<p>Description : run command "docker copy" with parameters readed from local edjanger.properties.</p>
-</li>
-<li>
-<h1 id="alias-edjangercompose">alias edjangercompose</h1>
-<p>Description : generate docker compose yaml from all local edjanger.poperties.</p>
-</li>
-<li>
-<h1 id="alias-edjangerexec">alias edjangerexec</h1>
-<p>Description : run command "docker exec" with parameters readed from local edjanger.properties.</p>
-</li>
-<li>
-<h1 id="alias-edjangerhelp">alias edjangerhelp</h1>
-<p>Description : help script for edjanger command.</p>
-</li>
-<li>
-<h1 id="alias-edjangerimages">alias edjangerimages</h1>
-<p>Description : run command "docker images" with parameters readed from local edjanger.properties.</p>
-</li>
-<li>
-<h1 id="alias-edjangerinit">alias edjangerinit</h1>
-<p>Description : create a edjanger.properties file</p>
-</li>
-<li>
-<h1 id="alias-edjangerinspect">alias edjangerinspect</h1>
-<p>Description : run command "docker inspect" with parameters readed from local edjanger.properties</p>
-</li>
-<li>
-<h1 id="alias-edjangerlogs">alias edjangerlogs</h1>
-<p>Description : run command "docker logs" with parameters readed from local edjanger.properties</p>
-</li>
-<li>
-<h1 id="alias-edjangerportdesc">alias edjangerportdesc</h1>
-<p>Description : run command "docker ports" on all running container</p>
-</li>
-<li>
-<h1 id="alias-edjangerports">alias edjangerports</h1>
-<p>Description : description of port.</p>
-</li>
-<li>
-<h1 id="alias-edjangerps">alias edjangerps</h1>
-<p>Description : run command "docker ps" with parameters readed from local edjanger.properties.</p>
-</li>
-<li>
-<h1 id="alias-edjangerpsa">alias edjangerpsa</h1>
-<p>Description : run command "docker ps -a" with parameters readed from local edjanger.properties.</p>
-</li>
-<li>
-<h1 id="alias-edjangerrename">alias edjangerrename</h1>
-<p>Description : run command "docker rename" with parameters readed from local edjanger.properties.</p>
-</li>
-<li>
-<h1 id="alias-edjangerrestart">alias edjangerrestart</h1>
-<p>Description : run command "docker restart" with parameters readed from local edjanger.properties.</p>
-</li>
-<li>
-<h1 id="alias-edjangerm">alias edjangerm</h1>
-<p>Description : run command "docker rm" with parameters readed from local edjanger.properties.</p>
-</li>
-<li>
-<h1 id="alias-edjangermexiteds">alias edjangermexiteds</h1>
-<p>Description : run docker rm with list of container with exited status.</p>
-</li>
-<li>
-<h1 id="alias-edjangermi">alias edjangermi</h1>
-<p>Description : run command "docker rmi" with parameters readed from local edjanger.properties.</p>
-</li>
-<li>
-<h1 id="alias-edjangerun">alias edjangerun</h1>
-<p>Description : run command "docker run -id" daemon mode, with parameters readed from local edjanger.properties.</p>
-</li>
-<li>
-<h1 id="alias-edjangeruni">alias edjangeruni</h1>
-<p>Description : run command "docker run -it" interactive mode, with parameters readed from local edjanger.properties.</p>
-</li>
-<li>
-<h1 id="alias-edockestart">alias edockestart</h1>
-<p>Description : run command "docker start" with parameters readed from local edjanger.properties.</p>
-</li>
-<li>
-<h1 id="alias-edockestop">alias edockestop</h1>
-<p>Description : run command "docker stop" with parameters readed from local edjanger.properties.</p>
-</li>
-<li>
-<h1 id="alias-edjangertag">alias edjangertag</h1>
-<p>Description : run command "docker tag" with parameters readed from local edjanger.properties.</p>
-</li>
-<li>
-<h1 id="alias-edjangertemplate">alias edjangertemplate</h1>
-<p>Description : create edjanger.properties from edjanger.template and properties files containing variables definition.</p>
-</li>
-<li>
-<h1 id="alias-edjangertop">alias edjangertop</h1>
-<p>Description : run command "docker top" with parameters readed from local edjanger.properties.</p>
-</li>
-<li>
-<h1 id="alias-edjangerunalias">alias edjangerunalias</h1>
-<p>Description : help script for edjanger command.</p>
-</li>
-</ul>
-<h2 id="create-edjanger-path-project-aliases">Create edjanger path project aliases</h2>
-<p>(<a href="#table-of-content">go up to table of content</a>)</p>
-<p>Create those two aliases and give the correct path for your project:</p>
-<pre><code class="bash">alias cdedjanger='cd [edjanger path]'
-alias cd[basename for your docker working project]='cd [your docker working project]'
-</code></pre>
-
-<p>Or create all possible aliases for subfolders in a folder:</p>
-<pre><code class="bash">source /usr/local/edjanger/_common.sh
-source $(buildPathAliases &quot;/opt/docker/&quot;)
-</code></pre>
-
-<h2 id="check-missing-parameters-in-edjangerproperties">Check missing parameters in edjanger.properties</h2>
-<p>(<a href="#table-of-content">go up to table of content</a>)</p>
-<pre><code class="bash">edjangercheck
-Check edjanger.properties...
-  - check &quot;docker_command&quot;
-  - check &quot;image_name&quot;
-  - check &quot;build_path&quot;
-  - check &quot;build_args&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;build_forcerm&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;build_rm&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;build_nocache&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;build_file&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;container_name&quot;
-  - check &quot;exposed_ports&quot;
-  - check &quot;shared_volumes&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;volumes_from&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;environment_variables&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;linked_containers&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;force_rmi&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;command_run&quot;
-    WARNING: parameter is missing !!!
-  =&gt; STATUS of configuration is: some parameters are undefined
-</code></pre>
-
-<h2 id="call-help-commands">Call help commands</h2>
-<p>(<a href="#table-of-content">go up to table of content</a>)</p>
-<p>Main help commands</p>
-<pre><code class="bash">edjangerhelp
-</code></pre>
-
-<p>Help for help</p>
-<pre><code class="bash">edjangerhelp help
-</code></pre>
-
-<p>Help for commands, example for edjangerbuild</p>
-<pre><code class="bash">edjangerhelp build
-</code></pre>
-
-<p>Help for parameters in edjanger.properties used by commands</p>
-<pre><code class="bash">edjangerhelp config
-</code></pre>
-
-<h2 id="create-an-docker-composeyaml-file-from-edjanger-structure">Create an docker-compose.yaml file from edjanger structure</h2>
-<p>(<a href="#table-of-content">go up to table of content</a>)
-From an existing edjanger root path project structure, call edcokercompose.
-Script will parse all edjanger.properties in subfolders and create docker-compose.yaml at upper path.</p>
-<pre><code class="bash">edjangercompose
-vi docker-compose.yaml
-</code></pre>
-
-<h2 id="use-templates-files-to-configure-edjangerproperties">Use templates files to configure edjanger.properties</h2>
-<p>(<a href="#table-of-content">go up to table of content</a>)</p>
-<p>! Prerequisities : install gettext (for envsubst)</p>
-<ul>
-<li>
-<p>Download and try example from https://github.com/pamtrak06/edjanger/tree/master/scripts/templates/templating, run:</p>
-</li>
-<li>
-<p>Deploy 2 apache web sever (web1 and web2) with specific ports and shared volumes for a "production" environement.
-    <code>bash
-    ./deploy_run.sh production 5</code></p>
-</li>
-<li>
-<p>Deploy 2 apache web server (web1 and web2) with specific ports and shared volumes for an "integration" environement.
-    <code>bash
-    ./deploy_run.sh integration 5</code></p>
-</li>
-<li>
-<p>Instructions
-From an existing edjanger root path project structure, do following</p>
-<ul>
-<li>rename all edjanger.properties to edjanger.template</li>
-<li>define variable for element to be replaced with variable value from configuration file</li>
-<li>create configuration files (<name>.properties) containing SHELL-FORMAT variable<ul>
-<li>in each folder containing edjanger.properties (each configuration file must hase same name e.g.: production.properties)
-or</li>
-<li>only in root folder (e.g.: production.properties)</li>
-</ul>
-</li>
-<li>call edjangertemplate with name of configuration file
-<code>bash
-edjangertemplate &lt;name&gt;.properties</code></li>
-</ul>
-<p>Example of edjangertemplate invocation
-<code>bash
-edjangertemplate production.properties</code></p>
-<p>Example of production.properties content
-```bash</p>
-<h1 id="binbash">!/bin/bash</h1>
-<p>export HTTPD_PORT_80=80
-export HTTPD_PORT_443=443
-```</p>
-<p>Example of edjanger.template content
-```bash</p>
-<h1 id="exposed_portsexposed-port">exposed_ports:exposed port</h1>
-<p>exposed_ports="-p ${HTTPD_PORT_80}:80 -p ${HTTPD_PORT_443}:443"
-```</p>
-<p>Script will find all edjanger.template and replace variables from root or folder(s) configuration(s) file(s) to produce edjanger.properties files.</p>
-<p>Example of edjanger.properties produced
-```bash</p>
-<h1 id="exposed_portsexposed-port_1">exposed_ports:exposed port</h1>
-<p>exposed_ports="-p 80:80 -p 443:443"</p>
-</li>
-</ul>
-<pre><code>
-## Configure automatic container restart at boot
-([go up to table of content](#table-of-content))
-
-To configure automatic restart of container at boot, configure edjanger.properties files :
-- activate cron_start=true to start existing container at boot
-- activate cron_build=true to build and start a new container at boot
-
-Configure crontab with following parameters
-```bash
-crontab -e
-@reboot {edjangerpath}/cron_build_start.sh {edjanger properties path}
-@reboot {edjangerpath}/cron_start_only.sh {edjanger properties path}
-</code></pre>
-
-<p>Example:</p>
-<pre><code class="bash">crontab -e
-@reboot /opt/edjanger/scripts/cron_build_start.sh /root/workspace/docker
-@reboot /opt/edjanger/scripts/cron_start_only.sh /root/workspace/docker
-</code></pre>
-
-<h2 id="work-in-progress">Work in progress</h2>
-<p>(<a href="#table-of-content">go up to table of content</a>)</p>
-<p>Please contribute !</p>
-<ul>
-<li>daemon               =&gt; TO BE Implemented</li>
-<li>attach               =&gt; OK</li>
-<li>build                =&gt; OK</li>
-<li>clean                =&gt; OK</li>
-<li>commit               =&gt; OK</li>
-<li>cp                   =&gt; OK</li>
-<li>create               =&gt; TO BE Implemented</li>
-<li>diff                 =&gt; OK</li>
-<li>events               =&gt; OK</li>
-<li>exec                 =&gt; OK</li>
-<li>export               =&gt; TO BE Implemented</li>
-<li>help                 =&gt; OK</li>
-<li>history              =&gt; OK</li>
-<li>images               =&gt; OK</li>
-<li>import               =&gt; TO BE Implemented</li>
-<li>info                 =&gt; OK</li>
-<li>init                 =&gt; OK</li>
-<li>inspect              =&gt; OK</li>
-<li>kill                 =&gt; OK</li>
-<li>load                 =&gt; TO BE Implemented</li>
-<li>login                =&gt; TO BE Implemented</li>
-<li>logout               =&gt; TO BE Implemented</li>
-<li>logs                 =&gt; OK</li>
-<li>network connect      =&gt; TO BE Implemented</li>
-<li>network create       =&gt; TO BE Implemented</li>
-<li>network disconnect   =&gt; TO BE Implemented</li>
-<li>network inspect      =&gt; TO BE Implemented</li>
-<li>network ls           =&gt; TO BE Implemented</li>
-<li>network rm           =&gt; TO BE Implemented</li>
-<li>pause                =&gt; TO BE Implemented</li>
-<li>port                 =&gt; OK</li>
-<li>ps                   =&gt; OK</li>
-<li>pull                 =&gt; TO BE Implemented</li>
-<li>push                 =&gt; TO BE Implemented</li>
-<li>rename               =&gt; OK</li>
-<li>restart              =&gt; OK</li>
-<li>rm                   =&gt; OK</li>
-<li>rmi                  =&gt; OK</li>
-<li>run                  =&gt; OK</li>
-<li>save                 =&gt; TO BE Implemented</li>
-<li>search               =&gt; TO BE Implemented ?</li>
-<li>start                =&gt; OK</li>
-<li>stats                =&gt; OK</li>
-<li>stop                 =&gt; OK</li>
-<li>tag                  =&gt; OK</li>
-<li>top                  =&gt; OK</li>
-<li>unpause              =&gt; OK</li>
-<li>update               =&gt; OK</li>
-<li>version              =&gt; TO BE Implemented ?</li>
-<li>volume create        =&gt; TO BE Implemented</li>
-<li>volume inspect       =&gt; TO BE Implemented</li>
-<li>volume ls            =&gt; TO BE Implemented</li>
-<li>volume rm            =&gt; TO BE Implemented</li>
-<li>wait                 =&gt; OK</li>
-</ul>
-<h2 id="tests">Tests</h2>
-<p>(<a href="#table-of-content">go up to table of content</a>)</p>
-<p>Tests use following
-- <a href="https://travis-ci.org/pamtrak06/edjanger">travis</a>
-- <a href="https://github.com/sstephenson/bats">bats</a></p>
-<h2 id="license">License</h2>
-<p>(<a href="#table-of-content">go up to table of content</a>)</p>
-<p>edjanger is under  "MIT License (MIT)" see <a href="https://github.com/pamtrak06/edjanger/blob/master/LICENSE">LICENSE file</a>.</p>
-              
-            </div>
-          </div>
-          <footer>
-  
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-    
-  </div>
-
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-</footer>
-	  
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                <li class="disabled">
+                    <a rel="next" >
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a rel="prev" >
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+            </ul>
         </div>
-      </div>
-
-    </section>
-    
-  </div>
-
-  <div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-      
-      
-    </span>
+    </div>
 </div>
-    <script src="./js/theme.js"></script>
 
-</body>
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#easy-compact-shortest-docker-commands-edjanger">Easy, compact, shortest Docker commands : edjanger</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="easy-compact-shortest-docker-commands-edjanger">Easy, compact, shortest Docker commands : edjanger</h1>
+<p>=================</p>
+<pre><code>Tired about repeating docker commands with long parameters ?
+
+Trying to found magic one from history. Putting commands in non standard scripts ?
+
+Try edjanger !
+
+</code></pre></div>
+        </div>
+
+	<footer class="col-md-12">
+		<hr>
+		
+		<p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+	</footer>
+
+
+        <script src="./js/jquery-1.10.2.min.js"></script>
+        <script src="./js/bootstrap-3.0.3.min.js"></script>
+        <script src="./js/highlight.pack.js"></script>
+        <script src="./js/base.js"></script>
+    </body>
 </html>
-
-<!--
-MkDocs version : 0.16.0
-Build Date UTC : 2016-11-21 01:51:00
--->

@@ -7,63 +7,31 @@ Trying to found magic one from history. Putting commands in non standard scripts
 Try edjanger !*
 
 
+# Table of content
+- [Install](#how-to-install-edjanger)
+- [Get started](#getting-started-with-edjanger)
+- [Contribute](#how-to-install-edjanger)
+- [Tests](#tests)
+- [License](#license)
 
-## Install
 
-**Prerequisities for installation**
+## How to install edjanger
+([go up to table of content](#table-of-content))
+### Prerequisities
+- install bc command
+- install gettext (for envsubst)
+    osx:
+      brew install gettext
+      brew link --force gettext
+      echo "PATH=/usr/local/Cellar/gettext/0.19.8.1/bin/envsubst:$PATH" >> ~/.bashrc
+      source ~/.bashrc
+- optionnal: install tree command (from binaries or from sources http://mama.indstate.edu/users/ice/tree/)
 
-- git
-
-- zip
-
-**Prerequisities for runtime**
-
-- bc
-    - Ubuntu / Debian
-
-        ```bash
-        apt-get install bc
-        ```
-
-    - CentOS / RHEL / Fedora
-
-        ```bash
-        yum install bc
-        ```
-
-- gettext (for envsubst)
-    - Ubuntu / Debian
-
-        ```bash
-        apt-get install gettext
-        ```
-
-    - CentOS / RHEL / Fedora
-
-        ```bash
-        yum install gettext
-        ```
-
-    - osx
-
-        ```bash
-        brew install gettext
-        brew link --force gettext
-        echo "PATH=/usr/local/Cellar/gettext/0.19.8.1/bin/envsubst:$PATH" >> ~/.bashrc
-        source ~/.bashrc
-        ```
-
-- tree command (optional)
-
-    - installation from binaries or from sources (http://mama.indstate.edu/users/ice/tree/)
-
-**Compatibility**
-
+- OS compliant
 - os x El Capitan 10.11.6
 - ubuntu > 14.04
 
-**Installation**
-
+### Installation
 ```bash
 git clone https://github.com/pamtrak06/edjanger.git /usr/local/bin
 cd edjanger; chmod 755 scripts/*.sh; chmod 755 edjangerinstall.sh
@@ -93,9 +61,9 @@ All is done !!! Run this command to see your edjanger aliases
 alias|grep edjanger
 ```
 
-**Configuration**
+### Configuration
 
-~bash~
+**bash**
 
 Bash as login shell will load /etc/profile, ~/.bash_profile, ~/.bash_login, ~/.profile in the order
 Bash as non-login interactive shell will load ~/.bashrc
@@ -171,8 +139,8 @@ Remove edjanger files
 rm -rf {edjanger path}/
 ```
 
-## Getting started
-
+## Getting started with edjanger
+([go up to table of content](#table-of-content))
 
 Create an uninitialized edjanger.properties file in your working docker folder:
 ```bash
@@ -263,128 +231,14 @@ touch build/Dockerfile
 echo "FROM jenkins:latest" > build/Dockerfile
 ```
 
-> Example 1: docker build
-```bash
-edjangerbuild
-```
-instead of:
-```bash
-docker build -t "devops/jenkins"       build
-```
-
-> Example 2: docker run
-```bash
-edjangerrun
-```
-instead of:
-```bash
-docker run -dt --name jenkins_1    -p 8080:8080 -p 50000:50000  -v /root/workspace/docker/devops/continuous_integration/jenkins/volumes/jenkins_home:/var/jenkins_home  --link dind_1:docker devops/jenkins
-```
-
-> Example 3: docker stop
-```bash
-edjangerstop
-```
-instead of:
-```bash
-docker stop $(docker ps -aq | grep "devops/jenkins")
-```
-
-## Best practices
-
-Use a folder for each edjanger project.
-
-Use following structure :
-```bash
-- [edjanger main project folder]
-    - edjanger.properties   > edjanger project configuration
-    - [build]               > docker build folder (contains Dockerfile and files dependencies)
-        -  Dockerfile       > default Dockerfile
-    - volumes               > contains all shared volumes
-```
-
-## Use cases
-
-**Basic commands**
-
-All those command are compact and useful docker shortcuts !
-
-|                         | Description                                                                                 |
- ------------------------ | ------------------------------------------------------------------------------------------- |
-| alias `edjangerbuild`   | run command "docker build" with parameters readed from local edjanger.properties.           |
-| alias `edjangerclean`   | clean all images with none attribute (run docker rmi with "none" filter).                   |
-| alias `edjangercopy`    | run command "docker copy" with parameters readed from local edjanger.properties.            |
-| alias `edjangerexec`    | run command "docker exec" with parameters readed from local edjanger.properties.            |
-| alias `edjangerimages`  | run command "docker exec" with parameters readed from local edjanger.properties.            |
-| alias `edjangerinspect` | run command "docker inspect" with parameters readed from local edjanger.properties.         |
-| alias `edjangerlogs`    | run command "docker logs" with parameters readed from local edjanger.properties.            |
-
-- #alias edjangerlogs
-Description : run command "docker logs" with parameters readed from local edjanger.properties
-
-- #alias edjangerports
-Description : description of port.
-
-- #alias edjangerps
-Description : run command "docker ps" with parameters readed from local edjanger.properties.
-
-- #alias edjangerpsa
-Description : run command "docker ps -a" with parameters readed from local edjanger.properties.
-
-- #alias edjangerrename
-Description : run command "docker rename" with parameters readed from local edjanger.properties.
-
-- #alias edjangerrestart
-Description : run command "docker restart" with parameters readed from local edjanger.properties.
-
-- #alias edjangerm
-Description : run command "docker rm" with parameters readed from local edjanger.properties.
-
-- #alias edjangermi
-Description : run command "docker rmi" with parameters readed from local edjanger.properties.
-
-- #alias edjangerun
-Description : run command "docker run -id" daemon mode, with parameters readed from local edjanger.properties.
-
-- #alias edjangeruni
-Description : run command "docker run -it" interactive mode, with parameters readed from local edjanger.properties.
-
-- #alias edockestart
-Description : run command "docker start" with parameters readed from local edjanger.properties.
-
-- #alias edockestop
-Description : run command "docker stop" with parameters readed from local edjanger.properties.
-
-- #alias edjangertag
-Description : run command "docker tag" with parameters readed from local edjanger.properties.
-
-- #alias edjangertop
-Description : run command "docker top" with parameters readed from local edjanger.properties.
-
-**help**
-
-For each commands, see edjangerhelp 'command' for list of parameters read in edjanger.properties and arguments.
-
-
-**Create docker-compose.yaml**
-
-
-**Deploy with templating**
-
-**Cron container(s) scheduling**
-
-**Ports management**
-
-
-## Unit tests
-
+## Tests
+([go up to table of content](#table-of-content))
 
 Tests use following
-
 - [travis](https://travis-ci.org/pamtrak06/edjanger)
 - [bats](https://github.com/sstephenson/bats)
 
 ## License
-
+([go up to table of content](#table-of-content))
 
 edjanger is under  "MIT License (MIT)" see [LICENSE file](https://github.com/pamtrak06/edjanger/blob/master/LICENSE).

@@ -1,5 +1,7 @@
 site_name: edjanger
 #theme: cinder
-theme: readthedocs 
+#theme: readthedocs
+theme: bootstrap
+extra_css: [extra.css]
 pages:
 - Home: index.md
