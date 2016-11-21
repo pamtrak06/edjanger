@@ -71,6 +71,12 @@ function checkPrerequisities() {
   else
     echo -e "  - envsubst is present: $exepath"
   fi
+  is_exec_present "git"
+  if [ $? = -1 ]; then
+    status=-1;
+  else
+    echo -e "  - git is present: $exepath"
+  fi
   return $status
 }
 
@@ -165,7 +171,7 @@ function buildSymbolicLinks() {
   echo -e "\n--- Check prerequisities..."
   checkPrerequisities
   if [ $? = -1 ]; then
-    echo -e "edjanger:ERROR: cheking prerequisities, installation aborted"
+    echo -e "edjanger:ERROR: checking prerequisities, installation aborted"
     return -1;
   fi
 
@@ -244,7 +250,7 @@ function buildAliases() {
   echo -e "\n--- Check prerequisities..."
   checkPrerequisities
   if [ $? = -1 ]; then
-    echo -e "edjanger:ERROR: cheking prerequisities, installation aborted"
+    echo -e "edjanger:ERROR: checking prerequisities, installation aborted"
     return -1;
   fi
 
@@ -312,6 +318,18 @@ function buildAliases() {
 
 }
 
+# Automatic installation
+function installation() {
+  checkPrerequisities
+  if [ $? = -1 ]; then
+    echo -e "edjanger:ERROR: checking prerequisities, installation aborted"
+    return -1;
+  fi
+  git clone https://github.com/pamtrak06/edjanger.git /usr/local/bin
+  cd /usr/local/bin/edjanger; chmod -R a+x scripts/*.sh; chmod a+x edjangerinstall.sh
+  buildAliases "release"
+}
+
 function usage()
 {
   #TODO: SymbolicLinks WORK IN PROGRESS
@@ -370,7 +388,7 @@ if [ $# -eq 0 ]; then
   exit 2
 fi
 
-while getopts "hvdcas:-:" option; do
+while getopts "ihvdcas:-:" option; do
   case $option in
     -)
         case "${OPTARG}" in
@@ -378,6 +396,14 @@ while getopts "hvdcas:-:" option; do
                 #val="${!OPTIND}"; OPTIND=$(( $OPTIND + 1 ))
                 #echo "Parsing option: '--${OPTARG}', value: '${val}'" >&2;
                 debug=true
+                ;;
+            installation)
+                #val="${!OPTIND}"; OPTIND=$(( $OPTIND + 1 ))
+                #echo "Parsing option: '--${OPTARG}', value: '${val}'" >&2;
+                [ "$processing" = "install.aliases" ] && echo -e "edjanger:ERROR: Cannot specify option \"alias\" after specifying option \"contribution\"" && exit -1
+                [ "$processing" = "install.symbolic_links" ] && echo -e "edjanger:ERROR: Cannot specify option \"symboliclink\" after specifying option \"contribution\"" && exit -1
+                [ "$processing" = "config.contribution" ] && echo -e "edjanger:ERROR: Cannot specify option \"contribution\" after specifying option \"aliases\"" && exit -1
+                processing="install.automatic"
                 ;;
             contribution)
                 #val="${!OPTIND}"; OPTIND=$(( $OPTIND + 1 ))
@@ -424,6 +450,12 @@ while getopts "hvdcas:-:" option; do
     d)
       debug=true
       ;;
+    i)
+      [ "$processing" = "config.contribution" ] && echo -e "edjanger:ERROR: Cannot specify option \"contribution\" after specifying option \"aliases\"" && exit -1
+      [ "$processing" = "install.aliases" ] && echo -e "edjanger:ERROR: Cannot specify option \"alias\" after specifying option \"contribution\"" && exit -1
+      [ "$processing" = "install.symbolic_links" ] && echo -e "edjanger:ERROR: Cannot specify option \"symboliclink\" after specifying option \"contribution\"" && exit -1
+      processing="install.automatic"
+      ;;
     c)
       [ "$processing" = "install.aliases" ] && echo -e "edjanger:ERROR: Cannot specify option \"alias\" after specifying option \"contribution\"" && exit -1
       [ "$processing" = "install.symbolic_links" ] && echo -e "edjanger:ERROR: Cannot specify option \"symboliclink\" after specifying option \"contribution\"" && exit -1
@@ -461,6 +493,9 @@ while getopts "hvdcas:-:" option; do
 done
 
 case $processing in
+  install.automatic)
+    installation
+    ;;
   config.contribution)
     printContribution
     swith2devMode "development"
