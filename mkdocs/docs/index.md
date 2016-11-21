@@ -304,9 +304,7 @@ Use following structure :
     - volumes               > contains all shared volumes
 ```
 
-## Use cases
-
-**Basic commands**
+## Use cases : basic commands
 
 All those command are compact and useful docker shortcuts !
 
@@ -332,29 +330,163 @@ All those command are compact and useful docker shortcuts !
 | alias `edjangertag`     | "docker tag" with parameters readed from local edjanger.properties.             |       |     X     |
 | alias `edjangertop`     | "docker top" with parameters readed from local edjanger.properties.             |       |     X     |
 
+## Use cases : docker
+
+|                           | Description                                                                     |
+ -------------------------- | ------------------------------------------------------------------------------- |
+| alias `edjangerportdesc`  | "docker ports" on all running container.                                        |
+| alias `edjangerports`     | description of port.                                                            |
+| alias `edjangermexiteds`  | docker rm with list of container with exited status.                            |
 
 
-**Useful docker commands**
+## Use cases : useful
 
-**Useful edjanger commands**
+|                           | Description                                                                     |
+ -------------------------- | ------------------------------------------------------------------------------- |
+| alias `edjangerabout`     | about script for edjanger.                                                      |
+| alias `edjangercheck`     | check missing parameters in edjanger.properties.                                |
+| alias `edjangeralias`     | print edjanger aliases.                                                         |
+| alias `edjangerunalias`   | help script for edjanger command.                                               |
 
-**help**
+
+**Check missing parameters in edjanger.properties**
+
+```bash
+edjangercheck
+Check edjanger.properties...
+  - check "docker_command"
+  - check "image_name"
+  - check "build_path"
+  - check "build_args"
+    WARNING: parameter is missing !!!
+  - check "build_forcerm"
+    WARNING: parameter is missing !!!
+  - check "build_rm"
+    WARNING: parameter is missing !!!
+  - check "build_nocache"
+    WARNING: parameter is missing !!!
+  - check "build_file"
+    WARNING: parameter is missing !!!
+  - check "container_name"
+  - check "exposed_ports"
+  - check "shared_volumes"
+    WARNING: parameter is missing !!!
+  - check "volumes_from"
+    WARNING: parameter is missing !!!
+  - check "environment_variables"
+    WARNING: parameter is missing !!!
+  - check "linked_containers"
+    WARNING: parameter is missing !!!
+  - check "force_rmi"
+    WARNING: parameter is missing !!!
+  - check "command_run"
+    WARNING: parameter is missing !!!
+  => STATUS of configuration is: some parameters are undefined
+```
+
+Remark : even when parameters are missing in edjanger.properties, they are initialized empty.
+
+
+## Use case: compose
+
+From an existing edjanger root path project structure, call edcokercompose.
+Script will parse all edjanger.properties in subfolders and create docker-compose.yaml at upper path.
+
+```bash
+edjangercompose
+vi docker-compose.yaml
+```
+
+## Use case: template
+
+> Prerequisities : install gettext (for envsubst)
+
+- Download and try example from https://github.com/pamtrak06/edjanger/tree/master/scripts/templates/templating, run:
+
+- Deploy 2 apache web sever (web1 and web2) with specific ports and shared volumes for a "production" environement.
+    ```bash
+    ./deploy_run.sh production 5
+    ```
+
+- Deploy 2 apache web server (web1 and web2) with specific ports and shared volumes for an "integration" environement.
+    ```bash
+    ./deploy_run.sh integration 5
+    ```
+
+- Instructions
+From an existing edjanger root path project structure, do following
+    - rename all edjanger.properties to edjanger.template
+    - define variable for element to be replaced with variable value from configuration file
+    - create configuration files (<name>.properties) containing SHELL-FORMAT variable
+        - in each folder containing edjanger.properties (each configuration file must hase same name e.g.: production.properties)
+        or
+        - only in root folder (e.g.: production.properties)
+    - call edjangertemplate with name of configuration file
+
+```
+edjangertemplate <name>.properties
+```
+
+Example of edjangertemplate invocation
+
+```
+edjangertemplate production.properties
+```
+
+Example of production.properties content
+
+```
+#!/bin/bash
+export HTTPD_PORT_80=80
+export HTTPD_PORT_443=443
+```
+
+Example of edjanger.template content
+
+```
+#exposed_ports:exposed port
+exposed_ports="-p ${HTTPD_PORT_80}:80 -p ${HTTPD_PORT_443}:443"
+```
+
+Script will find all edjanger.template and replace variables from root or folder(s) configuration(s) file(s) to produce edjanger.properties files.
+
+Example of edjanger.properties produced
+
+```
+#exposed_ports:exposed port
+exposed_ports="-p 80:80 -p 443:443"
+```
+
+## Use case : crontab
+
+Configure automatic container restart at boot
+
+To configure automatic restart of container at boot, configure edjanger.properties files :
+- activate cron_start=true to start existing container at boot
+- activate cron_build=true to build and start a new container at boot
+
+Configure crontab with following parameters
+
+```
+crontab -e
+@reboot {edjangerpath}/cron_build_start.sh {edjanger properties path}
+@reboot {edjangerpath}/cron_start_only.sh {edjanger properties path}
+```
+
+Example:
+
+```
+crontab -e
+@reboot /opt/edjanger/scripts/cron_build_start.sh /root/workspace/docker
+@reboot /opt/edjanger/scripts/cron_start_only.sh /root/workspace/docker
+```
+
+## help
 
 For each commands, see edjangerhelp 'command' for list of parameters read in edjanger.properties and arguments.
 
 
-**Create docker-compose.yaml**
-
-
-**Deploy with templating**
-
-**Cron container(s) scheduling**
-
-**Ports management**
-
-
 ## Unit tests
-
 
 Tests use following
 
