@@ -1,10 +1,10 @@
 # Easy, compact, shortest Docker commands : edjanger
 
-*Tired about repeating docker commands with long parameters ?
-
-Trying to found magic one from history. Putting commands in non standard scripts ?
-
-Try edjanger !*
+> Tired about repeating docker commands with long parameters ?
+>
+> Trying to found magic one from history. Putting commands in non standard scripts ?
+>
+> Try edjanger !
 
 
 
@@ -18,40 +18,41 @@ Try edjanger !*
 
 **Prerequisities for runtime**
 
-- bc
-    - Ubuntu / Debian
+> - bc
 
-        ```bash
-        apt-get install bc
-        ```
+- Ubuntu / Debian
 
-    - CentOS / RHEL / Fedora
+```
+apt-get install bc
+```
 
-        ```bash
-        yum install bc
-        ```
+- CentOS / RHEL / Fedora
 
-- gettext (for envsubst)
-    - Ubuntu / Debian
+```bash
+yum install bc
+```
 
-        ```bash
-        apt-get install gettext
-        ```
+> - gettext (for envsubst)
+- Ubuntu / Debian
 
-    - CentOS / RHEL / Fedora
+```bash
+apt-get install gettext
+```
 
-        ```bash
-        yum install gettext
-        ```
+- CentOS / RHEL / Fedora
 
-    - osx
+```bash
+yum install gettext
+```
 
-        ```bash
-        brew install gettext
-        brew link --force gettext
-        echo "PATH=/usr/local/Cellar/gettext/0.19.8.1/bin/envsubst:$PATH" >> ~/.bashrc
-        source ~/.bashrc
-        ```
+- osx
+
+```bash
+brew install gettext
+brew link --force gettext
+echo "PATH=/usr/local/Cellar/gettext/0.19.8.1/bin/envsubst:$PATH" >> ~/.bashrc
+source ~/.bashrc
+```
 
 - tree command (optional)
 
@@ -309,57 +310,33 @@ Use following structure :
 
 All those command are compact and useful docker shortcuts !
 
-|                         | Description                                                                                 |
- ------------------------ | ------------------------------------------------------------------------------------------- |
-| alias `edjangerbuild`   | run command "docker build" with parameters readed from local edjanger.properties.           |
-| alias `edjangerclean`   | clean all images with none attribute (run docker rmi with "none" filter).                   |
-| alias `edjangercopy`    | run command "docker copy" with parameters readed from local edjanger.properties.            |
-| alias `edjangerexec`    | run command "docker exec" with parameters readed from local edjanger.properties.            |
-| alias `edjangerimages`  | run command "docker exec" with parameters readed from local edjanger.properties.            |
-| alias `edjangerinspect` | run command "docker inspect" with parameters readed from local edjanger.properties.         |
-| alias `edjangerlogs`    | run command "docker logs" with parameters readed from local edjanger.properties.            |
+|                         | Description                                                                     | IMAGE | CONTAINER |
+ ------------------------ | ------------------------------------------------------------------------------- | ----- | --------- |
+| alias `edjangerbuild`   | "docker build" with parameters readed from local edjanger.properties.           |   X   |           |
+| alias `edjangerclean`   | clean all images with none attribute (run docker rmi with "none" filter).       |   X   |           |
+| alias `edjangercopy`    | "docker copy" with parameters readed from local edjanger.properties.            |       |     X     |
+| alias `edjangerexec`    | "docker exec" with parameters readed from local edjanger.properties.            |       |     X     |
+| alias `edjangerimages`  | "docker exec" with parameters readed from local edjanger.properties.            |   X   |           |
+| alias `edjangerinspect` | "docker inspect" with parameters readed from local edjanger.properties.         |       |     X     |
+| alias `edjangerlogs`    | "docker logs" with parameters readed from local edjanger.properties.            |       |     X     |
+| alias `edjangerps`      | "docker ps" with parameters readed from local edjanger.properties.              |       |     X     |
+| alias `edjangerpsa`     | "docker ps -a" with parameters readed from local edjanger.properties.           |       |     X     |
+| alias `edjangerrename`  | "docker rename" with parameters readed from local edjanger.properties.          |       |     X     |
+| alias `edjangerrestart` | "docker restart" with parameters readed from local edjanger.properties.         |       |     X     |
+| alias `edjangerm`       | "docker rm" with parameters readed from local edjanger.properties.              |       |     X     |
+| alias `edjangermi`      | "docker rmi" with parameters readed from local edjanger.properties.             |   X   |           |
+| alias `edjangerun`      | "docker run -d" with parameters readed from local edjanger.properties.          |       |     X     |
+| alias `edjangeruni`     | "docker run -it" with parameters readed from local edjanger.properties.         |       |     X     |
+| alias `edockestart`     | "docker start" with parameters readed from local edjanger.properties.           |       |     X     |
+| alias `edockestop`      | "docker stop" with parameters readed from local edjanger.properties.            |       |     X     |
+| alias `edjangertag`     | "docker tag" with parameters readed from local edjanger.properties.             |       |     X     |
+| alias `edjangertop`     | "docker top" with parameters readed from local edjanger.properties.             |       |     X     |
 
-- #alias edjangerlogs
-Description : run command "docker logs" with parameters readed from local edjanger.properties
 
-- #alias edjangerports
-Description : description of port.
 
-- #alias edjangerps
-Description : run command "docker ps" with parameters readed from local edjanger.properties.
+**Useful docker commands**
 
-- #alias edjangerpsa
-Description : run command "docker ps -a" with parameters readed from local edjanger.properties.
-
-- #alias edjangerrename
-Description : run command "docker rename" with parameters readed from local edjanger.properties.
-
-- #alias edjangerrestart
-Description : run command "docker restart" with parameters readed from local edjanger.properties.
-
-- #alias edjangerm
-Description : run command "docker rm" with parameters readed from local edjanger.properties.
-
-- #alias edjangermi
-Description : run command "docker rmi" with parameters readed from local edjanger.properties.
-
-- #alias edjangerun
-Description : run command "docker run -id" daemon mode, with parameters readed from local edjanger.properties.
-
-- #alias edjangeruni
-Description : run command "docker run -it" interactive mode, with parameters readed from local edjanger.properties.
-
-- #alias edockestart
-Description : run command "docker start" with parameters readed from local edjanger.properties.
-
-- #alias edockestop
-Description : run command "docker stop" with parameters readed from local edjanger.properties.
-
-- #alias edjangertag
-Description : run command "docker tag" with parameters readed from local edjanger.properties.
-
-- #alias edjangertop
-Description : run command "docker top" with parameters readed from local edjanger.properties.
+**Useful edjanger commands**
 
 **help**
 
