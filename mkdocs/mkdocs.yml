@@ -1,0 +1,4 @@
+site_name: edjanger
+theme: cinder
+pages:
+- Home: index.md
