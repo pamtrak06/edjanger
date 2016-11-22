@@ -1,113 +1,863 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        
-        
-        <link rel="shortcut icon" href="./img/favicon.ico">
-
-	<title>edjanger</title>
-
-        <link href="./css/bootstrap-3.0.3.min.css" rel="stylesheet">
-        <link href="./css/font-awesome-4.0.3.css" rel="stylesheet">
-        <link rel="stylesheet" href="./css/highlight.css">
-        <link href="./css/base.css" rel="stylesheet">
-        <link href="./extra.css" rel="stylesheet">
-
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
-
-        
-    </head>
-
-    <body>
-
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-
-        <!-- Collapsed navigation -->
-        <div class="navbar-header">
-            <!-- Expander button -->
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-            <!-- Main title -->
-            <a class="navbar-brand" href=".">edjanger</a>
-        </div>
-
-        <!-- Expanded navigation -->
-        <div class="navbar-collapse collapse">
-            <!-- Main navigation -->
-            <ul class="nav navbar-nav">
-            
-            
-                <li class="active">
-                    <a href=".">Home</a>
-                </li>
-            
-            
-            </ul>
-
-            <!-- Search, Navigation and Repo links -->
-            <ul class="nav navbar-nav navbar-right">
-                <li class="disabled">
-                    <a rel="next" >
-                        <i class="fa fa-arrow-left"></i> Previous
-                    </a>
-                </li>
-                <li class="disabled">
-                    <a rel="prev" >
-                        Next <i class="fa fa-arrow-right"></i>
-                    </a>
-                </li>
-                
-            </ul>
-        </div>
+<!--[if lt IE 7 ]><html class="no-js ie6"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8"><![endif]-->
+<!--[if IE 9 ]><html class="no-js ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    
+      
+        <title>edjanger</title>
+      
+      
+      
+      
+    
+    <meta property="og:url" content="None">
+    <meta property="og:title" content="edjanger">
+    <meta property="og:image" content="None/./">
+    <meta name="apple-mobile-web-app-title" content="edjanger">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="./assets/images/favicon-e565ddfa3b.ico">
+    <link rel="icon" type="image/x-icon" href="./assets/images/favicon-e565ddfa3b.ico">
+    <style>
+      @font-face {
+      	font-family: 'Icon';
+      	src: url('./assets/fonts/icon.eot?52m981');
+      	src: url('./assets/fonts/icon.eot?#iefix52m981')
+               format('embedded-opentype'),
+      		   url('./assets/fonts/icon.woff?52m981')
+               format('woff'),
+      		   url('./assets/fonts/icon.ttf?52m981')
+               format('truetype'),
+      		   url('./assets/fonts/icon.svg?52m981#icon')
+               format('svg');
+      	font-weight: normal;
+      	font-style: normal;
+      }
+    </style>
+    <link rel="stylesheet" href="./assets/stylesheets/application-a422ff04cc.css">
+    
+    
+      
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu+Mono">
+      <style>
+        body, input {
+          font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+        }
+        pre, code {
+          font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+        }
+      </style>
+    
+    
+      <link rel="stylesheet" href="./extra.css">
+    
+    <script src="./assets/javascripts/modernizr-4ab42b99fd.js"></script>
+    
+  </head>
+  
+  
+  
+  <body class=" ">
+    
+    <div class="backdrop">
+      <div class="backdrop-paper"></div>
     </div>
-</div>
-
-        <div class="container">
-            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-    
-        <li class="main active"><a href="#easy-compact-shortest-docker-commands-edjanger">Easy, compact, shortest Docker commands : edjanger</a></li>
+    <input class="toggle" type="checkbox" id="toggle-drawer">
+    <input class="toggle" type="checkbox" id="toggle-search">
+    <label class="toggle-button overlay" for="toggle-drawer"></label>
+    <header class="header">
+      <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
         
+          <span class="path">
+            
+          </span>
+        
+        edjanger
+      </div>
+    </div>
     
-    </ul>
-</div></div>
-            <div class="col-md-9" role="main">
+    
+    <div class="button button-search" role="button" aria-label="Search">
+      <label class="toggle-button icon icon-search" title="Search" for="toggle-search"></label>
+    </div>
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+    </header>
+    <main class="main">
+      
+      <div class="drawer">
+        <nav aria-label="Navigation">
+  
+  <a href="/" class="project">
+    <div class="banner">
+      
+      <div class="name">
+        <strong>
+          edjanger
+          <span class="version">
+            
+          </span>
+        </strong>
+        
+      </div>
+    </div>
+  </a>
+  <div class="scrollable">
+    <div class="wrapper">
+      
+      <div class="toc">
+        <ul>
+          
+            
+  <li>
+    <a class="current" title="Home" href=".">
+      Home
+    </a>
+    
+      
+        
+      
+      
+        <ul>
+          
+            <li class="anchor">
+              <a title="Install" href="#install">
+                Install
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Getting started" href="#getting-started">
+                Getting started
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Best practices" href="#best-practices">
+                Best practices
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Use cases : basic commands" href="#use-cases-basic-commands">
+                Use cases : basic commands
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Use cases : docker" href="#use-cases-docker">
+                Use cases : docker
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Use cases : useful" href="#use-cases-useful">
+                Use cases : useful
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Use case: compose" href="#use-case-compose">
+                Use case: compose
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Use case: template" href="#use-case-template">
+                Use case: template
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Use case : crontab" href="#use-case-crontab">
+                Use case : crontab
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="help" href="#help">
+                help
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Unit tests" href="#unit-tests">
+                Unit tests
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="License" href="#license">
+                License
+              </a>
+            </li>
+          
+        </ul>
+      
+    
+  </li>
 
-<h1 id="easy-compact-shortest-docker-commands-edjanger">Easy, compact, shortest Docker commands : edjanger</h1>
-<p>=================</p>
-<pre><code>Tired about repeating docker commands with long parameters ?
+          
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+      </div>
+      <article class="article">
+        <div class="wrapper">
+          
+          <h1 id="easy-compact-shortest-docker-commands-edjanger">Easy, compact, shortest Docker commands : edjanger</h1>
+<blockquote>
+<p>Tired about repeating docker commands with long parameters ?</p>
+<p>Trying to found magic one from history. Putting commands in non standard scripts ?</p>
+<p>Try edjanger !</p>
+</blockquote>
+<h2 id="install">Install</h2>
+<p><strong>Prerequisities for installation</strong></p>
+<ul>
+<li>
+<p>git</p>
+</li>
+<li>
+<p>zip</p>
+</li>
+</ul>
+<p><strong>Prerequisities for runtime</strong></p>
+<blockquote>
+<ul>
+<li>bc</li>
+</ul>
+</blockquote>
+<ul>
+<li>Ubuntu / Debian</li>
+</ul>
+<pre><code>apt-get install bc
+</code></pre>
 
-Trying to found magic one from history. Putting commands in non standard scripts ?
+<ul>
+<li>CentOS / RHEL / Fedora</li>
+</ul>
+<pre><code class="bash">yum install bc
+</code></pre>
 
-Try edjanger !
+<blockquote>
+<ul>
+<li>gettext (for envsubst)</li>
+<li>Ubuntu / Debian</li>
+</ul>
+</blockquote>
+<pre><code class="bash">apt-get install gettext
+</code></pre>
 
-</code></pre></div>
+<ul>
+<li>CentOS / RHEL / Fedora</li>
+</ul>
+<pre><code class="bash">yum install gettext
+</code></pre>
+
+<ul>
+<li>osx</li>
+</ul>
+<pre><code class="bash">brew install gettext
+brew link --force gettext
+echo &quot;PATH=/usr/local/Cellar/gettext/0.19.8.1/bin/envsubst:$PATH&quot; &gt;&gt; ~/.bashrc
+source ~/.bashrc
+</code></pre>
+
+<ul>
+<li>
+<p>tree command (optional)</p>
+<ul>
+<li>installation from binaries or from sources (http://mama.indstate.edu/users/ice/tree/)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Compatibility</strong></p>
+<ul>
+<li>os x El Capitan 10.11.6</li>
+<li>ubuntu &gt; 14.04</li>
+</ul>
+<p><strong>Installation</strong></p>
+<pre><code class="bash">git clone https://github.com/pamtrak06/edjanger.git /usr/local/bin
+cd edjanger; chmod 755 scripts/*.sh; chmod 755 edjangerinstall.sh
+</code></pre>
+
+<p>Run edjanger installation</p>
+<pre><code class="bash">./edjangerinstall.sh --alias
+</code></pre>
+
+<p>This will install edjanger in /usr/local/bin/edjanger
+If installation fail to install in this directory, try to install it in another</p>
+<pre><code class="bash">edjanger_INSTALL_PATH=&lt;your path&gt;
+git clone https://github.com/pamtrak06/edjanger.git $edjanger_INSTALL_PATH
+cd edjanger; chmod 755 scripts/*.sh; chmod 755 edjangerinstall.sh
+</code></pre>
+
+<p>Execute the generated alias file:</p>
+<pre><code class="bash">. /usr/local/bin/edjanger/edjanger.alias
+</code></pre>
+
+<p>All is done !!! Run this command to see your edjanger aliases</p>
+<pre><code class="bash">alias|grep edjanger
+</code></pre>
+
+<p><strong>Configuration</strong></p>
+<p>~bash~</p>
+<p>Bash as login shell will load /etc/profile, ~/.bash_profile, ~/.bash_login, ~/.profile in the order
+Bash as non-login interactive shell will load ~/.bashrc
+Bash as non-login non-interactive shell will load the configuration specified in environment variable $BASH_ENV</p>
+<p>Add lines at the bottom of one of the following files:  </p>
+<pre><code class="bash">echo &quot;source {edjanger path}/edjanger.alias&quot; &gt;&gt; /etc/profile
+</code></pre>
+
+<p>or</p>
+<pre><code class="bash">echo &quot;source {edjanger path}/edjanger.alias&quot; &gt;&gt; ~/.bash_profile
+</code></pre>
+
+<p>or</p>
+<pre><code class="bash">echo &quot;source {edjanger path}/edjanger.alias&quot; &gt;&gt; ~/.bash_login
+</code></pre>
+
+<p>or</p>
+<pre><code class="bash">echo &quot;source {edjanger path}/edjanger.alias&quot; &gt;&gt; ~/.profile
+</code></pre>
+
+<p>or</p>
+<pre><code class="bash">echo &quot;source {edjanger path}/edjanger.alias&quot; &gt;&gt; ~/.bashrc
+</code></pre>
+
+<p>or</p>
+<pre><code class="bash">echo &quot;source {edjanger path}/edjanger.alias&quot; &gt;&gt; ~/.bash_aliases
+</code></pre>
+
+<p><strong>zsh</strong></p>
+<p>Add lines at the bottom of the file ~/.zshrc</p>
+<pre><code class="bash">echo &quot;source {edjanger path}/edjanger.alias&quot; &gt;&gt; ~/.zshrc
+</code></pre>
+
+<p><strong>ksh</strong></p>
+<p>Add lines at the bottom of the file ~/.profile  </p>
+<pre><code class="bash">echo &quot;source {edjanger path}/edjanger.alias&quot; &gt;&gt; ~/.profile
+</code></pre>
+
+<p><strong>bourne</strong></p>
+<p>Add lines at the bottom of the file ~/.profile  </p>
+<pre><code class="bash">echo &quot;source {edjanger path}/edjanger.alias&quot; &gt;&gt; ~/.profile
+</code></pre>
+
+<p><strong>csh or tcsh</strong></p>
+<p>Add lines at the bottom of the file ~/.login</p>
+<pre><code class="bash">echo &quot;source {edjanger path}/edjanger.alias&quot; &gt;&gt; ~/.login
+</code></pre>
+
+<h3 id="uninstall">Uninstall</h3>
+<p>Remove edjanger aliases by executing:</p>
+<pre><code class="bash">source edjanger.unalias
+</code></pre>
+
+<p>Remove references to source command in ~/.bash_aliases</p>
+<pre><code class="bash">vi ~/.bash_aliases
+</code></pre>
+
+<p>Remove edjanger files</p>
+<pre><code class="bash">rm -rf {edjanger path}/
+</code></pre>
+
+<h2 id="getting-started">Getting started</h2>
+<p>Create an uninitialized edjanger.properties file in your working docker folder:</p>
+<pre><code class="bash">edjangerinit
+</code></pre>
+
+<p>Equivalent to</p>
+<pre><code class="bash">&gt; Initialize edjanger configuration file: edjanger.properties ...
+cp [edjanger path]/templates/edjanger_template.properties [your docker working project]/edjanger.properties
+&gt; Initialize edjanger build folder for Dockerfile: /build ...
+mkdir [your docker working project]/build
+&gt; Initialize Dockerfile: build/Dockerfile ...
+touch [your docker working project]/build/Dockerfile
+</code></pre>
+
+<p>Configure your <a href="https://github.com/pamtrak06/edjanger/blob/master/scripts/templates/edjanger_template.properties">edjanger.properties</a> with correct parameters.
+By example, you could create a Dockerfile with this path:</p>
+<pre><code class="bash">vi [your docker working project]/build/Dockerfile
+</code></pre>
+
+<p>Example of a minimal edjanger configuration:</p>
+<pre><code class="bash">mkdir -p jenkins
+cd jenkins; edjangerinit
+vi edjanger.properties
+</code></pre>
+
+<pre><code class="bash">#  ----------------------------------------------------
+#  The MIT License (MIT)
+#
+#  Copyright (c) 2016 copyright pamtrak06@gmail.com
+#  ----------------------------------------------------
+#  CONFIGURATION    : edjanger_template.properties
+#  DESCRIPTION      : project configuration file for edjanger
+#  CREATOR          : pamtrak06@gmail.com
+#  --------------------------------
+#  VERSION          : 1.0
+#  DATE             : 2016-03-02
+#  COMMENT          : creation
+#  --------------------------------
+#  USAGE            : read by edjanger scripts
+#  ----------------------------------------------------
+#cron_build: flag to start container at boot
+#cron_build=true
+#cron_start: flag to start container at boot
+cron_start=true
+# docker_command:show docker command when edjanger is used
+docker_command=true
+# image_name:image name
+image_name=&quot;devops/jenkins&quot;
+# build_path:path where is found Dockerfile
+build_path=build
+# build_args:build arguments
+# build_args=&quot;--build-arg VAR1='value1' --build-arg VAR2='value2'&quot;
+# build_forcerm:always remove intermediate containers
+# build_forcerm=&quot;--force-rm&quot;
+# build_rm: Remove intermediate containers after a successful build
+# build_rm=&quot;--rm=true&quot;
+# build_nocache:do not use cache when building the image
+# build_nocache=&quot;--no-cache&quot;
+# build_file:name of the Dockerfile (Default is 'PATH/Dockerfile')
+# build_file=&quot;--file Dockerfile&quot;
+# container_name:container
+container_name=&quot;jenkins&quot;
+# exposed_ports:exposed port
+exposed_ports=&quot;-p 8080:8080 -p 50000:50000&quot;
+# shared_volumes:shared volumes
+shared_volumes=&quot;-v $PWD/volumes/jenkins_home:/var/jenkins_home&quot;
+# volumes_from:expose volumes from another container into current container
+# volumes_from=&quot;--volumes-from &lt;container name with exposed volumes&gt;&quot;
+# environment_variables:environnment variables
+# environment_variables=&quot;-e &lt;variable name 1&gt;=&lt;value 1&gt; -e &lt;variable name 2&gt;=&lt;value 2&gt;&quot;
+# linked_containers:linked container
+#linked_containers=&quot;--link dind_1:docker&quot;
+#network_settings:all network settings options
+#network_settings=--dns [] --net host --network-alias [] --add-host &quot;&quot; --mac-address &quot;&quot; --ip &quot;&quot; --ip6 &quot;&quot; --link-local-ip []
+#runtime_constraints_on_resources: runtime constraints on resources
+#runtime_constraints_on_resources=-m, --memory &quot;&quot; --memory-swap &quot;&quot; --memory-reservation &quot;&quot; --kernel-memory &quot;&quot; ...
+# force_rmi:force deletion
+# force_rmi=&quot;--force&quot;
+# command_run:bash command(s) to run
+# command_run=&quot;/bin/bash -c \&quot;cd /; ls -la&quot;
+</code></pre>
+
+<p>Update Dockerfile with jenkins reference from <a href="https://hub.docker.com/_/jenkins/">docker hub</a></p>
+<pre><code class="bash">touch build/Dockerfile
+echo &quot;FROM jenkins:latest&quot; &gt; build/Dockerfile
+</code></pre>
+
+<blockquote>
+<p>Example 1: docker build</p>
+</blockquote>
+<pre><code class="bash">edjangerbuild
+</code></pre>
+
+<p>instead of:</p>
+<pre><code class="bash">docker build -t &quot;devops/jenkins&quot;       build
+</code></pre>
+
+<blockquote>
+<p>Example 2: docker run</p>
+</blockquote>
+<pre><code class="bash">edjangerrun
+</code></pre>
+
+<p>instead of:</p>
+<pre><code class="bash">docker run -dt --name jenkins_1    -p 8080:8080 -p 50000:50000  -v /root/workspace/docker/devops/continuous_integration/jenkins/volumes/jenkins_home:/var/jenkins_home  --link dind_1:docker devops/jenkins
+</code></pre>
+
+<blockquote>
+<p>Example 3: docker stop</p>
+</blockquote>
+<pre><code class="bash">edjangerstop
+</code></pre>
+
+<p>instead of:</p>
+<pre><code class="bash">docker stop $(docker ps -aq | grep &quot;devops/jenkins&quot;)
+</code></pre>
+
+<h2 id="best-practices">Best practices</h2>
+<p>Use a folder for each edjanger project.</p>
+<p>Use following structure :</p>
+<pre><code class="bash">- [edjanger main project folder]
+    - edjanger.properties   &gt; edjanger project configuration
+    - [build]               &gt; docker build folder (contains Dockerfile and files dependencies)
+        -  Dockerfile       &gt; default Dockerfile
+    - volumes               &gt; contains all shared volumes
+</code></pre>
+
+<h2 id="use-cases-basic-commands">Use cases : basic commands</h2>
+<p>All those command are compact and useful docker shortcuts !</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Description</th>
+<th>IMAGE</th>
+<th>CONTAINER</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>alias <code>edjangerbuild</code></td>
+<td>"docker build" with parameters readed from local edjanger.properties.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>alias <code>edjangerclean</code></td>
+<td>clean all images with none attribute (run docker rmi with "none" filter).</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>alias <code>edjangercopy</code></td>
+<td>"docker copy" with parameters readed from local edjanger.properties.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td>alias <code>edjangerexec</code></td>
+<td>"docker exec" with parameters readed from local edjanger.properties.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td>alias <code>edjangerimages</code></td>
+<td>"docker exec" with parameters readed from local edjanger.properties.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>alias <code>edjangerinspect</code></td>
+<td>"docker inspect" with parameters readed from local edjanger.properties.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td>alias <code>edjangerlogs</code></td>
+<td>"docker logs" with parameters readed from local edjanger.properties.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td>alias <code>edjangerps</code></td>
+<td>"docker ps" with parameters readed from local edjanger.properties.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td>alias <code>edjangerpsa</code></td>
+<td>"docker ps -a" with parameters readed from local edjanger.properties.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td>alias <code>edjangerrename</code></td>
+<td>"docker rename" with parameters readed from local edjanger.properties.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td>alias <code>edjangerrestart</code></td>
+<td>"docker restart" with parameters readed from local edjanger.properties.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td>alias <code>edjangerm</code></td>
+<td>"docker rm" with parameters readed from local edjanger.properties.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td>alias <code>edjangermi</code></td>
+<td>"docker rmi" with parameters readed from local edjanger.properties.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>alias <code>edjangerun</code></td>
+<td>"docker run -d" with parameters readed from local edjanger.properties.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td>alias <code>edjangeruni</code></td>
+<td>"docker run -it" with parameters readed from local edjanger.properties.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td>alias <code>edockestart</code></td>
+<td>"docker start" with parameters readed from local edjanger.properties.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td>alias <code>edockestop</code></td>
+<td>"docker stop" with parameters readed from local edjanger.properties.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td>alias <code>edjangertag</code></td>
+<td>"docker tag" with parameters readed from local edjanger.properties.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td>alias <code>edjangertop</code></td>
+<td>"docker top" with parameters readed from local edjanger.properties.</td>
+<td></td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+<h2 id="use-cases-docker">Use cases : docker</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>alias <code>edjangerportdesc</code></td>
+<td>"docker ports" on all running container.</td>
+</tr>
+<tr>
+<td>alias <code>edjangerports</code></td>
+<td>description of port.</td>
+</tr>
+<tr>
+<td>alias <code>edjangermexiteds</code></td>
+<td>docker rm with list of container with exited status.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="use-cases-useful">Use cases : useful</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>alias <code>edjangerabout</code></td>
+<td>about script for edjanger.</td>
+</tr>
+<tr>
+<td>alias <code>edjangercheck</code></td>
+<td>check missing parameters in edjanger.properties.</td>
+</tr>
+<tr>
+<td>alias <code>edjangeralias</code></td>
+<td>print edjanger aliases.</td>
+</tr>
+<tr>
+<td>alias <code>edjangerunalias</code></td>
+<td>help script for edjanger command.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Check missing parameters in edjanger.properties</strong></p>
+<pre><code class="bash">edjangercheck
+Check edjanger.properties...
+  - check &quot;docker_command&quot;
+  - check &quot;image_name&quot;
+  - check &quot;build_path&quot;
+  - check &quot;build_args&quot;
+    WARNING: parameter is missing !!!
+  - check &quot;build_forcerm&quot;
+    WARNING: parameter is missing !!!
+  - check &quot;build_rm&quot;
+    WARNING: parameter is missing !!!
+  - check &quot;build_nocache&quot;
+    WARNING: parameter is missing !!!
+  - check &quot;build_file&quot;
+    WARNING: parameter is missing !!!
+  - check &quot;container_name&quot;
+  - check &quot;exposed_ports&quot;
+  - check &quot;shared_volumes&quot;
+    WARNING: parameter is missing !!!
+  - check &quot;volumes_from&quot;
+    WARNING: parameter is missing !!!
+  - check &quot;environment_variables&quot;
+    WARNING: parameter is missing !!!
+  - check &quot;linked_containers&quot;
+    WARNING: parameter is missing !!!
+  - check &quot;force_rmi&quot;
+    WARNING: parameter is missing !!!
+  - check &quot;command_run&quot;
+    WARNING: parameter is missing !!!
+  =&gt; STATUS of configuration is: some parameters are undefined
+</code></pre>
+
+<p>Remark : even when parameters are missing in edjanger.properties, they are initialized empty.</p>
+<h2 id="use-case-compose">Use case: compose</h2>
+<p>From an existing edjanger root path project structure, call edcokercompose.
+Script will parse all edjanger.properties in subfolders and create docker-compose.yaml at upper path.</p>
+<pre><code class="bash">edjangercompose
+vi docker-compose.yaml
+</code></pre>
+
+<h2 id="use-case-template">Use case: template</h2>
+<blockquote>
+<p>Prerequisities : install gettext (for envsubst)</p>
+</blockquote>
+<ul>
+<li>
+<p>Download and try example from https://github.com/pamtrak06/edjanger/tree/master/scripts/templates/templating, run:</p>
+</li>
+<li>
+<p>Deploy 2 apache web sever (web1 and web2) with specific ports and shared volumes for a "production" environement.
+    <code>bash
+    ./deploy_run.sh production 5</code></p>
+</li>
+<li>
+<p>Deploy 2 apache web server (web1 and web2) with specific ports and shared volumes for an "integration" environement.
+    <code>bash
+    ./deploy_run.sh integration 5</code></p>
+</li>
+<li>
+<p>Instructions
+From an existing edjanger root path project structure, do following</p>
+<ul>
+<li>rename all edjanger.properties to edjanger.template</li>
+<li>define variable for element to be replaced with variable value from configuration file</li>
+<li>create configuration files (<name>.properties) containing SHELL-FORMAT variable<ul>
+<li>in each folder containing edjanger.properties (each configuration file must hase same name e.g.: production.properties)
+or</li>
+<li>only in root folder (e.g.: production.properties)</li>
+</ul>
+</li>
+<li>call edjangertemplate with name of configuration file</li>
+</ul>
+</li>
+</ul>
+<pre><code>edjangertemplate &lt;name&gt;.properties
+</code></pre>
+
+<p>Example of edjangertemplate invocation</p>
+<pre><code>edjangertemplate production.properties
+</code></pre>
+
+<p>Example of production.properties content</p>
+<pre><code>#!/bin/bash
+export HTTPD_PORT_80=80
+export HTTPD_PORT_443=443
+</code></pre>
+
+<p>Example of edjanger.template content</p>
+<pre><code>#exposed_ports:exposed port
+exposed_ports=&quot;-p ${HTTPD_PORT_80}:80 -p ${HTTPD_PORT_443}:443&quot;
+</code></pre>
+
+<p>Script will find all edjanger.template and replace variables from root or folder(s) configuration(s) file(s) to produce edjanger.properties files.</p>
+<p>Example of edjanger.properties produced</p>
+<pre><code>#exposed_ports:exposed port
+exposed_ports=&quot;-p 80:80 -p 443:443&quot;
+</code></pre>
+
+<h2 id="use-case-crontab">Use case : crontab</h2>
+<p>Configure automatic container restart at boot</p>
+<p>To configure automatic restart of container at boot, configure edjanger.properties files :
+- activate cron_start=true to start existing container at boot
+- activate cron_build=true to build and start a new container at boot</p>
+<p>Configure crontab with following parameters</p>
+<pre><code>crontab -e
+@reboot {edjangerpath}/cron_build_start.sh {edjanger properties path}
+@reboot {edjangerpath}/cron_start_only.sh {edjanger properties path}
+</code></pre>
+
+<p>Example:</p>
+<pre><code>crontab -e
+@reboot /opt/edjanger/scripts/cron_build_start.sh /root/workspace/docker
+@reboot /opt/edjanger/scripts/cron_start_only.sh /root/workspace/docker
+</code></pre>
+
+<h2 id="help">help</h2>
+<p>For each commands, see edjangerhelp 'command' for list of parameters read in edjanger.properties and arguments.</p>
+<h2 id="unit-tests">Unit tests</h2>
+<p>Tests use following</p>
+<ul>
+<li><a href="https://travis-ci.org/pamtrak06/edjanger">travis</a></li>
+<li><a href="https://github.com/sstephenson/bats">bats</a></li>
+</ul>
+<h2 id="license">License</h2>
+<p>edjanger is under  "MIT License (MIT)" see <a href="https://github.com/pamtrak06/edjanger/blob/master/LICENSE">LICENSE file</a>.</p>
+          <aside class="copyright" role="note">
+            
+            Documentation built with
+            <a href="http://www.mkdocs.org" target="_blank">MkDocs</a>
+            using the
+            <a href="http://squidfunk.github.io/mkdocs-material/" target="_blank">
+              Material
+            </a>
+            theme.
+          </aside>
+          
+            <footer class="footer">
+              
+            </footer>
+          
         </div>
-
-	<footer class="col-md-12">
-		<hr>
-		
-		<p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
-	</footer>
-
-
-        <script src="./js/jquery-1.10.2.min.js"></script>
-        <script src="./js/bootstrap-3.0.3.min.js"></script>
-        <script src="./js/highlight.pack.js"></script>
-        <script src="./js/base.js"></script>
-    </body>
+      </article>
+      <div class="results" role="status" aria-live="polite">
+        <div class="scrollable">
+          <div class="wrapper">
+            <div class="meta"></div>
+            <div class="list"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      var base_url = '.';
+      var repo_id  = '';
+    </script>
+    <script src="./assets/javascripts/application-997097ee0c.js"></script>
+    
+    
+  </body>
 </html>
