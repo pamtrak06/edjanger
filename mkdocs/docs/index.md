@@ -6,7 +6,7 @@
 >
 > Try edjanger !
 
-
+![Architecture](images/edjanger_archi.png)
 
 ## Install
 
