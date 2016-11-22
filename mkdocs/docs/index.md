@@ -308,45 +308,45 @@ Use following structure :
 
 All those command are compact and useful docker shortcuts !
 
-|                         | Description                                                                     | IMAGE | CONTAINER |
- ------------------------ | ------------------------------------------------------------------------------- | ----- | --------- |
-| alias `edjangerbuild`   | "docker build" with parameters readed from local edjanger.properties.           |   X   |           |
-| alias `edjangerclean`   | clean all images with none attribute (run docker rmi with "none" filter).       |   X   |           |
-| alias `edjangercopy`    | "docker copy" with parameters readed from local edjanger.properties.            |       |     X     |
-| alias `edjangerexec`    | "docker exec" with parameters readed from local edjanger.properties.            |       |     X     |
-| alias `edjangerimages`  | "docker exec" with parameters readed from local edjanger.properties.            |   X   |           |
-| alias `edjangerinspect` | "docker inspect" with parameters readed from local edjanger.properties.         |       |     X     |
-| alias `edjangerlogs`    | "docker logs" with parameters readed from local edjanger.properties.            |       |     X     |
-| alias `edjangerps`      | "docker ps" with parameters readed from local edjanger.properties.              |       |     X     |
-| alias `edjangerpsa`     | "docker ps -a" with parameters readed from local edjanger.properties.           |       |     X     |
-| alias `edjangerrename`  | "docker rename" with parameters readed from local edjanger.properties.          |       |     X     |
-| alias `edjangerrestart` | "docker restart" with parameters readed from local edjanger.properties.         |       |     X     |
-| alias `edjangerm`       | "docker rm" with parameters readed from local edjanger.properties.              |       |     X     |
-| alias `edjangermi`      | "docker rmi" with parameters readed from local edjanger.properties.             |   X   |           |
-| alias `edjangerun`      | "docker run -d" with parameters readed from local edjanger.properties.          |       |     X     |
-| alias `edjangeruni`     | "docker run -it" with parameters readed from local edjanger.properties.         |       |     X     |
-| alias `edockestart`     | "docker start" with parameters readed from local edjanger.properties.           |       |     X     |
-| alias `edockestop`      | "docker stop" with parameters readed from local edjanger.properties.            |       |     X     |
-| alias `edjangertag`     | "docker tag" with parameters readed from local edjanger.properties.             |       |     X     |
-| alias `edjangertop`     | "docker top" with parameters readed from local edjanger.properties.             |       |     X     |
+|                   | Description                                                                     | IMAGE | CONTAINER |
+ ------------------ | ------------------------------------------------------------------------------- | ----- | --------- |
+| `edjangerbuild`   | "docker build" with parameters readed from local edjanger.properties.           |   X   |           |
+| `edjangerclean`   | clean all images with none attribute (run docker rmi with "none" filter).       |   X   |           |
+| `edjangercopy`    | "docker copy" with parameters readed from local edjanger.properties.            |       |     X     |
+| `edjangerexec`    | "docker exec" with parameters readed from local edjanger.properties.            |       |     X     |
+| `edjangerimages`  | "docker exec" with parameters readed from local edjanger.properties.            |   X   |           |
+| `edjangerinspect` | "docker inspect" with parameters readed from local edjanger.properties.         |       |     X     |
+| `edjangerlogs`    | "docker logs" with parameters readed from local edjanger.properties.            |       |     X     |
+| `edjangerps`      | "docker ps" with parameters readed from local edjanger.properties.              |       |     X     |
+| `edjangerpsa`     | "docker ps -a" with parameters readed from local edjanger.properties.           |       |     X     |
+| `edjangerrename`  | "docker rename" with parameters readed from local edjanger.properties.          |       |     X     |
+| `edjangerrestart` | "docker restart" with parameters readed from local edjanger.properties.         |       |     X     |
+| `edjangerm`       | "docker rm" with parameters readed from local edjanger.properties.              |       |     X     |
+| `edjangermi`      | "docker rmi" with parameters readed from local edjanger.properties.             |   X   |           |
+| `edjangerun`      | "docker run -d" with parameters readed from local edjanger.properties.          |       |     X     |
+| `edjangeruni`     | "docker run -it" with parameters readed from local edjanger.properties.         |       |     X     |
+| `edockestart`     | "docker start" with parameters readed from local edjanger.properties.           |       |     X     |
+| `edockestop`      | "docker stop" with parameters readed from local edjanger.properties.            |       |     X     |
+| `edjangertag`     | "docker tag" with parameters readed from local edjanger.properties.             |       |     X     |
+| `edjangertop`     | "docker top" with parameters readed from local edjanger.properties.             |       |     X     |
 
 ## Use cases : docker
 
-|                           | Description                                                                     |
- -------------------------- | ------------------------------------------------------------------------------- |
-| alias `edjangerportdesc`  | "docker ports" on all running container.                                        |
-| alias `edjangerports`     | description of port.                                                            |
-| alias `edjangermexiteds`  | docker rm with list of container with exited status.                            |
+|                     | Description                                                                   |
+| ------------------- | ----------------------------------------------------------------------------- |
+| `edjangerportdesc`  | "docker ports" on all running container.                                      |
+| `edjangerports`     | description of port.                                                          |
+| `edjangermexiteds`  | docker rm with list of container with exited status.                          |
 
 
 ## Use cases : useful
 
-|                           | Description                                                                     |
- -------------------------- | ------------------------------------------------------------------------------- |
-| alias `edjangerabout`     | about script for edjanger.                                                      |
-| alias `edjangercheck`     | check missing parameters in edjanger.properties.                                |
-| alias `edjangeralias`     | print edjanger aliases.                                                         |
-| alias `edjangerunalias`   | help script for edjanger command.                                               |
+|                     | Description                                                                   |
+| ------------------- | ----------------------------------------------------------------------------- |
+| `edjangerabout`     | about script for edjanger.                                                    |
+| `edjangercheck`     | check missing parameters in edjanger.properties.                              |
+| `edjangeralias`     | print edjanger aliases.                                                       |
+| `edjangerunalias`   | help script for edjanger command.                                             |
 
 
 **Check missing parameters in edjanger.properties**
