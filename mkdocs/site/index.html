@@ -317,7 +317,7 @@ cd edjanger; chmod 755 scripts/*.sh; chmod 755 edjangerinstall.sh
 </code></pre>
 
 <p>This will install edjanger in /usr/local/bin/edjanger
-If installation fail to install in this directory, try to install it in another</p>
+If installation fail to install in this directory, try to install it in another, see <a href="http://www.pathname.com/fhs/pub/fhs-2.3.pdf">Linux Filesystem Hierarchy Standard</a> for potential paths.</p>
 <pre><code class="bash">EDJANGER_INSTALL_PATH=&lt;your path&gt;
 git clone https://github.com/pamtrak06/edjanger.git $EDJANGER_INSTALL_PATH
 cd edjanger; chmod 755 scripts/*.sh; chmod 755 edjangerinstall.sh
@@ -745,7 +745,7 @@ vi docker-compose.yaml
 </blockquote>
 <ul>
 <li>
-<p>Download and try example from https://github.com/pamtrak06/edjanger/tree/master/scripts/templates/templating, run:</p>
+<p>Download and try example from <a href="https://github.com/pamtrak06/edjanger/tree/master/scripts/templates/templating">https://github.com/pamtrak06/edjanger/tree/master/scripts/templates/templating</a>, run:</p>
 </li>
 <li>
 <p>Deploy 2 apache web sever (web1 and web2) with specific ports and shared volumes for a "production" environement.
@@ -821,6 +821,10 @@ exposed_ports=&quot;-p 80:80 -p 443:443&quot;
 <ul>
 <li><a href="https://travis-ci.org/pamtrak06/edjanger">travis</a></li>
 <li><a href="https://github.com/sstephenson/bats">bats</a></li>
+</ul>
+<p>Result Tests are visible here</p>
+<ul>
+<li><a href="https://travis-ci.org/pamtrak06/edjanger">pamtrak06/edjanger from Travis</a></li>
 </ul>
 <p>Run tests :</p>
 <pre><code>cd [edjanger path];

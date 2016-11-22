@@ -80,7 +80,7 @@ Run edjanger installation
 ```
 
 This will install edjanger in /usr/local/bin/edjanger
-If installation fail to install in this directory, try to install it in another
+If installation fail to install in this directory, try to install it in another, see [Linux Filesystem Hierarchy Standard](http://www.pathname.com/fhs/pub/fhs-2.3.pdf) for potential paths.
 
 ```bash
 EDJANGER_INSTALL_PATH=<your path>
@@ -405,7 +405,7 @@ vi docker-compose.yaml
 
 > Prerequisities : install gettext (for envsubst)
 
-- Download and try example from https://github.com/pamtrak06/edjanger/tree/master/scripts/templates/templating, run:
+- Download and try example from [https://github.com/pamtrak06/edjanger/tree/master/scripts/templates/templating](https://github.com/pamtrak06/edjanger/tree/master/scripts/templates/templating), run:
 
 - Deploy 2 apache web sever (web1 and web2) with specific ports and shared volumes for a "production" environement.
     ```bash
@@ -496,6 +496,10 @@ Tests use following
 
 - [travis](https://travis-ci.org/pamtrak06/edjanger)
 - [bats](https://github.com/sstephenson/bats)
+
+Result Tests are visible here
+
+- [pamtrak06/edjanger from Travis](https://travis-ci.org/pamtrak06/edjanger)
 
 Run tests :
 
