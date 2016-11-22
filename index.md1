@@ -1,0 +1,244 @@
+# Easy, compact, shortest Docker commands : edjanger
+
+*Tired about repeating docker commands with long parameters ?
+
+Trying to found magic one from history. Putting commands in non standard scripts ?
+
+Try edjanger !*
+
+
+# Table of content
+- [Install](#how-to-install-edjanger)
+- [Get started](#getting-started-with-edjanger)
+- [Contribute](#how-to-install-edjanger)
+- [Tests](#tests)
+- [License](#license)
+
+
+## How to install edjanger
+([go up to table of content](#table-of-content))
+### Prerequisities
+- install bc command
+- install gettext (for envsubst)
+    osx:
+      brew install gettext
+      brew link --force gettext
+      echo "PATH=/usr/local/Cellar/gettext/0.19.8.1/bin/envsubst:$PATH" >> ~/.bashrc
+      source ~/.bashrc
+- optionnal: install tree command (from binaries or from sources http://mama.indstate.edu/users/ice/tree/)
+
+- OS compliant
+- os x El Capitan 10.11.6
+- ubuntu > 14.04
+
+### Installation
+```bash
+git clone https://github.com/pamtrak06/edjanger.git /usr/local/bin
+cd edjanger; chmod 755 scripts/*.sh; chmod 755 edjangerinstall.sh
+```
+
+Run edjanger installation
+```bash
+./edjangerinstall.sh --alias
+```
+
+This will install edjanger in /usr/local/bin/edjanger
+If installation fail to install in this directory, try to install it in another
+
+```bash
+edjanger_INSTALL_PATH=<your path>
+git clone https://github.com/pamtrak06/edjanger.git $edjanger_INSTALL_PATH
+cd edjanger; chmod 755 scripts/*.sh; chmod 755 edjangerinstall.sh
+```
+
+Execute the generated alias file:
+```bash
+. /usr/local/bin/edjanger/edjanger.alias
+```
+
+All is done !!! Run this command to see your edjanger aliases
+```bash
+alias|grep edjanger
+```
+
+### Configuration
+
+**bash**
+
+Bash as login shell will load /etc/profile, ~/.bash_profile, ~/.bash_login, ~/.profile in the order
+Bash as non-login interactive shell will load ~/.bashrc
+Bash as non-login non-interactive shell will load the configuration specified in environment variable $BASH_ENV
+
+Add lines at the bottom of one of the following files:  
+```bash
+echo "source {edjanger path}/edjanger.alias" >> /etc/profile
+```
+or
+```bash
+echo "source {edjanger path}/edjanger.alias" >> ~/.bash_profile
+```
+or
+```bash
+echo "source {edjanger path}/edjanger.alias" >> ~/.bash_login
+```
+or
+```bash
+echo "source {edjanger path}/edjanger.alias" >> ~/.profile
+```
+or
+```bash
+echo "source {edjanger path}/edjanger.alias" >> ~/.bashrc
+```
+or
+```bash
+echo "source {edjanger path}/edjanger.alias" >> ~/.bash_aliases
+```
+
+**zsh**
+
+Add lines at the bottom of the file ~/.zshrc
+```bash
+echo "source {edjanger path}/edjanger.alias" >> ~/.zshrc
+```
+
+**ksh**
+
+Add lines at the bottom of the file ~/.profile  
+```bash
+echo "source {edjanger path}/edjanger.alias" >> ~/.profile
+```
+
+**bourne**
+
+Add lines at the bottom of the file ~/.profile  
+```bash
+echo "source {edjanger path}/edjanger.alias" >> ~/.profile
+```
+
+**csh or tcsh**
+
+Add lines at the bottom of the file ~/.login
+```bash
+echo "source {edjanger path}/edjanger.alias" >> ~/.login
+```
+
+### Uninstall
+
+Remove edjanger aliases by executing:
+```bash
+source edjanger.unalias
+```
+
+Remove references to source command in ~/.bash_aliases
+```bash
+vi ~/.bash_aliases
+```
+
+Remove edjanger files
+```bash
+rm -rf {edjanger path}/
+```
+
+## Getting started with edjanger
+([go up to table of content](#table-of-content))
+
+Create an uninitialized edjanger.properties file in your working docker folder:
+```bash
+edjangerinit
+```
+Equivalent to
+```bash
+> Initialize edjanger configuration file: edjanger.properties ...
+cp [edjanger path]/templates/edjanger_template.properties [your docker working project]/edjanger.properties
+> Initialize edjanger build folder for Dockerfile: /build ...
+mkdir [your docker working project]/build
+> Initialize Dockerfile: build/Dockerfile ...
+touch [your docker working project]/build/Dockerfile
+```
+
+Configure your [edjanger.properties](https://github.com/pamtrak06/edjanger/blob/master/scripts/templates/edjanger_template.properties) with correct parameters.
+By example, you could create a Dockerfile with this path:
+```bash
+vi [your docker working project]/build/Dockerfile
+```
+Example of a minimal edjanger configuration:
+```bash
+mkdir -p jenkins
+cd jenkins; edjangerinit
+vi edjanger.properties
+```
+```bash
+#  ----------------------------------------------------
+#  The MIT License (MIT)
+#
+#  Copyright (c) 2016 copyright pamtrak06@gmail.com
+#  ----------------------------------------------------
+#  CONFIGURATION    : edjanger_template.properties
+#  DESCRIPTION      : project configuration file for edjanger
+#  CREATOR          : pamtrak06@gmail.com
+#  --------------------------------
+#  VERSION          : 1.0
+#  DATE             : 2016-03-02
+#  COMMENT          : creation
+#  --------------------------------
+#  USAGE            : read by edjanger scripts
+#  ----------------------------------------------------
+#cron_build: flag to start container at boot
+#cron_build=true
+#cron_start: flag to start container at boot
+cron_start=true
+# docker_command:show docker command when edjanger is used
+docker_command=true
+# image_name:image name
+image_name="devops/jenkins"
+# build_path:path where is found Dockerfile
+build_path=build
+# build_args:build arguments
+# build_args="--build-arg VAR1='value1' --build-arg VAR2='value2'"
+# build_forcerm:always remove intermediate containers
+# build_forcerm="--force-rm"
+# build_rm: Remove intermediate containers after a successful build
+# build_rm="--rm=true"
+# build_nocache:do not use cache when building the image
+# build_nocache="--no-cache"
+# build_file:name of the Dockerfile (Default is 'PATH/Dockerfile')
+# build_file="--file Dockerfile"
+# container_name:container
+container_name="jenkins"
+# exposed_ports:exposed port
+exposed_ports="-p 8080:8080 -p 50000:50000"
+# shared_volumes:shared volumes
+shared_volumes="-v $PWD/volumes/jenkins_home:/var/jenkins_home"
+# volumes_from:expose volumes from another container into current container
+# volumes_from="--volumes-from <container name with exposed volumes>"
+# environment_variables:environnment variables
+# environment_variables="-e <variable name 1>=<value 1> -e <variable name 2>=<value 2>"
+# linked_containers:linked container
+#linked_containers="--link dind_1:docker"
+#network_settings:all network settings options
+#network_settings=--dns [] --net host --network-alias [] --add-host "" --mac-address "" --ip "" --ip6 "" --link-local-ip []
+#runtime_constraints_on_resources: runtime constraints on resources
+#runtime_constraints_on_resources=-m, --memory "" --memory-swap "" --memory-reservation "" --kernel-memory "" ...
+# force_rmi:force deletion
+# force_rmi="--force"
+# command_run:bash command(s) to run
+# command_run="/bin/bash -c \"cd /; ls -la"
+```
+
+Update Dockerfile with jenkins reference from [docker hub](https://hub.docker.com/_/jenkins/)
+```bash
+touch build/Dockerfile
+echo "FROM jenkins:latest" > build/Dockerfile
+```
+
+## Tests
+([go up to table of content](#table-of-content))
+
+Tests use following
+- [travis](https://travis-ci.org/pamtrak06/edjanger)
+- [bats](https://github.com/sstephenson/bats)
+
+## License
+([go up to table of content](#table-of-content))
+
+edjanger is under  "MIT License (MIT)" see [LICENSE file](https://github.com/pamtrak06/edjanger/blob/master/LICENSE).

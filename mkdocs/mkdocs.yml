@@ -3,6 +3,7 @@ site_name: edjanger
 #theme: readthedocs
 #theme: bootstrap
 theme: material
+#theme : cluster
 extra_css: [extra.css]
 pages:
 - Home: index.md
