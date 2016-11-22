@@ -13,10 +13,14 @@
 **Prerequisities for installation**
 
 - git
-
 - zip
 
 **Prerequisities for runtime**
+
+- bc
+- gettext (for envsubst)
+
+<!---
 
 > - bc
 
@@ -57,7 +61,7 @@ source ~/.bashrc
 - tree command (optional)
 
     - installation from binaries or from sources (http://mama.indstate.edu/users/ice/tree/)
-
+-->
 **Compatibility**
 
 - os x El Capitan 10.11.6
@@ -79,8 +83,8 @@ This will install edjanger in /usr/local/bin/edjanger
 If installation fail to install in this directory, try to install it in another
 
 ```bash
-edjanger_INSTALL_PATH=<your path>
-git clone https://github.com/pamtrak06/edjanger.git $edjanger_INSTALL_PATH
+EDJANGER_INSTALL_PATH=<your path>
+git clone https://github.com/pamtrak06/edjanger.git $EDJANGER_INSTALL_PATH
 cd edjanger; chmod 755 scripts/*.sh; chmod 755 edjangerinstall.sh
 ```
 

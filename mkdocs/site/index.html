@@ -17,10 +17,12 @@
     
     <meta property="og:url" content="None">
     <meta property="og:title" content="edjanger">
-    <meta property="og:image" content="None/./">
+    <meta property="og:image" content="None/./images/logo.png">
     <meta name="apple-mobile-web-app-title" content="edjanger">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+      <link rel="apple-touch-icon" href="./images/logo.png">
     
     
     <link rel="shortcut icon" type="image/x-icon" href="./assets/images/favicon-e565ddfa3b.ico">
@@ -43,22 +45,22 @@
     </style>
     <link rel="stylesheet" href="./assets/stylesheets/application-a422ff04cc.css">
     
+      <link rel="stylesheet" href="./assets/stylesheets/palettes-05ab2406df.css">
+    
     
       
       
       
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu+Mono">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto+Mono">
       <style>
         body, input {
-          font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+          font-family: 'Roboto', Helvetica, Arial, sans-serif;
         }
         pre, code {
-          font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+          font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
         }
       </style>
     
-    
-      <link rel="stylesheet" href="./extra.css">
     
     <script src="./assets/javascripts/modernizr-4ab42b99fd.js"></script>
     
@@ -66,7 +68,7 @@
   
   
   
-  <body class=" ">
+  <body class="palette-primary-indigo palette-accent-light-blue">
     
     <div class="backdrop">
       <div class="backdrop-paper"></div>
@@ -120,6 +122,10 @@
   
   <a href="/" class="project">
     <div class="banner">
+      
+        <div class="logo">
+          <img src="./images/logo.png">
+        </div>
       
       <div class="name">
         <strong>
@@ -247,63 +253,54 @@
 <h2 id="install">Install</h2>
 <p><strong>Prerequisities for installation</strong></p>
 <ul>
-<li>
-<p>git</p>
-</li>
-<li>
-<p>zip</p>
-</li>
+<li>git</li>
+<li>zip</li>
 </ul>
 <p><strong>Prerequisities for runtime</strong></p>
-<blockquote>
 <ul>
 <li>bc</li>
-</ul>
-</blockquote>
-<ul>
-<li>Ubuntu / Debian</li>
-</ul>
-<pre><code>apt-get install bc
-</code></pre>
-
-<ul>
-<li>CentOS / RHEL / Fedora</li>
-</ul>
-<pre><code class="bash">yum install bc
-</code></pre>
-
-<blockquote>
-<ul>
 <li>gettext (for envsubst)</li>
-<li>Ubuntu / Debian</li>
 </ul>
-</blockquote>
-<pre><code class="bash">apt-get install gettext
-</code></pre>
+<!---
 
-<ul>
-<li>CentOS / RHEL / Fedora</li>
-</ul>
-<pre><code class="bash">yum install gettext
-</code></pre>
+> - bc
 
-<ul>
-<li>osx</li>
-</ul>
-<pre><code class="bash">brew install gettext
-brew link --force gettext
-echo &quot;PATH=/usr/local/Cellar/gettext/0.19.8.1/bin/envsubst:$PATH&quot; &gt;&gt; ~/.bashrc
-source ~/.bashrc
-</code></pre>
+- Ubuntu / Debian
 
-<ul>
-<li>
-<p>tree command (optional)</p>
-<ul>
-<li>installation from binaries or from sources (http://mama.indstate.edu/users/ice/tree/)</li>
-</ul>
-</li>
-</ul>
+
+wzxhzdk:0
+
+
+- CentOS / RHEL / Fedora
+
+
+wzxhzdk:1
+
+
+> - gettext (for envsubst)
+- Ubuntu / Debian
+
+
+wzxhzdk:2
+
+
+- CentOS / RHEL / Fedora
+
+
+wzxhzdk:3
+
+
+- osx
+
+
+wzxhzdk:4
+
+
+- tree command (optional)
+
+    - installation from binaries or from sources (http://mama.indstate.edu/users/ice/tree/)
+-->
+
 <p><strong>Compatibility</strong></p>
 <ul>
 <li>os x El Capitan 10.11.6</li>
@@ -320,8 +317,8 @@ cd edjanger; chmod 755 scripts/*.sh; chmod 755 edjangerinstall.sh
 
 <p>This will install edjanger in /usr/local/bin/edjanger
 If installation fail to install in this directory, try to install it in another</p>
-<pre><code class="bash">edjanger_INSTALL_PATH=&lt;your path&gt;
-git clone https://github.com/pamtrak06/edjanger.git $edjanger_INSTALL_PATH
+<pre><code class="bash">EDJANGER_INSTALL_PATH=&lt;your path&gt;
+git clone https://github.com/pamtrak06/edjanger.git $EDJANGER_INSTALL_PATH
 cd edjanger; chmod 755 scripts/*.sh; chmod 755 edjangerinstall.sh
 </code></pre>
 
@@ -535,115 +532,115 @@ echo &quot;FROM jenkins:latest&quot; &gt; build/Dockerfile
 </thead>
 <tbody>
 <tr>
-<td>alias <code>edjangerbuild</code></td>
+<td><code>edjangerbuild</code></td>
 <td>"docker build" with parameters readed from local edjanger.properties.</td>
 <td>X</td>
 <td></td>
 </tr>
 <tr>
-<td>alias <code>edjangerclean</code></td>
+<td><code>edjangerclean</code></td>
 <td>clean all images with none attribute (run docker rmi with "none" filter).</td>
 <td>X</td>
 <td></td>
 </tr>
 <tr>
-<td>alias <code>edjangercopy</code></td>
+<td><code>edjangercopy</code></td>
 <td>"docker copy" with parameters readed from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td>alias <code>edjangerexec</code></td>
+<td><code>edjangerexec</code></td>
 <td>"docker exec" with parameters readed from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td>alias <code>edjangerimages</code></td>
+<td><code>edjangerimages</code></td>
 <td>"docker exec" with parameters readed from local edjanger.properties.</td>
 <td>X</td>
 <td></td>
 </tr>
 <tr>
-<td>alias <code>edjangerinspect</code></td>
+<td><code>edjangerinspect</code></td>
 <td>"docker inspect" with parameters readed from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td>alias <code>edjangerlogs</code></td>
+<td><code>edjangerlogs</code></td>
 <td>"docker logs" with parameters readed from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td>alias <code>edjangerps</code></td>
+<td><code>edjangerps</code></td>
 <td>"docker ps" with parameters readed from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td>alias <code>edjangerpsa</code></td>
+<td><code>edjangerpsa</code></td>
 <td>"docker ps -a" with parameters readed from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td>alias <code>edjangerrename</code></td>
+<td><code>edjangerrename</code></td>
 <td>"docker rename" with parameters readed from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td>alias <code>edjangerrestart</code></td>
+<td><code>edjangerrestart</code></td>
 <td>"docker restart" with parameters readed from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td>alias <code>edjangerm</code></td>
+<td><code>edjangerm</code></td>
 <td>"docker rm" with parameters readed from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td>alias <code>edjangermi</code></td>
+<td><code>edjangermi</code></td>
 <td>"docker rmi" with parameters readed from local edjanger.properties.</td>
 <td>X</td>
 <td></td>
 </tr>
 <tr>
-<td>alias <code>edjangerun</code></td>
+<td><code>edjangerun</code></td>
 <td>"docker run -d" with parameters readed from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td>alias <code>edjangeruni</code></td>
+<td><code>edjangeruni</code></td>
 <td>"docker run -it" with parameters readed from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td>alias <code>edockestart</code></td>
+<td><code>edockestart</code></td>
 <td>"docker start" with parameters readed from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td>alias <code>edockestop</code></td>
+<td><code>edockestop</code></td>
 <td>"docker stop" with parameters readed from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td>alias <code>edjangertag</code></td>
+<td><code>edjangertag</code></td>
 <td>"docker tag" with parameters readed from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td>alias <code>edjangertop</code></td>
+<td><code>edjangertop</code></td>
 <td>"docker top" with parameters readed from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
@@ -660,15 +657,15 @@ echo &quot;FROM jenkins:latest&quot; &gt; build/Dockerfile
 </thead>
 <tbody>
 <tr>
-<td>alias <code>edjangerportdesc</code></td>
+<td><code>edjangerportdesc</code></td>
 <td>"docker ports" on all running container.</td>
 </tr>
 <tr>
-<td>alias <code>edjangerports</code></td>
+<td><code>edjangerports</code></td>
 <td>description of port.</td>
 </tr>
 <tr>
-<td>alias <code>edjangermexiteds</code></td>
+<td><code>edjangermexiteds</code></td>
 <td>docker rm with list of container with exited status.</td>
 </tr>
 </tbody>
@@ -683,19 +680,19 @@ echo &quot;FROM jenkins:latest&quot; &gt; build/Dockerfile
 </thead>
 <tbody>
 <tr>
-<td>alias <code>edjangerabout</code></td>
+<td><code>edjangerabout</code></td>
 <td>about script for edjanger.</td>
 </tr>
 <tr>
-<td>alias <code>edjangercheck</code></td>
+<td><code>edjangercheck</code></td>
 <td>check missing parameters in edjanger.properties.</td>
 </tr>
 <tr>
-<td>alias <code>edjangeralias</code></td>
+<td><code>edjangeralias</code></td>
 <td>print edjanger aliases.</td>
 </tr>
 <tr>
-<td>alias <code>edjangerunalias</code></td>
+<td><code>edjangerunalias</code></td>
 <td>help script for edjanger command.</td>
 </tr>
 </tbody>

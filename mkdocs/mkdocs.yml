@@ -4,6 +4,20 @@ site_name: edjanger
 #theme: bootstrap
 theme: material
 #theme : cluster
-extra_css: [extra.css]
+#extra_css: [extra.css]
 pages:
 - Home: index.md
+extra:
+  logo: 'images/logo.png'
+  palette:
+    primary: 'indigo'
+    accent: 'light blue'
+  font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
+  i18n:
+    prev: 'Previous'
+    next: 'Next'
+#markdown_extensions:
+#  - toc:
+#    permalink: '#'
