@@ -497,6 +497,13 @@ Tests use following
 - [travis](https://travis-ci.org/pamtrak06/edjanger)
 - [bats](https://github.com/sstephenson/bats)
 
+Run tests :
+
+```
+cd [edjanger path];
+./run_tests.sh
+```
+
 ## License
 
 ![Gravatar](http://2.gravatar.com/avatar/b2071759b3f1fc6f1b02edbb46397c9a) @Author : [Pamtrak06](mailto:pamtrak06@gmail.com), [GitHub sources](https://github.com/pamtrak06/edjanger)
