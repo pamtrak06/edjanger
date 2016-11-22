@@ -2,7 +2,7 @@
 
 > Tired about repeating docker commands with long parameters ?
 >
-> Trying to found magic one from history. Putting commands in non standard scripts ?
+> Trying to find magic one from history. Putting commands in some exotical scripts ?
 >
 > Try edjanger !
 
