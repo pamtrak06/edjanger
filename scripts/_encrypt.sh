@@ -22,6 +22,7 @@ if [ ! -f "{edjangerpath}/proxy.${config_extension}" ]; then
   echo -e "  - HTTP_PROXY=..."
   echo -e "  - HTTPS_PROXY=..."
 else
+  rename_edocker_properties
   if [ ! -f edjanger.${config_extension} ]; then
     echo -e "edjanger:ERROR No edjanger.${config_extension} available, use \"<edjangerinit>\" command to initialize one in this directory"
   else

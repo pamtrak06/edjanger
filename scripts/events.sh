@@ -21,6 +21,7 @@ source {edjangerpath}/_common.sh
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 events
 else
+  rename_edocker_properties
   if [ ! -f edjanger.${config_extension} ]; then
     echo -e "edjanger:ERROR No edjanger.${config_extension} available, use \"<edjangerinit>\" command to initialize one in this directory"
   else

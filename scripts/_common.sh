@@ -104,7 +104,7 @@ function dockerbasiccontainer()
         if [ "$type" = "image" ]; then
           idx=$(echo "$(docker ps -a | grep ${image_name} | wc -l)+${initidx}" | bc)
         elif [ "$type" = "container" ]; then
-          idx=$(echo "$(docker ps -a | grep ${container_name} | wc -l)+${initidx}" | bc)
+          idx=$(echo "$(docker ps --filter="name=${container_name}*" | wc -l)+${initidx}" | bc)
         else
           echo -e "${app_name}:ERROR unidentified type: $type"
         fi
