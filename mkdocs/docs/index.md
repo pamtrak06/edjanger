@@ -485,7 +485,7 @@ crontab -e
 @reboot /opt/edjanger/scripts/cron_start_only.sh /root/workspace/docker
 ```
 
-## help
+## Help
 
 For each commands, see edjangerhelp 'command' for list of parameters read in edjanger.properties and arguments.
 
