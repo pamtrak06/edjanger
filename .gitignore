@@ -3,3 +3,4 @@ edjanger.unalias
 *.zip
 *.log
 tests/tmp*
+gh-pages

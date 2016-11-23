@@ -1,6 +1,0 @@
-{
-  "name": "Edjanger",
-  "tagline": "New name of edocker",
-  "body": "### Welcome to edjanger home !\r\nThis tool help you to use docker commands in a more compact way. Each docker commands are replaced by a single command which read properties from a configuration file (edjanger.properties).\r\n\r\n### Design\r\nedjanger is writed in bash shell scripts and commands are alias to be defined in the environment (user profile or system environment).\r\n\r\n\r\n### Installation\r\nTo install edjanger, [download it](https://github.com/pamtrak06/edjanger/archive/master.zip) and see [installation documentation](https://github.com/pamtrak06/edjanger#how-to-install-edjanger).\r\n\r\n### User manual\r\nSee [installation documentation](https://github.com/pamtrak06/edjanger#how-to-initialize-an-edjanger-project).\r\n\r\n### Authors and Contributors\r\nedjanger is writed with passion (@author: pamtrak06@gmail.com) and under [MIT license](https://github.com/pamtrak06/edjanger/blob/master/LICENSE).\r\n\r\n### Support or Contact\r\nHaving trouble with edjanger? Check out our [documentation](https://github.com/pamtrak06/edjanger) or [contact support](pamtrak06@gmail.com) and we’ll help you sort it out.\r\n",
-  "note": "Don't delete this file! It's used internally to help with page regeneration."
-}
