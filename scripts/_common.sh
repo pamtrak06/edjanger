@@ -40,6 +40,15 @@ function rename_edocker_properties()
       return -1;
     fi
   fi
+  if [ -f edocker.cfg} ]; then
+    echo -e "${app_name}:WARNING found edocker.cfg, do you want to rename it to ${app_name}.${config_extension} (y/n)?"
+    read response
+    if [ "y" = "$response" ]; then
+      mv edocker.cfg ${app_name}.${config_extension}
+    else
+      return -1;
+    fi
+  fi
 }
 
 function read_app_properties()
@@ -84,12 +93,10 @@ function dockerbasicimage()
   fi
 }
 
-function dockerbasiccontainer()
+function dockerps()
 {
   command="$1"
   comment="$2"
-  initidx="$3"
-  type="$4"
 
   if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
     source {edjangerpath}/_common.sh
@@ -100,29 +107,38 @@ function dockerbasiccontainer()
       echo -e "${app_name}:ERROR No ${app_name}.${config_extension} available, use \"<${app_name}init>\" command to initialize one in this directory"
     else
       read_app_properties
-      if [ "${initidx}" != "-1" ]; then
-        if [ "$type" = "image" ]; then
-          idx=$(echo "$(docker ps -a | grep ${image_name} | wc -l)+${initidx}" | bc)
-        elif [ "$type" = "container" ]; then
-          idx=$(echo "$(docker ps --filter="name=${container_name}*" | wc -l)+${initidx}" | bc)
-        else
-          echo -e "${app_name}:ERROR unidentified type: $type"
-        fi
-        ct=${container_name}_${idx}
-        echo "${comment} ${ct}..."
-        docker ${command} ${ct}
-        if [ "true" = "${docker_command}" ]; then
-          echo -e "> Executed docker command:"
-          echo -e "> docker ${command} ${ct}"
-        fi
-      else
-        ct=${container_name}
-        echo "${comment} ${ct}..."
-        docker ${command} | grep -w "${ct}_[0-9]"
-        if [ "true" = "${docker_command}" ]; then
-          echo -e "> Executed docker command:"
-          echo -e "> docker ${command} | grep -w \"${ct}_[0-9]\""
-        fi
+      ct=${container_name}
+      echo "${comment} ${ct}..."
+      docker ${command} | grep -w "${ct}_[0-9]"
+      if [ "true" = "${docker_command}" ]; then
+        echo -e "> Executed docker command:"
+        echo -e "> docker ${command} | grep -w \"${ct}_[0-9]\""
+      fi
+    fi
+  fi
+}
+
+function dockerbasiccontainer()
+{
+  command="$1"
+  comment="$2"
+
+  if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
+    source {edjangerpath}/_common.sh
+    usage $0 $2
+  else
+    rename_edocker_properties
+    if [ ! -f ${app_name}.${config_extension} ]; then
+      echo -e "${app_name}:ERROR No ${app_name}.${config_extension} available, use \"<${app_name}init>\" command to initialize one in this directory"
+    else
+      read_app_properties
+      idx=$(($(docker ps -a --filter="name=${container_name}_[0-9]+"|wc -l)-1))
+      ct=${container_name}_${idx}
+      echo "${comment} ${ct}..."
+      docker ${command} ${ct}
+      if [ "true" = "${docker_command}" ]; then
+        echo -e "> Executed docker command:"
+        echo -e "> docker ${command} ${ct}"
       fi
     fi
   fi
@@ -258,26 +274,26 @@ function usage()
         echo -e "Usage       :"$alias_txt
 
         desc_txt=$(grep "DESCRIPTION" ${s}|cut -d ':' -f2)
-        echo -e "Description :"$desc_txt
-
-        params=$(grep "PARAMETER" ${s}|cut -d ":" -f2)
-        if [ -n "$params" ]; then
-          echo -e "parameters  "
-          for p in $params; do
-            echo -e "  - $(echo $p)"
-          done
-        fi
+        echo -e "\nDescription :"$desc_txt
 
         SAVEIFS=$IFS
         IFS=$'\n'
         args=$(grep "ARGUMENT" ${s})
-        echo -e "Argument    "
+        echo -e "\nArgument(s) of command "
         echo -e "  - help"
         for arg in $args; do
           val=$(echo $arg|cut -d ':' -f2)
           echo -e "  - $val"
         done
         IFS=$SAVEIFS
+
+        params=$(grep "PARAMETER" ${s}|cut -d ":" -f2)
+        if [ -n "$params" ]; then
+          echo -e "\nParameter(s) in edjanger.properties "
+          for p in $params; do
+            echo -e "  - $(echo $p)"
+          done
+        fi
 
         found=true
 
