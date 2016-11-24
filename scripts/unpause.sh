@@ -20,8 +20,8 @@
 # ----------------------------------------------------
 source {edjangerpath}/_common.sh
 
-if [ -n "$1" ]; then
+if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   dockerbasiccontainer "help" "pause"
 else
-  dockerbasiccontainer "pause" "pause container: " "0" "container" "container"
+  dockerbasiccontainer "pause" "pause container: " $1
 fi

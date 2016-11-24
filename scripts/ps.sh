@@ -20,8 +20,8 @@
 # ----------------------------------------------------
 source {edjangerpath}/_common.sh
 
-if [ -n "$1" ]; then
-  dockerbasiccontainer "help" "ps"
+if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
+  dockerps "help" "ps"
 else
-  dockerbasiccontainer "ps ${ps_options}" "State of running containers with name like: " "-1" "container"
+  dockerps "ps ${ps_options}" "State of running containers with name like: " $1
 fi

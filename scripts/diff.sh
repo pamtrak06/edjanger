@@ -20,8 +20,8 @@
 # ----------------------------------------------------
 source {edjangerpath}/_common.sh
 
-if [ -n "$1" ]; then
+if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   dockerbasiccontainer "help" "diff"
 else
-  dockerbasiccontainer "diff" "diffping container: " "0" "container" "container"
+  dockerbasiccontainer "diff" "diff container: " $1
 fi

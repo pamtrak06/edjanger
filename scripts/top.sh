@@ -19,8 +19,8 @@
 # ----------------------------------------------------
 source {edjangerpath}/_common.sh
 
-if [ -n "$1" ]; then
+if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   dockerbasiccontainer "help" "top"
 else
-  dockerbasiccontainer "top" "top of container: " "0"
+  dockerbasiccontainer "top" "top of container: " $1
 fi

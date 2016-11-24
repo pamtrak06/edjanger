@@ -21,8 +21,8 @@
 # ----------------------------------------------------
 source {edjangerpath}/_common.sh
 
-if [ -n "$1" ]; then
+if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   dockerbasiccontainer "help" "restart"
 else
-  dockerbasiccontainer "restart ${restart_options}" "Starting container: " "0" "container"
+  dockerbasiccontainer "restart ${restart_options}" "Starting container: " $1
 fi

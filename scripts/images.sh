@@ -18,7 +18,7 @@
 # USAGE            : edjangerimages
 # ----------------------------------------------------
 source {edjangerpath}/_common.sh
-if [ -n "$1" ]; then
+if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   dockerbasicimage "help" "images"
 else
   dockerbasicimage "images" "List image which name contains: "

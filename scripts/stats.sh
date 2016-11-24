@@ -19,9 +19,9 @@
 # USAGE            : edjangerstats
 # ----------------------------------------------------
 source {edjangerpath}/_common.sh
-read_app_properties
-if [ -n "$1" ]; then
+
+if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   dockerbasiccontainer "help" "stats"
 else
-  dockerbasiccontainer "stats ${stats_options}" "Statistics of container: " "0" "container"
+  dockerbasiccontainer "stats ${stats_options}" "Statistics of container: " $1
 fi

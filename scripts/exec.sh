@@ -30,18 +30,27 @@ else
     read_app_properties
     idx=$(echo "$(docker ps | grep ${container_name} | wc -l)+0" | bc)
     echo enter in container_name: ${container_name}_${idx}...
-    if [[ "$1" == *"index"* ]]; then
+    if [ -n "$1" ] && [[ "$1" == *"index"* ]]; then
       idx=$(echo "$(echo $1 | cut -d '=' -f2)" | bc)
-      docker exec -t ${container_name}_${idx} bash -c "$1"
+      if [ -z "${command_run}" ]; then
+        command_run="/bin/bash"
+      fi
+      if [ -n "$2" ]; then
+        docker_command=\"${command_run} -c "$2"\"
+      fi
+      docker exec -t ${container_name}_${idx} ${docker_command}
       if [ "true" = "${docker_command}" ]; then
         echo -e "> Executed docker command:"
-        echo -e "> docker exec -t ${container_name}_${idx} bash -c \"$1\""
+        echo -e "> docker exec -t ${container_name}_${idx} ${docker_command}"
       fi
     elif [ -n "$1" ]; then
-      docker exec -t ${container_name}_${idx} bash -c "$1"
+      if [ -z "${command_run}" ]; then
+        command_run="/bin/bash"
+      fi
+      docker exec -t ${container_name}_${idx} ${command_run} -c "$1"
       if [ "true" = "${docker_command}" ]; then
         echo -e "> Executed docker command:"
-        echo -e "> docker exec -t ${container_name}_${idx} bash -c \"$1\""
+        echo -e "> docker exec -t ${container_name}_${idx} ${command_run} -c \"$1\""
       fi
     else
       if [ -z "${command_run}" ]; then

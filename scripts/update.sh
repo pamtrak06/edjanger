@@ -21,8 +21,8 @@
 # ----------------------------------------------------
 source {edjangerpath}/_common.sh
 
-if [ -n "$1" ]; then
+if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   dockerbasiccontainer "help" "update"
 else
-  dockerbasiccontainer "update ${update_options}" "updateing container: " "0" "container"
+  dockerbasiccontainer "update ${update_options}" "updateing container: " $1
 fi

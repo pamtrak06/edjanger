@@ -34,12 +34,12 @@ source {edjangerpath}/_common.sh
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   usage $0 run
 else
-  rename_edocker_properties  
+  rename_edocker_properties
   if [ ! -f edjanger.${config_extension} ]; then
     echo -e "edjanger:ERROR No edjanger.${config_extension} available, use \"<edjangerinit>\" command to initialize one in this directory"
   else
     read_app_properties
-    idx=$(echo "$(docker ps | grep ${container_name} | wc -l)+1" | bc)
+    idx=$(echo "$(docker ps -a | grep ${container_name} | wc -l)+1" | bc)
     echo "Run container_name: ${container_name}_${idx}..."
     docker run -dt --name ${container_name}_${idx} ${run_other_options} ${network_settings} ${network_settings} ${exposed_ports} ${volumes_from} ${shared_volumes} ${environment_variables} ${linked_containers} ${image_name} ${command_run}
     if [ "true" = "${docker_command}" ]; then

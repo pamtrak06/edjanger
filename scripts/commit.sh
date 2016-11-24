@@ -32,7 +32,7 @@ else
     if [ -n "$1" ]; then
       docker commit ${commit_options} ${container_name}_${idx} "$1"
       if [ "true" = "${docker_command}" ]; then
-        echo -e "> commituted docker command:"
+        echo -e "> committed docker command:"
         echo -e "> docker commit ${commit_options} ${container_name}_${idx} \"$1\""
       fi
     else
