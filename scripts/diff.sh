@@ -36,6 +36,7 @@
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
+read_app_properties
 [ -n "${diff_options}" ]            && commandoptions="${commandoptions} ${diff_options}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
 dockerbasiccontainer "--scriptname=\"$0\";--command=\"diff {container_name}\";--commandcomment=\"Do a diff of container: {container_name}...\";${commandoptions};$@"

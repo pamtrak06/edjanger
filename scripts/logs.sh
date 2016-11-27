@@ -36,6 +36,7 @@
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
+read_app_properties
 [ -n "${logs_options}" ]            && commandoptions="${commandoptions} ${logs_options}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
 dockerbasiccontainer "--scriptname=\"$0\";--command=\"logs {container_name}\";--commandcomment=\"Log container: {container_name}...\";${commandoptions};$@"

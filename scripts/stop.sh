@@ -36,6 +36,7 @@
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
+read_app_properties
 [ -n "${stop_options}" ]            && commandoptions="${commandoptions} ${stop_options}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
 dockerbasiccontainer "--scriptname=\"$0\";--command=\"stop {container_name}\";--commandcomment=\"Stop container: {container_name}...\";${commandoptions};$@"

@@ -36,6 +36,7 @@
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
+read_app_properties
 [ -n "${unpause_options}" ]         && commandoptions="${commandoptions} ${unpause_options}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
 dockerbasiccontainer "--scriptname=\"$0\";--command=\"unpause {container_name}\";--commandcomment=\"Unpause container: {container_name}...\";${commandoptions};$@"

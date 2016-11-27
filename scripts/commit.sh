@@ -42,6 +42,7 @@
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
+read_app_properties
 [ -n "${commit_options}" ]          && commandoptions="${commandoptions} ${commit_options}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
 dockerbasiccontainer "--scriptname=\"$0\";--command=\"commit {container_name}\";--commandcomment=\"Commit container: {container_name}...\";${commandoptions};$@"

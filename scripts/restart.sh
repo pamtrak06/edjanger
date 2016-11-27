@@ -36,6 +36,7 @@
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
+read_app_properties
 [ -n "${restart_options}" ]         && commandoptions="${commandoptions} ${restart_options}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
 dockerbasiccontainer "--scriptname=\"$0\";--command=\"restart {container_name}\";--commandcomment=\"Restart container: {container_name}...\";${commandoptions};$@"

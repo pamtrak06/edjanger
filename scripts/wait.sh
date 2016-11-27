@@ -36,6 +36,7 @@
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
+read_app_properties
 [ -n "${wait_options}" ]            && commandoptions="${commandoptions} ${wait_options}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
 dockerbasiccontainer "--scriptname=\"$0\";--command=\"wait {container_name}\";--commandcomment=\"Wait container: {container_name}...\";${commandoptions};$@"

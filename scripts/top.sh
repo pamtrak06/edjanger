@@ -36,6 +36,7 @@
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
+read_app_properties
 [ -n "${top_options}" ]             && commandoptions="${commandoptions} ${top_options}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
 dockerbasiccontainer "--scriptname=\"$0\";--command=\"top {container_name}\";--commandcomment=\"Top of container: {container_name}...\";${commandoptions};$@"

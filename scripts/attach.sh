@@ -36,6 +36,7 @@
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
+read_app_properties
 [ -n "${attach_options}" ]          && commandoptions="${commandoptions} ${attach_options}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
 dockerbasiccontainer "--scriptname=\"$0\";--command=\"attach {container_name}\";--commandcomment=\"Attach container: {container_name}...\";${commandoptions};$@"

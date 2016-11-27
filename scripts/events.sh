@@ -36,6 +36,7 @@
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
+read_app_properties
 [ -n "${events_options}" ]          && commandoptions="${commandoptions} ${events_options}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
 dockerbasiccontainer "--scriptname=\"$0\";--command=\"events {container_name}\";--commandcomment=\"Get real time events for container: {container_name}...\";${commandoptions};$@"

@@ -36,6 +36,7 @@
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
+read_app_properties
 [ -n "${rm_options}" ]              && commandoptions="${commandoptions} ${rm_options}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
 confirm_question="Container \"{container_name}\" will be permanently erased, do you want to continue (y/n) ?"

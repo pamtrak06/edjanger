@@ -37,6 +37,7 @@
 
 source {edjangerpath}/_common.sh
 
+read_app_properties
 [ -n "${start_options}" ]           && commandoptions="${commandoptions} ${start_options}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
 dockerbasiccontainer "--scriptname=\"$0\";--command=\"start {container_name}\";--commandcomment=\"Start container: {container_name}...\";${commandoptions};$@"

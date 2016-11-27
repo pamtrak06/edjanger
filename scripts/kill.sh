@@ -36,6 +36,7 @@
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
+read_app_properties
 [ -n "${kill_options}" ]            && commandoptions="${commandoptions} ${kill_options}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
 confikill_question="Container \"{container_name}\" will be pekillanently erased, do you want to continue (y/n) ?"

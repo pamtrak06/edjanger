@@ -36,6 +36,7 @@
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
+read_app_properties
 [ -n "${update_options}" ]          && commandoptions="${commandoptions} ${update_options}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
 dockerbasiccontainer "--scriptname=\"$0\";--command=\"update {container_name}\";--commandcomment=\"Update container: {container_name}...\";${commandoptions};$@"

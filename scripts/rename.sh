@@ -38,6 +38,7 @@
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
+read_app_properties
 [ -n "${rename_options}" ]          && commandoptions="${commandoptions} ${rename_options}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
 confirm_question="Container \"{container_name}\" will be renamed, do you want to continue (y/n) ?"

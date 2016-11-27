@@ -36,6 +36,7 @@
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
+read_app_properties
 [ -n "${stats_options}" ]           && commandoptions="${commandoptions} ${stats_options}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
 dockerbasiccontainer "--scriptname=\"$0\";--command=\"stats {container_name}\";--commandcomment=\"Stats of container: {container_name}...\";${commandoptions};$@"

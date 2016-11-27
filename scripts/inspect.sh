@@ -36,6 +36,7 @@
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
+read_app_properties
 [ -n "${inspect_options}" ]         && commandoptions="${commandoptions} ${inspect_options}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
 dockerbasiccontainer "--scriptname=\"$0\";--command=\"inspect {container_name}\";--commandcomment=\"Inspect container: {container_name}...\";${commandoptions};$@"
