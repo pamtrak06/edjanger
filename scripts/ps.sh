@@ -8,8 +8,6 @@
 ##  Options:
 ##     -h, --help                     print this documentation
 ##  
-##         --index=INDEX              index of the container name
-##  
 ##  Parameters (edjanger.properties):
 ##     container_name                 container name
 ##     docker_command                 show docker command when edjanger is used
@@ -46,5 +44,5 @@ read_app_properties
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
 [ -n "$@" ]                         && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
                                     && externaloptions=$(echo $@ | sed "s|[[:space:]]-|;-|g")
-dockerbasiccontainer "--scriptname=\"$0\";--command=\"ps\";--commandcomment=\"Ps of container: {container_name}...\";${commandoptions};${externaloptions}"
+dockerbasiccontainer "--scriptname=\"$0\";--command=\"ps\";--commandcomment=\"State(s) of container(s): {container_name}_[0-9]+...\";${commandoptions};${externaloptions}"
 

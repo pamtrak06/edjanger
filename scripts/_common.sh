@@ -238,7 +238,12 @@ function dockerbasiccontainer()
         idx=$index
       fi
 
+      # echo comment for running command
+      commandcomment=${commandcomment/\{container_name\}/${container_name}}
+
+      # set container name with index
       container_name=${container_name}_${idx}
+      
       if [ -n "$confirm" ]; then
         confirmquestion=${confirmquestion/\{container_name\}/${container_name}}
         echo "$confirmquestion"
@@ -249,7 +254,6 @@ function dockerbasiccontainer()
       if [ "y" = "$response" ]; then
         
         # echo comment for running command
-        commandcomment=${commandcomment/\{container_name\}/${container_name}}
         echo " ${commandcomment}..."
         
         # replace container name in command and commandoptions

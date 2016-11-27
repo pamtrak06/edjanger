@@ -8,8 +8,6 @@
 ##  Options:
 ##     -h, --help                     print this documentation
 ##  
-##         --index=INDEX              index of the container name
-##  
 ##  Parameters (edjanger.properties):
 ##     container_name                 container name
 ##     docker_command                 show docker command when edjanger is used
