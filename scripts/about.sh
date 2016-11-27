@@ -1,20 +1,14 @@
 #!/bin/bash
-# ----------------------------------------------------
-# The MIT License (MIT)
-#
-# Copyright (c) 2016 copyright pamtrak06@gmail.com
-# ----------------------------------------------------
-# SCRIPT           : about.sh
-# ALIAS            : edjangerabout
-# DESCRIPTION      : about script for edjanger
-# CREATOR          : pamtrak06@gmail.com
-# --------------------------------
-# VERSION          : 1.0
-# DATE             : 2016-08-03
-# COMMENT          : creation
-# --------------------------------
-# USAGE            : edjangerabout
-# ----------------------------------------------------
+# ------------------------------------------------------------------------------
+##  About script for edjanger
+##  
+##  Usage:
+##     edjangerabout
+##  
+##  edjanger, The MIT License (MIT)
+##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  
+# ------------------------------------------------------------------------------
 
 echo -e "        _            _              "
 echo -e " ___  __| | ___   ___| | _____ _ __ "

@@ -1,20 +1,15 @@
 #!/bin/bash
-# ----------------------------------------------------
-# The MIT License (MIT)
-#
-# Copyright (c) 2016 copyright pamtrak06@gmail.com
-# ----------------------------------------------------
-# SCRIPT           : check.sh
-# ALIAS            : edjangercheck
-# DESCRIPTION      : check missing parameters in edjanger.properties
-# CREATOR          : pamtrak06@gmail.com
-# --------------------------------
-# VERSION          : 1.0
-# DATE             : 2016-03-02
-# COMMENT          : creation
-# --------------------------------
-# USAGE            : edjangercheck
-# ----------------------------------------------------
+# ------------------------------------------------------------------------------
+##  Check missing parameters in edjanger.properties from existing in template
+##  templates/edjanger_templates.properties
+##  
+##  Usage:
+##     edjangercheck
+##  
+##  edjanger, The MIT License (MIT)
+##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  
+# ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then

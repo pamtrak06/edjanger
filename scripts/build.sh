@@ -1,31 +1,34 @@
 #!/bin/bash
-# ----------------------------------------------------
-# The MIT License (MIT)
-#
-# Copyright (c) 2016 copyright pamtrak06@gmail.com
-# ----------------------------------------------------
-# SCRIPT           : build.sh
-# ALIAS            : edjangerbuild
-# DESCRIPTION      : run command "docker build" with parameters readed from local edjanger.properties
-#   PARAMETER      : image_name
-#   PARAMETER      : proxy_args
-#   PARAMETER      : build_args
-#   PARAMETER      : build_forcerm
-#   PARAMETER      : build_nocache
-#   PARAMETER      : build_file
-#   PARAMETER      : build_path
-# CREATOR          : pamtrak06@gmail.com
-# --------------------------------
-# VERSION          : 1.0
-# DATE             : 2016-03-02
-# COMMENT          : creation
-# --------------------------------
-# USAGE            : edjangerbuild
-# ----------------------------------------------------
+# ------------------------------------------------------------------------------
+##  Run command "docker build" with parameters read from edjanger.properties
+##  
+##  Usage:
+##     @script.name [option]
+##  
+##  Options:
+##     -h, --help                     print this documentation.
+##  
+##         --index=INDEX              index of the container name.
+##  
+##  Parameters (edjanger.properties):
+##     image_name                     image name
+##     proxy_args                     proxy variables (HTTP_PROXY,HTTPS_PROXY,http_proxy,https_proxy) read from proxy.zip or environment
+##     build_args                     build arguments
+##     build_forcerm                  always remove intermediate containers
+##     build_rm                       remove intermediate containers after a successful build
+##     build_nocache                  do not use cache when building the image
+##     build_file                     name of the Dockerfile (Default is 'CURRENT PATH/Dockerfile')
+##     build_path                     path where is found Dockerfile and its dependencies
+##  
+##  edjanger, The MIT License (MIT)
+##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  
+# ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
-  usage $0 build
+  #usage $0 build
+  printHeader $0
 else
   rename_edocker_properties
   if [ ! -f edjanger.${config_extension} ]; then

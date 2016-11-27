@@ -1,20 +1,17 @@
 #!/bin/bash
-# ----------------------------------------------------
-# The MIT License (MIT)
-#
-# Copyright (c) 2016 copyright pamtrak06@gmail.com
-# ----------------------------------------------------
-# SCRIPT           : _proxy.sh
-# DESCRIPTION      : set proxy env. var. from unarchive proxy.zip wich contain proxy.${config_extension}
-# CREATOR          : pamtrak06@gmail.com
-# --------------------------------
-# VERSION          : 1.0
-# DATE             : 2016-03-02
-# COMMENT          : creation
-# --------------------------------
-# USAGE            : _proxy.sh
-# ----------------------------------------------------
+# ------------------------------------------------------------------------------
+##  Set proxy environment variables read in proxy.properties 
+##  and extracted from proxy.zip.
+##  
+##  Usage:
+##     ./_proxy.sh
+##  
+##  edjanger, The MIT License (MIT)
+##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  
+# ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
+
 if [ -f {edjangerpath}/proxy.zip ]; then
   rename_edocker_properties
   if [ ! -f edjanger.${config_extension} ]; then

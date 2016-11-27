@@ -1,19 +1,14 @@
 #!/bin/bash
-# ----------------------------------------------------
-# The MIT License (MIT)
-#
-# Copyright (c) 2016 copyright pamtrak06@gmail.com
-# ----------------------------------------------------
-# SCRIPT           : _encrypt.sh
-# DESCRIPTION      : encrypt proxy.${config_extension} file with zip --encrypt
-# CREATOR          : pamtrak06@gmail.com
-# --------------------------------
-# VERSION          : 1.0
-# DATE             : 2016-03-02
-# COMMENT          : creation
-# --------------------------------
-# USAGE            : ./_encrypt.sh
-# ----------------------------------------------------
+# ------------------------------------------------------------------------------
+##  Encrypt proxy.properties file with zip --encrypt
+##  
+##  Usage:
+##     ./_encrypt.sh
+##  
+##  edjanger, The MIT License (MIT)
+##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  
+# ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 if [ ! -f "{edjangerpath}/proxy.${config_extension}" ]; then
   echo -e "edjanger:ERROR {edjangerpath}/proxy.${config_extension} must exist and does container proxy parameters:"
