@@ -39,21 +39,63 @@ fi
 # eval parameters from all parametters given as argument of function
 function evalOptionsParameters()
 {
-  # tranform user input from -- to ;--,so it could be parsed
+  # scriptname=$(echo $* | $SED_REGEX "s|.*--scriptname=\"(.+\.sh)\";.*|\1|g")
+  # 
+  # # Parse known options from documentation
+  # if [[ -z ${options+defined} ]]; then
+  #     parse_specifications $scriptname
+  #     while read -r line; do
+  #         case "$line" in
+  #             "-h, --help"*)  continue ;;
+  #             "--help, -h"*)  continue ;;
+  #             -*," "--*)      option=$(echo "$line" | awk -F'(^-|, --| )'  '{ print $2"="$3 }') ;;
+  #             --*," "-*)      option=$(echo "$line" | awk -F'(--|, -| )'   '{ print $3"="$2 }') ;;
+  #             --*=*)          option=$(echo "$line" | awk -F'(--|=| )'     '{ print $2"=?" }') ;;
+  #             --*" "*)        option=$(echo "$line" | awk -F'(--| )'       '{ print $2 }') ;;
+  #             *)              continue ;;
+  #         esac
+  #         options+=("$option")
+  #         echo "option:$option"
+  #     done <<< "$specifications"
+  # fi
+  # 
+  # options+=(h=help)
+  # 
+  # # tranform user input from -- to ;--,so it could be parsed
+  # # only for options specified in header which begin with "###"
+  # parameterslist=$*
+  # IFS=';' read -ra parameters <<< "$parameterslist"
+  # for parameter in "${parameters[@]}"; do
+  #   for option in "${options[@]}"; do
+  #     if [[ "${parameter#--}" = *"${option%?}"* ]]; then
+  #       arguments+=("${!index}")
+  #       parameterslist2=$(echo ${parameterslist2} | sed "s|[[:space:]]--|;--|g")
+  #     fi
+  #   done
+  # done
+  
   parameterslist=$*
-  parameterslist=$(echo ${parameterslist} | sed "s|[[:space:]]--|;--|g")
+  #parameterslist=$(echo ${parameterslist} | sed "s|[[:space:]]--|;--|g")
   #echo "parameterslist:${parameterslist}"
   
   IFS=';' read -ra parameters <<< "$parameterslist"
   for parameter in "${parameters[@]}"; do
-      if [[ "${parameter#--}" = *"="* ]]; then
-        #echo "Eval parameter:${parameter#--}"
+      if [[ "${parameter}" = *"rm[[:space:]]"* ]]; then
+        echo "edocker:ERROR: parameter rm evaluation not allowed: ${parameter} !!!"
+        exit -1
+      elif [[ "${parameter}" = "--"*"="* ]]; then
+        #echo "Eval parameter --:${parameter#--}"
         eval "${parameter#--}"
+      elif [[ "${parameter}" = "-"*"="* ]]; then
+        #echo "Eval parameter -:${parameter#-}"
+        eval "${parameter#-}"
+      elif [[ "${parameter}" = *"="* ]]; then
+        #echo "Eval parameter:${parameter}"
+        eval "${parameter}"
       elif [[ "$parameter" =~ ^[-]*help[a-z]* ]] || [ "$parameter" = "-h" ]; then
         help=true
       else
-        [ -n "${parameter#--}" ] && eval "${parameter#--}=true"
-        # && echo "Set parameter to true:${parameter#--}"
+        [ -n "${parameter#--}" ] && eval "${parameter#--}=true" #&& echo "Set parameter to true:${parameter#--}"
       fi
   done
 }
@@ -123,42 +165,38 @@ function dockerbasicimage()
       echo -e "${app_name}:ERROR No ${app_name}.${config_extension} available, use \"<${app_name}init>\" command to initialize one in this directory"
     else
       
-      read_app_properties
-      
-      # echo comment for running command
-      commandcomment=${commandcomment/\{image_name\}/${image_name}}
-      echo "${commandcomment}"
-      
-      # replace container name
-      command=${command/\{image_name\}/${image_name}}
-      docker ${command} ${commandoptions}
-      if [ "true" = "${docker_command}" ]; then
-          echo -e "> Executed docker command:"
-          echo -e "> docker ${command} ${commandoptions}"
+      if [ -n "$confirm" ]; then
+        confirmquestion=${confirmquestion/\{container_name\}/${container_name}}
+        echo "$confirmquestion"
+        read response
+      else
+        response=y
       fi
-    fi
-  fi
-}
-
-function dockerps()
-{
-  command="$1"
-  comment="$2"
-
-  if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
-    usage $0 $2
-  else
-    rename_edocker_properties
-    if [ ! -f ${app_name}.${config_extension} ]; then
-      echo -e "${app_name}:ERROR No ${app_name}.${config_extension} available, use \"<${app_name}init>\" command to initialize one in this directory"
-    else
-      read_app_properties
-      ct=${container_name}
-      echo "${comment} ${ct}..."
-      docker ${command} | grep -w "${ct}_[0-9]"
-      if [ "true" = "${docker_command}" ]; then
-        echo -e "> Executed docker command:"
-        echo -e "> docker ${command} | grep -w \"${ct}_[0-9]\""
+      if [ "y" = "$response" ]; then
+      
+        read_app_properties
+        
+        # echo comment for running command
+        commandcomment=${commandcomment/\{image_name\}/${image_name}}
+        echo "${commandcomment}"
+        
+        # replace image name in command and commandoptions
+        command=${command/\{image_name\}/${image_name}}
+        commandoptions=${commandoptions/\{image_name\}/${image_name}}
+        
+        if [[ ${command} == tag* ]]; then
+          # check required
+          [ -z "${tag}" ]             && echo -e " ${app_name}:ERROR: arguments --tag is required" \
+                                      && printHeader $scriptname && exit -1
+          # set options
+          [ -n "${tag}" ]             && commandoptions="${commandoptions} ${tag}"
+        fi
+        
+        docker ${command} ${commandoptions}
+        if [ "true" = "${docker_command}" ]; then
+            echo -e "> Executed docker command:"
+            echo -e "> docker ${command} ${commandoptions}"
+        fi
       fi
     fi
   fi
@@ -184,7 +222,7 @@ function dockerbasiccontainer()
 {
 
   evalOptionsParameters "$*"
-
+  
   if [ -n "$help" ]; then
     printHeader $scriptname
   else
@@ -214,8 +252,15 @@ function dockerbasiccontainer()
         commandcomment=${commandcomment/\{container_name\}/${container_name}}
         echo " ${commandcomment}..."
         
-        # replace container name
+        # replace container name in command and commandoptions
         command=${command/\{container_name\}/${container_name}}
+        commandoptions=${commandoptions/\{container_name\}/${container_name}}
+        
+        # following valid for exec
+        if [[ ${command} == exec* ]]; then
+          # set options
+          [ -n "${shellcommand}" ]   && commandoptions="${commandoptions} -c \"${shellcommand}\""
+        fi
         # following valid for rename
         if [[ ${command} == rename* ]]; then
           # check required
@@ -255,12 +300,14 @@ function dockerbasiccontainer()
           [ -n "${fromcontainer}" ]   && commandoptions="${commandoptions} ${container_name}:${sourcepath} ${destinationpath}"
           [ -n "${fromhost}" ]        && commandoptions="${commandoptions} ${sourcepath} ${container_name}:${destinationpath}"
         fi
+        
         # run docker command
         docker ${command} ${commandoptions}
         if [ "true" = "${docker_command}" ]; then
           echo -e "> Executed docker command:"
           echo -e "> docker ${command} ${commandoptions}"
         fi
+        
       fi
 
     fi

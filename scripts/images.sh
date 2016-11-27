@@ -1,22 +1,46 @@
 #!/bin/bash
-# ----------------------------------------------------
-# The MIT License (MIT)
-#
-# Copyright (c) 2016 copyright pamtrak06@gmail.com
-# ----------------------------------------------------
-# SCRIPT           : images.sh
-# ALIAS            : edjangerimages
-# DESCRIPTION      : run command "docker images" with parameters readed from local edjanger.properties
-#   PARAMETER      : image_name
-#   PARAMETER      : docker_command
-# CREATOR          : pamtrak06@gmail.com
-# --------------------------------
-# VERSION          : 1.0
-# DATE             : 2016-03-02
-# COMMENT          : creation
-# --------------------------------
-# USAGE            : edjangerimages
-# ----------------------------------------------------
+# ------------------------------------------------------------------------------
+##  List images which name contains image_name read in edjanger.properties
+##  
+##  Usage:
+##     @script.name [option]
+##  
+##  Options:
+##     -h, --help                     print this documentation
+##  
+##  Parameters (edjanger.properties):
+##     docker_command                 show docker command when edjanger is used
+##     image_name                     image name
+##  
+##  edjanger, The MIT License (MIT)
+##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  
+# ------------------------------------------------------------------------------
+###
+### External options:
+###    -h, --help                     print this documentation
+###  
+### Internal options:
+###  
+###        --script=SCRIPT            name of the main script
+###  
+###        --command=COMMAND          name of the docker command to execute
+###  
+###        --commandcomment=COMMAND   printed comment of the command to execute
+###  
+###        --commandoptions=OPTIONS   options read in the edjanger.properties
+###  
+# ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
-dockerbasicimage "--command=\"images\";--commandcomment=\"List image which name contains: {image_name}...\";$@"
+read_app_properties
+
+# check required configuration
+[ -z "${image_name}" ]                         && echo "Image name must be filled, configure variable image_name in edjanger.${config_extension}" && exit -1
+
+[ -n "${image_name}" ]                         && commandoptions="${commandoptions} ${image_name}"
+[ -n "${commandoptions}" ]                     && commandoptions="--commandoptions=\"${commandoptions}\""
+[ -n "$@" ]                                    && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
+                                               && externaloptions=$(echo $@ | sed "s|[[:space:]]-|;-|g")
+dockerbasicimage "--scriptname=\"$0\";--command=\"images\";--commandcomment=\"List image which name contains: {image_name}...\";${commandoptions};${externaloptions}"
+

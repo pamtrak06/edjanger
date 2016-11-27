@@ -1,27 +1,50 @@
 #!/bin/bash
-# ----------------------------------------------------
-# The MIT License (MIT)
-#
-# Copyright (c) 2016 copyright pamtrak06@gmail.com
-# ----------------------------------------------------
-# SCRIPT           : ps.sh
-# ALIAS            : edjangerps
-# DESCRIPTION      : run command "docker ps" with parameters readed from local edjanger.properties
-#   PARAMETER      : image_name
-#   PARAMETER      : container_name
-#   PARAMETER      : docker_command
-# CREATOR          : pamtrak06@gmail.com
-# --------------------------------
-# VERSION          : 1.0
-# DATE             : 2016-03-02
-# COMMENT          : creation
-# --------------------------------
-# USAGE            : edjangerps
-# ----------------------------------------------------
+##  Ps of container(s). File edjanger.properties must be present in path.
+##  By default print ps of last container if no index specified.
+##  
+##  Usage:
+##     @script.name [option]
+##  
+##  Options:
+##     -h, --help                     print this documentation
+##  
+##         --index=INDEX              index of the container name
+##  
+##  Parameters (edjanger.properties):
+##     container_name                 container name
+##     docker_command                 show docker command when edjanger is used
+##     ps_options                    \"docker ps\" options to a running container
+##  
+##  edjanger, The MIT License (MIT)
+##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  
+# ------------------------------------------------------------------------------
+###
+### External options:
+###    -h, --help                     print this documentation
+###
+### Internal options:
+###
+###        --script=SCRIPT            name of the main script
+###
+###        --command=COMMAND          name of the docker command to execute
+###
+###        --commandcomment=COMMAND   printed comment of the command to execute
+###
+###        --commandoptions=OPTIONS   options read in the edjanger.properties
+###
+# ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
-if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
-  dockerps "help" "ps"
-else
-  dockerps "ps ${ps_options}" "State of running containers with name like: " $1
-fi
+read_app_properties
+
+# check required configuration
+[ -z "${container_name}" ]          && echo "Container name must be filled, configure variable container_name in edjanger.${config_extension}" && exit -1
+
+[ -n "${ps_options}" ]              && commandoptions="${commandoptions} ${ps_options}"
+[ -n "${container_name}" ]          && commandoptions="${commandoptions} --filter='name=${container_name}_[0-9]+'"
+[ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
+[ -n "$@" ]                         && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
+                                    && externaloptions=$(echo $@ | sed "s|[[:space:]]-|;-|g")
+dockerbasiccontainer "--scriptname=\"$0\";--command=\"ps\";--commandcomment=\"Ps of container: {container_name}...\";${commandoptions};${externaloptions}"
+

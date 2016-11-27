@@ -6,20 +6,20 @@
 ##     @script.name [option]
 ##  
 ##  Options:
-##     -h, --help                       print this documentation.
-##
-##         --index=INDEX                index of the container name.
+##     -h, --help                       print this documentation
+##  
+##         --index=INDEX                index of the container name
 ##  
 ##  Parameters (edjanger.properties):
-##     exposed_ports                    exposed port.
-##     command_run                      show docker command when edjanger is used.
-##     environment_variables            environnment variables.
-##     image_name                       image name.
-##     linked_containers                linked container.
-##     network_settings                 all network settings options.
-##     run_other_options                all other available options for docker run.
-##     runtime_constraints_on_resources runtime constraints on resources.
-##     volumes_from                     expose volumes from another container into current container.
+##     command_run                      bash command(s) to run
+##     environment_variables            environnment variables
+##     exposed_ports                    exposed port
+##     image_name                       image name
+##     linked_containers                linked container
+##     network_settings                 all network settings options
+##     run_other_options                all other available options for docker run
+##     runtime_constraints_on_resources runtime constraints on resources
+##     volumes_from                     expose volumes from another container into current container
 ##  
 ##  edjanger, The MIT License (MIT)
 ##  Copyright (c) 2016 copyright pamtrak06@gmail.com
@@ -27,9 +27,9 @@
 # ------------------------------------------------------------------------------
 ###
 ### External options:
-###    -h, --help                     print this documentation.
+###    -h, --help                     print this documentation
 ###
-###        --index=INDEX              index of the container name.
+###        --index=INDEX              index of the container name
 ###
 ### Internal options:
 ###
@@ -37,9 +37,9 @@
 ###
 ###        --command=COMMAND          name of the docker command to execute
 ###
-###        --commandcomment=COMMAND  printed comment of the command to execute
+###        --commandcomment=COMMAND   printed comment of the command to execute
 ###
-###        --commandoptions=OPTIONS  options read in the edjanger.properties
+###        --commandoptions=OPTIONS   options read in the edjanger.properties
 ###
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
@@ -61,5 +61,7 @@ read_app_properties
 [ -n "${image_name}" ]                         && commandoptions="${commandoptions} ${image_name}"
 [ -n "${command_run}" ]                        && commandoptions="${commandoptions} ${command_run}"
 [ -n "${commandoptions}" ]                     && commandoptions="--commandoptions=\"${commandoptions}\""
-dockerbasiccontainer "--scriptname=\"$0\";--command=\"run -dt --name {container_name}\";--commandcomment=\"Create new container: {container_name}...\";${commandoptions};$@"
+[ -n "$@" ]                                    && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
+                                               && externaloptions=$(echo $@ | sed "s|[[:space:]]-|;-|g")
+dockerbasiccontainer "--scriptname=\"$0\";--command=\"run -dt --name {container_name}\";--commandcomment=\"Create new container: {container_name}...\";${commandoptions};${externaloptions}"
 

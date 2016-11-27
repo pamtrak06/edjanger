@@ -1,30 +1,43 @@
 #!/bin/bash
-# ----------------------------------------------------
-# The MIT License (MIT)
-#
-# Copyright (c) 2016 copyright pamtrak06@gmail.com
-# ----------------------------------------------------
-# SCRIPT           : portdesc.sh
-# ALIAS            : edjangerportdesc
-# DESCRIPTION      : description of port
-#   ARGUMENT       : port number
-# CREATOR          : pamtrak06@gmail.com
-# --------------------------------
-# VERSION          : 1.0
-# DATE             : 2016-03-02
-# COMMENT          : creation
-# --------------------------------
-# USAGE            : edjangerportdesc [port number]
-# ----------------------------------------------------
+# ------------------------------------------------------------------------------
+##  Description of network port numbers for a given port number parameter
+##  
+##  Usage:
+##     @script.name [option]
+##  
+##  Options:
+##     -h, --help                       print this documentation
+##  
+##         --port=PORT                  index number of the port
+##  
+##  edjanger, The MIT License (MIT)
+##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  
+# ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
 if [ -n "$1" ]; then
   if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
-    usage $0 portdesc
+    printHeader $0
   else
-    echo -e "\n--- Port description for $1"
+    port=$1
+    if [[ "${port}" = "--port="* ]]; then
+      #echo "Eval parameter:${index#--}"
+      eval "${port#--}"
+    elif [[ "${port}" = "-port="* ]]; then
+      #echo "Eval parameter:${index#-}"
+      eval "${port#-}"
+    elif [[ "${port}" = "port="* ]]; then
+      #echo "Eval parameter:${index}"
+      eval "${port}"
+    else
+      echo -e "edocker:ERROR: index parameter is required"
+      printHeader $0
+      exit -1
+    fi
+    echo -e "--- Port ${port} description"
     title="Service Name,Port Number,Transport Protocol,Description,Assignee,Contact,Registration Date,Modification Date,Reference,Service Code,Known Unauthorized Uses,Assignment Notes"
-    ports=$(cat {edjangerpath}/service-names-port-numbers.csv | grep ",$1,")
+    ports=$(cat {edjangerpath}/service-names-port-numbers.csv | grep ",${port},")
     if [ -n "$ports" ]; then
       echo -e $title
       REFIFS=$IFS
@@ -38,5 +51,5 @@ if [ -n "$1" ]; then
     fi
   fi
 else
-  echo -e "Please set a port number for argument"
+  echo -e "Please set a port number with like --index=port"
 fi

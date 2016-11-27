@@ -6,7 +6,7 @@
 ##     @script.name [option]
 ##  
 ##  Options:
-##     -h, --help                     print this documentation.
+##     -h, --help                     print this documentation
 ##  
 ##  Parameters (edjanger.properties):
 ##     build_args                     build arguments
@@ -15,6 +15,7 @@
 ##     build_nocache                  do not use cache when building the image
 ##     build_file                     name of the Dockerfile (Default is 'CURRENT PATH/Dockerfile')
 ##     build_path                     path where is found Dockerfile and its dependencies
+##     docker_command                 show docker command when edjanger is used
 ##     image_name                     image name
 ##  
 ##  Environement:
@@ -26,7 +27,7 @@
 # ------------------------------------------------------------------------------
 ###
 ### External options:
-###    -h, --help                     print this documentation.
+###    -h, --help                     print this documentation
 ###  
 ### Internal options:
 ###  
@@ -34,9 +35,9 @@
 ###  
 ###        --command=COMMAND          name of the docker command to execute
 ###  
-###        --commandcomment=COMMAND  printed comment of the command to execute
+###        --commandcomment=COMMAND   printed comment of the command to execute
 ###  
-###        --commandoptions=OPTIONS  options read in the edjanger.properties
+###        --commandoptions=OPTIONS   options read in the edjanger.properties
 ###  
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
@@ -58,7 +59,9 @@ build_arguments="${proxy_args} ${build_args}"
 [ -n "${image_name}" ]                         && commandoptions="${commandoptions} ${image_name}"
 [ -n "${build_path}" ]                         && commandoptions="${commandoptions} ${build_path}"
 [ -n "${commandoptions}" ]                     && commandoptions="--commandoptions=\"${commandoptions}\""
-dockerbasicimage "--scriptname=\"$0\";--command=\"build -t\";--commandcomment=\"Build image: {image_name}...\";${commandoptions};$@"
+[ -n "$@" ]                                    && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
+                                               && externaloptions=$(echo $@ | sed "s|[[:space:]]-|;-|g")
+dockerbasicimage "--scriptname=\"$0\";--command=\"build -t\";--commandcomment=\"Build image: {image_name}...\";${commandoptions};${externaloptions}"
 
 build_arguments=""
 . {edjangerpath}/_proxy_reset.sh

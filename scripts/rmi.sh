@@ -1,44 +1,53 @@
 #!/bin/bash
-# ----------------------------------------------------
-# The MIT License (MIT)
-#
-# Copyright (c) 2016 copyright pamtrak06@gmail.com
-# ----------------------------------------------------
-# SCRIPT           : rmi.sh
-# ALIAS            : edjangerrmi
-# DESCRIPTION      : run command "docker rmi" with parameters readed from local edjanger.properties
-#   PARAMETER      : image_name
-#   PARAMETER      : force_rmi
-#   PARAMETER      : docker_command
-# CREATOR          : pamtrak06@gmail.com
-# --------------------------------
-# VERSION          : 1.0
-# DATE             : 2016-03-02
-# COMMENT          : creation
-# --------------------------------
-# USAGE            : edjangerrmi
-# ----------------------------------------------------
+# ------------------------------------------------------------------------------
+##  Run command "docker rmi" with parameters read from edjanger.properties
+##  
+##  Usage:
+##     @script.name [option]
+##  
+##  Options:
+##     -h, --help                     print this documentation
+##  
+##  Parameters (edjanger.properties):
+##     docker_command                 show docker command when edjanger is used
+##     force_rmi                      force image deletion
+##     image_name                     image name
+##  
+##  edjanger, The MIT License (MIT)
+##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  
+# ------------------------------------------------------------------------------
+###
+### External options:
+###    -h, --help                     print this documentation
+###  
+### Internal options:
+###  
+###        --script=SCRIPT            name of the main script
+###  
+###        --confirm                  ask for a confirmation before execute
+###
+###        --confirmquestion=QUESTION question for the execution's confirmation
+###  
+###        --command=COMMAND          name of the docker command to execute
+###  
+###        --commandcomment=COMMAND   printed comment of the command to execute
+###  
+###        --commandoptions=OPTIONS   options read in the edjanger.properties
+###  
+# ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
-if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
-  usage $0 rmi
-else
-  rename_edocker_properties
-  if [ ! -f edjanger.${config_extension} ]; then
-    echo -e "edjanger:ERROR No edjanger.${config_extension} available, use \"<edjangerinit>\" command to initialize one in this directory"
-  else
-    read_app_properties
-    echo "Are you sure you want to delete image: ${image_name} (y/n)?"
-    read response
-    if [ "y" = "$response" ]; then
-      echo "Deleting image: ${image_name}..."
-      docker rmi ${force_rmi} ${image_name}
-      if [ "true" = "${docker_command}" ]; then
-        echo -e "> Executed docker command:"
-        echo -e "> docker rmi ${force_rmi} ${image_name}"
-      fi
-    elif [ "n" != "$response" ]; then
-        echo "Response must be \"y\" or \"n\""
-    fi
-  fi
-fi
+read_app_properties
+
+# check required configuration
+[ -z "${image_name}" ]                         && echo "Image name must be filled, configure variable image_name in edjanger.${config_extension}" && exit -1
+
+[ -n "${force_rmi}" ]                          && commandoptions="${commandoptions} ${force_rmi}"
+[ -n "${image_name}" ]                         && commandoptions="${commandoptions} ${image_name}"
+[ -n "${commandoptions}" ]                     && commandoptions="--commandoptions=\"${commandoptions}\""
+[ -n "$@" ]                                    && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
+                                               && externaloptions=$(echo $@ | sed "s|[[:space:]]-|;-|g")
+confirm_question="Image \"{image_name}\" will be permanently erased, do you want to continue (y/n) ?"
+dockerbasicimage "--scriptname=\"$0\";--command=\"rmi\";--commandcomment=\"Delete image: {image_name}...\";${commandoptions};--confirm;--confirmquestion=\"$confirm_question\";${externaloptions}"
+

@@ -8,20 +8,20 @@
 ##     @script.name [option]
 ##  
 ##  Options:
-##     -h, --help                     print this documentation.
+##     -h, --help                     print this documentation
 ##  
-##         --fromcontainer            copy file(s) from container to host.
+##         --fromcontainer            copy file(s) from container to host
 ##  
-##         --fromhost                 copy file(s) from host to container.
+##         --fromhost                 copy file(s) from host to container
 ##  
-##         --sourcepath=PATH          path to file(s) or folder to copy.
+##         --sourcepath=PATH          path to file(s) or folder to copy
 ##  
-##         --destinationpath=PATH     path where to copy file(s) or folder to copy.
+##         --destinationpath=PATH     path where to copy file(s) or folder to copy
 ##  
 ##  Parameters (edjanger.properties):
 ##     container_name                 container name
 ##     copy_options                   options to copy files/folders between a container and the local filesystem
-##     docker_command                 show docker command when edjanger is used
+##     docker_command                 \"docker cp\" options to a running container
 ##  
 ##  edjanger, The MIT License (MIT)
 ##  Copyright (c) 2016 copyright pamtrak06@gmail.com
@@ -29,9 +29,9 @@
 # ------------------------------------------------------------------------------
 ###
 ### External options:
-###    -h, --help                     print this documentation.
+###    -h, --help                     print this documentation
 ###
-###        --index=INDEX              index of the container name.
+###        --index=INDEX              index of the container name
 ###
 ### Internal options:
 ###
@@ -39,9 +39,9 @@
 ###
 ###        --command=COMMAND          name of the docker command to execute
 ###
-###        --commandcomment=COMMAND  printed comment of the command to execute
+###        --commandcomment=COMMAND   printed comment of the command to execute
 ###
-###        --commandoptions=OPTIONS  options read in the edjanger.properties
+###        --commandoptions=OPTIONS   options read in the edjanger.properties
 ###
 # ------------------------------------------------------------------------------
 
@@ -54,5 +54,7 @@ read_app_properties
 
 [ -n "${copy_options}" ]                       && commandoptions="${commandoptions} ${copy_options}"
 [ -n "${commandoptions}" ]                     && commandoptions="--commandoptions=\"${commandoptions}\""
-dockerbasiccontainer "--scriptname=\"$0\";--command=\"cp\";--commandcomment=\"Copy files from/to: {container_name}...\";${commandoptions};$@"
+[ -n "$@" ]                                    && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
+                                               && externaloptions=$(echo $@ | sed "s|[[:space:]]-|;-|g")
+dockerbasiccontainer "--scriptname=\"$0\";--command=\"cp\";--commandcomment=\"Copy files from/to: {container_name}...\";${commandoptions};${externaloptions}"
 
