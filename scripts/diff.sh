@@ -36,6 +36,7 @@
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
-commandoptions=$([ -n "${diff_options}" ] && echo -e "--commandoptions=\"${diff_options}\"")
-dockerbasiccontainer "--scriptname=\"$0\";--command=\"diff {container_name}\";--commandcomment=\"Do a diff of container: {container_name}...\";--commandoptions=\"${diff_options}\";$@"
+[ -n "${diff_options}" ]            && commandoptions="${commandoptions} ${diff_options}"
+[ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
+dockerbasiccontainer "--scriptname=\"$0\";--command=\"diff {container_name}\";--commandcomment=\"Do a diff of container: {container_name}...\";${commandoptions};$@"
 

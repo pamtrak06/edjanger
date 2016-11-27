@@ -36,5 +36,7 @@
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
-commandoptions=$([ -n "${update_options}" ] && echo -e "--commandoptions=\"${update_options}\"")
-dockerbasiccontainer "--scriptname=\"$0\";--command=\"update {container_name}\";--commandcomment=\"Update container: {container_name}...\";--commandoptions=\"${update_options}\";$@"
+[ -n "${update_options}" ]          && commandoptions="${commandoptions} ${update_options}"
+[ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
+dockerbasiccontainer "--scriptname=\"$0\";--command=\"update {container_name}\";--commandcomment=\"Update container: {container_name}...\";${commandoptions};$@"
+

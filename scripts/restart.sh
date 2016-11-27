@@ -36,5 +36,7 @@
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
-commandoptions=$([ -n "${restart_options}" ] && echo -e "--commandoptions=\"${restart_options}\"")
-dockerbasiccontainer "--scriptname=\"$0\";--command=\"restart {container_name}\";--commandcomment=\"Restart container: {container_name}...\";--commandoptions=\"${restart_options}\";$@"
+[ -n "${restart_options}" ]         && commandoptions="${commandoptions} ${restart_options}"
+[ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
+dockerbasiccontainer "--scriptname=\"$0\";--command=\"restart {container_name}\";--commandcomment=\"Restart container: {container_name}...\";${commandoptions};$@"
+

@@ -36,5 +36,7 @@
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
-commandoptions=$([ -n "${inspect_options}" ] && echo -e "--commandoptions=\"${inspect_options}\"")
-dockerbasiccontainer "--scriptname=\"$0\";--command=\"inspect {container_name}\";--commandcomment=\"Inspect container: {container_name}...\";--commandoptions=\"${inspect_options}\";$@"
+[ -n "${inspect_options}" ]         && commandoptions="${commandoptions} ${inspect_options}"
+[ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
+dockerbasiccontainer "--scriptname=\"$0\";--command=\"inspect {container_name}\";--commandcomment=\"Inspect container: {container_name}...\";${commandoptions};$@"
+

@@ -36,5 +36,7 @@
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
-commandoptions=$([ -n "${top_options}" ] && echo -e "--commandoptions=\"${top_options}\"")
-dockerbasiccontainer "--scriptname=\"$0\";--command=\"top {container_name}\";--commandcomment=\"Top of container: {container_name}...\";--commandoptions=\"${top_options}\";$@"
+[ -n "${top_options}" ]             && commandoptions="${commandoptions} ${top_options}"
+[ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
+dockerbasiccontainer "--scriptname=\"$0\";--command=\"top {container_name}\";--commandcomment=\"Top of container: {container_name}...\";${commandoptions};$@"
+

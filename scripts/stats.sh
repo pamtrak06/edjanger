@@ -36,5 +36,7 @@
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
-commandoptions=$([ -n "${stats_options}" ] && echo -e "--commandoptions=\"${stats_options}\"")
-dockerbasiccontainer "--scriptname=\"$0\";--command=\"stats {container_name}\";--commandcomment=\"Stats of container: {container_name}...\";--commandoptions=\"${stats_options}\";$@"
+[ -n "${stats_options}" ]           && commandoptions="${commandoptions} ${stats_options}"
+[ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
+dockerbasiccontainer "--scriptname=\"$0\";--command=\"stats {container_name}\";--commandcomment=\"Stats of container: {container_name}...\";${commandoptions};$@"
+

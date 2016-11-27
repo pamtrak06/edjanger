@@ -37,27 +37,7 @@
 
 source {edjangerpath}/_common.sh
 
-# if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
-#   dockerbasiccontainer --help --command="start"
-# else
-#   index=$([ -n "$1" ] && echo -e "$1")
-#   [ "$index" != *"index"* ] && echo -e "edocker:ERROR: argument must be --index=[container index number]" && return -1
-#   commandoptions=$([ -n "${start_options}" ] && echo -e "--command-options=\"${start_options}\"")
-#   dockerbasiccontainer --script="$0" --command="start" --command-comment="Starting container: " ${commandoptions} ${index}
-# fi
-# extract script name
-#scriptname=$(echo $*|$SED_REGEX -n 's/^.*--scriptname=(.+)\s*.*/\1/p'|cut -d ' ' -f1)
-#[ -z "$scriptname " ] && echo -e "edjanger:ERROR: script filename unidentified" && return -1
-#shift
+[ -n "${start_options}" ]           && commandoptions="${commandoptions} ${start_options}"
+[ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
+dockerbasiccontainer "--scriptname=\"$0\";--command=\"start {container_name}\";--commandcomment=\"Start container: {container_name}...\";${commandoptions};$@"
 
-# # parse options
-# unset index
-# . {edjangerpath}/_options.sh $0 $* || return -1
-# echo "index2: $index"
-# unset index
-# echo "index1: $index"
-
-#dockerbasiccontainer --scriptname="$0" --command="start" --commandcomment='Starting-container:-' ${commandoptions} $@
-commandoptions=$([ -n "${start_options}" ] && echo -e "--commandoptions=\"${start_options}\"")
-dockerbasiccontainer "--scriptname=\"$0\";--command=\"start {container_name}\";--commandcomment=\"Start container: {container_name}...\";--commandoptions=\"${start_options}\";$@"
-#dockerbasiccontainer "--scriptname=$0;--command=start;--commandcomment=Starting container: ;--commandoptions=${start_options};$@"

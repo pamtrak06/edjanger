@@ -36,5 +36,7 @@
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
-commandoptions=$([ -n "${stop_options}" ] && echo -e "--commandoptions=\"${stop_options}\"")
-dockerbasiccontainer "--scriptname=\"$0\";--command=\"stop {container_name}\";--commandcomment=\"Stop container: {container_name}...\";--commandoptions=\"${stop_options}\";$@"
+[ -n "${stop_options}" ]            && commandoptions="${commandoptions} ${stop_options}"
+[ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
+dockerbasiccontainer "--scriptname=\"$0\";--command=\"stop {container_name}\";--commandcomment=\"Stop container: {container_name}...\";${commandoptions};$@"
+

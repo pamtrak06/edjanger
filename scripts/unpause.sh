@@ -36,5 +36,7 @@
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
-commandoptions=$([ -n "${unpause_options}" ] && echo -e "--commandoptions=\"${unpause_options}\"")
-dockerbasiccontainer "--scriptname=\"$0\";--command=\"unpause {container_name}\";--commandcomment=\"Unpause container: {container_name}...\";--commandoptions=\"${unpause_options}\";$@"
+[ -n "${unpause_options}" ]         && commandoptions="${commandoptions} ${unpause_options}"
+[ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
+dockerbasiccontainer "--scriptname=\"$0\";--command=\"unpause {container_name}\";--commandcomment=\"Unpause container: {container_name}...\";${commandoptions};$@"
+

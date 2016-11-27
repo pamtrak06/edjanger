@@ -36,5 +36,7 @@
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
-commandoptions=$([ -n "${wait_options}" ] && echo -e "--commandoptions=\"${wait_options}\"")
-dockerbasiccontainer "--scriptname=\"$0\";--command=\"wait {container_name}\";--commandcomment=\"Wait container: {container_name}...\";--commandoptions=\"${wait_options}\";$@"
+[ -n "${wait_options}" ]            && commandoptions="${commandoptions} ${wait_options}"
+[ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
+dockerbasiccontainer "--scriptname=\"$0\";--command=\"wait {container_name}\";--commandcomment=\"Wait container: {container_name}...\";${commandoptions};$@"
+
