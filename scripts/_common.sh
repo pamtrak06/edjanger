@@ -96,10 +96,19 @@ function read_app_properties()
 
 function dockerbasicimage()
 {
-  command="$1"
-  comment="$2"
+  # eval parameters from all parametters given as argument of function
+  IFS=';' read -ra parameters <<< "$*"
+  for parameter in "${parameters[@]}"; do
+      if [[ "${parameter#--}" = *"="* ]]; then
+        eval "${parameter#--}"
+      elif [[ "$parameter" =~ ^[-]*h[a-z]* ]] || [ "$parameter" = "-h" ]; then
+        help=true
+      else
+        [ -n "${parameter#--}" ] && eval "${parameter#--}=true"
+      fi
+  done
 
-  if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
+  if [[ "$1" =~ ^[-]*help[a-z]* ]] || [ "$1" = "-h" ]; then
     source {edjangerpath}/_common.sh
     usage $0 $2
   else
@@ -108,11 +117,12 @@ function dockerbasicimage()
       echo -e "${app_name}:ERROR No ${app_name}.${config_extension} available, use \"<${app_name}init>\" command to initialize one in this directory"
     else
       read_app_properties
-      echo "${comment} $(echo ${image_name} | cut -d ':' -f1)..."
-      docker ${command} | grep $(echo ${image_name} | cut -d ':' -f1)
+      commandcomment=${commandcomment/\{image_name\}/${image_name}}
+      echo "${commandcomment}"
+      docker ${command} ${image_name}
       if [ "true" = "${docker_command}" ]; then
           echo -e "> Executed docker command:"
-          echo -e "> docker ${command} | grep $(echo ${image_name} | cut -d ':' -f1)"
+          echo -e "> docker ${command} ${image_name})"
       fi
     fi
   fi
@@ -145,8 +155,7 @@ function dockerps()
 
 function dockerbasiccontainer()
 {
-  #local option
-
+  # eval parameters from all parametters given as argument of function
   IFS=';' read -ra parameters <<< "$*"
   for parameter in "${parameters[@]}"; do
       if [[ "${parameter#--}" = *"="* ]]; then
@@ -193,8 +202,13 @@ function dockerbasiccontainer()
         echo "${commandcomment}..."
         # replace container name
         command=${command/\{container_name\}/$ct}
-        # actually valid for rename
-        [ -n "${name}" ] && commandoptions="${commandoptions} ${name}"
+        # following valid for rename
+        [ -n "${name}" ]           && commandoptions="${commandoptions} ${name}"
+        # following valid for commit
+        [ -n "${commitauthor}" ]   && commandoptions="${commandoptions} --author ${commitauthor}"
+        [ -n "${commitmessage}" ]  && commandoptions="${commandoptions} --message ${commitmessage}"
+        [ -n "${commitchange}" ]   && commandoptions="${commandoptions} --change ${commitchange}"
+        [ -n "${commitname}" ]     && commandoptions="${commandoptions} ${commitname}"
         # run docker command
         docker ${command} ${commandoptions}
         if [ "true" = "${docker_command}" ]; then
