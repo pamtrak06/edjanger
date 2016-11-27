@@ -56,7 +56,7 @@ function updatePaths() {
   fi
 }
 
-# Build aliases files
+# check prerequisities
 function checkPrerequisities() {
   status=0;
   is_exec_present "bc"
@@ -280,7 +280,7 @@ function buildAliases() {
         echo -e "  - updating aliases ${edalias} in files ${edaliasFile} and ${edunaliasFile}..."
       fi
 
-      echo "alias ${edalias}=\"source ${edjangerpath}/${base}\"" >> ${edaliasFile}
+      echo "alias ${edalias}=\"bash ${edjangerpath}/${base}\"" >> ${edaliasFile}
 
       echo "unalias ${edalias}" >> ${edunaliasFile}
 
