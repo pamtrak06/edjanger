@@ -156,49 +156,11 @@ function dockerbasiccontainer()
       else
         eval "${parameter#--}=true"
       fi
-      # case "$parameter" in
-      #     "-h, --help"*)  continue ;;
-      #     "--help, -h"*)  continue ;;
-      #     -*," "--*)      option=$(echo "$parameter" | awk -F'(^-|, --| )'  '{ print $2"="$3 }') ;;
-      #     --*," "-*)      option=$(echo "$parameter" | awk -F'(--|, -| )'   '{ print $3"="$2 }') ;;
-      #     --*=*)          option=$(echo "$parameter" | awk -F'(--|=| )'     '{ print $2"=?" }') ;;
-      #     --*" "*)        option=$(echo "$parameter" | awk -F'(--| )'       '{ print $2 }') ;;
-      #     *)              echo "not found" && continue ;;
-      # esac
-      # options+=("$option")
-      # echo -e "option: $option"
   done
-  # echo -e "options: $options"
-  #return 1
-
-  # # extract script name
-  # scriptname=$(echo $*|$SED_REGEX -n 's/^.*--scriptname=(.+)\s*.*/\1/p'|cut -d ' ' -f1)
-  # [ -z "$scriptname " ] && echo -e "edjanger:ERROR: script filename unidentified" && return -1
-  # shift
-  #
-  # echo "index1: $index"
-  # # parse options
-  # parse_options "$scriptname" "$*" || return -1
-  # echo "index2: $index"
-  #
-  # # parameter options
-  # [[ -n "${scriptname}"  ]]      && echo -e "Option specified: --scriptname : ${scriptname}"
-  # [[ -n "${command}"  ]]         && echo -e "Option specified: --command : ${command}"
-  # [[ -n "${commandcomment}" ]]   && echo -e "Option specified: --commandcomment : ${commandcomment}"
-  # [[ -n "${commandoptions}" ]]   && echo -e "Option specified: --commandoptions : ${commandoptions}"
-  # [[ -n "${index}" ]]            && echo -e "Option specified: --index : ${index}"
-  # [[ -n "${confirm}" ]]          && echo -e "Option specified: --confirm : ${confirm}"
-  # [[ -n "${confirmquestion}" ]]  && echo -e "Option specified: --confirmquestion : ${confirmquestion}"
-  # [[ -n "${help}" ]]             && echo -e "Option specified: --help"
-  
-  # # arguments
-  # for argument in "${arguments[@]}"; do
-  #     echo "${app_name}:ERROR extra argument specified: \"$argument\""
-  #     return -1
-  # done
 
   if [ -n "$help" ]; then
     source {edjangerpath}/_common.sh
+    # TODO older usage, update headers for all scripts
     #usage $0 $command
     parse_documentation $scriptname
     basename=$(basename "${scriptname}")
