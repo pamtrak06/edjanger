@@ -222,7 +222,7 @@ function computeContainerLastIndex()
 function computeContainerIndex()
 {
   container_name=$1
-  return $(($(docker ps -a --filter="name=${container_name}_[0-9]+" --format '{{.Names}}'|wc -l)))
+  return $(($(docker ps -a --format="{{.Names}}" --filter="name=${container_name}_[0-9]+"|wc -l)))
 }
 
 function dockerbasiccontainer()
