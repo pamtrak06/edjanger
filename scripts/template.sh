@@ -61,7 +61,7 @@ function create_edjanger_properties()
 
     echo -e "edjanger:INFO Process informations of template: \"${template}\"  ..."
 
-    continue=true
+    continueprocess=true
 
     # one main configuration file
     if [ -n "${configuration}" ] && [ -f "${configuration}" ]; then
@@ -69,7 +69,7 @@ function create_edjanger_properties()
       prop_file=${configuration}
       echo -e "edjanger:INFO Use main configuration file: \"${prop_file}\"  ..."
       check_export_presence_from_properties "$prop_file"
-      continue=$?
+      continueprocess=$?
 
     # one configuration file by edjanger.template
     elif [ -n "${configuration}" ]; then
@@ -78,16 +78,16 @@ function create_edjanger_properties()
       prop_file=${working_directory}/${configuration}
       echo -e "edjanger:INFO Use local configuration file: \"${prop_file}\"  ..."
       check_export_presence_from_properties "$prop_file"
-      continue=$?
+      continueprocess=$?
 
     else
 
-      continue=false
+      continueprocess=false
       echo -e "edjanger:ERROR File configuration name must exist and be set as argument"
 
     fi
 
-    if [ ${continue} ]; then
+    if [ ${continueprocess} ]; then
 
       # replace variable from configuration file in template
       # if configuration file exist (global or local)
