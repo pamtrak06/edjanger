@@ -60,13 +60,13 @@ docker stop $(docker ps -aq | grep "devops/jenkins")
 ## How to install edjanger
 ([go up to table of content](#table-of-content))
 ### Prerequisities
-- install bc command
 - install gettext (for envsubst)
     osx:
       brew install gettext
       brew link --force gettext
       echo "PATH=/usr/local/Cellar/gettext/0.19.8.1/bin/envsubst:$PATH" >> ~/.bashrc
       source ~/.bashrc
+- optionnal: install bc command
 - optionnal: install tree command (from binaries or from sources http://mama.indstate.edu/users/ice/tree/)
 
 ### OS compliant

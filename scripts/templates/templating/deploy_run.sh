@@ -20,7 +20,7 @@ function usage(){
 if [ "$#" -ne 2 ] || [ -z "$mode" ] || ([ ! "$mode" = "production" ] && [ ! "$mode" = "integration" ]); then
   usage
 else
-  bitwise=$(echo "$step / 1" |bc)
+  bitwise=$(($step / 1))
   if [ $bitwise -ge 0 ]; then
     echo "#1 cleaning edjanger.properties..."
     rm -f docker-compose.yaml
@@ -31,7 +31,7 @@ else
     rm -f edjanger.log
   fi
 
-  bitwise=$(echo "$step / 2" |bc)
+  bitwise=$(($step / 2))
   if [ $bitwise -ne 0 ]; then
     echo "#2 generate edjanger.properties from template and properties..."
     edjangertemplate properties=$mode 2>&1 | tee edjanger.log
@@ -41,7 +41,7 @@ else
     fi
   fi
 
-  bitwise=$(echo "$step / 3" |bc)
+  bitwise=$(($step / 3))
   if [ $bitwise -ne 0 ]; then
     echo "#3 compare web1 and web2 configuration..."
     ./diff_conf.sh 2>&1 | tee edjanger.log
@@ -51,7 +51,7 @@ else
     fi
   fi
 
-  bitwise=$(echo "$step / 4" |bc)
+  bitwise=$(($step / 4))
   if [ $bitwise -ne 0 ]; then
     echo "#4 generate docker-compose.yaml from edjanger.properties..."
     edjangercompose 2>&1 | tee edjanger.log
@@ -61,7 +61,7 @@ else
     fi
   fi
 
-  bitwise=$(echo "$step / 5" |bc)
+  bitwise=$(($step / 5))
   if [ $bitwise -ne 0 ]; then
     echo "#5 run docker compose"
     status=$(docker-compose ps|grep "web")

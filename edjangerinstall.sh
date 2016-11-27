@@ -59,13 +59,6 @@ function updatePaths() {
 # check prerequisities
 function checkPrerequisities() {
   status=0;
-  is_exec_present "bc"
-  if [ $? = -1 ]; then
-    status=-1;
-    echo -e "edjanger:ERROR: bc is absent"
-  else
-    echo -e "  - bc is present: $exepath"
-  fi
   is_exec_present "envsubst"
   if [ $? = -1 ]; then
     status=-1;
