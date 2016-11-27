@@ -154,7 +154,7 @@ function dockerbasiccontainer()
       elif [[ "$parameter" =~ ^[-]*h[a-z]* ]] || [ "$parameter" = "-h" ]; then
         help=true
       else
-        eval "${parameter#--}=true"
+        [ -n "${parameter#--}" ] && eval "${parameter#--}=true"
       fi
   done
 
