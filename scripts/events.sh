@@ -1,37 +1,42 @@
 #!/bin/bash
-# ----------------------------------------------------
-# The MIT License (MIT)
-#
-# Copyright (c) 2016 copyright pamtrak06@gmail.com
-# ----------------------------------------------------
-# SCRIPT           : events.sh
-# ALIAS            : edjangerevents
-# DESCRIPTION      : events command "docker events", with parameters readed from local edjanger.properties
-#   PARAMETER      : events_options
-# CREATOR          : pamtrak06@gmail.com
-# --------------------------------
-# VERSION          : 1.0
-# DATE             : 2016-09-25
-# COMMENT          : creation
-# --------------------------------
-# USAGE            : edjangerevents
-# ----------------------------------------------------
+##  Get real time events for a container. File edjanger.properties must be present in path.
+##  By default events last container if no index specified.
+##  
+##  Usage:
+##     @script.name [option]
+##  
+##  Options:
+##     -h, --help                     print this documentation.
+##
+##         --index=INDEX              index of the container name.
+##  
+##  Parameters (edjanger.properties):
+##     events_options                 other events options.
+##  
+##  edjanger, The MIT License (MIT)
+##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  
+# ------------------------------------------------------------------------------
+###
+### External options:
+###    -h, --help                     print this documentation.
+###
+###        --index=INDEX              index of the container name.
+###
+### Internal options:
+###
+###        --script=SCRIPT            name of the main script
+###
+###        --command=COMMAND          name of the docker command to execute
+###
+###        --commandcomment=COMMAND  printed comment of the command to execute
+###
+###        --commandoptions=OPTIONS  options read in the edjanger.properties
+###
+# ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
-if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
-  usage $0 events
-else
-  rename_edocker_properties
-  if [ ! -f edjanger.${config_extension} ]; then
-    echo -e "edjanger:ERROR No edjanger.${config_extension} available, use \"<edjangerinit>\" command to initialize one in this directory"
-  else
-    read_app_properties
-    idx=$(echo "$(docker ps | grep ${container_name} | wc -l)+1" | bc)
-    echo "events container_name: ${container_name}_${idx}..."
-    docker events ${events_options} ${container_name}_${idx}
-    if [ "true" = "${docker_command}" ]; then
-      echo -e "> Executed docker command:"
-      echo -e "> docker events ${events_options} ${container_name}_${idx}"
-    fi
-  fi
-fi
+[ -n "${events_options}" ]          && commandoptions="${commandoptions} ${events_options}"
+[ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
+dockerbasiccontainer "--scriptname=\"$0\";--command=\"events {container_name}\";--commandcomment=\"Get real time events for container: {container_name}...\";${commandoptions};$@"
+

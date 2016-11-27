@@ -1,53 +1,55 @@
 #!/bin/bash
-# ----------------------------------------------------
-# The MIT License (MIT)
-#
-# Copyright (c) 2016 copyright pamtrak06@gmail.com
-# ----------------------------------------------------
-# SCRIPT           : runi.sh
-# ALIAS            : edjangerruni
-# DESCRIPTION      : run command "docker run -it" interactive mode, with parameters readed from local edjanger.properties
-#   PARAMETER      : image_name
-#   PARAMETER      : exposed_ports
-#   PARAMETER      : shared_volumes
-#   PARAMETER      : environment_variables
-#   PARAMETER      : linked_containers
-#   PARAMETER      : exposed_ports
-#   PARAMETER      : network_settings
-#   PARAMETER      : runtime_constraints_on_resources
-#   PARAMETER      : container_name
-#   PARAMETER      : docker_command
-# CREATOR          : pamtrak06@gmail.com
-# --------------------------------
-# VERSION          : 1.0
-# DATE             : 2016-03-02
-# COMMENT          : creation
-# --------------------------------
-# VERSION          : 1.0.1
-# DATE             : 2016-08-01
-# COMMENT          : add options for run : network_settings and network_settings
-# --------------------------------
-# USAGE            : edjangerruni
-# ----------------------------------------------------
+##  Run a container interactively. File edjanger.properties must be present in path.
+##  By default runi last container if no index specified.
+##  
+##  Usage:
+##     @script.name [option]
+##  
+##  Options:
+##     -h, --help                     print this documentation.
+##
+##         --index=INDEX              index of the container name.
+##  
+##  Parameters (edjanger.properties):
+##     runi_options                   other runi options.
+##  
+##  edjanger, The MIT License (MIT)
+##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  
+# ------------------------------------------------------------------------------
+###
+### External options:
+###    -h, --help                     print this documentation.
+###
+###        --index=INDEX              index of the container name.
+###
+### Internal options:
+###
+###        --script=SCRIPT            name of the main script
+###
+###        --command=COMMAND          name of the docker command to execute
+###
+###        --commandcomment=COMMAND  printed comment of the command to execute
+###
+###        --commandoptions=OPTIONS  options read in the edjanger.properties
+###
+# ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
-if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
-  usage $0 runi
-else
-  rename_edocker_properties  
-  if [ ! -f edjanger.${config_extension} ]; then
-    echo -e "edjanger:ERROR No edjanger.${config_extension} available, use \"<edjangerinit>\" command to initialize one in this directory"
-  else
-    read_app_properties
-    idx=$(echo "$(docker ps | grep ${container_name} | wc -l)+1" | bc)
-    echo "Run container_name: ${container_name}_${idx}..."
-    if [ -z "${command_run}" ]; then
-      command_run="/bin/bash"
-    fi
-    docker run -it --name ${container_name}_${idx} ${run_other_options} ${network_settings} ${runtime_constraints_on_resources} ${exposed_ports} ${volumes_from} ${shared_volumes} ${environment_variables} ${linked_containers} ${image_name} ${command_run}
-    if [ "true" = "${docker_command}" ]; then
-      echo -e "> Executed docker command:"
-      echo -e "> docker run -it --name ${container_name}_${idx} ${run_other_options} ${network_settings} ${runtime_constraints_on_resources} ${exposed_ports} ${volumes_from} ${shared_volumes} ${environment_variables} ${linked_containers} ${image_name} ${command_run}"
-    fi
-  fi
-fi
+read_app_properties
+[ -n "${run_other_options}" ]                  && commandoptions="${commandoptions} ${run_other_options}"
+[ -n "${network_settings}" ]                   && commandoptions="${commandoptions} ${network_settings}"
+[ -n "${runtime_constraints_on_resources}" ]   && commandoptions="${commandoptions} ${runtime_constraints_on_resources}"
+[ -n "${exposed_ports}" ]                      && commandoptions="${commandoptions} ${exposed_ports}"
+[ -n "${volumes_from}" ]                       && commandoptions="${commandoptions} ${volumes_from}"
+[ -n "${shared_volumes}" ]                     && commandoptions="${commandoptions} ${shared_volumes}"
+[ -n "${environment_variables}" ]              && commandoptions="${commandoptions} ${environment_variables}"
+[ -n "${linked_containers}" ]                  && commandoptions="${commandoptions} ${linked_containers}"
+[ -n "${image_name}" ]                         && commandoptions="${commandoptions} ${image_name}"
+[ -n "${command_run}" ]                        && command_run="/bin/bash"
+[ -n "${command_run}" ]                        && commandoptions="${commandoptions} ${command_run}"
+[ -n "${commandoptions}" ]                     && commandoptions="--commandoptions=\"${commandoptions}\""
+dockerbasiccontainer "--scriptname=\"$0\";--command=\"run -it --name {container_name}\";--commandcomment=\"Create new container and enter intercative: {container_name}...\";${commandoptions};$@"
+
+
+
