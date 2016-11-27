@@ -36,7 +36,22 @@ else
         SED_REGEX="sed -r"
 fi
 
+# eval parameters from all parametters given as argument of function
+function evalOptionsParameters()
+{
+  IFS=';' read -ra parameters <<< "$*"
+  for parameter in "${parameters[@]}"; do
+      if [[ "${parameter#--}" = *"="* ]]; then
+        eval "${parameter#--}"
+      elif [[ "$parameter" =~ ^[-]*help[a-z]* ]] || [ "$parameter" = "-h" ]; then
+        help=true
+      else
+        [ -n "${parameter#--}" ] && eval "${parameter#--}=true"
+      fi
+  done
+}
 
+# check if a linux binary is installed
 function is_exec_present()
 {
   execname="$1"
@@ -91,20 +106,10 @@ function read_app_properties()
 
 function dockerbasicimage()
 {
-  # eval parameters from all parametters given as argument of function
-  IFS=';' read -ra parameters <<< "$*"
-  for parameter in "${parameters[@]}"; do
-      if [[ "${parameter#--}" = *"="* ]]; then
-        eval "${parameter#--}"
-      elif [[ "$parameter" =~ ^[-]*h[a-z]* ]] || [ "$parameter" = "-h" ]; then
-        help=true
-      else
-        [ -n "${parameter#--}" ] && eval "${parameter#--}=true"
-      fi
-  done
+  evalOptionsParameters "$*"
 
-  if [[ "$1" =~ ^[-]*help[a-z]* ]] || [ "$1" = "-h" ]; then
-    usage $0 $2
+  if [ -n "$help" ]; then
+    printHeader $scriptname
   else
     rename_edocker_properties
     if [ ! -f ${app_name}.${config_extension} ]; then
@@ -113,10 +118,14 @@ function dockerbasicimage()
       read_app_properties
       commandcomment=${commandcomment/\{image_name\}/${image_name}}
       echo "${commandcomment}"
-      docker ${command} ${image_name}
+      # replace container name
+      command=${command/\{image_name\}/${image_name}}
+      # following valid for copy
+      #[ -n "${name}" ]           && commandoptions="${commandoptions} ${name}"
+      docker ${command} ${commandoptions}
       if [ "true" = "${docker_command}" ]; then
           echo -e "> Executed docker command:"
-          echo -e "> docker ${command} ${image_name})"
+          echo -e "> docker ${command} ${commandoptions}"
       fi
     fi
   fi
@@ -156,19 +165,16 @@ function printHeader()
   echo "$documentation"
 }
 
+function computeContainerIndex()
+{
+  container_name=$1
+  return $(($(docker ps -a --filter="name=${container_name}_[0-9]+"|grep -v "CONTAINER ID"|wc -l)))
+}
+
 function dockerbasiccontainer()
 {
-  # eval parameters from all parametters given as argument of function
-  IFS=';' read -ra parameters <<< "$*"
-  for parameter in "${parameters[@]}"; do
-      if [[ "${parameter#--}" = *"="* ]]; then
-        eval "${parameter#--}"
-      elif [[ "$parameter" =~ ^[-]*h[a-z]* ]] || [ "$parameter" = "-h" ]; then
-        help=true
-      else
-        [ -n "${parameter#--}" ] && eval "${parameter#--}=true"
-      fi
-  done
+
+  evalOptionsParameters "$*"
 
   if [ -n "$help" ]; then
     printHeader $scriptname
@@ -179,7 +185,8 @@ function dockerbasiccontainer()
     else
       read_app_properties
       if [ -z "$index" ]; then
-        idx=$(($(docker ps -a --filter="name=${container_name}_[0-9]+"|grep -v "CONTAINER ID"|wc -l)))
+        idx=computeContainerIndex ${container_name}
+        #idx=$(($(docker ps -a --filter="name=${container_name}_[0-9]+"|grep -v "CONTAINER ID"|wc -l)))
         [[ "$command" == *"run"* ]] && idx=$(($idx + 1))
       else
         idx=$index
@@ -404,7 +411,8 @@ function usage()
 
 
 # Build path aliases files
-function buildPathAliases() {
+function buildPathAliases() 
+{
 
   working_path=$1
   base_path=$(basename $1)
