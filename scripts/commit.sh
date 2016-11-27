@@ -17,7 +17,9 @@
 ##         --commitauthor=MESSAG      commit author.
 ##  
 ##  Parameters (edjanger.properties):
-##     commit_options                 other commit options.
+##     container_name                 container name.
+##     commit_options                 commit options to a running container.
+##     docker_command                 show docker command when edjanger is used.
 ##  
 ##  edjanger, The MIT License (MIT)
 ##  Copyright (c) 2016 copyright pamtrak06@gmail.com

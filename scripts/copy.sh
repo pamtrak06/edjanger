@@ -1,58 +1,58 @@
 #!/bin/bash
-# ----------------------------------------------------
-# The MIT License (MIT)
-#
-# Copyright (c) 2016 copyright pamtrak06@gmail.com
-# ----------------------------------------------------
-# SCRIPT           : copy.sh
-# ALIAS            : edjangercopy
-# DESCRIPTION      : run command "docker copy" with parameters readed from local edjanger.properties
-#   PARAMETER      : image_name
-#   PARAMETER      : container_name
-#   PARAMETER      : docker_command
-#   ARGUMENT       : host (h) or container (c)
-#   ARGUMENT       : source path= host or container
-#   ARGUMENT       : destination path= container or host
-# CREATOR          : pamtrak06@gmail.com
-# --------------------------------
-# VERSION          : 1.0
-# DATE             : 2016-03-02
-# COMMENT          : creation
-# --------------------------------
-# USAGE            : edjangercopy [h|c] [source path: host or container] [destination path: container or host]
-# ----------------------------------------------------
+# ------------------------------------------------------------------------------
+##  Run command "docker cp" with above options to copy file or folder from 
+##  container or host to host or container.
+##  Copy options are read from edjanger.properties.
+##  
+##  Usage:
+##     @script.name [option]
+##  
+##  Options:
+##     -h, --help                     print this documentation.
+##  
+##         --fromcontainer            copy file(s) from container to host.
+##  
+##         --fromhost                 copy file(s) from host to container.
+##  
+##         --sourcepath=PATH          path to file(s) or folder to copy.
+##  
+##         --destinationpath=PATH     path where to copy file(s) or folder to copy.
+##  
+##  Parameters (edjanger.properties):
+##     container_name                 container name
+##     copy_options                   options to copy files/folders between a container and the local filesystem
+##     docker_command                 show docker command when edjanger is used
+##  
+##  edjanger, The MIT License (MIT)
+##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  
+# ------------------------------------------------------------------------------
+###
+### External options:
+###    -h, --help                     print this documentation.
+###
+###        --index=INDEX              index of the container name.
+###
+### Internal options:
+###
+###        --script=SCRIPT            name of the main script
+###
+###        --command=COMMAND          name of the docker command to execute
+###
+###        --commandcomment=COMMAND  printed comment of the command to execute
+###
+###        --commandoptions=OPTIONS  options read in the edjanger.properties
+###
+# ------------------------------------------------------------------------------
+
 source {edjangerpath}/_common.sh
-if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
-  usage $0 copy
-else
-  rename_edocker_properties
-  if [ ! -f edjanger.${config_extension} ]; then
-    echo -e "edjanger:ERROR No edjanger.${config_extension} available, use \"<edjangerinit>\" command to initialize one in this directory"
-  else
 
-    read_app_properties
+read_app_properties
 
-    if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
-      usage $0 copy
-    else
-      idx=$(echo "$(docker ps | grep ${image_name} | wc -l)+0" | bc)
-      if [ "$1" = "c" ]; then
-        echo copy from container_name: ${container_name}_${idx} file $2 to host:$3...
-        docker cp ${container_name}_${idx}:$2 $3
-        if [ "true" = "${docker_command}" ]; then
-          echo -e "> Executed docker command:"
-          echo -e "> docker cp ${container_name}_${idx}:$2 $3"
-        fi
-      elif [ "$1" = "h" ]; then
-        echo copy file from host:$2 to container ${container_name}_${idx}:$3
-        docker cp $2 ${container_name}_${idx}:$3
-        if [ "true" = "${docker_command}" ]; then
-          echo -e "> Executed docker command:"
-          echo -e "> docker cp $2 ${container_name}_${idx}:$3"
-        fi
-      else
-        usage $0 copy
-      fi
-    fi
-  fi
-fi
+# check required configuration
+[ -z "${container_name}" ]                     && echo "Container name must be filled, configure variable container_name in edjanger.${config_extension}" && exit -1
+
+[ -n "${copy_options}" ]                       && commandoptions="${commandoptions} ${copy_options}"
+[ -n "${commandoptions}" ]                     && commandoptions="--commandoptions=\"${commandoptions}\""
+dockerbasiccontainer "--scriptname=\"$0\";--command=\"cp\";--commandcomment=\"Copy files from/to: {container_name}...\";${commandoptions};$@"
+

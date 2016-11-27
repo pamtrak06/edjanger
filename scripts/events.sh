@@ -11,7 +11,9 @@
 ##         --index=INDEX              index of the container name.
 ##  
 ##  Parameters (edjanger.properties):
-##     events_options                 other events options.
+##     container_name                 container name.
+##     docker_command                 show docker command when edjanger is used.
+##     events_options                 events options to a running container.
 ##  
 ##  edjanger, The MIT License (MIT)
 ##  Copyright (c) 2016 copyright pamtrak06@gmail.com

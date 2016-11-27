@@ -11,7 +11,9 @@
 ##         --index=INDEX              index of the container name.
 ##  
 ##  Parameters (edjanger.properties):
-##     diff_options                   other diff options.
+##     container_name                 container name.
+##     diff_options                   options to inspect changes on a container's filesystem.
+##     docker_command                 show docker command when edjanger is used.
 ##  
 ##  edjanger, The MIT License (MIT)
 ##  Copyright (c) 2016 copyright pamtrak06@gmail.com
