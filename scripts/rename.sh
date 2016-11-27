@@ -29,9 +29,9 @@
 ###
 ### Internal options:
 ###
-###        --script=SCRIPT            name of the main script
+###        --scriptname=SCRIPT        name of the main script
 ###
-###        --command=COMMAND          name of the docker command to execute
+###        --commandline=COMMAND      name of the docker command to execute
 ###
 ###        --commandcomment=COMMAND   printed comment of the command to execute
 ###
@@ -48,5 +48,5 @@ read_app_properties
 [ -n "${rename_options}" ]          && commandoptions="${commandoptions} ${rename_options}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
 confirm_question="Container \"{container_name}\" will be renamed, do you want to continue (y/n) ?"
-dockerbasiccontainer "--scriptname=\"$0\";--command=\"rename {container_name}\";--commandcomment=\"Renaming container: {container_name}...\";${commandoptions};--confirm;--confirmquestion=\"$confirm_question\";$@"
+dockerbasiccontainer "--scriptname=\"$0\";--commandline=\"rename {container_name}\";--commandcomment=\"Renaming container: {container_name}...\";${commandoptions};--confirm;--confirmquestion=\"$confirm_question\";$@"
 

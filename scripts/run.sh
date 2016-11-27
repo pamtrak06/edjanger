@@ -33,9 +33,9 @@
 ###
 ### Internal options:
 ###
-###        --script=SCRIPT            name of the main script
+###        --scriptname=SCRIPT        name of the main script
 ###
-###        --command=COMMAND          name of the docker command to execute
+###        --commandline=COMMAND      name of the docker command to execute
 ###
 ###        --commandcomment=COMMAND   printed comment of the command to execute
 ###
@@ -59,9 +59,9 @@ read_app_properties
 [ -n "${environment_variables}" ]              && commandoptions="${commandoptions} ${environment_variables}"
 [ -n "${linked_containers}" ]                  && commandoptions="${commandoptions} ${linked_containers}"
 [ -n "${image_name}" ]                         && commandoptions="${commandoptions} ${image_name}"
-[ -n "${command_run}" ]                        && commandoptions="${commandoptions} ${command_run}"
+#[ -n "${command_run}" ]                        && commandoptions="${commandoptions} ${command_run}"
 [ -n "${commandoptions}" ]                     && commandoptions="--commandoptions=\"${commandoptions}\""
 [ -n "$@" ]                                    && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
                                                && externaloptions=$(echo $@ | sed "s|[[:space:]]-|;-|g")
-dockerbasiccontainer "--scriptname=\"$0\";--command=\"run -dt --name {container_name}\";--commandcomment=\"Create new container: {container_name}...\";${commandoptions};${externaloptions}"
+dockerbasiccontainer "--scriptname=\"$0\";--commandline=\"run -dt --name {container_name}\";--commandcomment=\"Create new container: {container_name}...\";${commandoptions};${externaloptions}"
 

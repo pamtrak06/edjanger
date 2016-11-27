@@ -11,32 +11,12 @@
 ##  
 ##         --index=INDEX              index of the container name
 ##  
+##         --shellcommand=COMMAND     additionnal command to execute
+##  
 ##  Parameters (edjanger.properties):
 ##     container_name                 container name
 ##     docker_command                 show docker command when edjanger is used
-##     rm_options                     \"docker rm\" options to a running container
-##  
-##  edjanger, The MIT License (MIT)
-##  Copyright (c) 2016 copyright pamtrak06@gmail.com
-##  
-# ------------------------------------------------------------------------------
-
-#!/bin/bash
-##  Run a container. File edjanger.properties must be present in path.
-##  By default run last container if no index specified.
-##  
-##  Usage:
-##     @script.name [option]
-##  
-##  Options:
-##     -h, --help                       print this documentation
-##  
-##         --index=INDEX                index of the container name
-##  
-##         --command=COMMAND            additionnal command to execute
-##  
-##  Parameters (edjanger.properties):
-##     command_run                      bash command(s) to run
+##     exec_options                   \"docker exec\" options to a running container
 ##  
 ##  edjanger, The MIT License (MIT)
 ##  Copyright (c) 2016 copyright pamtrak06@gmail.com
@@ -52,9 +32,9 @@
 ###  
 ### Internal options:
 ###
-###        --script=SCRIPT            name of the main script
+###        --scriptname=SCRIPT        name of the main script
 ###
-###        --command=COMMAND          name of the docker command to execute
+###        --commandline=COMMAND      name of the docker command to execute
 ###
 ###        --commandcomment=COMMAND   printed comment of the command to execute
 ###
@@ -74,5 +54,5 @@ read_app_properties
 [ -n "${commandoptions}" ]                     && commandoptions="--commandoptions=\"${commandoptions}\""
 [ -n "$@" ]                                    && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
                                                && externaloptions=$(echo $@ | sed "s|[[:space:]]-|;-|g")
-dockerbasiccontainer "--scriptname=\"$0\";--command=\"exec -it {container_name}\";--commandcomment=\"Enter in container: {container_name}...\";${commandoptions};${externaloptions}"
+dockerbasiccontainer "--scriptname=\"$0\";--commandline=\"exec -it {container_name}\";--commandcomment=\"Enter in container: {container_name}...\";${commandoptions};${externaloptions}"
 

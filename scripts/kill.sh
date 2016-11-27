@@ -27,9 +27,9 @@
 ###
 ### Internal options:
 ###
-###        --script=SCRIPT            name of the main script
+###        --scriptname=SCRIPT        name of the main script
 ###
-###        --command=COMMAND          name of the docker command to execute
+###        --commandline=COMMAND      name of the docker command to execute
 ###
 ###        --commandcomment=COMMAND   printed comment of the command to execute
 ###
@@ -46,5 +46,5 @@ read_app_properties
 [ -n "${kill_options}" ]            && commandoptions="${commandoptions} ${kill_options}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
 confikill_question="Container \"{container_name}\" will be pekillanently erased, do you want to continue (y/n) ?"
-dockerbasiccontainer "--scriptname=\"$0\";--command=\"kill -f {container_name}\";--commandcomment=\"Kill container: {container_name}...\";${commandoptions};--confikill;--confikillquestion=\"$confikill_question\";$@"
+dockerbasiccontainer "--scriptname=\"$0\";--commandline=\"kill -f {container_name}\";--commandcomment=\"Kill container: {container_name}...\";${commandoptions};--confikill;--confikillquestion=\"$confikill_question\";$@"
 

@@ -21,9 +21,9 @@
 ###
 ### Internal options:
 ###
-###        --script=SCRIPT            name of the main script
+###        --scriptname=SCRIPT        name of the main script
 ###
-###        --command=COMMAND          name of the docker command to execute
+###        --commandline=COMMAND      name of the docker command to execute
 ###
 ###        --confirm                  ask for a confirmation before execute
 ###
@@ -49,7 +49,7 @@
 # exitedcontainer=$(docker ps -aq --filter "status=exited")
 # confirm_question="All following exited container \"{container_name}\" will be permanently erased, do you want to continue (y/n) ?"
 # docker ps -a --filter "status=exited" --format "Container {{.Names}}/id:{{.ID}} from image:{{.Image}}"
-# dockerbasiccontainer "--scriptname=\"$0\";--command=\"rm -f ${exitedcontainer}\";--commandcomment=\"Delete exited container...\";${commandoptions};--confirm;--confirmquestion=\"$confirm_question\";${externaloptions}"
+# dockerbasiccontainer "--scriptname=\"$0\";--commandline=\"rm -f ${exitedcontainer}\";--commandcomment=\"Delete exited container...\";${commandoptions};--confirm;--confirmquestion=\"$confirm_question\";${externaloptions}"
 source {edjangerpath}/_common.sh
 
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then

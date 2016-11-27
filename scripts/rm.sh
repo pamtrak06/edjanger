@@ -27,9 +27,9 @@
 ###
 ### Internal options:
 ###
-###        --script=SCRIPT            name of the main script
+###        --scriptname=SCRIPT        name of the main script
 ###
-###        --command=COMMAND          name of the docker command to execute
+###        --commandline=COMMAND      name of the docker command to execute
 ###
 ###        --confirm                  ask for a confirmation before execute
 ###
@@ -52,5 +52,5 @@ read_app_properties
 [ -n "$@" ]                         && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
                                     && externaloptions=$(echo $@ | sed "s|[[:space:]]-|;-|g")
 confirm_question="Container \"{container_name}\" will be permanently erased, do you want to continue (y/n) ?"
-dockerbasiccontainer "--scriptname=\"$0\";--command=\"rm -f {container_name}\";--commandcomment=\"Delete container: {container_name}...\";${commandoptions};--confirm;--confirmquestion=\"$confirm_question\";${externaloptions}"
+dockerbasiccontainer "--scriptname=\"$0\";--commandline=\"rm -f {container_name}\";--commandcomment=\"Delete container: {container_name}...\";${commandoptions};--confirm;--confirmquestion=\"$confirm_question\";${externaloptions}"
 

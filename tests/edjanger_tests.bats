@@ -4,7 +4,7 @@ export PATH=$PATH:/usr/local/bin/edjanger
 @test "edjanger init          : presence edjanger.properties" {
   TMP=tmp_edjangerinit
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
-  . ../../scripts/init.sh
+  bash ../../scripts/init.sh
   result="$(ls edjanger.properties)"
   [ -n "$result" ]
   cd ..
@@ -14,7 +14,7 @@ export PATH=$PATH:/usr/local/bin/edjanger
 @test "edjanger init          : presence build/Dockerfile" {
   TMP=tmp_edjangerinit
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
-  . ../../scripts/init.sh
+  bash ../../scripts/init.sh
   result="$(ls build/Dockerfile)"
   [ -n "$result" ]
   cd ..
@@ -24,7 +24,7 @@ export PATH=$PATH:/usr/local/bin/edjanger
 @test "edjanger build         : is image built" {
   TMP=tmp_edjangerinit
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
-  . ../../scripts/init.sh
+  bash ../../scripts/init.sh
   echo "FROM httpd" > build/Dockerfile
   PROP=edjanger.properties
   TMPP=edjanger.tmp
@@ -38,7 +38,7 @@ export PATH=$PATH:/usr/local/bin/edjanger
   cat edjanger.properties | grep -v "#exposed_ports:" | grep exposed_ports
   sed -e "s/\(shared_volumes=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep -v "#shared_volumes:" | grep shared_volumes
-  . ../../scripts/build.sh
+  bash ../../scripts/build.sh
   result="$(docker images | grep pamtrak06/webtest)"
   [ -n "$result" ]
   cd ..
@@ -49,7 +49,7 @@ export PATH=$PATH:/usr/local/bin/edjanger
 @test "edjanger run           : is container running" {
   TMP=tmp_edjangerinit
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
-  . ../../scripts/init.sh
+  bash ../../scripts/init.sh
   echo "FROM httpd" > build/Dockerfile
   PROP=edjanger.properties
   TMPP=edjanger.tmp
@@ -63,8 +63,8 @@ export PATH=$PATH:/usr/local/bin/edjanger
   cat edjanger.properties | grep -v "#exposed_ports:" | grep exposed_ports
   sed -e "s/\(shared_volumes=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep -v "#shared_volumes:" | grep shared_volumes
-  . ../../scripts/build.sh
-  . ../../scripts/run.sh
+  bash ../../scripts/build.sh
+  bash ../../scripts/run.sh
   result="$(docker ps | grep webtest_1 )"
   [ -n "$result" ]
   cd ..
@@ -78,7 +78,7 @@ export PATH=$PATH:/usr/local/bin/edjanger
   skip
   TMP=tmp_edjangerinit
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
-  . ../../scripts/init.sh
+  bash ../../scripts/init.sh
   echo "FROM httpd" > build/Dockerfile
   PROP=edjanger.properties
   TMPP=edjanger.tmp
@@ -92,8 +92,8 @@ export PATH=$PATH:/usr/local/bin/edjanger
   cat edjanger.properties | grep -v "#" | grep exposed_ports
   sed -e "s/\(shared_volumes=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep -v "#shared_volumes:" | grep shared_volumes
-  . ../../scripts/build.sh
-  . ../../scripts/run.sh
+  bash ../../scripts/build.sh
+  bash ../../scripts/run.sh
   ip=$(nslookup $(hostname) | grep Address | grep -v "#" | awk '{ printf $2}')
   result="$(curl $ip)"
   [ -n "$result" ]
@@ -108,7 +108,7 @@ export PATH=$PATH:/usr/local/bin/edjanger
   skip
   TMP=tmp_edjangerinit
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
-  . ../../scripts/init.sh
+  bash ../../scripts/init.sh
   echo "FROM httpd" > build/Dockerfile
   PROP=edjanger.properties
   TMPP=edjanger.tmp
@@ -122,9 +122,9 @@ export PATH=$PATH:/usr/local/bin/edjanger
   ccat edjanger.properties | grep -v "#exposed_ports:" | grep exposed_ports
   sed -e "s/\(shared_volumes=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep -v "#shared_volumes:" | grep shared_volumes
-  . ../../scripts/build.sh
-  . ../../scripts/run.sh
-  . ../../scripts/exec.sh
+  bash ../../scripts/build.sh
+  bash ../../scripts/run.sh
+  bash ../../scripts/exec.sh
   result="$(uname -r)"
   exit
   [[ "$result" == *"docker"* ]]
@@ -136,10 +136,9 @@ export PATH=$PATH:/usr/local/bin/edjanger
 }
 
 @test "edjanger start/stop    : start/stop container" {
-  skip
   TMP=tmp_edjangerinit
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
-  . ../../scripts/init.sh
+  bash ../../scripts/init.sh
   echo "FROM httpd" > build/Dockerfile
   PROP=edjanger.properties
   TMPP=edjanger.tmp
@@ -153,15 +152,15 @@ export PATH=$PATH:/usr/local/bin/edjanger
   cat edjanger.properties | grep exposed_ports
   sed -e "s/\(shared_volumes=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep shared_volumes
-  . ../../scripts/build.sh
-  . ../../scripts/run.sh
+  bash ../../scripts/build.sh
+  bash ../../scripts/run.sh
   result="$(docker ps | grep webtest_1 )"
   [ -n "$result" ]
-  . ../../scripts/stop.sh
-    result="$(docker ps --filter="status=exited" | grep webtest_1 )"
+  bash ../../scripts/stop.sh
+  result="$(docker ps --filter="status=exited" | grep webtest_1 )"
   [ -n "$result" ]
-  . ../../scripts/start.sh
-    result="$(docker ps --filter="status=running" | grep webtest_1 )"
+  bash ../../scripts/start.sh
+  result="$(docker ps --filter="status=running" | grep webtest_1 )"
   [ -n "$result" ]
   cd ..
   rm -rf $TMP

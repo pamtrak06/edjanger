@@ -153,8 +153,33 @@ function read_app_properties()
 
 }
 
+function printHeader()
+{
+  scriptname=$1
+  parse_documentation $scriptname
+  basename=$(basename "${scriptname}")
+  commandname=edjanger${basename%.sh}
+  documentation=$(echo "$documentation" | $SED_REGEX "s/@script.name/${commandname}/g")
+  echo "$documentation"
+}
+
+# unset variables valid only if script is running in a subprocess (executed with bash)
+function unsetOptionsParameters()
+{
+  # TODO do it with readSpecifications and readDocumentation
+  unset -v help
+  unset -v scriptname
+  unset -v confirm
+  unset -v confirmquestion
+  unset -v commandline
+  unset -v commandcomment
+  unset -v commandoptions
+}
+
 function dockerbasicimage()
 {
+
+  unsetOptionsParameters
   evalOptionsParameters "$*"
 
   if [ -n "$help" ]; then
@@ -180,11 +205,13 @@ function dockerbasicimage()
         commandcomment=${commandcomment/\{image_name\}/${image_name}}
         echo "${commandcomment}"
         
-        # replace image name in command and commandoptions
-        command=${command/\{image_name\}/${image_name}}
-        commandoptions=${commandoptions/\{image_name\}/${image_name}}
+        # replace image name in commandline and commandoptions
+        commandline=${commandline/\{image_name\}/${image_name}}
+        if [ "${commandoptions}" == *"{image_name}"* ]; then
+          commandoptions=${commandoptions/\{image_name\}/${image_name}}
+        fi
         
-        if [[ ${command} == tag* ]]; then
+        if [[ ${commandline} == tag* ]]; then
           # check required
           [ -z "${tag}" ]             && echo -e " ${app_name}:ERROR: arguments --tag is required" \
                                       && printHeader $scriptname && exit -1
@@ -192,7 +219,7 @@ function dockerbasicimage()
           [ -n "${tag}" ]             && commandoptions="${commandoptions} ${tag}"
         fi
         
-        docker ${command} ${commandoptions}
+        docker ${commandline} ${commandoptions}
         if [ "true" = "${docker_command}" ]; then
             echo -e "> Executed docker command:"
             echo -e "> docker ${command} ${commandoptions}"
@@ -202,20 +229,10 @@ function dockerbasicimage()
   fi
 }
 
-function printHeader()
-{
-  scriptname=$1
-  parse_documentation $scriptname
-  basename=$(basename "${scriptname}")
-  commandname=edjanger${basename%.sh}
-  documentation=$(echo "$documentation" | $SED_REGEX "s/@script.name/${commandname}/g")
-  echo "$documentation"
-}
-
 function computeContainerLastIndex()
 {
   container_name=$1
-  containerlist=$(docker ps --format '{{.Names}}'| sed -E "s/.*\_([0-9]+)/\1/g"|sort -r)
+  containerlist=$(docker ps -a --format '{{.Names}}'| sed -E "s/.*\_([0-9]+)/\1/g"|sort -r)
   return $(echo $containerlist | awk '{ print $1}')
 }
 
@@ -227,7 +244,8 @@ function computeContainerIndex()
 
 function dockerbasiccontainer()
 {
-
+  
+  unsetOptionsParameters
   evalOptionsParameters "$*"
   
   if [ -n "$help" ]; then
@@ -239,10 +257,8 @@ function dockerbasiccontainer()
     else
       read_app_properties
       if [ -z "$index" ]; then
-        if [[ "$command" == *"run"* ]]; then
-          computeContainerIndex ${container_name}; 
-          idx=$?
-          idx=$(($idx + 1))
+        if [[ "$commandline" == *"run"* ]]; then
+          computeContainerIndex ${container_name}; idx=$?; idx=$(($idx + 1))
         else
           computeContainerLastIndex ${container_name};
           idx=$? 
@@ -251,8 +267,8 @@ function dockerbasiccontainer()
         idx=$index
       fi
 
-      # echo comment for running command
-      if [[ ${command} == "ps"* ]]; then
+      # echo comment for running commandline
+      if [[ ${commandline} == "ps"* ]]; then
         commandcomment=${commandcomment/\{container_name\}/${container_name}}
       fi
 
@@ -268,30 +284,30 @@ function dockerbasiccontainer()
       fi
       if [ "y" = "$response" ]; then
         
-        # echo comment for running command
-        if [[ ${command} != "ps"* ]]; then
+        # echo comment for running commandline
+        if [[ ${commandline} != "ps"* ]]; then
           commandcomment=${commandcomment/\{container_name\}/${container_name}}
         fi
         echo " ${commandcomment}..."
         
-        # replace container name in command and commandoptions
-        command=${command/\{container_name\}/${container_name}}
+        # replace container name in commandline and commandoptions
+        commandline=${commandline/\{container_name\}/${container_name}}
         commandoptions=${commandoptions/\{container_name\}/${container_name}}
         
         # following valid for exec
-        if [[ ${command} == exec* ]]; then
+        if [[ ${commandline} == exec* ]]; then
           # set options
           [ -n "${shellcommand}" ]   && commandoptions="${commandoptions} -c \"${shellcommand}\""
         fi
         # following valid for rename
-        if [[ ${command} == rename* ]]; then
+        if [[ ${commandline} == rename* ]]; then
           # check required
           [ -z "${name}" ]           && printHeader $scriptname && exit -1
           # set options
           [ -n "${name}" ]           && commandoptions="${commandoptions} ${name}"
         fi
         # following valid for commit
-        if [[ ${command} == commit* ]]; then
+        if [[ ${commandline} == commit* ]]; then
           # check required
           [ -z "${commitname}" ]     && printHeader $scriptname && exit -1
           # set options
@@ -301,7 +317,7 @@ function dockerbasiccontainer()
           [ -n "${commitname}" ]     && commandoptions="${commandoptions} ${commitname}"
         fi
         # following valid for copy
-        if [[ ${command} == cp* ]]; then
+        if [[ ${commandline} == cp* ]]; then
           # check required
           [ -z "${fromcontainer}" -a -z "${fromhost}" ] &&  echo -e " ${app_name}:ERROR: arguments --fromcontainer or --fromhost are required" \
                                       && printHeader $scriptname && exit -1
@@ -323,11 +339,11 @@ function dockerbasiccontainer()
           [ -n "${fromhost}" ]        && commandoptions="${commandoptions} ${sourcepath} ${container_name}:${destinationpath}"
         fi
         
-        # run docker command
-        docker ${command} ${commandoptions}
+        # run docker commandline
+        docker ${commandline} ${commandoptions}
         if [ "true" = "${docker_command}" ]; then
           echo -e "> Executed docker command:"
-          echo -e "> docker ${command} ${commandoptions}"
+          echo -e "> docker ${commandline} ${commandoptions}"
         fi
         
       fi

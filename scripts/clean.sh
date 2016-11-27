@@ -23,9 +23,9 @@
 ###  
 ### Internal options:
 ###  
-###        --script=SCRIPT            name of the main script
+###        --scriptname=SCRIPT        name of the main script
 ###  
-###        --command=COMMAND          name of the docker command to execute
+###        --commandline=COMMAND      name of the docker command to execute
 ###  
 ###        --commandcomment=COMMAND   printed comment of the command to execute
 ###  
@@ -48,5 +48,5 @@ echo "commandoptions:${commandoptions}"
 [ -n "$@" ]                                    && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
                                                && externaloptions=$(echo $@ | sed "s|[[:space:]]-|;-|g")
 confirm_question="Image with attribute name=\"none\" will be permanently erased, do you want to continue (y/n) ?"
-dockerbasicimage "--scriptname=\"$0\";--command=\"rmi\";--commandcomment=\"Delete images: with attribute name=\"none\"...\";${commandoptions};--confirm;--confirmquestion=\"$confirm_question\";${externaloptions}"
+dockerbasicimage "--scriptname=\"$0\";--commandline=\"rmi\";--commandcomment=\"Delete images: with attribute name=\"none\"...\";${commandoptions};--confirm;--confirmquestion=\"$confirm_question\";${externaloptions}"
 

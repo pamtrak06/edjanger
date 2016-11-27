@@ -27,9 +27,9 @@
 ###
 ### Internal options:
 ###
-###        --script=SCRIPT            name of the main script
+###        --scriptname=SCRIPT        name of the main script
 ###
-###        --command=COMMAND          name of the docker command to execute
+###        --commandline=COMMAND      name of the docker command to execute
 ###
 ###        --commandcomment=COMMAND   printed comment of the command to execute
 ###
@@ -47,5 +47,5 @@ read_app_properties
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
 [ -n "$@" ]                         && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
                                     && externaloptions=$(echo $@ | sed "s|[[:space:]]-|;-|g")
-dockerbasiccontainer "--scriptname=\"$0\";--command=\"pause {container_name}\";--commandcomment=\"Pause container: {container_name}...\";${commandoptions};${externaloptions}"
+dockerbasiccontainer "--scriptname=\"$0\";--commandline=\"pause {container_name}\";--commandcomment=\"Pause container: {container_name}...\";${commandoptions};${externaloptions}"
 

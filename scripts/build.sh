@@ -31,9 +31,9 @@
 ###  
 ### Internal options:
 ###  
-###        --script=SCRIPT            name of the main script
+###        --scriptname=SCRIPT        name of the main script
 ###  
-###        --command=COMMAND          name of the docker command to execute
+###        --commandline=COMMAND      name of the docker command to execute
 ###  
 ###        --commandcomment=COMMAND   printed comment of the command to execute
 ###  
@@ -61,7 +61,7 @@ build_arguments="${proxy_args} ${build_args}"
 [ -n "${commandoptions}" ]                     && commandoptions="--commandoptions=\"${commandoptions}\""
 [ -n "$@" ]                                    && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
                                                && externaloptions=$(echo $@ | sed "s|[[:space:]]-|;-|g")
-dockerbasicimage "--scriptname=\"$0\";--command=\"build -t\";--commandcomment=\"Build image: {image_name}...\";${commandoptions};${externaloptions}"
+dockerbasicimage "--scriptname=\"$0\";--commandline=\"build -t\";--commandcomment=\"Build image: {image_name}...\";${commandoptions};${externaloptions}"
 
 build_arguments=""
 . {edjangerpath}/_proxy_reset.sh
