@@ -28,7 +28,7 @@ export PATH=$PATH:/usr/local/bin/edjanger
   echo "FROM httpd" > build/Dockerfile
   PROP=edjanger.properties
   TMPP=edjanger.tmp
-  sed -e "s/\(docker_command=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  #sed -e "s/\(docker_command=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep docker_command
   sed -e "s/\(image_name=\).*/\1\"pamtrak06\/webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep image_name
@@ -53,7 +53,7 @@ export PATH=$PATH:/usr/local/bin/edjanger
   echo "FROM httpd" > build/Dockerfile
   PROP=edjanger.properties
   TMPP=edjanger.tmp
-  sed -e "s/\(docker_command=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  #sed -e "s/\(docker_command=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep docker_command
   sed -e "s/\(image_name=\).*/\1\"pamtrak06\/webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep image_name
@@ -81,7 +81,7 @@ export PATH=$PATH:/usr/local/bin/edjanger
   echo "FROM httpd" > build/Dockerfile
   PROP=edjanger.properties
   TMPP=edjanger.tmp
-  sed -e "s/\(docker_command=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  #sed -e "s/\(docker_command=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep docker_command
   sed -e "s/\(image_name=\).*/\1\"pamtrak06\/webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep image_name
@@ -110,7 +110,7 @@ export PATH=$PATH:/usr/local/bin/edjanger
   echo "FROM httpd" > build/Dockerfile
   PROP=edjanger.properties
   TMPP=edjanger.tmp
-  sed -e "s/\(docker_command=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  #sed -e "s/\(docker_command=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep docker_command
   sed -e "s/\(image_name=\).*/\1\"pamtrak06\/webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep image_name
