@@ -212,10 +212,17 @@ function printHeader()
   echo "$documentation"
 }
 
+function computeContainerLastIndex()
+{
+  container_name=$1
+  containerlist=$(docker ps --format '{{.Names}}'| sed -E "s/.*\_([0-9]+)/\1/g"|sort -r)
+  return $(echo $containerlist | awk '{ print $1}')
+}
+
 function computeContainerIndex()
 {
   container_name=$1
-  return $(($(docker ps -a --filter="name=${container_name}_[0-9]+"|grep -v "CONTAINER ID"|wc -l)))
+  return $(($(docker ps -a --filter="name=${container_name}_[0-9]+" --format '{{.Names}}'|wc -l)))
 }
 
 function dockerbasiccontainer()
@@ -232,14 +239,22 @@ function dockerbasiccontainer()
     else
       read_app_properties
       if [ -z "$index" ]; then
-        computeContainerIndex ${container_name}; idx=$?
-        [[ "$command" == *"run"* ]] && idx=$(($idx + 1))
+        if [[ "$command" == *"run"* ]]; then
+          computeContainerIndex ${container_name}; 
+          idx=$?
+          idx=$(($idx + 1))
+        else
+          computeContainerLastIndex ${container_name};
+          idx=$? 
+        fi
       else
         idx=$index
       fi
 
       # echo comment for running command
-      commandcomment=${commandcomment/\{container_name\}/${container_name}}
+      if [[ ${command} == "ps"* ]]; then
+        commandcomment=${commandcomment/\{container_name\}/${container_name}}
+      fi
 
       # set container name with index
       container_name=${container_name}_${idx}
@@ -254,6 +269,9 @@ function dockerbasiccontainer()
       if [ "y" = "$response" ]; then
         
         # echo comment for running command
+        if [[ ${command} != "ps"* ]]; then
+          commandcomment=${commandcomment/\{container_name\}/${container_name}}
+        fi
         echo " ${commandcomment}..."
         
         # replace container name in command and commandoptions
