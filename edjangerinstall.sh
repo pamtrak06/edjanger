@@ -62,18 +62,21 @@ function checkPrerequisities() {
   is_exec_present "bc"
   if [ $? = -1 ]; then
     status=-1;
+    echo -e "edjanger:ERROR: bc is absent"
   else
     echo -e "  - bc is present: $exepath"
   fi
   is_exec_present "envsubst"
   if [ $? = -1 ]; then
     status=-1;
+    echo -e "edjanger:ERROR: envsubst is absent"
   else
     echo -e "  - envsubst is present: $exepath"
   fi
   is_exec_present "git"
   if [ $? = -1 ]; then
     status=-1;
+    echo -e "edjanger:ERROR: git is absent"
   else
     echo -e "  - git is present: $exepath"
   fi
