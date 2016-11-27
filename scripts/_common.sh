@@ -14,8 +14,33 @@
 # --------------------------------
 # USAGE            : source _common.sh
 # ----------------------------------------------------
+source {edjangerpath}/_options.sh
+
 config_extension=properties
 app_name=edjanger
+
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+        SED_REGEX="sed -r"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+        # Mac OSX
+        SED_REGEX="sed -E"
+elif [[ "$OSTYPE" == "cygwin" ]]; then
+        # POSIX compatibility layer and Linux environment emulation for Windows
+        SED_REGEX="sed -r"
+elif [[ "$OSTYPE" == "msys" ]]; then
+        # Lightweight shell and GNU utilities compiled for Windows (part of MinGW)
+        SED_REGEX="sed -r"
+elif [[ "$OSTYPE" == "win32" ]]; then
+        # I'm not sure this can happen.
+        SED_REGEX="sed -r"
+elif [[ "$OSTYPE" == "freebsd"* ]]; then
+        # ...
+        SED_REGEX="sed -r"
+else
+        # Unknown.
+        SED_REGEX="sed -r"
+fi
+
 
 function is_exec_present()
 {
@@ -120,26 +145,102 @@ function dockerps()
 
 function dockerbasiccontainer()
 {
-  command="$1"
-  comment="$2"
+  #local option
 
-  if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
+  IFS=';' read -ra parameters <<< "$*"
+  for parameter in "${parameters[@]}"; do
+      if [[ "${parameter#--}" = *"="* ]]; then
+        eval "${parameter#--}"
+      elif [[ "$parameter" =~ ^[-]*h[a-z]* ]] || [ "$parameter" = "-h" ]; then
+        help=true
+      else
+        eval "${parameter#--}=true"
+      fi
+      # case "$parameter" in
+      #     "-h, --help"*)  continue ;;
+      #     "--help, -h"*)  continue ;;
+      #     -*," "--*)      option=$(echo "$parameter" | awk -F'(^-|, --| )'  '{ print $2"="$3 }') ;;
+      #     --*," "-*)      option=$(echo "$parameter" | awk -F'(--|, -| )'   '{ print $3"="$2 }') ;;
+      #     --*=*)          option=$(echo "$parameter" | awk -F'(--|=| )'     '{ print $2"=?" }') ;;
+      #     --*" "*)        option=$(echo "$parameter" | awk -F'(--| )'       '{ print $2 }') ;;
+      #     *)              echo "not found" && continue ;;
+      # esac
+      # options+=("$option")
+      # echo -e "option: $option"
+  done
+  # echo -e "options: $options"
+  #return 1
+
+  # # extract script name
+  # scriptname=$(echo $*|$SED_REGEX -n 's/^.*--scriptname=(.+)\s*.*/\1/p'|cut -d ' ' -f1)
+  # [ -z "$scriptname " ] && echo -e "edjanger:ERROR: script filename unidentified" && return -1
+  # shift
+  #
+  # echo "index1: $index"
+  # # parse options
+  # parse_options "$scriptname" "$*" || return -1
+  # echo "index2: $index"
+  #
+  # # parameter options
+  # [[ -n "${scriptname}"  ]]      && echo -e "Option specified: --scriptname : ${scriptname}"
+  # [[ -n "${command}"  ]]         && echo -e "Option specified: --command : ${command}"
+  # [[ -n "${commandcomment}" ]]   && echo -e "Option specified: --commandcomment : ${commandcomment}"
+  # [[ -n "${commandoptions}" ]]   && echo -e "Option specified: --commandoptions : ${commandoptions}"
+  # [[ -n "${index}" ]]            && echo -e "Option specified: --index : ${index}"
+  # [[ -n "${confirm}" ]]          && echo -e "Option specified: --confirm : ${confirm}"
+  # [[ -n "${confirmquestion}" ]]  && echo -e "Option specified: --confirmquestion : ${confirmquestion}"
+  # [[ -n "${help}" ]]             && echo -e "Option specified: --help"
+  
+  # # arguments
+  # for argument in "${arguments[@]}"; do
+  #     echo "${app_name}:ERROR extra argument specified: \"$argument\""
+  #     return -1
+  # done
+
+  if [ -n "$help" ]; then
     source {edjangerpath}/_common.sh
-    usage $0 $2
+    #usage $0 $command
+    parse_documentation $scriptname
+    basename=$(basename "${scriptname}")
+    commandname=edjanger${basename%.sh}
+    documentation=$(echo "$documentation" | $SED_REGEX "s/@script.name/${commandname}/g")
+    echo "$documentation"
   else
     rename_edocker_properties
     if [ ! -f ${app_name}.${config_extension} ]; then
       echo -e "${app_name}:ERROR No ${app_name}.${config_extension} available, use \"<${app_name}init>\" command to initialize one in this directory"
     else
       read_app_properties
-      idx=$(($(docker ps -a --filter="name=${container_name}_[0-9]+"|wc -l)-1))
-      ct=${container_name}_${idx}
-      echo "${comment} ${ct}..."
-      docker ${command} ${ct}
-      if [ "true" = "${docker_command}" ]; then
-        echo -e "> Executed docker command:"
-        echo -e "> docker ${command} ${ct}"
+      if [ -z "$index" ]; then
+        idx=$(($(docker ps -a --filter="name=${container_name}_[0-9]+"|grep -v "CONTAINER ID"|wc -l)))
+        [[ "$command" == *"run"* ]] && idx=$(($idx + 1))
+      else
+        idx=$index
       fi
+
+      ct=${container_name}_${idx}
+      if [ -n "$confirm" ]; then
+        confirmquestion=${confirmquestion/\{container_name\}/$ct}
+        echo "$confirmquestion"
+        read response
+      else
+        response=y
+      fi
+      if [ "y" = "$response" ]; then
+        commandcomment=${commandcomment/\{container_name\}/$ct}
+        echo "${commandcomment}..."
+        # replace container name
+        command=${command/\{container_name\}/$ct}
+        # actually valid for rename
+        [ -n "${name}" ] && commandoptions="${commandoptions} ${name}"
+        # run docker command
+        docker ${command} ${commandoptions}
+        if [ "true" = "${docker_command}" ]; then
+          echo -e "> Executed docker command:"
+          echo -e "> docker ${command} ${commandoptions}"
+        fi
+      fi
+
     fi
   fi
 }
