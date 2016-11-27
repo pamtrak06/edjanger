@@ -46,7 +46,9 @@ function evalOptionsParameters()
   
   IFS=';' read -ra parameters <<< "$parameterslist"
   for parameter in "${parameters[@]}"; do
-      if [[ "${parameter#--}" = *"="* ]]; then
+      if [[ "${parameter}" = *"rm"* ]]; then
+        echo "Do not eval parameter:${parameter}"
+      elif [[ "${parameter#--}" = *"="* ]]; then
         #echo "Eval parameter:${parameter#--}"
         eval "${parameter#--}"
       elif [[ "$parameter" =~ ^[-]*help[a-z]* ]] || [ "$parameter" = "-h" ]; then
