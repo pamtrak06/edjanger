@@ -95,7 +95,7 @@ cd edjanger; chmod 755 scripts/*.sh; chmod 755 edjangerinstall.sh
 
 Execute the generated alias file:
 ```bash
-. /usr/local/bin/edjanger/edjanger.alias
+source /usr/local/bin/edjanger/edjanger.alias
 ```
 
 All is done !!! Run this command to see your edjanger aliases
