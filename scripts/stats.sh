@@ -1,27 +1,40 @@
 #!/bin/bash
-# ----------------------------------------------------
-# The MIT License (MIT)
-#
-# Copyright (c) 2016 copyright pamtrak06@gmail.com
-# ----------------------------------------------------
-# SCRIPT           : stats.sh
-# ALIAS            : edjangerstats
-# DESCRIPTION      : run command "docker stats" with parameters readed from local edjanger.properties
-#   PARAMETER      : container_name
-#   PARAMETER      : stats_options
-#   PARAMETER      : docker_command
-# CREATOR          : pamtrak06@gmail.com
-# --------------------------------
-# VERSION          : 1.0
-# DATE             : 2016-03-02
-# COMMENT          : creation
-# --------------------------------
-# USAGE            : edjangerstats
-# ----------------------------------------------------
+##  Print stats of a container. File edjanger.properties must be present in path.
+##  By default give stats for last container if no index specified.
+##  
+##  Usage:
+##     @script.name [option]
+##  
+##  Options:
+##     -h, --help                     print this documentation.
+##
+##         --index=INDEX              index of the container name.
+##  
+##  Parameters (edjanger.properties):
+##     stats_options                  other stats options.
+##  
+##  edjanger, The MIT License (MIT)
+##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  
+# ------------------------------------------------------------------------------
+###
+### External options:
+###    -h, --help                     print this documentation.
+###
+###        --index=INDEX              index of the container name.
+###
+### Internal options:
+###
+###        --script=SCRIPT            name of the main script
+###
+###        --command=COMMAND          name of the docker command to execute
+###
+###        --commandcomment=COMMAND  printed comment of the command to execute
+###
+###        --commandoptions=OPTIONS  options read in the edjanger.properties
+###
+# ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
-if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
-  dockerbasiccontainer "help" "stats"
-else
-  dockerbasiccontainer "stats ${stats_options}" "Statistics of container: " $1
-fi
+commandoptions=$([ -n "${stats_options}" ] && echo -e "--commandoptions=\"${stats_options}\"")
+dockerbasiccontainer "--scriptname=\"$0\";--command=\"stats {container_name}\";--commandcomment=\"Stats of container: {container_name}...\";--commandoptions=\"${stats_options}\";$@"
