@@ -28,6 +28,7 @@ if [ -f {edjangerpath}/proxy.zip ]; then
     proxy_args="--build-arg http_proxy=$http_proxy --build-arg https_proxy=$https_proxy"
   fi
 else
+  echo -e "Read proxy parameters from environment..."
   if [ -n "$HTTPS_PROXY" ]; then
     proxy_args="--build-arg HTTPS_PROXY=$HTTPS_PROXY"
   fi
