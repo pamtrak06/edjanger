@@ -51,8 +51,8 @@ else
     else
       echo -e "edjanger:INFO: UPGRADE: activating edjanger..."
       ./edjangerinstall.sh  --alias >> {edjangerpath}/../edjanger.log 2>&1
-      . edjanger.unalias >> {edjangerpath}/../edjanger.log 2>&1
-      . edjanger.alias >> {edjangerpath}/../edjanger.log 2>&1
+      source edjanger.unalias >> {edjangerpath}/../edjanger.log 2>&1
+      source edjanger.alias >> {edjangerpath}/../edjanger.log 2>&1
       rm -f {edjangerpath}/edjanger.log >> {edjangerpath}/../edjanger.log 2>&1
     fi
     cd $CURDIR
