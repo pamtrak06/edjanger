@@ -39,14 +39,21 @@ fi
 # eval parameters from all parametters given as argument of function
 function evalOptionsParameters()
 {
-  IFS=';' read -ra parameters <<< "$*"
+  # tranform user input from -- to ;--,so it could be parsed
+  parameterslist=$*
+  parameterslist=$(echo ${parameterslist} | sed "s|[[:space:]]--|;--|g")
+  #echo "parameterslist:${parameterslist}"
+  
+  IFS=';' read -ra parameters <<< "$parameterslist"
   for parameter in "${parameters[@]}"; do
       if [[ "${parameter#--}" = *"="* ]]; then
+        #echo "Eval parameter:${parameter#--}"
         eval "${parameter#--}"
       elif [[ "$parameter" =~ ^[-]*help[a-z]* ]] || [ "$parameter" = "-h" ]; then
         help=true
       else
         [ -n "${parameter#--}" ] && eval "${parameter#--}=true"
+        # && echo "Set parameter to true:${parameter#--}"
       fi
   done
 }
@@ -115,13 +122,15 @@ function dockerbasicimage()
     if [ ! -f ${app_name}.${config_extension} ]; then
       echo -e "${app_name}:ERROR No ${app_name}.${config_extension} available, use \"<${app_name}init>\" command to initialize one in this directory"
     else
+      
       read_app_properties
+      
+      # echo comment for running command
       commandcomment=${commandcomment/\{image_name\}/${image_name}}
       echo "${commandcomment}"
+      
       # replace container name
       command=${command/\{image_name\}/${image_name}}
-      # following valid for copy
-      #[ -n "${name}" ]           && commandoptions="${commandoptions} ${name}"
       docker ${command} ${commandoptions}
       if [ "true" = "${docker_command}" ]; then
           echo -e "> Executed docker command:"
@@ -185,33 +194,67 @@ function dockerbasiccontainer()
     else
       read_app_properties
       if [ -z "$index" ]; then
-        idx=computeContainerIndex ${container_name}
-        #idx=$(($(docker ps -a --filter="name=${container_name}_[0-9]+"|grep -v "CONTAINER ID"|wc -l)))
+        computeContainerIndex ${container_name}; idx=$?
         [[ "$command" == *"run"* ]] && idx=$(($idx + 1))
       else
         idx=$index
       fi
 
-      ct=${container_name}_${idx}
+      container_name=${container_name}_${idx}
       if [ -n "$confirm" ]; then
-        confirmquestion=${confirmquestion/\{container_name\}/$ct}
+        confirmquestion=${confirmquestion/\{container_name\}/${container_name}}
         echo "$confirmquestion"
         read response
       else
         response=y
       fi
       if [ "y" = "$response" ]; then
-        commandcomment=${commandcomment/\{container_name\}/$ct}
-        echo "${commandcomment}..."
+        
+        # echo comment for running command
+        commandcomment=${commandcomment/\{container_name\}/${container_name}}
+        echo " ${commandcomment}..."
+        
         # replace container name
-        command=${command/\{container_name\}/$ct}
+        command=${command/\{container_name\}/${container_name}}
         # following valid for rename
-        [ -n "${name}" ]           && commandoptions="${commandoptions} ${name}"
+        if [[ ${command} == rename* ]]; then
+          # check required
+          [ -z "${name}" ]           && printHeader $scriptname && exit -1
+          # set options
+          [ -n "${name}" ]           && commandoptions="${commandoptions} ${name}"
+        fi
         # following valid for commit
-        [ -n "${commitauthor}" ]   && commandoptions="${commandoptions} --author ${commitauthor}"
-        [ -n "${commitmessage}" ]  && commandoptions="${commandoptions} --message ${commitmessage}"
-        [ -n "${commitchange}" ]   && commandoptions="${commandoptions} --change ${commitchange}"
-        [ -n "${commitname}" ]     && commandoptions="${commandoptions} ${commitname}"
+        if [[ ${command} == commit* ]]; then
+          # check required
+          [ -z "${commitname}" ]     && printHeader $scriptname && exit -1
+          # set options
+          [ -n "${commitauthor}" ]   && commandoptions="${commandoptions} --author ${commitauthor}"
+          [ -n "${commitmessage}" ]  && commandoptions="${commandoptions} --message ${commitmessage}"
+          [ -n "${commitchange}" ]   && commandoptions="${commandoptions} --change ${commitchange}"
+          [ -n "${commitname}" ]     && commandoptions="${commandoptions} ${commitname}"
+        fi
+        # following valid for copy
+        if [[ ${command} == cp* ]]; then
+          # check required
+          [ -z "${fromcontainer}" -a -z "${fromhost}" ] &&  echo -e " ${app_name}:ERROR: arguments --fromcontainer or --fromhost are required" \
+                                      && printHeader $scriptname && exit -1
+          [ -z "${sourcepath}" ]      && echo -e " ${app_name}:ERROR: arguments --sourcepath is required" \
+                                      && doexit=true
+          [ -z "${destinationpath}" ] && echo -e " ${app_name}:ERROR: arguments --destinationpath is required" \
+                                      && doexit=true
+          [ "${doexit}" ]             && printHeader $scriptname && exit -1
+                    
+          [ -d "${destinationpath}/$(basename ${sourcepath})" ] \
+                                      && echo -e " ${app_name}:ERROR: destination folder \"${destinationpath}/$(basename ${sourcepath})\" exist !" \
+                                      && exit -1
+          [ -f "${destinationpath}/$(basename ${sourcepath})" ] \
+                                      && echo -e " ${app_name}:ERROR: destination file \"${destinationpath}/$(basename ${sourcepath})\" exist !" \
+                                      && exit -1
+                                      
+          # set options
+          [ -n "${fromcontainer}" ]   && commandoptions="${commandoptions} ${container_name}:${sourcepath} ${destinationpath}"
+          [ -n "${fromhost}" ]        && commandoptions="${commandoptions} ${sourcepath} ${container_name}:${destinationpath}"
+        fi
         # run docker command
         docker ${command} ${commandoptions}
         if [ "true" = "${docker_command}" ]; then
