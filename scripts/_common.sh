@@ -1,19 +1,14 @@
 #!/bin/bash
-# ----------------------------------------------------
-# The MIT License (MIT)
-#
-# Copyright (c) 2016 copyright pamtrak06@gmail.com
-# ----------------------------------------------------
-# SCRIPT           : _common.sh
-# DESCRIPTION      : common scripts for ${app_name} scripts
-# CREATOR          : pamtrak06@gmail.com
-# --------------------------------
-# VERSION          : 1.0
-# DATE             : 2016-03-02
-# COMMENT          : creation
-# --------------------------------
-# USAGE            : source _common.sh
-# ----------------------------------------------------
+# ------------------------------------------------------------------------------
+##  Commons functions
+##  
+##  Usage:
+##     source _common.sh
+##  
+##  edjanger, The MIT License (MIT)
+##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  
+# ------------------------------------------------------------------------------
 source {edjangerpath}/_options.sh
 
 config_extension=properties
@@ -109,7 +104,6 @@ function dockerbasicimage()
   done
 
   if [[ "$1" =~ ^[-]*help[a-z]* ]] || [ "$1" = "-h" ]; then
-    source {edjangerpath}/_common.sh
     usage $0 $2
   else
     rename_edocker_properties
@@ -134,7 +128,6 @@ function dockerps()
   comment="$2"
 
   if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
-    source {edjangerpath}/_common.sh
     usage $0 $2
   else
     rename_edocker_properties
@@ -153,6 +146,16 @@ function dockerps()
   fi
 }
 
+function printHeader()
+{
+  scriptname=$1
+  parse_documentation $scriptname
+  basename=$(basename "${scriptname}")
+  commandname=edjanger${basename%.sh}
+  documentation=$(echo "$documentation" | $SED_REGEX "s/@script.name/${commandname}/g")
+  echo "$documentation"
+}
+
 function dockerbasiccontainer()
 {
   # eval parameters from all parametters given as argument of function
@@ -168,14 +171,7 @@ function dockerbasiccontainer()
   done
 
   if [ -n "$help" ]; then
-    source {edjangerpath}/_common.sh
-    # TODO older usage, update headers for all scripts
-    #usage $0 $command
-    parse_documentation $scriptname
-    basename=$(basename "${scriptname}")
-    commandname=edjanger${basename%.sh}
-    documentation=$(echo "$documentation" | $SED_REGEX "s/@script.name/${commandname}/g")
-    echo "$documentation"
+    printHeader $scriptname
   else
     rename_edocker_properties
     if [ ! -f ${app_name}.${config_extension} ]; then
@@ -289,19 +285,27 @@ function usage_list()
   # list all *.sh scripts from ${app_name} path
   scripts=$(ls {edjangerpath}/*.sh | grep -v -e "\_")
 
-  echo -e "Help must have one argument in list:"
-  echo -e "  command: config"
+  echo -e "Help must have one argument in list:\n"
+  echo -e "  print parameters used by edjanger commands:\t=> edjangerhelp config\n"
 
   for s in ${scripts}; do
 
     base=$(basename ${s})
-
-    echo -e "  command: ${base%.sh}"
+    
+    TABN="\t\t"
+    aliascmd=${app_name}${base%.sh}
+    if [ "${#aliascmd}" -le 12 ]; then
+      TABN="\t\t\t"
+    elif [ "${#aliascmd}" -ge 20 ]; then
+      TABN="\t"
+    fi
+    echo -e "  help on command: ${aliascmd}$TABN=> edjangerhelp ${base%.sh}"
 
   done
 
 }
 
+# print list of parameters and whiwh command are using it
 function usage_config()
 {
   script=$1
@@ -321,6 +325,8 @@ function usage_config()
 
 }
 
+# TODO : deprecated, to be removed
+# older usage, update headers for all scripts
 function usage()
 {
 
@@ -346,31 +352,34 @@ function usage()
       edalias=${prefix}${base%.sh}
 
       if [ "$2" = "${edalias}" ]; then
-
-        alias_txt=$(grep "ALIAS" ${s}|cut -d ':' -f2)
-        echo -e "Usage       :"$alias_txt
-
-        desc_txt=$(grep "DESCRIPTION" ${s}|cut -d ':' -f2)
-        echo -e "\nDescription :"$desc_txt
-
-        SAVEIFS=$IFS
-        IFS=$'\n'
-        args=$(grep "ARGUMENT" ${s})
-        echo -e "\nArgument(s) of command "
-        echo -e "  - help"
-        for arg in $args; do
-          val=$(echo $arg|cut -d ':' -f2)
-          echo -e "  - $val"
-        done
-        IFS=$SAVEIFS
-
-        params=$(grep "PARAMETER" ${s}|cut -d ":" -f2)
-        if [ -n "$params" ]; then
-          echo -e "\nParameter(s) in edjanger.properties "
-          for p in $params; do
-            echo -e "  - $(echo $p)"
-          done
-        fi
+        
+        printHeader ${s}
+        # alias_txt=$(grep "ALIAS" ${s}|cut -d ':' -f2)
+        # echo -e "Usage       :"$alias_txt
+        # 
+        # desc_txt=$(grep "DESCRIPTION" ${s}|cut -d ':' -f2)
+        # echo -e "\nDescription :"$desc_txt
+        # 
+        # SAVEIFS=$IFS
+        # IFS=$'\n'
+        # args=$(grep "ARGUMENT" ${s})
+        # echo -e "\nArgument(s) of command "
+        # echo -e "  - help"
+        # for arg in $args; do
+        #   val=$(echo $arg|cut -d ':' -f2)
+        #   echo -e "  - $val"
+        # done
+        # IFS=$SAVEIFS
+        # 
+        
+        # TODO to be reactivated
+        # params=$(grep "PARAMETER" ${s}|cut -d ":" -f2)
+        # if [ -n "$params" ]; then
+        #   echo -e "\nParameter(s) in edjanger.properties "
+        #   for p in $params; do
+        #     echo -e "  - $(echo $p)"
+        #   done
+        # fi
 
         found=true
 
