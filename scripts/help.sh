@@ -25,7 +25,7 @@
 ##  
 ##     [edjanger short command]       print help for this edjanger command.
 ##  
-##     -h, --help                     print this documentation.
+##     -h, --help                     print this documentation
 ##  
 ##  edjanger, The MIT License (MIT)
 ##  Copyright (c) 2016 copyright pamtrak06@gmail.com

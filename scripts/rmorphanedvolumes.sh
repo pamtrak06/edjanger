@@ -1,27 +1,21 @@
 #!/bin/bash
-# ----------------------------------------------------
-# The MIT License (MIT)
-#
-# Copyright (c) 2016 copyright pamtrak06@gmail.com
-# ----------------------------------------------------
-# SCRIPT           : rmdorphanedvolumes.sh
-# ALIAS            : edjangerrmdorphanedvolumes
-# DESCRIPTION      : remove all orphaned volumes
-#   PARAMETER      : docker_command
-# CREATOR          : pamtrak06@gmail.com
-# --------------------------------
-# VERSION          : 1.0
-# DATE             : 2016-10-10
-# COMMENT          : creation
-# --------------------------------
-# USAGE            : edjangerrmdorphanedvolumes
-# ----------------------------------------------------
+# ------------------------------------------------------------------------------
+##  Remove all orphaned volumes
+##  
+##  Usage:
+##     @script.name
+##  
+##  edjanger, The MIT License (MIT)
+##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  
+# ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
-  usage $0 clean
+  printHeader $0
 else
-  echo "Orphaned volumes will be deleted, is it ok for you (y/n) ?"
+  echo "Following orphaned volumes will be deleted, is it ok for you (y/n) ?"
+  docker volume ls -qf dangling=true
   read response
   if [ "y" = "$response" ]; then
     echo "Delete orphaned volumes..."

@@ -1,20 +1,14 @@
 #!/bin/bash
-# ----------------------------------------------------
-# The MIT License (MIT)
-#
-# Copyright (c) 2016 copyright pamtrak06@gmail.com
-# ----------------------------------------------------
-# SCRIPT           : compose.sh
-# ALIAS            : edjangercompose
-# DESCRIPTION      : generate docker compose yaml from all local edjanger.poperties
-# CREATOR          : pamtrak06@gmail.com
-# --------------------------------
-# VERSION          : 1.0.2
-# DATE             : 2016-08-02
-# COMMENT          : creation
-# --------------------------------
-# USAGE            : edjangercompose
-# ----------------------------------------------------
+# ------------------------------------------------------------------------------
+##  Generate docker-compose.yaml from all local edjanger.poperties
+##  
+##  Usage:
+##     @script.name
+##  
+##  edjanger, The MIT License (MIT)
+##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  
+# ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
 function create_compose()
@@ -173,7 +167,7 @@ function create_compose()
 }
 
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
-  usage $0 compose
+  printHeader $0
 else
   if [ -f $CURDIR/docker-compose.yaml ]; then
     echo -e "edjanger:WARNING $CURDIR/docker-compose.yaml already available, do you want to override it (y/n) ?"

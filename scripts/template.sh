@@ -1,20 +1,14 @@
 #!/bin/bash
-# ----------------------------------------------------
-# The MIT License (MIT)
-#
-# Copyright (c) 2016 copyright pamtrak06@gmail.com
-# ----------------------------------------------------
-# SCRIPT           : template.sh
-# ALIAS            : edjangertemplate
-# DESCRIPTION      : generate edjanger.poperties from edjanger.template
-# CREATOR          : pamtrak06@gmail.com
-# --------------------------------
-# VERSION          : 1.0.3
-# DATE             : 2016-11-08
-# COMMENT          : creation of edjangertemplate.sh
-# --------------------------------
-# USAGE            : edjangertemplate
-# ----------------------------------------------------
+# ------------------------------------------------------------------------------
+##  Generate edjanger.poperties from edjanger.template
+##  
+##  Usage:
+##     @script.name
+##  
+##  edjanger, The MIT License (MIT)
+##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  
+# ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
 function check_export_presence_from_properties()
@@ -134,7 +128,7 @@ function create_edjanger_properties()
 }
 
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
-  usage $0 template
+  printHeader $0
 else
   create_edjanger_properties $1
 fi
