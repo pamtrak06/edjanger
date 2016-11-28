@@ -74,6 +74,7 @@ function evalOptionsParameters()
   #   done
   # done
   
+  # TODO authorize only presents in header specification and documentation
   parameterslist=$*
   #parameterslist=$(echo ${parameterslist} | sed "s|[[:space:]]--|;--|g")
   #echo "parameterslist:${parameterslist}"
@@ -113,6 +114,7 @@ function is_exec_present()
   fi
 }
 
+# detect and rename old edocker.properties to edjanger.properties
 function rename_edocker_properties()
 {
   if [ -f edocker.${config_extension} ]; then
@@ -135,6 +137,7 @@ function rename_edocker_properties()
   fi
 }
 
+# read edjanger.properties variables
 function read_app_properties()
 {
   rename_edocker_properties
@@ -153,6 +156,7 @@ function read_app_properties()
 
 }
 
+# print header of script
 function printHeader()
 {
   scriptname=$1
@@ -176,6 +180,7 @@ function unsetOptionsParameters()
   unset -v commandoptions
 }
 
+# primitive function for docker image commands
 function dockerbasicimage()
 {
 
@@ -229,6 +234,7 @@ function dockerbasicimage()
   fi
 }
 
+# compute container name last index for docker container commands
 function computeContainerLastIndex()
 {
   container_name=$1
@@ -236,12 +242,14 @@ function computeContainerLastIndex()
   return $(echo $containerlist | awk '{ print $1}')
 }
 
+# compute container name index for docker container commands
 function computeContainerIndex()
 {
   container_name=$1
   return $(($(docker ps -a --format="{{.Names}}" --filter="name=${container_name}_[0-9]+"|wc -l)))
 }
 
+# primitive function for docker container commands
 function dockerbasiccontainer()
 {
   
@@ -352,6 +360,7 @@ function dockerbasiccontainer()
   fi
 }
 
+# check edjanger.properties parameters
 function checkparameter()
 {
   parameter="$1"
