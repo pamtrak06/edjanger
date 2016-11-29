@@ -227,7 +227,7 @@ function dockerbasicimage()
         docker ${commandline} ${commandoptions}
         if [ "true" = "${docker_command}" ]; then
             echo -e "> Executed docker command:"
-            echo -e "> docker ${command} ${commandoptions}"
+            echo -e "> docker ${commandline} ${commandoptions}"
         fi
       fi
     fi
