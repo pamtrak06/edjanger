@@ -108,7 +108,7 @@ function is_exec_present()
   exepath=$(command -v $execname)
   if [ -z "$exepath" ]; then
     echo -e "${app_name}:ERROR: $execname is not present (result: $exepath), please install it, installation aborted"
-    return -1;
+    return 1;
   else
     return 0;
   fi
@@ -123,7 +123,7 @@ function rename_edocker_properties()
     if [ "y" = "$response" ]; then
       mv edocker.${config_extension} ${app_name}.${config_extension}
     else
-      return -1;
+      return 1;
     fi
   fi
   if [ -f edocker.cfg} ]; then
@@ -132,7 +132,7 @@ function rename_edocker_properties()
     if [ "y" = "$response" ]; then
       mv edocker.cfg ${app_name}.${config_extension}
     else
-      return -1;
+      return 1;
     fi
   fi
 }
