@@ -50,7 +50,7 @@ function create_edjanger_properties()
   fi
 
   # Retrieve all edjanger configuration files from current directory
-  listconf=$(find $PWD -name "edjanger.template")
+  listconf=$(find . -name "edjanger.template")
   if [ -z "$listconf" ]; then
     echo -e "edjanger:ERROR No edjanger.template available recursively in this directory"
     return 1
