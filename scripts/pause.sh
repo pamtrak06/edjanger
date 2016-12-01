@@ -45,7 +45,8 @@ read_app_properties
 
 [ -n "${pause_options}" ]           && commandoptions="${commandoptions} ${pause_options}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
-[ -n "$@" ]                         && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
-                                    && externaloptions=$(echo $@ | sed "s|[[:space:]]-|;-|g")
+[ -n "$@" ]                         && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
+                                    && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]--|;--|g") \
+                                    && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]-|;-|g")
 dockerbasiccontainer "--scriptname=\"$0\";--commandline=\"pause {container_name}\";--commandcomment=\"Pause container: {container_name}...\";${commandoptions};${externaloptions}"
 

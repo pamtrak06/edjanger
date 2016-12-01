@@ -1,7 +1,7 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
 ##  Check missing parameters in edjanger.properties from existing in template
-##  templates/edjanger_templates.properties
+##  templates/edjanger.template
 ##  
 ##  Usage:
 ##     @script.name

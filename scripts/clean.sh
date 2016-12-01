@@ -45,8 +45,9 @@ imagesnone=$(docker images --format="{{.Repository}} {{.ID}}" | grep -e '.none..
 [ -n "${imagesnone}" ]                         && commandoptions=${commandoptions} ${imagesnone}
 [ -n "${commandoptions}" ]                     && commandoptions="--commandoptions=\"${commandoptions}\""
 echo "commandoptions:${commandoptions}"
-[ -n "$@" ]                                    && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
-                                               && externaloptions=$(echo $@ | sed "s|[[:space:]]-|;-|g")
+[ -n "$@" ]                                    && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
+                                               && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]--|;--|g") \
+                                               && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]-|;-|g")
 confirm_question="Image with attribute name=\"none\" will be permanently erased, do you want to continue (y/n) ?"
 dockerbasicimage "--scriptname=\"$0\";--commandline=\"rmi\";--commandcomment=\"Delete images: with attribute name=\"none\"...\";${commandoptions};--confirm;--confirmquestion=\"$confirm_question\";${externaloptions}"
 

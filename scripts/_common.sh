@@ -81,8 +81,9 @@ function evalOptionsParameters()
   
   IFS=';' read -ra parameters <<< "$parameterslist"
   for parameter in "${parameters[@]}"; do
+      #echo "parameter:${parameter}"
       if [[ "${parameter}" = *"rm[[:space:]]"* ]]; then
-        echo "edocker:ERROR: parameter rm evaluation not allowed: ${parameter} !!!"
+        #echo "edocker:ERROR: parameter rm evaluation not allowed: ${parameter} !!!"
         exit -1
       elif [[ "${parameter}" = "--"*"="* ]]; then
         #echo "Eval parameter --:${parameter#--}"
@@ -99,9 +100,13 @@ function evalOptionsParameters()
       elif [[ "$parameter" =~ ^[-]*help[a-z]* ]] || [ "$parameter" = "-h" ]; then
         help=true
       else
-        [ -n "${parameter#--}" ] && eval "${parameter#--}=true" #&& echo "Set parameter to true:${parameter#--}"
-        [ -n "${parameter#-}" ] && eval "${parameter#-}=true" #&& echo "Set parameter to true:${parameter#--}"
-        [ -n "${parameter}" ] && eval "${parameter}=true" #&& echo "Set parameter to true:${parameter#--}"
+        if [ -n "${parameter#--}" ]; then
+          eval "${parameter#--}=true" #&& echo "Set parameter \"${parameter#--}\" to true"
+        elif [ -n "${parameter#-}" ]; then
+          eval "${parameter#-}=true" #&& echo "Set parameter \"${parameter#-}\" to true"
+        elif [ -n "${parameter}" ]; then
+          eval "${parameter}=true" #&& echo "Set parameter \"${parameter}\" to true"
+        fi
       fi
       #paramvar=${parameter%%=*}
       #paramval=${parameter##*=}
@@ -157,7 +162,7 @@ function read_app_properties()
   if [ ! -f ${app_name}.${config_extension} ]; then
     echo -e "${app_name}:ERROR No ${app_name}.${config_extension} available, use \"<${app_name}init>\" command to initialize one in this directory"
   else
-    parameters=$(cat {edjangerpath}/templates/${app_name}_template.${config_extension}|grep "="|cut -d '=' -f1|cut -d '#' -f2)
+    parameters=$(cat {edjangerpath}/templates/${app_name}.template|grep "="|cut -d '=' -f1|cut -d '#' -f2)
 
     for p in ${parameters}; do
       unset -v ${p}
@@ -221,7 +226,7 @@ function dockerbasicimage()
         
         # echo comment for running command
         commandcomment=${commandcomment/\{image_name\}/${image_name}}
-        echo "${commandcomment}"
+        echo "> ${commandcomment}"
         
         # replace image name in commandline and commandoptions
         commandline=${commandline/\{image_name\}/${image_name}}
@@ -248,18 +253,19 @@ function dockerbasicimage()
 }
 
 # compute container name last index for docker container commands
-function computeContainerLastIndex()
+function computeContainerIndexFromLast()
 {
   container_name=$1
-  container_idx=$(docker ps -a --format '{{.Names}}' --filter="name=${container_name}_[0-9]+"| sed -E "s/.*\_([0-9]+)/\1/g"|sort -r|awk 'FNR == 1 { print }')
+  container_idx=$(docker ps -a --format '{{.Names}}' --filter="name=${container_name}_[0-9]+"| sed -E "s/.*\_([0-9]+)/\1/g"|sort -nr | head -n1)
   return $container_idx
 }
 
 # compute container name index for docker container commands
-function computeContainerIndex()
+function computeContainerIndexFromTotal()
 {
   container_name=$1
-  return $(($(docker ps -a --format="{{.Names}}" --filter="name=${container_name}_[0-9]+"|wc -l)))
+  container_idx=$(($(docker ps -a --format="{{.Names}}" --filter="name=${container_name}_[0-9]+"|wc -l)))
+  return $container_idx
 }
 
 # primitive function for docker container commands
@@ -279,9 +285,10 @@ function dockerbasiccontainer()
       read_app_properties
       if [ -z "$index" ]; then
         if [[ "$commandline" == *"run"* ]]; then
-          computeContainerIndex ${container_name}; idx=$?; idx=$(($idx + 1))
+          #computeContainerIndexFromTotal ${container_name}; idx=$?; idx=$(($idx + 1))
+          computeContainerIndexFromLast ${container_name}; idx=$?; idx=$(($idx + 1))
         else
-          computeContainerLastIndex ${container_name};
+          computeContainerIndexFromLast ${container_name};
           idx=$? 
         fi
       else
@@ -309,7 +316,7 @@ function dockerbasiccontainer()
         if [[ ${commandline} != "ps"* ]]; then
           commandcomment=${commandcomment/\{container_name\}/${container_name}}
         fi
-        echo " ${commandcomment}"
+        echo "> ${commandcomment}"
         
         # replace container name in commandline and commandoptions
         commandline=${commandline/\{container_name\}/${container_name}}
@@ -392,15 +399,17 @@ function checkconfig()
   if [ ! -f ${app_name}.${config_extension} ]; then
     echo -e "${app_name}:ERROR No ${app_name}.${config_extension} available, use \"<${app_name}init>\" command to initialize one in this directory"
   else
-
+    
+    echo -e "> Check configuration variables from ${app_name}.${config_extension}..."
+    
     read_app_properties
 
-    parameters=$(cat {edjangerpath}/templates/${app_name}_template.${config_extension}|grep -v "#"|grep "="|cut -d '=' -f1)
+    parameters=$(cat {edjangerpath}/templates/${app_name}.template|grep -v "#"|grep "="|cut -d '=' -f1)
 
     local res
     for p in ${parameters}; do
 
-      echo -e "  - check \"${p}\""
+      echo -e "  . check \"${p}\""
       checkparameter "${p}"; if [ "$?" = "255" ]; then res=255; fi
 
     done
@@ -469,11 +478,11 @@ function usage_config()
 
   echo -e "Parameters in ${app_name}.${config_extension} configuration file"
 
-  parameters=$(cat {edjangerpath}/templates/${app_name}_template.${config_extension}|grep -v "#"|grep "="|cut -d '=' -f1)
+  parameters=$(cat {edjangerpath}/templates/${app_name}.template|grep -v "#"|grep "="|cut -d '=' -f1)
 
   for p in ${parameters}; do
 
-    comment=$(cat {edjangerpath}/templates/${app_name}_template.${config_extension}|grep -e "#${p}"|cut -d ':' -f2)
+    comment=$(cat {edjangerpath}/templates/${app_name}.template|grep -e "#${p}"|cut -d ':' -f2)
     echo -e ""
     echo -e "  - ${p}: ${comment}, used by:"
     usage_command "${script}" "${p}"

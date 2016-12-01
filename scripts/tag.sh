@@ -45,8 +45,9 @@ read_app_properties
 
 [ -n "${tag_options}" ]             && commandoptions="${commandoptions} ${tag_options}"
 #[ -n "${image_name}" ]              && commandoptions="${commandoptions} ${image_name}"
-[ -n "$@" ]                         && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
-                                    && externaloptions=$(echo $@ | sed "s|[[:space:]]-|;-|g")
+[ -n "$@" ]                         && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
+                                    && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]--|;--|g") \
+                                    && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]-|;-|g")
 confirm_question="Image \"{image_name}\" will be tagged, do you want to continue (y/n) ?"
 dockerbasicimage "--scriptname=\"$0\";--commandline=\"tag {image_name}\";--commandcomment=\"Tag image: {image_name}...\";${commandoptions};--confirm;--confirmquestion=\"$confirm_question\";${externaloptions}"
 

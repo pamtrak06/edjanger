@@ -44,8 +44,9 @@
 # 
 # [ -n "${rm_options}" ]              && commandoptions="${commandoptions} ${rm_options}"
 # [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
-# [ -n "$@" ]                         && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
-#                                     && externaloptions=$(echo $@ | sed "s|[[:space:]]-|;-|g")
+#[ -n "$@" ]                          && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
+#                                     && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]--|;--|g") \
+#                                     && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]-|;-|g")
 # exitedcontainer=$(docker ps -aq --filter "status=exited")
 # confirm_question="All following exited container \"{container_name}\" will be permanently erased, do you want to continue (y/n) ?"
 # docker ps -a --filter "status=exited" --format "Container {{.Names}}/id:{{.ID}} from image:{{.Image}}"

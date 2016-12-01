@@ -49,8 +49,9 @@ read_app_properties
 
 [ -n "${rm_options}" ]              && commandoptions="${commandoptions} ${rm_options}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
-[ -n "$@" ]                         && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
-                                    && externaloptions=$(echo $@ | sed "s|[[:space:]]-|;-|g")
+[ -n "$@" ]                         && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
+                                    && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]--|;--|g") \
+                                    && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]-|;-|g")
 confirm_question="Container \"{container_name}\" will be permanently erased, do you want to continue (y/n) ?"
 dockerbasiccontainer "--scriptname=\"$0\";--commandline=\"rm -f {container_name}\";--commandcomment=\"Delete container: {container_name}...\";${commandoptions};--confirm;--confirmquestion=\"$confirm_question\";${externaloptions}"
 

@@ -3,7 +3,12 @@
 ##  Generate edjanger.poperties from edjanger.template
 ##  
 ##  Usage:
-##     @script.name
+##     @script.name [option]
+##  
+##  Options:
+##     -h, --help                     print this documentation
+##  
+##         --properties=CONFIG        properties file containing varaibles to be replaced in edjanger.template to create edjanger.properties
 ##  
 ##  edjanger, The MIT License (MIT)
 ##  Copyright (c) 2016 copyright pamtrak06@gmail.com
@@ -22,8 +27,8 @@ function check_export_presence_from_properties()
     check_export_presence_from_properties=true;
   else
     echo -e "edjanger:ERROR one or several \"export\" command are absent(s) in the previous properties, please fix it"
-    echo -e "\tvariable declaration must have this form: \"export <variable name>=<value>\""
-    echo -e "\tcontent of the previous properties:"
+    echo -e "  - variable declaration must have this form: \"export <variable name>=<value>\""
+    echo -e "  - content of the previous properties:"
     while read line; do echo -e "\t\t$line"; done < $prop_file
     check_export_presence_from_properties=false;
   fi
@@ -34,11 +39,24 @@ function create_edjanger_properties()
   command=$1
 
   if [[ ! "$command" == *"properties="* ]]; then
-    echo -e "edjanger:ERROR argument must be set with following form: properties=\"<basename or properties name>\"."
+    echo -e "edjanger:ERROR no properties argument setted, usage:"
+    printHeader $0
     return 1
   else
-    configuration=${command##properties=}
+    if [[ "${command}" = "--"*"="* ]]; then
+      configuration=${command##--properties=}
+    elif [[ "${command}" = "-"*"="* ]]; then
+      configuration=${command##-properties=}
+    elif [[ "${command}" = *"="* ]]; then
+      configuration=${command##properties=}
+    else
+      echo -e "edjanger:ERROR properties argument incorrectly setted, usage:"
+      printHeader $0
+      return 1
+    fi
   fi
+  
+  echo -e "> Initialize edjanger.properties from template and configuration file ($configuration)..."
 
   if [ ! "${configuration##*.}" = "properties" ]; then
     configuration=$configuration.properties
@@ -59,7 +77,7 @@ function create_edjanger_properties()
   for template in ${listconf[@]}
   do
 
-    echo -e "edjanger:INFO Process informations of template: \"${template}\"  ..."
+    echo -e "  . process informations of template: \"${template}\"  ..."
 
     continueprocess=true
 
@@ -67,7 +85,7 @@ function create_edjanger_properties()
     if [ -n "${configuration}" ] && [ -f "${configuration}" ]; then
 
       prop_file=${configuration}
-      echo -e "edjanger:INFO Use main configuration file: \"${prop_file}\"  ..."
+      echo -e "  . use main configuration file: \"${prop_file}\"  ..."
       check_export_presence_from_properties "$prop_file"
       continueprocess=$?
 
@@ -76,7 +94,7 @@ function create_edjanger_properties()
 
       working_directory=$(dirname ${template})
       prop_file=${working_directory}/${configuration}
-      echo -e "edjanger:INFO Use local configuration file: \"${prop_file}\"  ..."
+      echo -e "  . use local configuration file: \"${prop_file}\"  ..."
       check_export_presence_from_properties "$prop_file"
       continueprocess=$?
 
@@ -104,14 +122,14 @@ function create_edjanger_properties()
           if [ "y" = "${response}" ]; then
             date_time=$(date +"%Y%m%d_%H%M%S")
             cp ${edjangerproperties} ${template%.template}_${date_time}.bak
-            echo -e "edjanger:INFO create \"${edjangerproperties}\" file from template \"${template}\" and configuration file \"${prop_file}\""
+            echo -e "  . create \"${edjangerproperties}\" file from template \"${template}\" and configuration file \"${prop_file}\""
             . ${prop_file} && envsubst < "${template}" | tee "${edjangerproperties}" > /dev/null
           fi
 
         # else create edjanger.properties
         else
 
-          echo -e "edjanger:INFO create \"${edjangerproperties}\" file from template \"${template}\" and configuration file \"${prop_file}\""
+          echo -e "  . create \"${edjangerproperties}\" file from template \"${template}\" and configuration file \"${prop_file}\""
           . ${prop_file} && envsubst < "${template}" | tee "${edjangerproperties}" > /dev/null
 
         fi

@@ -41,13 +41,14 @@ source {edjangerpath}/_common.sh
 read_app_properties
 
 # check required configuration
-[ -z "${image_name}" ]                         && echo "Image name must be filled, configure variable image_name in edjanger.${config_extension}" && exit -1
+[ -z "${image_name}" ]              && echo "Image name must be filled, configure variable image_name in edjanger.${config_extension}" && exit -1
 
-[ -n "${force_rmi}" ]                          && commandoptions="${commandoptions} ${force_rmi}"
-[ -n "${image_name}" ]                         && commandoptions="${commandoptions} ${image_name}"
-[ -n "${commandoptions}" ]                     && commandoptions="--commandoptions=\"${commandoptions}\""
-[ -n "$@" ]                                    && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
-                                               && externaloptions=$(echo $@ | sed "s|[[:space:]]-|;-|g")
+[ -n "${force_rmi}" ]               && commandoptions="${commandoptions} ${force_rmi}"
+[ -n "${image_name}" ]              && commandoptions="${commandoptions} ${image_name}"
+[ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
+[ -n "$@" ]                         && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
+                                    && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]--|;--|g") \
+                                    && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]-|;-|g")
 confirm_question="Image \"{image_name}\" will be permanently erased, do you want to continue (y/n) ?"
 dockerbasicimage "--scriptname=\"$0\";--commandline=\"rmi\";--commandcomment=\"Delete image: {image_name}...\";${commandoptions};--confirm;--confirmquestion=\"$confirm_question\";${externaloptions}"
 

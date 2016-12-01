@@ -46,7 +46,8 @@ read_app_properties
 
 [ -n "${start_options}" ]           && commandoptions="${commandoptions} ${start_options}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
-[ -n "$@" ]                         && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
-                                    && externaloptions=$(echo $@ | sed "s|[[:space:]]-|;-|g")
+[ -n "$@" ]                         && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
+                                    && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]--|;--|g") \
+                                    && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]-|;-|g")
 dockerbasiccontainer "--scriptname=\"$0\";--commandline=\"start {container_name}\";--commandcomment=\"Start container: {container_name}...\";${commandoptions};${externaloptions}"
 

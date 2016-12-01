@@ -51,8 +51,9 @@ read_app_properties
 
 [ -n "${commit_options}" ]          && commandoptions="${commandoptions} ${commit_options}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
-[ -n "$@" ]                         && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
-                                    && externaloptions=$(echo $@ | sed "s|[[:space:]]-|;-|g")
+[ -n "$@" ]                         && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
+                                    && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]--|;--|g") \
+                                    && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]-|;-|g")
 dockerbasiccontainer "--scriptname=\"$0\";--commandline=\"commit {container_name}\";--commandcomment=\"Commit container: {container_name}...\";${commandoptions};${externaloptions}"
 
 
