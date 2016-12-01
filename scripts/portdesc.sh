@@ -24,17 +24,29 @@ if [ -n "$1" ]; then
     if [[ "${port}" = "--port="* ]]; then
       #echo "Eval parameter:${index#--}"
       eval "${port#--}"
+      #port=${port#--}
     elif [[ "${port}" = "-port="* ]]; then
       #echo "Eval parameter:${index#-}"
       eval "${port#-}"
+      #port=${port#-}
     elif [[ "${port}" = "port="* ]]; then
       #echo "Eval parameter:${index}"
       eval "${port}"
+      #port=${port}
     else
       echo -e "edocker:ERROR: index parameter is required"
       printHeader $0
       exit -1
     fi
+    #portvar=${port%%=*}
+    #portval=${port##*=}
+    #if [ "${portval}" -eq "${portval}" ]; then
+    #  eval ${portvar}=\{portval}
+    #else
+    #  echo -e "edocker:ERROR: port port parameter must be an integer"
+    #  printHeader $0
+    #  return 1
+    #fi
     echo -e "--- Port ${port} description"
     title="Service Name,Port Number,Transport Protocol,Description,Assignee,Contact,Registration Date,Modification Date,Reference,Service Code,Known Unauthorized Uses,Assignment Notes"
     ports=$(cat {edjangerpath}/service-names-port-numbers.csv | grep ",${port},")

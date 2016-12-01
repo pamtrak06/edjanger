@@ -87,17 +87,30 @@ function evalOptionsParameters()
       elif [[ "${parameter}" = "--"*"="* ]]; then
         #echo "Eval parameter --:${parameter#--}"
         eval "${parameter#--}"
+        #parameter=${parameter#--}
       elif [[ "${parameter}" = "-"*"="* ]]; then
         #echo "Eval parameter -:${parameter#-}"
         eval "${parameter#-}"
+        #parameter=${parameter#-}
       elif [[ "${parameter}" = *"="* ]]; then
         #echo "Eval parameter:${parameter}"
         eval "${parameter}"
+        #parameter=${parameter}
       elif [[ "$parameter" =~ ^[-]*help[a-z]* ]] || [ "$parameter" = "-h" ]; then
         help=true
       else
         [ -n "${parameter#--}" ] && eval "${parameter#--}=true" #&& echo "Set parameter to true:${parameter#--}"
+        [ -n "${parameter#-}" ] && eval "${parameter#-}=true" #&& echo "Set parameter to true:${parameter#--}"
+        [ -n "${parameter}" ] && eval "${parameter}=true" #&& echo "Set parameter to true:${parameter#--}"
       fi
+      #paramvar=${parameter%%=*}
+      #paramval=${parameter##*=}
+      #paramval=${paramval##\"}
+      #paramval=${paramval%%\"}
+      #echo "eval : paramvar:${paramvar}"
+      #echo "eval : paramval:${paramval}"
+      #eval "${paramvar}=${paramval}"
+      
   done
 }
 
