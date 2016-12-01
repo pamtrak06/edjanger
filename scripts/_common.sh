@@ -251,8 +251,8 @@ function dockerbasicimage()
 function computeContainerLastIndex()
 {
   container_name=$1
-  idx=$(docker ps -a --format '{{.Names}}' --filter="name=${container_name}_[0-9]+"| sed -E "s/.*\_([0-9]+)/\1/g"|sort -r)
-  return $idx
+  container_idx=$(docker ps -a --format '{{.Names}}' --filter="name=${container_name}_[0-9]+"| sed -E "s/.*\_([0-9]+)/\1/g"|sort -r|awk 'FNR == 1 { print }')
+  return $container_idx
 }
 
 # compute container name index for docker container commands
@@ -309,7 +309,7 @@ function dockerbasiccontainer()
         if [[ ${commandline} != "ps"* ]]; then
           commandcomment=${commandcomment/\{container_name\}/${container_name}}
         fi
-        echo " ${commandcomment}..."
+        echo " ${commandcomment}"
         
         # replace container name in commandline and commandoptions
         commandline=${commandline/\{container_name\}/${container_name}}
