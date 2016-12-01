@@ -121,7 +121,7 @@ function is_exec_present()
   exepath=$(command -v $execname)
   if [ -z "$exepath" ]; then
     echo -e "${app_name}:ERROR: $execname is not present (result: $exepath), please install it, installation aborted"
-    return -1;
+    return 1;
   else
     return 0;
   fi
@@ -136,7 +136,7 @@ function rename_edocker_properties()
     if [ "y" = "$response" ]; then
       mv edocker.${config_extension} ${app_name}.${config_extension}
     else
-      return -1;
+      return 1;
     fi
   fi
   if [ -f edocker.cfg} ]; then
@@ -145,7 +145,7 @@ function rename_edocker_properties()
     if [ "y" = "$response" ]; then
       mv edocker.cfg ${app_name}.${config_extension}
     else
-      return -1;
+      return 1;
     fi
   fi
 }
@@ -240,7 +240,7 @@ function dockerbasicimage()
         docker ${commandline} ${commandoptions}
         if [ "true" = "${docker_command}" ]; then
             echo -e "> Executed docker command:"
-            echo -e "> docker ${command} ${commandoptions}"
+            echo -e "> docker ${commandline} ${commandoptions}"
         fi
       fi
     fi
@@ -251,8 +251,8 @@ function dockerbasicimage()
 function computeContainerLastIndex()
 {
   container_name=$1
-  containerlist=$(docker ps -a --format '{{.Names}}'| sed -E "s/.*\_([0-9]+)/\1/g"|sort -r)
-  return $(echo $containerlist | awk '{ print $1}')
+  idx=$(docker ps -a --format '{{.Names}}' --filter="name=${container_name}_[0-9]+"| sed -E "s/.*\_([0-9]+)/\1/g"|sort -r)
+  return $idx
 }
 
 # compute container name index for docker container commands

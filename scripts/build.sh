@@ -56,12 +56,11 @@ build_arguments="${proxy_args} ${build_args}"
 [ -n "${build_rm}" ]                           && commandoptions="${commandoptions} ${build_rm}"
 [ -n "${build_nocache}" ]                      && commandoptions="${commandoptions} ${build_nocache}"
 [ -n "${build_file}" ]                         && commandoptions="${commandoptions} ${build_file}"
-[ -n "${image_name}" ]                         && commandoptions="${commandoptions} ${image_name}"
 [ -n "${build_path}" ]                         && commandoptions="${commandoptions} ${build_path}"
 [ -n "${commandoptions}" ]                     && commandoptions="--commandoptions=\"${commandoptions}\""
 [ -n "$@" ]                                    && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
                                                && externaloptions=$(echo $@ | sed "s|[[:space:]]-|;-|g")
-dockerbasicimage "--scriptname=\"$0\";--commandline=\"build -t\";--commandcomment=\"Build image: {image_name}...\";${commandoptions};${externaloptions}"
+dockerbasicimage "--scriptname=\"$0\";--commandline=\"build -t {image_name}\";--commandcomment=\"Build image: {image_name}...\";${commandoptions};${externaloptions}"
 
 build_arguments=""
 . {edjangerpath}/_proxy_reset.sh

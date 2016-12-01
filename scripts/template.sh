@@ -35,7 +35,7 @@ function create_edjanger_properties()
 
   if [[ ! "$command" == *"properties="* ]]; then
     echo -e "edjanger:ERROR argument must be set with following form: properties=\"<basename or properties name>\"."
-    return -1
+    return 1
   else
     configuration=${command##properties=}
   fi
@@ -50,10 +50,10 @@ function create_edjanger_properties()
   fi
 
   # Retrieve all edjanger configuration files from current directory
-  listconf=$(find $PWD -name "edjanger.template")
+  listconf=$(find . -name "edjanger.template")
   if [ -z "$listconf" ]; then
     echo -e "edjanger:ERROR No edjanger.template available recursively in this directory"
-    return -1
+    return 1
   fi
 
   for template in ${listconf[@]}
