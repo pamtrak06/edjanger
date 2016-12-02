@@ -135,20 +135,13 @@ function is_exec_present()
 # detect and rename old edocker.properties to edjanger.properties
 function rename_edocker_properties()
 {
-  if [ -f edocker.${config_extension} ]; then
-    echo -e "${app_name}:WARNING found edocker.${config_extension}, do you want to rename it to ${app_name}.${config_extension} (y/n)?"
+  if [ -f edocker.${config_extension} ] || [ -f edocker.cfg ] ; then
+    if [ -f edocker.${config_extension} ]; then older_config=edocker.${config_extension}; fi
+    if [ -f edocker.cfg ]; then older_config=edocker.cfg; fi
+    echo -e "${app_name}:WARNING found ${older_config}, do you want to rename it to ${app_name}.${config_extension} (y/n)?"
     read response
     if [ "y" = "$response" ]; then
-      mv edocker.${config_extension} ${app_name}.${config_extension}
-    else
-      return 1;
-    fi
-  fi
-  if [ -f edocker.cfg} ]; then
-    echo -e "${app_name}:WARNING found edocker.cfg, do you want to rename it to ${app_name}.${config_extension} (y/n)?"
-    read response
-    if [ "y" = "$response" ]; then
-      mv edocker.cfg ${app_name}.${config_extension}
+      mv ${older_config} ${app_name}.${config_extension}
     else
       return 1;
     fi
