@@ -34,10 +34,21 @@ export PATH=$PATH:/usr/local/bin/edjanger
   cat edjanger.properties | grep -v "#" | grep image_name
   sed -e "s/\(container_name=\).*/\1\"webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep -v "#" | grep container_name
+  cat edjanger.properties | grep -v "#container_hostname:" | grep container_hostname
+  sed -e "s/\(container_privilege=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#container_privilege:" | grep container_privilege
+  sed -e "s/\(container_remove=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#container_remove:" | grep container_remove
+  sed -e "s/\(container_addhost=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#container_addhost:" | grep container_addhost
   sed -e "s/\(exposed_ports=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep -v "#exposed_ports:" | grep exposed_ports
   sed -e "s/\(shared_volumes=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep -v "#shared_volumes:" | grep shared_volumes
+  sed -e "s/\(volumes_from=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#volumes_from:" | grep volumes_from
+  sed -e "s/\(linked_containers=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#linked_containers:" | grep linked_containers
   bash ../../scripts/build.sh
   result="$(docker images | grep pamtrak06/webtest)"
   [ -n "$result" ]
@@ -59,10 +70,25 @@ export PATH=$PATH:/usr/local/bin/edjanger
   cat edjanger.properties | grep -v "#" | grep image_name
   sed -e "s/\(container_name=\).*/\1\"webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep -v "#" | grep container_name
+  sed -e "s/\(container_hostname=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#container_hostname:" | grep container_hostname
+  sed -e "s/\(container_privilege=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#container_privilege:" | grep container_privilege
+  sed -e "s/\(container_remove=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#container_remove:" | grep container_remove
+  sed -e "s/\(container_addhost=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#container_addhost:" | grep container_addhost
   sed -e "s/\(exposed_ports=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep -v "#exposed_ports:" | grep exposed_ports
   sed -e "s/\(shared_volumes=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep -v "#shared_volumes:" | grep shared_volumes
+  sed -e "s/\(environment_variables=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#environment_variables:" | grep environment_variables
+  sed -e "s/\(volumes_from=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#volumes_from:" | grep volumes_from
+  sed -e "s/\(linked_containers=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#linked_containers:" | grep linked_containers
+  cat edjanger.properties
   bash ../../scripts/build.sh
   bash ../../scripts/run.sh
   result="$(docker ps | grep webtest_1 )"
@@ -87,10 +113,24 @@ export PATH=$PATH:/usr/local/bin/edjanger
   cat edjanger.properties | grep -v "#" | grep image_name
   sed -e "s/\(container_name=\).*/\1\"webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep -v "#" | grep container_name
+  sed -e "s/\(container_hostname=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#container_hostname:" | grep container_hostname
+  sed -e "s/\(container_privilege=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#container_privilege:" | grep container_privilege
+  sed -e "s/\(container_remove=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#container_remove:" | grep container_remove
+  sed -e "s/\(container_addhost=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#container_addhost:" | grep container_addhost
   sed -e "s/\(exposed_ports=\).*/\1\"-p 85:80\"/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep -v "#" | grep exposed_ports
   sed -e "s/\(shared_volumes=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep -v "#shared_volumes:" | grep shared_volumes
+  sed -e "s/\(environment_variables=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#environment_variables:" | grep environment_variables
+  sed -e "s/\(volumes_from=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#volumes_from:" | grep volumes_from
+  sed -e "s/\(linked_containers=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#linked_containers:" | grep linked_containers
   bash ../../scripts/build.sh
   bash ../../scripts/run.sh
   # TODO to be improved by network commands
@@ -119,10 +159,24 @@ export PATH=$PATH:/usr/local/bin/edjanger
   cat edjanger.properties | grep -v "#" | grep image_name
   sed -e "s/\(container_name=\).*/\1\"webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep -v "#" | grep container_name
+  sed -e "s/\(container_hostname=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#container_hostname:" | grep container_hostname
+  sed -e "s/\(container_privilege=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#container_privilege:" | grep container_privilege
+  sed -e "s/\(container_remove=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#container_remove:" | grep container_remove
+  sed -e "s/\(container_addhost=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#container_addhost:" | grep container_addhost
   sed -e "s/\(exposed_ports=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep -v "#exposed_ports:" | grep exposed_ports
   sed -e "s/\(shared_volumes=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep -v "#shared_volumes:" | grep shared_volumes
+  sed -e "s/\(environment_variables=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#environment_variables:" | grep environment_variables
+  sed -e "s/\(volumes_from=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#volumes_from:" | grep volumes_from
+  sed -e "s/\(linked_containers=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#linked_containers:" | grep linked_containers
   bash ../../scripts/build.sh
   bash ../../scripts/run.sh
   bash ../../scripts/exec.sh
@@ -149,10 +203,24 @@ export PATH=$PATH:/usr/local/bin/edjanger
   cat edjanger.properties | grep -v "#" | grep image_name
   sed -e "s/\(container_name=\).*/\1\"webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep -v "#" | grep container_name
+  sed -e "s/\(container_hostname=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#container_hostname:" | grep container_hostname
+  sed -e "s/\(container_privilege=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#container_privilege:" | grep container_privilege
+  sed -e "s/\(container_remove=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#container_remove:" | grep container_remove
+  sed -e "s/\(container_addhost=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#container_addhost:" | grep container_addhost
   sed -e "s/\(exposed_ports=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep exposed_ports
   sed -e "s/\(shared_volumes=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat edjanger.properties | grep shared_volumes
+  sed -e "s/\(environment_variables=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#environment_variables:" | grep environment_variables
+  sed -e "s/\(volumes_from=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#volumes_from:" | grep volumes_from
+  sed -e "s/\(linked_containers=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat edjanger.properties | grep -v "#linked_containers:" | grep linked_containers
   bash ../../scripts/build.sh
   bash ../../scripts/run.sh
   result="$(docker ps | grep webtest_1 )"
