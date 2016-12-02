@@ -12,6 +12,10 @@
 ##  
 ##  Parameters (edjanger.properties):
 ##     command_run                      bash command(s) to run
+##     container_hostname               container host name (option -h, --hostname string for docker run)
+##     container_privilege              give extended privileges to this container (option --privileged for docker run)
+##     container_remove                 automatically remove the container when it exits (option --rm for docker run)
+##     container_addhost                add a custom host-to-IP mapping (host:ip) (default []) (option --add-host value for docker run)
 ##     environment_variables            environnment variables
 ##     exposed_ports                    exposed port
 ##     image_name                       image name
@@ -19,7 +23,7 @@
 ##     network_settings                 all network settings options
 ##     run_other_options                all other available options for docker run
 ##     runtime_constraints_on_resources runtime constraints on resources
-##     volumes_from                     expose volumes from another container into current container
+##     volumes_from                     expose volumes from another container into current container (option --volumes-from value of docker run)
 ##  
 ##  edjanger, The MIT License (MIT)
 ##  Copyright (c) 2016 copyright pamtrak06@gmail.com
@@ -50,6 +54,10 @@ read_app_properties
 [ -z "${image_name}" ]                         && echo "Image name must be filled, configure variable image_name in edjanger.${config_extension}" && exit -1
 [ -z "${container_name}" ]                     && echo "Container name must be filled, configure variable container_name in edjanger.${config_extension}" && exit -1
 
+[ -z "${container_hostname}" ]                 && commandoptions="${commandoptions} ${container_hostname}"
+[ -z "${container_privilege}" ]                && commandoptions="${commandoptions} ${container_privilege}"
+[ -z "${container_remove}" ]                   && commandoptions="${commandoptions} ${container_remove}"
+[ -z "${container_addhost}" ]                  && commandoptions="${commandoptions} ${container_addhost}"
 [ -n "${run_other_options}" ]                  && commandoptions="${commandoptions} ${run_other_options}"
 [ -n "${network_settings}" ]                   && commandoptions="${commandoptions} ${network_settings}"
 [ -n "${runtime_constraints_on_resources}" ]   && commandoptions="${commandoptions} ${runtime_constraints_on_resources}"
