@@ -64,7 +64,7 @@ read_app_properties
 [ -n "${commandoptions}" ]                     && commandoptions="--commandoptions=\"${commandoptions}\""
 [ -n "$@" ]                                    && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
                                                && externaloptions=$(echo $@ | sed "s|[[:space:]]-|;-|g")
-dockerbasiccontainer "--scriptname=\"$0\";--commandline=\"run -it --name {container_name}\";--commandcomment=\"Create new container and enter intercative: {container_name}...\";${commandoptions};${externaloptions}"
+dockerbasiccontainer "--scriptname=\"$0\";--commandline=\"run -it --name {container_name}\";--commandcomment=\"Create new container and enter interactive: {container_name}...\";${commandoptions};${externaloptions}"
 
 
 
