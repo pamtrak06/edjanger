@@ -38,11 +38,11 @@ read_app_properties
 
 # check required configuration
 [ -z "${image_name}" ]                         && echo "edjanger:ERROR: Image name must be filled, configure variable image_name in edjanger.${config_extension}" && exit -1
-imagesnone=$(docker images --format="{{.Repository}} {{.ID}}" | grep -e '.none..[a-zA-Z0-9_].*'| awk '{print $2}')
+imagesnone=$(docker images --format="{{.Repository}} {{.ID}}" | grep -e '.none..[a-zA-Z0-9_].*'| awk '{print $2}'|tr '\n' ' ')
 [ -z "${imagesnone}" ]                         && echo "edjanger:WARN: No images with attribute name=\"none\" to delete" && exit 0
 
 [ -n "${force_rmi}" ]                          && commandoptions="${commandoptions} ${force_rmi}"
-[ -n "${imagesnone}" ]                         && commandoptions=${commandoptions} ${imagesnone}
+[ -n "${imagesnone}" ]                         && commandoptions="${commandoptions} ${imagesnone}"
 [ -n "${commandoptions}" ]                     && commandoptions="--commandoptions=\"${commandoptions}\""
 echo "commandoptions:${commandoptions}"
 [ -n "$@" ]                                    && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
