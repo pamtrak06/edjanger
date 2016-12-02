@@ -56,6 +56,12 @@ function create_edjanger_properties()
     fi
   fi
   
+  if [ -z "${configuration}" ]; then
+    echo -e "edjanger:ERROR properties must not be empty, usage:"
+    printHeader $0
+    return 1
+  fi
+  
   echo -e "> Initialize edjanger.properties from template and configuration file ($configuration)..."
 
   if [ ! "${configuration##*.}" = "properties" ]; then
