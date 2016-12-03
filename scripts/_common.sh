@@ -190,6 +190,9 @@ function unsetOptionsParameters()
   unset -v commandcomment
   unset -v commandoptions
   unset -v noneedsofproperties
+  unset -v all
+  unset -v force
+  unset -v index
 }
 
 # primitive function for docker image commands
@@ -294,61 +297,74 @@ function dockerbasiccontainer()
       fi
 
       if [ $idx -le 0 ]; then
-        echo -e "${app_name}:INFO No container available"
+        echo -e "${app_name}:INFO No container available for root name \"${container_name}\""
         exit -1
       fi
 
-      # echo comment for running commandline
-      if [[ ${commandline} == "ps"* ]]; then
+      # list of containers
+      if [[ ${commandline} == "rm"* ]] && [[ -n ${all} ]]; then
+        containers_list=$(docker ps -a --format '{{.Names}}' --filter="name=${container_name}_[0-9]+")
+      fi
+      
+      # set container name and comment
+      if [[ ${commandline} == "rm"* ]] && [[ -n ${all} ]]; then
+        # ... without index
+        container_name=${container_name}
+        #commandcomment=${commandcomment/\{container_name\}/${containers_list}}
+      else
+        # ... with index
+        container_name=${container_name}_${idx}
         commandcomment=${commandcomment/\{container_name\}/${container_name}}
       fi
-
-      # set container name with index
-      container_name=${container_name}_${idx}
       
       if [ -n "$confirm" ]; then
-        confirmquestion=${confirmquestion/\{container_name\}/${container_name}}
-        echo "$confirmquestion"
+        if [[ ${commandline} == "rm"* ]] && [[ -n ${all} ]]; then
+          confirmquestion=${confirmquestion/Container /Following container\(s\)}
+          confirmquestion=${confirmquestion/\{container_name\}/}
+          confirmquestion="${confirmquestion}\n${containers_list}\n"
+        else
+          confirmquestion=${confirmquestion/\{container_name\}/${container_name}}
+        fi
+        printf "$confirmquestion"
         read response
       else
         response=y
       fi
       if [ "y" = "$response" ]; then
         
-        # echo comment for running commandline
-        if [[ ${commandline} != "ps"* ]]; then
-          commandcomment=${commandcomment/\{container_name\}/${container_name}}
-        fi
+        # TODO : to beconfirmed duplicate code
+        # # echo comment for running commandline
+        # if [[ ${commandline} != "ps"* ]]; then
+        #   commandcomment=${commandcomment/\{container_name\}/${container_name}}
+        # fi
         echo "> ${commandcomment}"
         
-        # replace container name in commandline and commandoptions
-        commandline=${commandline/\{container_name\}/${container_name}}
-        commandoptions=${commandoptions/\{container_name\}/${container_name}}
-        
         # following valid for exec
-        if [[ ${commandline} == exec* ]]; then
+        if [[ ${commandline} == "exec"* ]]; then
           # set options
-          [ -n "${shellcommand}" ]   && commandoptions="${commandoptions} -c \"${shellcommand}\""
-        fi
+          [ -n "${shellcommand}" ]    && commandoptions="${commandoptions} -c \"${shellcommand}\""
+        # following valid for rm and all
+        elif [[ ${commandline} == "rm"* ]]; then
+          # set options
+          [ -n "${all}" ]             && containers_list=$(echo ${containers_list} | tr '\n' ' ') \
+                                      && commandoptions=${commandoptions/\{container_name\}/${containers_list}}
         # following valid for rename
-        if [[ ${commandline} == rename* ]]; then
+      elif [[ ${commandline} == "rename"* ]]; then
           # check required
-          [ -z "${name}" ]           && printHeader $scriptname && exit -1
+          [ -z "${name}" ]            && printHeader $scriptname && exit -1
           # set options
-          [ -n "${name}" ]           && commandoptions="${commandoptions} ${name}"
-        fi
+          [ -n "${name}" ]            && commandoptions="${commandoptions} ${name}"
         # following valid for commit
-        if [[ ${commandline} == commit* ]]; then
+      elif [[ ${commandline} == "commit"* ]]; then
           # check required
-          [ -z "${commitname}" ]     && printHeader $scriptname && exit -1
+          [ -z "${commitname}" ]      && printHeader $scriptname && exit -1
           # set options
-          [ -n "${commitauthor}" ]   && commandoptions="${commandoptions} --author ${commitauthor}"
-          [ -n "${commitmessage}" ]  && commandoptions="${commandoptions} --message ${commitmessage}"
-          [ -n "${commitchange}" ]   && commandoptions="${commandoptions} --change ${commitchange}"
-          [ -n "${commitname}" ]     && commandoptions="${commandoptions} ${commitname}"
-        fi
+          [ -n "${commitauthor}" ]    && commandoptions="--author ${commitauthor} ${commandoptions}"
+          [ -n "${commitmessage}" ]   && commandoptions="--message ${commitmessage} ${commandoptions}"
+          [ -n "${commitchange}" ]    && commandoptions="--change ${commitchange} ${commandoptions}"
+          [ -n "${commitname}" ]      && commandoptions="${commitname} ${commandoptions}"
         # following valid for copy
-        if [[ ${commandline} == cp* ]]; then
+      elif [[ ${commandline} == "cp"* ]]; then
           # check required
           [ -z "${fromcontainer}" -a -z "${fromhost}" ] &&  echo -e " ${app_name}:ERROR: arguments --fromcontainer or --fromhost are required" \
                                       && printHeader $scriptname && exit -1
@@ -368,14 +384,19 @@ function dockerbasiccontainer()
           # set options
           [ -n "${fromcontainer}" ]   && commandoptions="${commandoptions} ${container_name}:${sourcepath} ${destinationpath}"
           [ -n "${fromhost}" ]        && commandoptions="${commandoptions} ${sourcepath} ${container_name}:${destinationpath}"
+          
         fi
         
+        # replace container name in commandline and commandoptions
+        commandline=${commandline/\{container_name\}/${container_name}}
+        commandoptions=${commandoptions/\{container_name\}/${container_name}}
+        
         # run docker commandline
-        docker ${commandline} ${commandoptions}
         if [ "true" = "${docker_command}" ]; then
           echo -e "> Executed docker command:"
           echo -e "> docker ${commandline} ${commandoptions}"
         fi
+        docker ${commandline} ${commandoptions}
         
       fi
 
