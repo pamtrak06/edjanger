@@ -51,13 +51,13 @@ container_name="${app_container_name}"
 container_hostname="${app_container_hostname}"
 
 #container_privilege:give extended privileges to this container (option --privileged for docker run)
-container_privilege="${app_container_privilege}"
+#container_privilege="${app_container_privilege}"
 
 #container_remove:automatically remove the container when it exits (option --rm for docker run)
-container_remove="${app_container_remove}"
+#container_remove="${app_container_remove}"
 
 #container_addhost:Add a custom host-to-IP mapping (host:ip) (default []) (option --add-host value for docker run)
-container_addhost="${app_container_addhost}"
+#container_addhost="${app_container_addhost}"
 
 #exposed_ports:exposed port
 exposed_ports="${app_exposed_ports}"
@@ -69,10 +69,10 @@ shared_volumes="${app_shared_volumes}"
 environment_variables="${app_environment_variables}"
 
 #volumes_from:expose volumes from another container into current container
-volumes_from="${app_volumes_from}"
+#volumes_from="${app_volumes_from}"
 
 #linked_containers:linked container
-linked_containers="${app_linked_containers}"
+#linked_containers="${app_linked_containers}"
 
 #network_settings:all network settings options
 #network_settings=--dns [] --net host --network-alias [] --add-host "" --mac-address "" --ip "" --ip6 "" --link-local-ip []
