@@ -227,7 +227,7 @@ function dockerbasicimage()
         
         # replace image name in commandline and commandoptions
         commandline=${commandline/\{image_name\}/${image_name}}
-        if [ "${commandoptions}" == *"{image_name}"* ]; then
+        if [[ "${commandoptions}" == *"{image_name}"* ]]; then
           commandoptions=${commandoptions/\{image_name\}/${image_name}}
         fi
         
