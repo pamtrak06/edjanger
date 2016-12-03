@@ -262,6 +262,8 @@ export PATH=$PATH:/usr/local/bin/edjanger
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
   bash ../../scripts/init.sh
   echo "FROM httpd" > build/Dockerfile
+  echo "RUN adduser travis" >> build/Dockerfile
+  echo "USER travis" >> build/Dockerfile
   PROP=configuration.properties
   TMPP=configuration.tmp
   sed -e "s/\(export app_docker_command=\".*\"\)/\1/" $PROP > $TMPP && mv $TMPP $PROP
@@ -284,8 +286,8 @@ export PATH=$PATH:/usr/local/bin/edjanger
   result="$(docker port grep webtest_1 | tr '\n' ' ' )"
   [ -n "$result" == *"80/tcp -> 0.0.0.0:80"* ] && [ -n "$result" == *"443/tcp -> 0.0.0.0:443"* ]
   cd ..
-  rm -rf $TMP
   docker stop $(docker ps -q --filter="name=webtest*")
+  rm -rf $TMP
   docker rm $(docker ps -aq --filter="name=webtest*")
   docker rmi pamtrak06/webtest
 }
