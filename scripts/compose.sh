@@ -48,7 +48,8 @@ function create_compose()
         echo "      dockerfile: ${build_file2}" >> $CURDIR/docker-compose.yaml
       else
         echo "      context: ${relative_directory}/${build_path}" >> $CURDIR/docker-compose.yaml
-        echo "      dockerfile: ${relative_directory}/${build_file2}" >> $CURDIR/docker-compose.yaml
+        # echo "      dockerfile: ${relative_directory}/${build_file2}" >> $CURDIR/docker-compose.yaml
+        echo "      dockerfile: ${build_file2#${build_path}/}" >> $CURDIR/docker-compose.yaml
       fi
       # Process build environment configuration
       if [ -n "${build_args}" ]; then
