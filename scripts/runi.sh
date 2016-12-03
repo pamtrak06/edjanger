@@ -1,8 +1,10 @@
 #!/bin/bash
-##  Description: run interactively a command in a new container. 
-##  Filtered by $image_name and $container_name.
-##  File edjanger.properties must be present in path.
-##  By default delete last container if no index specified.
+##  Description:
+##     Run interactively a command in a new container.
+##     
+##     Filtered by $image_name and $container_name.
+##     File edjanger.properties must be present in path.
+##     By default executed on last container if no index specified.
 ##  
 ##  Usage:
 ##     @script.name [option]

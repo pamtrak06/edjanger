@@ -1,7 +1,7 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
 ##  Description: Build an image from a Dockerfile. Use $image_name and $container_name.
-##  File edjanger.properties must be present in path.
+##     File edjanger.properties must be present in path.
 ##
 ##  Usage:
 ##     @script.name [option]

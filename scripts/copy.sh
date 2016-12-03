@@ -1,9 +1,11 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Description: copy files/folders between a container and the local filesystem.
-##  Filtered by $container_name.
-##  File edjanger.properties must be present in path.
-##  By default executed on last container if no index specified.
+##  Description:
+##     Copy files/folders between a container and the local filesystem.
+##     
+##     Filtered by $container_name.
+##     File edjanger.properties must be present in path.
+##     By default executed on last container if no index specified.
 ##  
 ##  Usage:
 ##     @script.name [option]

@@ -1,7 +1,10 @@
 #!/bin/bash
-##  Description: rename a container. Filtered by $container_name.
-##  File edjanger.properties must be present in path.
-##  By default rename last container if no index specified.
+##  Description:
+##     Rename a container.
+#      
+##     Filtered by $container_name.
+##     File edjanger.properties must be present in path.
+##     By default executed on last container if no index specified.
 ##  
 ##  Usage:
 ##     @script.name [option]

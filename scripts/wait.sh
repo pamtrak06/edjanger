@@ -1,8 +1,10 @@
 #!/bin/bash
-##  Description : block until a container stops, then print its exit code.
-##  Filtered by $container_name. 
-##  File edjanger.properties must be present in path.
-##  By default wait last container if no index specified.
+##  Description : 
+##     Block until a container stops, then print its exit code.
+##     
+##     Filtered by $container_name.
+##     File edjanger.properties must be present in path.
+##     By default executed on last container if no index specified.
 ##  
 ##  Usage:
 ##     @script.name [option]

@@ -1,7 +1,10 @@
 #!/bin/bash
-##  Description: kill one or more running containers. Filtered by $container_name.
-##  File edjanger.properties must be present in path.
-##  By default executed on last container if no index specified.
+##  Description: 
+##     Kill one or more running containers.
+##     
+##     Filtered by $container_name.
+##     File edjanger.properties must be present in path.
+##     By default executed on last container if no index specified.
 ##  
 ##  Usage:
 ##     @script.name [option]

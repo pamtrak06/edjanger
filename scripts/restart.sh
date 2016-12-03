@@ -1,7 +1,10 @@
 #!/bin/bash
-##  Description: restart one or more containers. Filtered by $container_name.
-##  File edjanger.properties must be present in path.
-##  By default restart last container if no index specified.
+##  Description:
+##     Restart one or more containers.
+##     
+##     Filtered by $container_name.
+##     File edjanger.properties must be present in path.
+##     By default executed on last container if no index specified.
 ##  
 ##  Usage:
 ##     @script.name [option]

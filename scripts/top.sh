@@ -1,7 +1,10 @@
 #!/bin/bash
-##  Description: display the running processes of a container. Filtered by $container_name.
-##  File edjanger.properties must be present in path.
-##  By default executed on last container if no index specified.
+##  Description:
+##     Display the running processes of a container.
+##     
+##     Filtered by $container_name.
+##     File edjanger.properties must be present in path.
+##     By default executed on last container if no index specified.
 ##  
 ##  Usage:
 ##     @script.name [option]

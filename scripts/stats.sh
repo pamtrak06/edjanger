@@ -1,8 +1,10 @@
 #!/bin/bash
-##  Description: display a live stream of container(s) resource usage statistics.
-##  Filtered by $container_name.
-##  File edjanger.properties must be present in path.
-##  By default give stats for last container if no index specified.
+##  Description:
+##     Display a live stream of container(s) resource usage statistics.
+##     
+##     Filtered by $container_name.
+##     File edjanger.properties must be present in path.
+##     By default executed on last container if no index specified.
 ##  
 ##  Usage:
 ##     @script.name [option]

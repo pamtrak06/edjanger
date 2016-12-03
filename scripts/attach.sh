@@ -1,7 +1,10 @@
 #!/bin/bash
-##  Description: attach to a running container. Filtered by $container_name.
-##  File edjanger.properties must be present in path.
-##  By default executed on last container if no index specified.
+##  Description:
+##     Attach to a running container.
+##     
+##     Filtered by $container_name.
+##     File edjanger.properties must be present in path.
+##     By default executed on last container if no index specified.
 ##  
 ##  Usage:
 ##     @script.name [option]

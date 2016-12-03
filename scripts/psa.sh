@@ -1,7 +1,10 @@
 #!/bin/bash
-##  Description: List all container(s). Filtered by $container_name.
-##  File edjanger.properties must be present in path.
-##  By default print ps of last container if no index specified.
+##  Description:
+##     List all container(s).
+##     
+##     Filtered by $container_name.
+##     File edjanger.properties must be present in path.
+##     By default executed on last container if no index specified.
 ##  
 ##  Usage:
 ##     @script.name [option]

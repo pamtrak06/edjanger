@@ -1,7 +1,7 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
 ##  Description: remove one or more images. Filtered by $image_name.
-##  File edjanger.properties must be present in path.
+##     File edjanger.properties must be present in path.
 ##  
 ##  Usage:
 ##     @script.name [option]
