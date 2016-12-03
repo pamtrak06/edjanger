@@ -291,6 +291,7 @@ export PATH=$PATH:/usr/local/bin/edjanger
 }
 
 @test "edjanger compose       : create docker-compose.yaml from all edjanger.properties" {
+  skip
   ROOTDIR=$(pwd)/..
   
   TMP=$PWD/tmp_workspace
