@@ -9,6 +9,8 @@
 ##  
 ##         --list                     print list of exposed ports for all running containers
 ##  
+##         --all                      print list of ports information for all containers
+##  
 ##  Parameters (edjanger.properties):
 ##     container_name                 container name
 ##     docker_command                 show docker command when edjanger is used
