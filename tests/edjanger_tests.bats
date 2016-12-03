@@ -374,7 +374,7 @@ export PATH=$PATH:/usr/local/bin/edjanger
   result="$(docker ps | grep webtest_1 )"
   [ -n "$result" ]
   result="$(docker port grep webtest_1 | tr '\n' ' ' )"
-  [ -n "$result" == *"80/tcp -> 0.0.0.0:80"* ] && [ -n "$result" == *"443/tcp -> 0.0.0.0:443"* ]
+  [[ -n "$result" == *"80/tcp -> 0.0.0.0:80"* ]] && [[ -n "$result" == *"443/tcp -> 0.0.0.0:443"* ]]
   cd ..
   docker stop $(docker ps -q --filter="name=webtest*")
   rm -rf $TMP
@@ -483,13 +483,13 @@ export PATH=$PATH:/usr/local/bin/edjanger
   [ -n "$result" ]
   
   result="$(docker port grep webtest_1 | tr '\n' ' ' )"
-  [ -n "$result" == *"80/tcp -> 0.0.0.0:80"* ] && [ -n "$result" == *"443/tcp -> 0.0.0.0:443"* ]
+  [[ -n "$result" == *"80/tcp -> 0.0.0.0:80"* ]] && [[ -n "$result" == *"443/tcp -> 0.0.0.0:443"* ]]
   
   result="$(docker ps | grep nodetest_1 )"
   [ -n "$result" ]
   
   result="$(docker port grep nodetest_1 | tr '\n' ' ' )"
-  [ -n "$result" == *"8080/tcp -> 0.0.0.0:8080"* ]
+  [[ -n "$result" == *"8080/tcp -> 0.0.0.0:8080"* ]]
   
   docker-compose stop
   docker-compose rm
