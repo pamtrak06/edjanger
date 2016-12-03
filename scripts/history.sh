@@ -1,6 +1,8 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Description: show history of images which name contains image_name read in edjanger.properties
+##  Description: show the history of an image. Filtered by $image_name.
+##  File edjanger.properties must be present in path.
+##  By default executed on last container if no index specified.
 ##  
 ##  Usage:
 ##     @script.name [option]
@@ -9,7 +11,8 @@
 ##     -h, --help                     print this documentation
 ##  
 ##  Parameters (edjanger.properties):
-##     docker_command                 show docker command when edjanger is used
+##     docker_command                 print docker command
+##     history_options                "docker history" options to a running container (see docker history --help)
 ##     image_name                     image name
 ##  
 ##  edjanger, The MIT License (MIT)
@@ -41,6 +44,7 @@ read_app_properties
 # check required configuration
 [ -z "${image_name}" ]              && echo "Image name must be filled, configure variable image_name in edjanger.${config_extension}" && exit -1
 
+[ -n "${history_options}" ]         && commandoptions="${commandoptions} ${history_options}"
 [ -n "${image_name}" ]              && commandoptions="${commandoptions} ${image_name}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
 [ -n "$@" ]                         && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
