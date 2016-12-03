@@ -247,9 +247,7 @@ export PATH=$PATH:/usr/local/bin/edjanger
   
   cd ..
   rm -rf $TMP
-  docker stop $(docker ps -q --filter="name=${containername}*")
-  docker rm $(docker ps -aq --filter="name=${containername}*")
-  docker rmi pamtrak06/${containername}
+  docker rmi pamtrak06/webtest
 }
 
 @test "edjanger exec          : is exec in container" {
