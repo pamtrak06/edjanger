@@ -196,6 +196,7 @@ function unsetOptionsParameters()
   unset -v commandline
   unset -v commandcomment
   unset -v commandoptions
+  unset -v noneedsofproperties
 }
 
 # primitive function for docker image commands
@@ -209,7 +210,7 @@ function dockerbasicimage()
     printHeader $scriptname
   else
     rename_edocker_properties
-    if [ ! -f ${app_name}.${config_extension} ]; then
+    if [ -z ${noneedsofproperties} ] && [ ! -f ${app_name}.${config_extension} ]; then
       echo -e "${app_name}:ERROR No ${app_name}.${config_extension} available, use \"<${app_name}init>\" command to initialize one in this directory"
     else
       
