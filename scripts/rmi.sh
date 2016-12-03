@@ -1,6 +1,7 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Description: run command "docker rmi" with parameters read from edjanger.properties
+##  Description: remove one or more images. Filtered by $image_name.
+##  File edjanger.properties must be present in path.
 ##  
 ##  Usage:
 ##     @script.name [option]
@@ -9,7 +10,7 @@
 ##     -h, --help                     print this documentation
 ##  
 ##  Parameters (edjanger.properties):
-##     docker_command                 show docker command when edjanger is used
+##     docker_command                 print docker command
 ##     force_rmi                      force image deletion
 ##     image_name                     image name
 ##  

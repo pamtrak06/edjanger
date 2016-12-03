@@ -1,6 +1,7 @@
 #!/bin/bash
-##  Description: do a diff of a container. File edjanger.properties must be present in path.
-##  By default diff last container if no index specified.
+##  Description: inspect changes on a container's filesystem. Filtered by $container_name.
+##  File edjanger.properties must be present in path.
+##  By default executed on last container if no index specified.
 ##  
 ##  Usage:
 ##     @script.name [option]
@@ -11,9 +12,9 @@
 ##         --index=INDEX              index of the container name
 ##  
 ##  Parameters (edjanger.properties):
-##     container_name                 container name.
-##     diff_options                   options to inspect changes on a container's filesystem.
-##     docker_command                 show docker command when edjanger is used.
+##     container_name                 container name
+##     diff_options                   "docker diff" options to a running container (see docker diff --help)
+##     docker_command                 print docker command
 ##  
 ##  edjanger, The MIT License (MIT)
 ##  Copyright (c) 2016 copyright pamtrak06@gmail.com

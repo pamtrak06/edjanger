@@ -1,5 +1,7 @@
 #!/bin/bash
-##  Description : wait of a container. File edjanger.properties must be present in path.
+##  Description : block until a container stops, then print its exit code.
+##  Filtered by $container_name. 
+##  File edjanger.properties must be present in path.
 ##  By default wait last container if no index specified.
 ##  
 ##  Usage:
@@ -12,8 +14,8 @@
 ##  
 ##  Parameters (edjanger.properties):
 ##     container_name                 container name
-##     docker_command                 show docker command when edjanger is used
-##     wait_options                   \"docker wait\" options to a running container
+##     docker_command                 print docker command
+##     wait_options                   "docker wait" options to a running container (see docker wait --help)
 ##  
 ##  edjanger, The MIT License (MIT)
 ##  Copyright (c) 2016 copyright pamtrak06@gmail.com

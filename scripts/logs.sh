@@ -1,5 +1,6 @@
 #!/bin/bash
-##  Description: log a container. File edjanger.properties must be present in path.
+##  Description: fetch the logs of a container. Filtered by $container_name.
+##  File edjanger.properties must be present in path.
 ##  By default logs last container if no index specified.
 ##  
 ##  Usage:
@@ -12,8 +13,8 @@
 ##  
 ##  Parameters (edjanger.properties):
 ##     container_name                 container name
-##     docker_command                 show docker command when edjanger is used
-##     logs_options                   \"docker logs\" options to a running container
+##     docker_command                 print docker command
+##     logs_options                   "docker logs" options to a running container (see docker logs --help)
 ##  
 ##  edjanger, The MIT License (MIT)
 ##  Copyright (c) 2016 copyright pamtrak06@gmail.com

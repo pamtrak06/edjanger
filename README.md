@@ -231,7 +231,7 @@ vi edjanger.properties
 #cron_build=true
 #cron_start: flag to start container at boot
 cron_start=true
-# docker_command:show docker command when edjanger is used
+# docker_command:print docker command
 docker_command=true
 # image_name:image name
 image_name="devops/jenkins"

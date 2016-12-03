@@ -1,5 +1,5 @@
 #!/bin/bash
-##  Description: delete all exited container.
+##  Description: remove all exited container.
 ##  
 ##  Usage:
 ##     @script.name [option]
@@ -8,8 +8,8 @@
 ##     -h, --help                     print this documentation
 ##  
 ##  Parameters (edjanger.properties):
-##     docker_command                 show docker command when edjanger is used
-##     rm_options                     \"docker rm\" options to a running container
+##     docker_command                 print docker command
+##     rm_options                     "docker rm" options to a running container (see docker rm --help)
 ##  
 ##  edjanger, The MIT License (MIT)
 ##  Copyright (c) 2016 copyright pamtrak06@gmail.com

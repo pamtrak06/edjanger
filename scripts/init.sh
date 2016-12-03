@@ -1,7 +1,11 @@
 #!/bin/bash
 ##  Description: create a edjanger project with following files
-##  - edjanger.properties
-##  - build/Dockerfile
+##  - edjanger.template (example)
+##  - configuration.properties (example)
+##  - build/Dockerfile (empty example)
+##  File edjanger.properties is build with previous template and configuration files
+##  with followinf command :
+##  - edjangertemplate properties=configuration
 ##  
 ##  Usage:
 ##     @script.name [option]

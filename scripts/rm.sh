@@ -1,5 +1,6 @@
 #!/bin/bash
-##  Description: delete a container. File edjanger.properties must be present in path.
+##  Description: remove one or more containers. Filtered by $container_name.
+##  File edjanger.properties must be present in path.
 ##  By default delete last container if no index specified.
 ##  
 ##  Usage:
@@ -14,8 +15,8 @@
 ##  
 ##  Parameters (edjanger.properties):
 ##     container_name                 container name
-##     docker_command                 show docker command when edjanger is used
-##     rm_options                     \"docker rm\" options to a running container
+##     docker_command                 print docker command
+##     rm_options                     "docker rm" options to a running container (see docker rm --help)
 ##  
 ##  edjanger, The MIT License (MIT)
 ##  Copyright (c) 2016 copyright pamtrak06@gmail.com

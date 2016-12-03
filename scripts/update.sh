@@ -1,5 +1,7 @@
 #!/bin/bash
-##  Description: update a container. File edjanger.properties must be present in path.
+##  Description: Update configuration of one or more containers.
+##  Filtered by $container_name.
+##  File edjanger.properties must be present in path.
 ##  By default update last container if no index specified.
 ##  
 ##  Usage:
@@ -12,7 +14,7 @@
 ##  
 ##  Parameters (edjanger.properties):
 ##     container_name                 container name
-##     docker_command                 show docker command when edjanger is used
+##     docker_command                 print docker command
 ##     update_options                 \"docker update\" options to a running container
 ##  
 ##  edjanger, The MIT License (MIT)

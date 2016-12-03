@@ -1,6 +1,7 @@
 #!/bin/bash
-##  Description: commit a container. File edjanger.properties must be present in path.
-##  By default commit last container if no index specified.
+##  Description: create a new image from a container's changes. Filtered by $container_name.
+##  File edjanger.properties must be present in path.
+##  By default executed on last container if no index specified.
 ##  
 ##  Usage:
 ##     @script.name [option]
@@ -18,8 +19,8 @@
 ##  
 ##  Parameters (edjanger.properties):
 ##     container_name                 container name
-##     commit_options                 \"docker commit\" options to a running container
-##     docker_command                 show docker command when edjanger is used
+##     commit_options                 "docker commit" options to a running container (see docker commit --help)
+##     docker_command                 print docker command
 ##  
 ##  edjanger, The MIT License (MIT)
 ##  Copyright (c) 2016 copyright pamtrak06@gmail.com

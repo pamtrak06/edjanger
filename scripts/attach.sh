@@ -1,6 +1,7 @@
 #!/bin/bash
-##  Description: attach a container. File edjanger.properties must be present in path.
-##  By default attach last container if no index specified.
+##  Description: attach to a running container. Filtered by $container_name.
+##  File edjanger.properties must be present in path.
+##  By default executed on last container if no index specified.
 ##  
 ##  Usage:
 ##     @script.name [option]
@@ -11,9 +12,9 @@
 ##         --index=INDEX              index of the container name
 ##  
 ##  Parameters (edjanger.properties):
+##     attach_options                 "docker attach" options to a running container (see docker attach --help)
 ##     container_name                 container name
-##     docker_command                 show docker command when edjanger is used
-##     attach_options                 \"docker attach\" options to a running container
+##     docker_command                 print docker command
 ##  
 ##  edjanger, The MIT License (MIT)
 ##  Copyright (c) 2016 copyright pamtrak06@gmail.com

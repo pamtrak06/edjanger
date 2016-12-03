@@ -1,8 +1,9 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Description: run command "docker cp" with above options to copy file or folder from 
-##  container or host to host or container.
-##  Copy options are read from edjanger.properties.
+##  Description: copy files/folders between a container and the local filesystem.
+##  Filtered by $container_name.
+##  File edjanger.properties must be present in path.
+##  By default executed on last container if no index specified.
 ##  
 ##  Usage:
 ##     @script.name [option]
@@ -21,7 +22,7 @@
 ##  Parameters (edjanger.properties):
 ##     container_name                 container name
 ##     copy_options                   options to copy files/folders between a container and the local filesystem
-##     docker_command                 \"docker cp\" options to a running container
+##     docker_command                 "docker cp" options to a running container (see docker cp --help)
 ##  
 ##  edjanger, The MIT License (MIT)
 ##  Copyright (c) 2016 copyright pamtrak06@gmail.com

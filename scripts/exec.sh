@@ -1,7 +1,7 @@
 #!/bin/bash
-##  Description: run command "docker exec" with parameters read from edjanger.properties. 
+##  Description: run a command in a running container. Filtered by $container_name.
 ##  File edjanger.properties must be present in path.
-##  By default enter in last container if no index specified.
+##  By default executed on last container if no index specified.
 ##  
 ##  Usage:
 ##     @script.name [option]
@@ -15,8 +15,8 @@
 ##  
 ##  Parameters (edjanger.properties):
 ##     container_name                 container name
-##     docker_command                 show docker command when edjanger is used
-##     exec_options                   \"docker exec\" options to a running container
+##     docker_command                 print docker command
+##     exec_options                   "docker exec" options to a running container (see docker exec --help)
 ##  
 ##  edjanger, The MIT License (MIT)
 ##  Copyright (c) 2016 copyright pamtrak06@gmail.com

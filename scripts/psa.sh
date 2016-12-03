@@ -1,5 +1,6 @@
 #!/bin/bash
-##  Description: state of all container(s). File edjanger.properties must be present in path.
+##  Description: List all container(s). Filtered by $container_name.
+##  File edjanger.properties must be present in path.
 ##  By default print ps of last container if no index specified.
 ##  
 ##  Usage:
@@ -10,8 +11,8 @@
 ##  
 ##  Parameters (edjanger.properties):
 ##     container_name                 container name
-##     docker_command                 show docker command when edjanger is used
-##     ps_options                    \"docker ps\" options to a running container
+##     docker_command                 print docker command
+##     ps_options                     "docker ps" options to a running container (see docker ps --help)
 ##  
 ##  edjanger, The MIT License (MIT)
 ##  Copyright (c) 2016 copyright pamtrak06@gmail.com

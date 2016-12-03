@@ -1,6 +1,7 @@
 #!/bin/bash
-##  Description: tag an image with repository/tag syntax expecteds.
+##  Description: Tag an image into a repository. Filtered by $container_name.
 ##  File edjanger.properties must be present in path.
+##  By default executed on last container if no index specified.
 ##  
 ##  Usage:
 ##     @script.name [option]
@@ -13,7 +14,7 @@
 ##  Parameters (edjanger.properties):
 ##     container_name                 container name
 ##     tag_options                    \"docker tag\" options to a running container
-##     docker_command                 show docker command when edjanger is used
+##     docker_command                 print docker command
 ##  
 ##  edjanger, The MIT License (MIT)
 ##  Copyright (c) 2016 copyright pamtrak06@gmail.com

@@ -1,6 +1,7 @@
 #!/bin/bash
-##  Description: get real time events for a container. File edjanger.properties must be present in path.
-##  By default events last container if no index specified.
+##  Description: get real time events for a container. Filtered by $container_name.
+##  File edjanger.properties must be present in path.
+##  By default executed on last container if no index specified.
 ##  
 ##  Usage:
 ##     @script.name [option]
@@ -12,8 +13,8 @@
 ##  
 ##  Parameters (edjanger.properties):
 ##     container_name                 container name
-##     docker_command                 show docker command when edjanger is used
-##     events_options                 \"docker events\" options to a running container
+##     docker_command                 print docker command
+##     events_options                 "docker events" options to a running container (see docker events --help)
 ##  
 ##  edjanger, The MIT License (MIT)
 ##  Copyright (c) 2016 copyright pamtrak06@gmail.com

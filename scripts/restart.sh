@@ -1,5 +1,6 @@
 #!/bin/bash
-##  Description: restart a container. File edjanger.properties must be present in path.
+##  Description: restart one or more containers. Filtered by $container_name.
+##  File edjanger.properties must be present in path.
 ##  By default restart last container if no index specified.
 ##  
 ##  Usage:
@@ -12,8 +13,8 @@
 ##  
 ##  Parameters (edjanger.properties):
 ##     container_name                 container name
-##     docker_command                 show docker command when edjanger is used
-##     restart_options                \"docker restart\" options to a running container
+##     docker_command                 print docker command
+##     restart_options                "docker restart" options to a running container (see docker restart --help)
 ##  
 ##  edjanger, The MIT License (MIT)
 ##  Copyright (c) 2016 copyright pamtrak06@gmail.com

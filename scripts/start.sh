@@ -1,6 +1,7 @@
 #!/bin/bash
-##  Description: start a container. File edjanger.properties must be present in path.
-##  By default start last container if no index specified.
+##  Description: start one or more stopped containers. Filtered by $container_name.
+##  File edjanger.properties must be present in path.
+##  By default executed on last container if no index specified.
 ##  
 ##  Usage:
 ##     @script.name [option]
@@ -12,7 +13,7 @@
 ##  
 ##  Parameters (edjanger.properties):
 ##     container_name                 container name
-##     docker_command                 show docker command when edjanger is used
+##     docker_command                 print docker command
 ##     start_options                  \"docker start\" options to a running container
 ##  
 ##  edjanger, The MIT License (MIT)

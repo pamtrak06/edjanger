@@ -1,6 +1,8 @@
 #!/bin/bash
-##  Description: unpause a container. File edjanger.properties must be present in path.
-##  By default unpause last container if no index specified.
+##  Description: unpause all processes within one or more containers.
+##  Filtered by $container_name.
+##  File edjanger.properties must be present in path.
+##  By default executed on last container if no index specified.
 ##  
 ##  Usage:
 ##     @script.name [option]
@@ -12,7 +14,7 @@
 ##  
 ##  Parameters (edjanger.properties):
 ##     container_name                 container name
-##     docker_command                 show docker command when edjanger is used
+##     docker_command                 print docker command
 ##     unpause_options                \"docker unpause\" options to a running container
 ##  
 ##  edjanger, The MIT License (MIT)

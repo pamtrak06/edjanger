@@ -1,5 +1,5 @@
 #!/bin/bash
-##  Description: print ports list of all running container.
+##  Description: List port mappings or a specific mapping for all container.
 ##  
 ##  Usage:
 ##     @script.name [option]
@@ -13,8 +13,8 @@
 ##  
 ##  Parameters (edjanger.properties):
 ##     container_name                 container name
-##     docker_command                 show docker command when edjanger is used
-##     ps_options                    \"docker ps\" options to a running container
+##     docker_command                 print docker command
+##     ports_options                  "docker ports" options to a running container (see docker ports --help)
 ##  
 ##  edjanger, The MIT License (MIT)
 ##  Copyright (c) 2016 copyright pamtrak06@gmail.com
