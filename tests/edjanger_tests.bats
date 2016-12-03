@@ -2,9 +2,10 @@
 export PATH=$PATH:/usr/local/bin/edjanger
 
 @test "edjanger init          : presence edjanger.properties" {
-  TMP=tmp_workspace
+  ROOTDIR=$(pwd)/..
+  TMP=$PWD/workspace_init
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
-  bash ../../scripts/init.sh
+  bash $ROOTDIR/scripts/init.sh
   result="$(ls edjanger.properties)"
   [ -n "$result" ]
   cd ..
@@ -12,9 +13,10 @@ export PATH=$PATH:/usr/local/bin/edjanger
 }
 
 @test "edjanger init          : presence edjanger.template" {
-  TMP=tmp_workspace
+  ROOTDIR=$(pwd)/..
+  TMP=$PWD/workspace_init
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
-  bash ../../scripts/init.sh
+  bash $ROOTDIR/scripts/init.sh
   result="$(ls edjanger.template)"
   [ -n "$result" ]
   cd ..
@@ -22,9 +24,10 @@ export PATH=$PATH:/usr/local/bin/edjanger
 }
 
 @test "edjanger init          : presence configuration.properties" {
-  TMP=tmp_workspace
+  ROOTDIR=$(pwd)/..
+  TMP=$PWD/workspace_init
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
-  bash ../../scripts/init.sh
+  bash $ROOTDIR/scripts/init.sh
   result="$(ls configuration.properties)"
   [ -n "$result" ]
   cd ..
@@ -32,9 +35,10 @@ export PATH=$PATH:/usr/local/bin/edjanger
 }
 
 @test "edjanger init          : presence build/Dockerfile" {
-  TMP=tmp_workspace
+  ROOTDIR=$(pwd)/..
+  TMP=$PWD/workspace_init
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
-  bash ../../scripts/init.sh
+  bash $ROOTDIR/scripts/init.sh
   result="$(ls build/Dockerfile)"
   [ -n "$result" ]
   cd ..
@@ -42,9 +46,10 @@ export PATH=$PATH:/usr/local/bin/edjanger
 }
 
 @test "edjanger build         : is image built" {
-  TMP=tmp_workspace
+  ROOTDIR=$(pwd)/..
+  TMP=$PWD/workspace_build
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
-  bash ../../scripts/init.sh
+  bash $ROOTDIR/scripts/init.sh
   echo "FROM httpd" > build/Dockerfile
   PROP=edjanger.properties
   TMPP=edjanger.tmp
@@ -69,7 +74,7 @@ export PATH=$PATH:/usr/local/bin/edjanger
   cat $PROP | grep -v "#volumes_from:" | grep volumes_from
   sed -e "s/\(linked_containers=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep -v "#linked_containers:" | grep linked_containers
-  bash ../../scripts/build.sh
+  bash $ROOTDIR/scripts/build.sh
   result="$(docker images | grep pamtrak06/webtest)"
   [ -n "$result" ]
   cd ..
@@ -78,9 +83,10 @@ export PATH=$PATH:/usr/local/bin/edjanger
 }
 
 @test "edjanger run           : is container running" {
-  TMP=tmp_workspace
+  ROOTDIR=$(pwd)/..
+  TMP=$PWD/workspace_run_alive
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
-  bash ../../scripts/init.sh
+  bash $ROOTDIR/scripts/init.sh
   echo "FROM httpd" > build/Dockerfile
   PROP=edjanger.properties
   TMPP=edjanger.tmp
@@ -108,8 +114,8 @@ export PATH=$PATH:/usr/local/bin/edjanger
   cat $PROP | grep -v "#volumes_from:" | grep volumes_from
   sed -e "s/\(linked_containers=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep -v "#linked_containers:" | grep linked_containers
-  bash ../../scripts/build.sh
-  bash ../../scripts/run.sh
+  bash $ROOTDIR/scripts/build.sh
+  bash $ROOTDIR/scripts/run.sh
   result="$(docker ps | grep webtest_1 )"
   [ -n "$result" ]
   cd ..
@@ -120,9 +126,10 @@ export PATH=$PATH:/usr/local/bin/edjanger
 }
 
 @test "edjanger run           : is port exposed" {
-  TMP=tmp_workspace
+  ROOTDIR=$(pwd)/..
+  TMP=$PWD/workspace_port_exposed
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
-  bash ../../scripts/init.sh
+  bash $ROOTDIR/scripts/init.sh
   echo "FROM httpd" > build/Dockerfile
   PROP=edjanger.properties
   TMPP=edjanger.tmp
@@ -150,8 +157,8 @@ export PATH=$PATH:/usr/local/bin/edjanger
   cat $PROP | grep -v "#volumes_from:" | grep volumes_from
   sed -e "s/\(linked_containers=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep -v "#linked_containers:" | grep linked_containers
-  bash ../../scripts/build.sh
-  bash ../../scripts/run.sh
+  bash $ROOTDIR/scripts/build.sh
+  bash $ROOTDIR/scripts/run.sh
   # TODO to be improved by network commands
   #ip=$(nslookup $(hostname) | grep Address | grep -v "#" | awk '{ printf $2}')
   #result="$(curl $ip)"
@@ -164,11 +171,93 @@ export PATH=$PATH:/usr/local/bin/edjanger
   docker rmi pamtrak06/webtest
 }
 
+@test "edjanger run           : managing multiple containers" {
+  ROOTDIR=$(pwd)/..
+  TMP=$PWD/workspace_run_multiple
+  rm -rf $TMP &&  mkdir -p $TMP && cd $TMP
+  bash $ROOTDIR/scripts/init.sh
+  containername=webtestmultiple
+  echo "FROM httpd" > build/Dockerfile
+  PROP=edjanger.properties
+  TMPP=edjanger.tmp
+  sed -e "s/\(docker_command=\.*\)/\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep -v "#" | grep docker_command
+  sed -e "s/\(image_name=\).*/\1\"pamtrak06\/webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep -v "#" | grep image_name
+  sed -e "s/\(container_name=\).*/\1\"${containername}\"/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep -v "#" | grep container_name
+  sed -e "s/\(container_hostname=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep -v "#container_hostname:" | grep container_hostname
+  sed -e "s/\(container_privilege=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep -v "#container_privilege:" | grep container_privilege
+  sed -e "s/\(container_remove=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep -v "#container_remove:" | grep container_remove
+  sed -e "s/\(container_addhost=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep -v "#container_addhost:" | grep container_addhost
+  sed -e "s/\(exposed_ports=\).*/\1\"-P\"/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep -v "#" | grep exposed_ports
+  sed -e "s/\(shared_volumes=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep -v "#shared_volumes:" | grep shared_volumes
+  sed -e "s/\(environment_variables=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep -v "#environment_variables:" | grep environment_variables
+  sed -e "s/\(volumes_from=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep -v "#volumes_from:" | grep volumes_from
+  sed -e "s/\(linked_containers=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep -v "#linked_containers:" | grep linked_containers
+  bash $ROOTDIR/scripts/build.sh
+
+  # run and test if containers are alive
+  for num in $(seq 1 12); do
+    bash $ROOTDIR/scripts/run.sh
+    result=$(docker ps -a|grep ${containername}_${num})
+    [ -n "$result" ]
+  done
+
+  # test if container 6 is exited
+  bash $ROOTDIR/scripts/stop.sh --index=6 # container 6
+  result=$(docker ps -a --filter="status=exited"|grep ${containername}_6)
+  [ -n "$result" ]
+  
+  # test if next container is 13
+  bash $ROOTDIR/scripts/run.sh  # container 13
+  result=$(docker ps -a --filter="status=running"|grep ${containername}_13)
+  [ -n "$result" ]
+  
+  # test if container 5 is removed
+  yes | bash $ROOTDIR/scripts/rm.sh --index=5 # container 5
+  [ "$?" -eq 0 ]
+  result=$(docker ps -a --filter="name=${containername}_5"|wc -l)
+  [ "$result" -eq 1 ]
+  
+  # test if next container is 14
+  bash $ROOTDIR/scripts/run.sh  # container 14
+  result=$(docker ps -a --filter="status=running"|grep ${containername}_14)
+  [ -n "$result" ]
+
+  # test start container 6
+  bash $ROOTDIR/scripts/start.sh --index=6 # container 6
+  result=$(docker ps --filter="status=running"|grep ${containername}_6)
+  [ -n "$result" ]
+  
+  # test remove all containers
+  yes | bash $ROOTDIR/scripts/rm.sh --all
+  [ "$?" -eq 0 ]
+  result=$(docker ps -a --filter="name=${containername}_[0-9]+"|wc -l)
+  [ "$result" -eq 1 ]
+  
+  cd ..
+  rm -rf $TMP
+  docker stop $(docker ps -q --filter="name=${containername}*")
+  docker rm $(docker ps -aq --filter="name=${containername}*")
+  docker rmi pamtrak06/${containername}
+}
+
 @test "edjanger exec          : is exec in container" {
   skip
-  TMP=tmp_workspace
+  ROOTDIR=$(pwd)/..
+  TMP=$PWD/workspace_exec
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
-  bash ../../scripts/init.sh
+  bash $ROOTDIR/scripts/init.sh
   echo "FROM httpd" > build/Dockerfile
   PROP=edjanger.properties
   TMPP=edjanger.tmp
@@ -196,9 +285,9 @@ export PATH=$PATH:/usr/local/bin/edjanger
   cat $PROP | grep -v "#volumes_from:" | grep volumes_from
   sed -e "s/\(linked_containers=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep -v "#linked_containers:" | grep linked_containers
-  bash ../../scripts/build.sh
-  bash ../../scripts/run.sh
-  bash ../../scripts/exec.sh
+  bash $ROOTDIR/scripts/build.sh
+  bash $ROOTDIR/scripts/run.sh
+  bash $ROOTDIR/scripts/exec.sh
   result="$(uname -r)"
   exit
   [[ "$result" == *"docker"* ]]
@@ -210,9 +299,10 @@ export PATH=$PATH:/usr/local/bin/edjanger
 }
 
 @test "edjanger start/stop    : start/stop container" {
-  TMP=tmp_workspace
+  ROOTDIR=$(pwd)/..
+  TMP=$PWD/workspace_start_stop
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
-  bash ../../scripts/init.sh
+  bash $ROOTDIR/scripts/init.sh
   echo "FROM httpd" > build/Dockerfile
   PROP=edjanger.properties
   TMPP=edjanger.tmp
@@ -240,14 +330,14 @@ export PATH=$PATH:/usr/local/bin/edjanger
   cat $PROP | grep -v "#volumes_from:" | grep volumes_from
   sed -e "s/\(linked_containers=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep -v "#linked_containers:" | grep linked_containers
-  bash ../../scripts/build.sh
-  bash ../../scripts/run.sh
+  bash $ROOTDIR/scripts/build.sh
+  bash $ROOTDIR/scripts/run.sh
   result="$(docker ps | grep webtest_1 )"
   [ -n "$result" ]
-  bash ../../scripts/stop.sh
+  bash $ROOTDIR/scripts/stop.sh
   result="$(docker ps --filter="status=exited" | grep webtest_1 )"
   [ -n "$result" ]
-  bash ../../scripts/start.sh
+  bash $ROOTDIR/scripts/start.sh
   result="$(docker ps --filter="status=running" | grep webtest_1 )"
   [ -n "$result" ]
   cd ..
@@ -259,9 +349,10 @@ export PATH=$PATH:/usr/local/bin/edjanger
 
 @test "edjanger template      : create edjanger.properties from a properties and a template" {
   skip
-  TMP=tmp_workspace
+  ROOTDIR=$(pwd)/..
+  TMP=$PWD/workspace_template
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
-  bash ../../scripts/init.sh
+  bash $ROOTDIR/scripts/init.sh
   echo "FROM httpd" > build/Dockerfile
   echo "RUN adduser travis" >> build/Dockerfile
   echo "USER travis" >> build/Dockerfile
@@ -279,9 +370,9 @@ export PATH=$PATH:/usr/local/bin/edjanger
   cat $PROP | grep app_shared_volumes
   sed -e "s/\(export app_environment_variables=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep -v "#environment_variables:" | grep app_environment_variables
-  yes | bash ../../scripts/template.sh properties=configuration
-  bash ../../scripts/build.sh
-  bash ../../scripts/run.sh
+  yes | bash $ROOTDIR/scripts/template.sh properties=configuration
+  bash $ROOTDIR/scripts/build.sh
+  bash $ROOTDIR/scripts/run.sh
   result="$(docker ps | grep webtest_1 )"
   [ -n "$result" ]
   result="$(docker port grep webtest_1 | tr '\n' ' ' )"
@@ -297,7 +388,7 @@ export PATH=$PATH:/usr/local/bin/edjanger
   skip
   ROOTDIR=$(pwd)/..
   
-  TMP=$PWD/tmp_workspace
+  TMP=$PWD/workspace_compose
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
 
   WEB=web && rm -rf $WEB &&  mkdir $WEB && cd $WEB
