@@ -1,5 +1,5 @@
 #!/bin/bash
-##  Run a container interactively. File edjanger.properties must be present in path.
+##  Description: run a container interactively. File edjanger.properties must be present in path.
 ##  By default runi last container if no index specified.
 ##  
 ##  Usage:
@@ -59,7 +59,7 @@ read_app_properties
 [ -n "${environment_variables}" ]              && commandoptions="${commandoptions} ${environment_variables}"
 [ -n "${linked_containers}" ]                  && commandoptions="${commandoptions} ${linked_containers}"
 [ -n "${image_name}" ]                         && commandoptions="${commandoptions} ${image_name}"
-[ -n "${command_run}" ]                        && command_run="/bin/bash"
+[ -z "${command_run}" ]                        && command_run="/bin/bash"
 [ -n "${command_run}" ]                        && commandoptions="${commandoptions} ${command_run}"
 [ -n "${commandoptions}" ]                     && commandoptions="--commandoptions=\"${commandoptions}\""
 [ -n "$@" ]                                    && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
