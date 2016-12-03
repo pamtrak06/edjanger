@@ -1,6 +1,6 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  List images which name contains image_name read in edjanger.properties
+##  Description: list images which name contains image_name read in edjanger.properties
 ##  
 ##  Usage:
 ##     @script.name [option]

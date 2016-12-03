@@ -1,6 +1,6 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  About script for edjanger
+##  Description: about script for edjanger
 ##  
 ##  Usage:
 ##     @script.name

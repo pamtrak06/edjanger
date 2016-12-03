@@ -1,5 +1,5 @@
 #!/bin/bash
-##  Delete all exited container.
+##  Description: delete all exited container.
 ##  
 ##  Usage:
 ##     @script.name [option]

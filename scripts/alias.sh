@@ -1,6 +1,6 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Print edjanger aliases
+##  Description: print edjanger aliases
 ##  
 ##  Usage:
 ##     @script.name

@@ -1,6 +1,6 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Generate docker-compose.yaml from all local edjanger.poperties
+##  Description: generate docker-compose.yaml from all local edjanger.poperties
 ##  
 ##  Usage:
 ##     @script.name

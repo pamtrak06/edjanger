@@ -258,6 +258,7 @@ export PATH=$PATH:/usr/local/bin/edjanger
 }
 
 @test "edjanger template      : create edjanger.properties from a properties and a template" {
+  skip
   TMP=tmp_workspace
   rm -rf $TMP &&  mkdir $TMP && cd $TMP
   bash ../../scripts/init.sh

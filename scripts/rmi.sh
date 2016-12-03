@@ -1,6 +1,6 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Run command "docker rmi" with parameters read from edjanger.properties
+##  Description: run command "docker rmi" with parameters read from edjanger.properties
 ##  
 ##  Usage:
 ##     @script.name [option]

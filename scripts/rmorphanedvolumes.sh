@@ -1,6 +1,6 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Remove all orphaned volumes
+##  Description: remove all orphaned volumes
 ##  
 ##  Usage:
 ##     @script.name

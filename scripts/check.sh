@@ -1,6 +1,6 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Check missing parameters in edjanger.properties from existing in template
+##  Description: check missing parameters in edjanger.properties from existing in template
 ##  templates/edjanger.template
 ##  
 ##  Usage:

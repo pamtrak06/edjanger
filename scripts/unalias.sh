@@ -1,6 +1,6 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Unalias all edjanger aliases
+##  Description: unalias all edjanger aliases
 ##  
 ##  Usage:
 ##     @script.name

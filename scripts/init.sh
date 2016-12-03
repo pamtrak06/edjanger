@@ -1,5 +1,5 @@
 #!/bin/bash
-##  Create a edjanger project with following files
+##  Description: create a edjanger project with following files
 ##  - edjanger.properties
 ##  - build/Dockerfile
 ##  

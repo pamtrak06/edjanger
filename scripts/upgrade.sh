@@ -1,8 +1,8 @@
+#!/bin/bash
 # update script:
 # - zip edjanger folder with date
 # - update edjanger : git pull origin master
 
-#!/bin/bash
 # ----------------------------------------------------
 # The MIT License (MIT)
 #

@@ -1,6 +1,6 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Run command "docker cp" with above options to copy file or folder from 
+##  Description: run command "docker cp" with above options to copy file or folder from 
 ##  container or host to host or container.
 ##  Copy options are read from edjanger.properties.
 ##  

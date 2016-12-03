@@ -1,6 +1,6 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Description of network port numbers for a given port number parameter
+##  Description: description of network port numbers for a given port number parameter
 ##  
 ##  Usage:
 ##     @script.name [option]

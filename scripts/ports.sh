@@ -1,5 +1,5 @@
 #!/bin/bash
-##  Print ports list of all running container.
+##  Description: print ports list of all running container.
 ##  
 ##  Usage:
 ##     @script.name [option]

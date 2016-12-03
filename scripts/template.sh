@@ -1,6 +1,6 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Generate edjanger.poperties from edjanger.template
+##  Description: generate edjanger.poperties from edjanger.template
 ##  
 ##  Usage:
 ##     @script.name [option]

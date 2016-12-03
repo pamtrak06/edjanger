@@ -1,5 +1,5 @@
 #!/bin/bash
-##  State of all container(s). File edjanger.properties must be present in path.
+##  Description: state of all container(s). File edjanger.properties must be present in path.
 ##  By default print ps of last container if no index specified.
 ##  
 ##  Usage:

@@ -1,6 +1,6 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Show history of images which name contains image_name read in edjanger.properties
+##  Description: show history of images which name contains image_name read in edjanger.properties
 ##  
 ##  Usage:
 ##     @script.name [option]

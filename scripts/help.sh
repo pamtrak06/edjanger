@@ -1,6 +1,6 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Print list of all available edjanger commands. 
+##  Description: print list of all available edjanger commands. 
 ##  Running command : "edjangerhelp"
 ##  
 ##  With parameter "config" or "parameters", print parameters read in 

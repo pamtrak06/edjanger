@@ -1,5 +1,5 @@
 #!/bin/bash
-##  Tag an image with repository/tag syntax expecteds.
+##  Description: tag an image with repository/tag syntax expecteds.
 ##  File edjanger.properties must be present in path.
 ##  
 ##  Usage:

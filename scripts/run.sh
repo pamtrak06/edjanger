@@ -1,5 +1,5 @@
 #!/bin/bash
-##  Run a container. File edjanger.properties must be present in path.
+##  Description: run a container. File edjanger.properties must be present in path.
 ##  By default run last container if no index specified.
 ##  
 ##  Usage:

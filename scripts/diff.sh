@@ -1,5 +1,5 @@
 #!/bin/bash
-##  Do a diff of a container. File edjanger.properties must be present in path.
+##  Description: do a diff of a container. File edjanger.properties must be present in path.
 ##  By default diff last container if no index specified.
 ##  
 ##  Usage:
@@ -44,9 +44,10 @@ read_app_properties
 [ -z "${container_name}" ]          && echo "Container name must be filled, configure variable container_name in edjanger.${config_extension}" && exit -1
 
 [ -n "${diff_options}" ]            && commandoptions="${commandoptions} ${diff_options}"
+[ -n "${container_name}" ]          && commandoptions="${commandoptions} {container_name}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
 [ -n "$@" ]                         && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
                                     && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]--|;--|g") \
                                     && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]-|;-|g")
-dockerbasiccontainer "--scriptname=\"$0\";--commandline=\"diff {container_name}\";--commandcomment=\"Do a diff of container: {container_name}...\";${commandoptions};${externaloptions}"
+dockerbasiccontainer "--scriptname=\"$0\";--commandline=\"diff\";--commandcomment=\"Do a diff of container: {container_name}...\";${commandoptions};${externaloptions}"
 

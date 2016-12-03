@@ -1,6 +1,6 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Run command "docker rmi" with parameters read from edjanger.properties
+##  Description: run command "docker rmi" with parameters read from edjanger.properties
 ##  Delete images: with attribute name=\"none\"
 ##  
 ##  Usage:

@@ -1,5 +1,5 @@
 #!/bin/bash
-##  Start a container. File edjanger.properties must be present in path.
+##  Description: start a container. File edjanger.properties must be present in path.
 ##  By default start last container if no index specified.
 ##  
 ##  Usage:
@@ -45,9 +45,10 @@ read_app_properties
 [ -z "${container_name}" ]          && echo "Container name must be filled, configure variable container_name in edjanger.${config_extension}" && exit -1
 
 [ -n "${start_options}" ]           && commandoptions="${commandoptions} ${start_options}"
+[ -n "${container_name}" ]          && commandoptions="${commandoptions} {container_name}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
 [ -n "$@" ]                         && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
                                     && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]--|;--|g") \
                                     && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]-|;-|g")
-dockerbasiccontainer "--scriptname=\"$0\";--commandline=\"start {container_name}\";--commandcomment=\"Start container: {container_name}...\";${commandoptions};${externaloptions}"
+dockerbasiccontainer "--scriptname=\"$0\";--commandline=\"start\";--commandcomment=\"Start container: {container_name}...\";${commandoptions};${externaloptions}"
 
