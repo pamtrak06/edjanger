@@ -373,7 +373,7 @@ export PATH=$PATH:/usr/local/bin/edjanger
   cat $PROP | grep -v "#" | grep app_container_name
   sed -e "s/\(export app_exposed_ports=\)\".*\"/\1\"-p 8080:8080\"/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep app_exposed_ports
-  sed -e "s/\(export app_shared_volumes=\)\".*\"/\1\"-v \$PWD\/volumes\/app:\/usr\/src\/app\"/" $PROP > $TMPP && mv $TMPP $PROP
+  sed -e "s/\(export app_shared_volumes=\".*\"\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep app_shared_volumes
   sed -e "s/\(export app_environment_variables=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep -v "#environment_variables:" | grep app_environment_variables
@@ -402,7 +402,7 @@ export PATH=$PATH:/usr/local/bin/edjanger
   docker-compose rm
   
   cd $ROOTDIR
-  #rm -rf $TMP
-  #docker rmi pamtrak06/webtest
-  #docker rmi pamtrak06/nodetest
+  rm -rf $TMP
+  docker rmi pamtrak06/webtest
+  docker rmi pamtrak06/nodetest
 }
