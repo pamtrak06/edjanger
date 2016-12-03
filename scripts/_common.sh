@@ -293,6 +293,10 @@ function dockerbasiccontainer()
         idx=$index
       fi
 
+      if [ idx -le 0 ]; then
+        echo -e "${app_name}:INFO No container available"
+      else
+
       # echo comment for running commandline
       if [[ ${commandline} == "ps"* ]]; then
         commandcomment=${commandcomment/\{container_name\}/${container_name}}
