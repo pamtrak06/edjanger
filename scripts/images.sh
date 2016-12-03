@@ -1,6 +1,8 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Description: list images which name contains image_name read in edjanger.properties
+##  Description: list images. Filtered by $image_name
+##  File edjanger.properties must be present in path.
+##  By default executed on last container if no index specified.
 ##  
 ##  Usage:
 ##     @script.name [option]
@@ -9,8 +11,9 @@
 ##     -h, --help                     print this documentation
 ##  
 ##  Parameters (edjanger.properties):
-##     docker_command                 show docker command when edjanger is used
+##     docker_command                 print docker command
 ##     image_name                     image name
+##     images_options                 "docker images" options to a running container (see docker images --help)
 ##  
 ##  edjanger, The MIT License (MIT)
 ##  Copyright (c) 2016 copyright pamtrak06@gmail.com
@@ -41,6 +44,7 @@ read_app_properties
 # check required configuration
 [ -z "${image_name}" ]              && echo "Image name must be filled, configure variable image_name in edjanger.${config_extension}" && exit -1
 
+[ -n "${images_options}" ]          && commandoptions="${commandoptions} ${images_options}"
 [ -n "${image_name}" ]              && commandoptions="${commandoptions} ${image_name}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
 [ -n "$@" ]                         && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
