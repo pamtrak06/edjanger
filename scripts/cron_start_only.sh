@@ -1,5 +1,9 @@
 #!/bin/bash
 #shopt -s expand_aliases
+
+checkinstall=$(cat $0|grep -v checkinstall|grep "edjangerpath")
+[ -n "$checkinstall" ]             && echo "edjanger:ERROR: Bad edjanger configuration, please run ./edjangerinstall.sh --alias from edjanger path" && exit -1
+
 source {edjangerpath}/edjanger.alias
 
 cur_path=$PWD

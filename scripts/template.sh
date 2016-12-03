@@ -14,7 +14,7 @@
 ##  Copyright (c) 2016 copyright pamtrak06@gmail.com
 ##  
 # ------------------------------------------------------------------------------
-checkinstall=$(cat $0|grep {edjangerpath})
+checkinstall=$(cat $0|grep -v checkinstall|grep "edjangerpath")
 [ -n "$checkinstall" ]             && echo "edjanger:ERROR: Bad edjanger configuration, please run ./edjangerinstall.sh --alias from edjanger path" && exit -1
 
 source {edjangerpath}/_common.sh

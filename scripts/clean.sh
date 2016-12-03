@@ -42,8 +42,9 @@
 ###        --noneedsofproperties      no needs of edjanger.properties in path
 ###  
 # ------------------------------------------------------------------------------
-checkinstall=$(cat $0|grep {edjangerpath})
+checkinstall=$(cat $0|grep -v checkinstall|grep "edjangerpath")
 [ -n "$checkinstall" ]             && echo "edjanger:ERROR: Bad edjanger configuration, please run ./edjangerinstall.sh --alias from edjanger path" && exit -1
+
 source {edjangerpath}/_common.sh
 
 # check required configuration
