@@ -18,6 +18,21 @@ function create_compose()
   if [ -z "$listconf" ]; then
     echo -e "edjanger:ERROR No edjanger.${config_extension} available recursively in this directory"
   fi
+  
+  # check if docker-compose.yaml exist
+  if [ -f "docker-compose.yaml" ]; then
+
+    echo -e "edjanger:WARNING docker-compose.yaml file already exist, do you want to replace it (y/n) ?"
+    read response
+
+    if [ "y" = "${response}" ]; then
+      date_time=$(date +"%Y%m%d_%H%M%S")
+      cp docker-compose.yaml docker-compose_${date_time}.bak
+    else
+      exit 0
+    fi
+  fi
+  
   echo -e "edjanger:INFO Write $CURDIR/docker-compose.yaml ..."
   CURDIR=$PWD
   echo "version: '2'" > $CURDIR/docker-compose.yaml
