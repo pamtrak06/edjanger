@@ -234,6 +234,10 @@ function dockerbasicimage()
                                       && printHeader $scriptname && exit -1
           # set options
           [ -n "${tag}" ]             && commandoptions="${commandoptions} ${tag}"
+        elif [[ ${commandline} == clean* ]]; then
+          # set options
+          [ -n "${force}" ]           && commandoptions="${commandoptions} ${force}"
+          [ -n "${no-prune}" ]        && commandoptions="${commandoptions} ${no-prune}"
         fi
         
         docker ${commandline} ${commandoptions}

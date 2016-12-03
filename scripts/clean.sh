@@ -9,7 +9,9 @@
 ##  Options:
 ##     -h, --help                     print this documentation
 ##  
-##         --force                    force to delete images
+##         --force                    force removal of the image
+##  
+##         --no-prune                 do not delete untagged parents
 ##  
 ##  Parameters (edjanger.properties):
 ##     force_rmi                      path where is found Dockerfile and its dependencies
