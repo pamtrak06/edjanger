@@ -54,7 +54,9 @@ read_app_properties
 [[ -n "$@" ]]                       && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
                                     && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]--|;--|g") \
                                     && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]-|;-|g")
-if [[ "${externaloptions}" == *"container"* ]] || [[ "${externaloptions}" == *"--c"* ]]; then
+if [[ "${externaloptions}" == *"help"* ]]; then
+  printHeader $0
+elif [[ "${externaloptions}" == *"container"* ]] || [[ "${externaloptions}" == *"--c"* ]]; then
   [ -n "${inspect_options}" ]         && commandoptions="${commandoptions} ${inspect_options}"
   [ -n "${container_name}" ]          && commandoptions="${commandoptions} {container_name}"
   [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
