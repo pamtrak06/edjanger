@@ -43,10 +43,10 @@
 source {edjangerpath}/_common.sh
 
 # check required configuration
-imagesnone=$(docker images --format="{{.Repository}} {{.ID}}" | grep -e '.none..[a-zA-Z0-9_].*'| awk '{print $2}')
+imagesnone=$(docker images --format="{{.Repository}} {{.ID}}" | grep -e '.none..[a-zA-Z0-9_].*'| awk '{print $2}'|tr '\n' ' ')
 [ -z "${imagesnone}" ]                         && echo "edjanger:WARN: No images with attribute name=\"none\" to delete" && exit 0
 
-[ -n "${imagesnone}" ]                         && commandoptions=${commandoptions} ${imagesnone}
+[ -n "${imagesnone}" ]                         && commandoptions="${commandoptions} ${imagesnone}"
 [ -n "${commandoptions}" ]                     && commandoptions="--commandoptions=\"${commandoptions}\""
 [ -n "$@" ]                                    && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
                                                && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]--|;--|g") \
