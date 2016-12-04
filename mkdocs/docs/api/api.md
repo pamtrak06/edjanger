@@ -940,8 +940,6 @@
  Options:
     -h, --help                     print this documentation
  
-        --tag=TAG                  index of the container name
- 
  Parameters (edjanger.properties):
     container_name                 container name
     tag_options                    \"docker tag\" options to a running container

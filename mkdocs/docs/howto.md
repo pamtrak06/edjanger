@@ -25,7 +25,7 @@ Those aliases overrides standard docker commands for container and images.
 | `edjangeruni`     | "docker run -it" with parameters read from local edjanger.properties.           |       |     X     |
 | `edockestart`     | "docker start" with parameters read from local edjanger.properties.             |       |     X     |
 | `edockestop`      | "docker stop" with parameters read from local edjanger.properties.              |       |     X     |
-| `edjangertag`     | "docker tag" with parameters read from local edjanger.properties.               |       |     X     |
+| `edjangertag`     | "docker tag" with parameters read from local edjanger.properties.               |   X   |           |
 | `edjangertop`     | "docker top" with parameters read from local edjanger.properties.               |       |     X     |
 
 ## How to : advanced
