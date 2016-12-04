@@ -192,8 +192,8 @@
         <ul>
           
             <li class="anchor">
-              <a title="How to : basic commands" href="#how-to-basic-commands">
-                How to : basic commands
+              <a title="How to : basic" href="#how-to-basic">
+                How to : basic
               </a>
             </li>
           
@@ -235,7 +235,7 @@
           
             
   <li>
-    <a class="" title="Api doc" href="../api/api/">
+    <a class="" title="Api doc" href="../api/">
       Api doc
     </a>
     
@@ -262,7 +262,7 @@
         <div class="wrapper">
           
           <h1 id="how-to">How to</h1>
-<h2 id="how-to-basic-commands">How to : basic commands</h2>
+<h2 id="how-to-basic">How to : basic</h2>
 <p>All those command are compact and useful docker shortcuts !</p>
 <p>Those aliases overrides standard docker commands for container and images.</p>
 <table>
@@ -276,116 +276,194 @@
 </thead>
 <tbody>
 <tr>
-<td><code>edjangerbuild</code></td>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerattach">edjangerattach</a></td>
+<td>"docker attach" with parameters read from local edjanger.properties.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerbuild">edjangeredjangerbuild</a></td>
 <td>"docker build" with parameters read from local edjanger.properties.</td>
 <td>X</td>
 <td></td>
 </tr>
 <tr>
-<td><code>edjangerclean</code></td>
-<td>clean all images with none attribute (run docker rmi with "none" filter).</td>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangercommit">edjangeredjangercommit</a></td>
+<td>"docker commit" with parameters read from local edjanger.properties.</td>
 <td>X</td>
-<td></td>
+<td>X</td>
 </tr>
 <tr>
-<td><code>edjangercopy</code></td>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangercopy">edjangeredjangercopy</a></td>
 <td>"docker copy" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td><code>edjangerexec</code></td>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangercreate">edjangeredjangercreate</a></td>
+<td>"docker create" with parameters read from local edjanger.properties.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerdiff">edjangeredjangerdiff</a></td>
+<td>"docker diff" with parameters read from local edjanger.properties.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerevents">edjangeredjangerevents</a></td>
+<td>"docker events" with parameters read from local edjanger.properties.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerexec">edjangeredjangerexec</a></td>
 <td>"docker exec" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td><code>edjangerimages</code></td>
-<td>"docker exec" with parameters read from local edjanger.properties.</td>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerexport">edjangeredjangerexport</a></td>
+<td>"docker port" with parameters read from local edjanger.properties.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerhistory">edjangeredjangerhistory</a></td>
+<td>"docker history" with parameters read from local edjanger.properties.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerimages">edjangeredjangerimages</a></td>
+<td>"docker images" with parameters read from local edjanger.properties.</td>
 <td>X</td>
 <td>X</td>
 </tr>
 <tr>
-<td><code>edjangerinspect</code></td>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerimport">edjangeredjangerimport</a></td>
+<td>"docker import" with parameters read from local edjanger.properties.</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerinspect">edjangeredjangerinspect</a></td>
 <td>"docker inspect" with parameters read from local edjanger.properties.</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerkill">edjangeredjangerkill</a></td>
+<td>"docker kill" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td><code>edjangerlogs</code></td>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerlogs">edjangeredjangerlogs</a></td>
 <td>"docker logs" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td><code>edjangerps</code></td>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerpause">edjangeredjangerpause</a></td>
+<td>"docker pause" with parameters read from local edjanger.properties.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerps">edjangeredjangerps</a></td>
 <td>"docker ps" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td><code>edjangerpsa</code></td>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerpsa">edjangeredjangerpsa</a></td>
 <td>"docker ps -a" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td><code>edjangerrename</code></td>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerrename">edjangeredjangerrename</a></td>
 <td>"docker rename" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td><code>edjangerrestart</code></td>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerrestart">edjangeredjangerrestart</a></td>
 <td>"docker restart" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td><code>edjangerm</code></td>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerrm">edjangeredjangerm</a></td>
 <td>"docker rm" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td><code>edjangermi</code></td>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerrmi">edjangeredjangermi</a></td>
 <td>"docker rmi" with parameters read from local edjanger.properties.</td>
 <td>X</td>
 <td></td>
 </tr>
 <tr>
-<td><code>edjangerun</code></td>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerrun">edjangeredjangerun</a></td>
 <td>"docker run -d" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td><code>edjangeruni</code></td>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerruni">edjangeredjangeruni</a></td>
 <td>"docker run -it" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td><code>edockestart</code></td>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerstart">edjangeredockestart</a></td>
 <td>"docker start" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td><code>edockestop</code></td>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerstats">edjangeredockestats</a></td>
+<td>"docker stats" with parameters read from local edjanger.properties.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerstop">edjangeredockestop</a></td>
 <td>"docker stop" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
-<td><code>edjangertag</code></td>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangertag">edjangeredjangertag</a></td>
 <td>"docker tag" with parameters read from local edjanger.properties.</td>
 <td>X</td>
 <td></td>
 </tr>
 <tr>
-<td><code>edjangertop</code></td>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangertop">edjangeredjangertop</a></td>
 <td>"docker top" with parameters read from local edjanger.properties.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerpause">edjangeredjangerunpause</a></td>
+<td>"docker unpause" with parameters read from local edjanger.properties.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerupdate">edjangeredjangerupdate</a></td>
+<td>"docker update" with parameters read from local edjanger.properties.</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerwait">edjangeredjangerwait</a></td>
+<td>"docker wait" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
@@ -401,16 +479,20 @@
 </thead>
 <tbody>
 <tr>
-<td><code>edjangerports</code></td>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerclean">edjangeredjangerclean</a></td>
+<td>clean all images with none attribute (run docker rmi with "none" filter).</td>
+</tr>
+<tr>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerports">edjangeredjangerports</a></td>
 <td>"docker ports" on all running container.</td>
 </tr>
 <tr>
-<td><code>edjangerportdesc</code></td>
-<td>description of port.</td>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerrmexiteds">edjangeredjangermexiteds</a></td>
+<td>docker rm with list of container with exited status.</td>
 </tr>
 <tr>
-<td><code>edjangermexiteds</code></td>
-<td>docker rm with list of container with exited status.</td>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerrmorphanedvolumes">edjangeredjangerrmorphanedvolumes</a></td>
+<td>remove all orphaned volumes.</td>
 </tr>
 </tbody>
 </table>
@@ -424,20 +506,44 @@
 </thead>
 <tbody>
 <tr>
-<td><code>edjangerabout</code></td>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerabout">edjangeredjangerabout</a></td>
 <td>about script for edjanger.</td>
 </tr>
 <tr>
-<td><code>edjangercheck</code></td>
-<td>check missing parameters in edjanger.properties.</td>
-</tr>
-<tr>
-<td><code>edjangeralias</code></td>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangeralias">edjangeredjangeralias</a></td>
 <td>print edjanger aliases.</td>
 </tr>
 <tr>
-<td><code>edjangerunalias</code></td>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangercheck">edjangeredjangercheck</a></td>
+<td>check missing parameters in edjanger.properties.</td>
+</tr>
+<tr>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangercompose">edjangeredjangercompose</a></td>
+<td>create docker-compose.yaml from all edjanger.propeorties in current path.</td>
+</tr>
+<tr>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerhelp">edjangeredjangerhelp</a></td>
+<td>help for all commands.</td>
+</tr>
+<tr>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerinit">edjangeredjangerinit</a></td>
+<td>initialize an edjanger project.</td>
+</tr>
+<tr>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerportdec">edjangeredjangerportdesc</a></td>
+<td>description of port.</td>
+</tr>
+<tr>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangertemplate">edjangeredjangertemplate</a></td>
+<td>generate edjanger.poperties from edjanger.template.</td>
+</tr>
+<tr>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerunalias">edjangeredjangerunalias</a></td>
 <td>help script for edjanger command.</td>
+</tr>
+<tr>
+<td><a href="http://127.0.0.1:8000/api/#command-edjangerupgrade">edjangeredjangerupgrade</a></td>
+<td>upgrade edjanger.</td>
 </tr>
 </tbody>
 </table>
@@ -567,7 +673,7 @@ exposed_ports=&quot;-p 80:80 -p 443:443&quot;
     </div>
     <div class="next">
       
-        <a href="../api/api/" title="Api doc">
+        <a href="../api/" title="Api doc">
           <span class="direction">
             Next
           </span>

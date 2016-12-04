@@ -14,7 +14,7 @@ theme: material
 pages:
 - Home: index.md
 - 'How to': 'howto.md'
-- 'Api doc': 'api/api.md'
+- 'Api doc': 'api.md'
 - 'About': 'about.md'
 extra:
   logo: 'images/logo.png'
