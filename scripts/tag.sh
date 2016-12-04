@@ -51,7 +51,6 @@ read_app_properties
 [ -z "${image_name}" ]                         && echo "Image name must be filled, configure variable image_name in edjanger.${config_extension}" && exit -1
 
 [ -n "${tag_options}" ]             && commandoptions="${commandoptions} ${tag_options}"
-#[ -n "${image_name}" ]              && commandoptions="${commandoptions} ${image_name}"
 [ -n "$@" ]                         && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
                                     && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]--|;--|g") \
                                     && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]-|;-|g")
