@@ -654,17 +654,14 @@ function buildApiMarkdown()
 
     base=$(basename ${script})
 
-    #echo "- 'Api doc':" > ${outputpath}/api.index
     if [[ ! "$base" =~ [_]{1}.* ]]; then
-      #echo -e "Build ${base%.sh}.md in path \"${outputpath}\""
+      echo -e "Process api edjanger-${base%.sh} in path \"${outputpath}\""
       parseHeader ${script}
       header=$(echo -e "$header" | $SED_REGEX "s/#\!\/bin\/bash//g")
       header=$(echo -e "\`\`\`bash\n${header}\n\`\`\`")
       #echo -e "$header" > ${outputpath}/${base%.sh}.md
       echo -e "## Command ${app_name}${base%.sh}" >> ${outputpath}/api.md
       echo -e "$header" >> ${outputpath}/api.md
-      echo -e "    - ${base%.sh} : \"${outputpath#docs\/}/${base%.sh}.md\""
-      # >> ${outputpath}/api.index
     fi
     
   done
