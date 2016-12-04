@@ -9,15 +9,21 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     
       
-        <title>edjanger</title>
+        <title>edjanger - docker cli aliases configuration simplify</title>
       
       
+        <meta name="description" content="docker cli aliases configuration simplify">
       
+      
+        <link rel="canonical" href="https://pamtrak06.github.io/edjanger/">
+      
+      
+        <meta name="author" content="pamtrak06@gmail.com">
       
     
-    <meta property="og:url" content="None">
+    <meta property="og:url" content="https://pamtrak06.github.io/edjanger/">
     <meta property="og:title" content="edjanger">
-    <meta property="og:image" content="None/./images/logo.png">
+    <meta property="og:image" content="https://pamtrak06.github.io/edjanger//./images/logo.png">
     <meta name="apple-mobile-web-app-title" content="edjanger">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -70,6 +76,9 @@
   
   <body class="palette-primary-indigo palette-accent-light-blue">
     
+      
+      
+    
     <div class="backdrop">
       <div class="backdrop-paper"></div>
     </div>
@@ -120,7 +129,7 @@
       <div class="drawer">
         <nav aria-label="Navigation">
   
-  <a href="/" class="project">
+  <a href="https://github.com/pamtrak06/edjanger" class="project">
     <div class="banner">
       
         <div class="logo">
@@ -135,11 +144,30 @@
           </span>
         </strong>
         
+          <br>
+          pamtrak06/edjanger
+        
       </div>
     </div>
   </a>
   <div class="scrollable">
     <div class="wrapper">
+      
+        <ul class="repo">
+          <li class="repo-download">
+            
+            <a href="https://github.com/pamtrak06/edjanger/archive/master.zip" target="_blank" title="Download" data-action="download">
+              <i class="icon icon-download"></i> Download
+            </a>
+          </li>
+          <li class="repo-stars">
+            <a href="https://github.com/pamtrak06/edjanger/stargazers" target="_blank" title="Stargazers" data-action="star">
+              <i class="icon icon-star"></i> Stars
+              <span class="count">&ndash;</span>
+            </a>
+          </li>
+        </ul>
+        <hr>
       
       <div class="toc">
         <ul>
@@ -175,44 +203,8 @@
             </li>
           
             <li class="anchor">
-              <a title="Use cases : basic commands" href="#use-cases-basic-commands">
-                Use cases : basic commands
-              </a>
-            </li>
-          
-            <li class="anchor">
-              <a title="Use cases : docker" href="#use-cases-docker">
-                Use cases : docker
-              </a>
-            </li>
-          
-            <li class="anchor">
-              <a title="Use cases : useful" href="#use-cases-useful">
-                Use cases : useful
-              </a>
-            </li>
-          
-            <li class="anchor">
-              <a title="Use case: compose" href="#use-case-compose">
-                Use case: compose
-              </a>
-            </li>
-          
-            <li class="anchor">
-              <a title="Use case: template" href="#use-case-template">
-                Use case: template
-              </a>
-            </li>
-          
-            <li class="anchor">
-              <a title="Use case : crontab" href="#use-case-crontab">
-                Use case : crontab
-              </a>
-            </li>
-          
-            <li class="anchor">
-              <a title="help" href="#help">
-                help
+              <a title="Help" href="#help">
+                Help
               </a>
             </li>
           
@@ -222,14 +214,35 @@
               </a>
             </li>
           
-            <li class="anchor">
-              <a title="License" href="#license">
-                License
-              </a>
-            </li>
-          
         </ul>
       
+    
+  </li>
+
+          
+            
+  <li>
+    <a class="" title="How to" href="howto/">
+      How to
+    </a>
+    
+  </li>
+
+          
+            
+  <li>
+    <a class="" title="Api doc" href="api/api/">
+      Api doc
+    </a>
+    
+  </li>
+
+          
+            
+  <li>
+    <a class="" title="About" href="about/">
+      About
+    </a>
     
   </li>
 
@@ -302,10 +315,10 @@
     - installation from binaries or from sources (http://mama.indstate.edu/users/ice/tree/)
 -->
 
-<p><strong>Compatibility</strong></p>
+<p><strong>Checked compatibility</strong></p>
 <ul>
 <li>os x El Capitan 10.11.6</li>
-<li>ubuntu &gt; 14.04</li>
+<li>Linux ubuntu &gt; 14.04</li>
 </ul>
 <p><strong>Installation</strong></p>
 <pre><code class="bash">git clone https://github.com/pamtrak06/edjanger.git /usr/local/bin
@@ -520,301 +533,7 @@ echo &quot;FROM jenkins:latest&quot; &gt; build/Dockerfile
     - volumes               &gt; contains all shared volumes
 </code></pre>
 
-<h2 id="use-cases-basic-commands">Use cases : basic commands</h2>
-<p>All those command are compact and useful docker shortcuts !</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Description</th>
-<th>IMAGE</th>
-<th>CONTAINER</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>edjangerbuild</code></td>
-<td>"docker build" with parameters readed from local edjanger.properties.</td>
-<td>X</td>
-<td></td>
-</tr>
-<tr>
-<td><code>edjangerclean</code></td>
-<td>clean all images with none attribute (run docker rmi with "none" filter).</td>
-<td>X</td>
-<td></td>
-</tr>
-<tr>
-<td><code>edjangercopy</code></td>
-<td>"docker copy" with parameters readed from local edjanger.properties.</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr>
-<td><code>edjangerexec</code></td>
-<td>"docker exec" with parameters readed from local edjanger.properties.</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr>
-<td><code>edjangerimages</code></td>
-<td>"docker exec" with parameters readed from local edjanger.properties.</td>
-<td>X</td>
-<td></td>
-</tr>
-<tr>
-<td><code>edjangerinspect</code></td>
-<td>"docker inspect" with parameters readed from local edjanger.properties.</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr>
-<td><code>edjangerlogs</code></td>
-<td>"docker logs" with parameters readed from local edjanger.properties.</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr>
-<td><code>edjangerps</code></td>
-<td>"docker ps" with parameters readed from local edjanger.properties.</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr>
-<td><code>edjangerpsa</code></td>
-<td>"docker ps -a" with parameters readed from local edjanger.properties.</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr>
-<td><code>edjangerrename</code></td>
-<td>"docker rename" with parameters readed from local edjanger.properties.</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr>
-<td><code>edjangerrestart</code></td>
-<td>"docker restart" with parameters readed from local edjanger.properties.</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr>
-<td><code>edjangerm</code></td>
-<td>"docker rm" with parameters readed from local edjanger.properties.</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr>
-<td><code>edjangermi</code></td>
-<td>"docker rmi" with parameters readed from local edjanger.properties.</td>
-<td>X</td>
-<td></td>
-</tr>
-<tr>
-<td><code>edjangerun</code></td>
-<td>"docker run -d" with parameters readed from local edjanger.properties.</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr>
-<td><code>edjangeruni</code></td>
-<td>"docker run -it" with parameters readed from local edjanger.properties.</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr>
-<td><code>edockestart</code></td>
-<td>"docker start" with parameters readed from local edjanger.properties.</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr>
-<td><code>edockestop</code></td>
-<td>"docker stop" with parameters readed from local edjanger.properties.</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr>
-<td><code>edjangertag</code></td>
-<td>"docker tag" with parameters readed from local edjanger.properties.</td>
-<td></td>
-<td>X</td>
-</tr>
-<tr>
-<td><code>edjangertop</code></td>
-<td>"docker top" with parameters readed from local edjanger.properties.</td>
-<td></td>
-<td>X</td>
-</tr>
-</tbody>
-</table>
-<h2 id="use-cases-docker">Use cases : docker</h2>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>edjangerportdesc</code></td>
-<td>"docker ports" on all running container.</td>
-</tr>
-<tr>
-<td><code>edjangerports</code></td>
-<td>description of port.</td>
-</tr>
-<tr>
-<td><code>edjangermexiteds</code></td>
-<td>docker rm with list of container with exited status.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="use-cases-useful">Use cases : useful</h2>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>edjangerabout</code></td>
-<td>about script for edjanger.</td>
-</tr>
-<tr>
-<td><code>edjangercheck</code></td>
-<td>check missing parameters in edjanger.properties.</td>
-</tr>
-<tr>
-<td><code>edjangeralias</code></td>
-<td>print edjanger aliases.</td>
-</tr>
-<tr>
-<td><code>edjangerunalias</code></td>
-<td>help script for edjanger command.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Check missing parameters in edjanger.properties</strong></p>
-<pre><code class="bash">edjangercheck
-Check edjanger.properties...
-  - check &quot;docker_command&quot;
-  - check &quot;image_name&quot;
-  - check &quot;build_path&quot;
-  - check &quot;build_args&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;build_forcerm&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;build_rm&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;build_nocache&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;build_file&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;container_name&quot;
-  - check &quot;exposed_ports&quot;
-  - check &quot;shared_volumes&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;volumes_from&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;environment_variables&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;linked_containers&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;force_rmi&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;command_run&quot;
-    WARNING: parameter is missing !!!
-  =&gt; STATUS of configuration is: some parameters are undefined
-</code></pre>
-
-<p>Remark : even when parameters are missing in edjanger.properties, they are initialized empty.</p>
-<h2 id="use-case-compose">Use case: compose</h2>
-<p>From an existing edjanger root path project structure, call edcokercompose.
-Script will parse all edjanger.properties in subfolders and create docker-compose.yaml at upper path.</p>
-<pre><code class="bash">edjangercompose
-vi docker-compose.yaml
-</code></pre>
-
-<h2 id="use-case-template">Use case: template</h2>
-<blockquote>
-<p>Prerequisities : install gettext (for envsubst)</p>
-</blockquote>
-<ul>
-<li>
-<p>Download and try example from <a href="https://github.com/pamtrak06/edjanger/tree/master/scripts/templates/templating">https://github.com/pamtrak06/edjanger/tree/master/scripts/templates/templating</a>, run:</p>
-</li>
-<li>
-<p>Deploy 2 apache web sever (web1 and web2) with specific ports and shared volumes for a "production" environement.
-    <code>bash
-    ./deploy_run.sh production 5</code></p>
-</li>
-<li>
-<p>Deploy 2 apache web server (web1 and web2) with specific ports and shared volumes for an "integration" environement.
-    <code>bash
-    ./deploy_run.sh integration 5</code></p>
-</li>
-<li>
-<p>Instructions
-From an existing edjanger root path project structure, do following</p>
-<ul>
-<li>rename all edjanger.properties to edjanger.template</li>
-<li>define variable for element to be replaced with variable value from configuration file</li>
-<li>create configuration files (<name>.properties) containing SHELL-FORMAT variable<ul>
-<li>in each folder containing edjanger.properties (each configuration file must hase same name e.g.: production.properties)
-or</li>
-<li>only in root folder (e.g.: production.properties)</li>
-</ul>
-</li>
-<li>call edjangertemplate with name of configuration file</li>
-</ul>
-</li>
-</ul>
-<pre><code>edjangertemplate &lt;name&gt;.properties
-</code></pre>
-
-<p>Example of edjangertemplate invocation</p>
-<pre><code>edjangertemplate production.properties
-</code></pre>
-
-<p>Example of production.properties content</p>
-<pre><code>#!/bin/bash
-export HTTPD_PORT_80=80
-export HTTPD_PORT_443=443
-</code></pre>
-
-<p>Example of edjanger.template content</p>
-<pre><code>#exposed_ports:exposed port
-exposed_ports=&quot;-p ${HTTPD_PORT_80}:80 -p ${HTTPD_PORT_443}:443&quot;
-</code></pre>
-
-<p>Script will find all edjanger.template and replace variables from root or folder(s) configuration(s) file(s) to produce edjanger.properties files.</p>
-<p>Example of edjanger.properties produced</p>
-<pre><code>#exposed_ports:exposed port
-exposed_ports=&quot;-p 80:80 -p 443:443&quot;
-</code></pre>
-
-<h2 id="use-case-crontab">Use case : crontab</h2>
-<p>Configure automatic container restart at boot</p>
-<p>To configure automatic restart of container at boot, configure edjanger.properties files :
-- activate cron_start=true to start existing container at boot
-- activate cron_build=true to build and start a new container at boot</p>
-<p>Configure crontab with following parameters</p>
-<pre><code>crontab -e
-@reboot {edjangerpath}/cron_build_start.sh {edjanger properties path}
-@reboot {edjangerpath}/cron_start_only.sh {edjanger properties path}
-</code></pre>
-
-<p>Example:</p>
-<pre><code>crontab -e
-@reboot /opt/edjanger/scripts/cron_build_start.sh /root/workspace/docker
-@reboot /opt/edjanger/scripts/cron_start_only.sh /root/workspace/docker
-</code></pre>
-
-<h2 id="help">help</h2>
+<h2 id="help">Help</h2>
 <p>For each commands, see edjangerhelp 'command' for list of parameters read in edjanger.properties and arguments.</p>
 <h2 id="unit-tests">Unit tests</h2>
 <p>Tests use following</p>
@@ -830,11 +549,9 @@ exposed_ports=&quot;-p 80:80 -p 443:443&quot;
 <pre><code>cd [edjanger path];
 ./run_tests.sh
 </code></pre>
-
-<h2 id="license">License</h2>
-<p><img alt="Gravatar" src="http://2.gravatar.com/avatar/b2071759b3f1fc6f1b02edbb46397c9a" /> @Author : <a href="mailto:pamtrak06@gmail.com">Pamtrak06</a>, <a href="https://github.com/pamtrak06/edjanger">GitHub sources</a></p>
-<p>edjanger is under  "MIT License (MIT)" see <a href="https://github.com/pamtrak06/edjanger/blob/master/LICENSE">LICENSE file</a>.</p>
           <aside class="copyright" role="note">
+            
+              MIT licence, pamtrak06@gmail.com &ndash;
             
             Documentation built with
             <a href="http://www.mkdocs.org" target="_blank">MkDocs</a>
@@ -847,6 +564,31 @@ exposed_ports=&quot;-p 80:80 -p 443:443&quot;
           
             <footer class="footer">
               
+  <nav class="pagination" aria-label="Footer">
+    <div class="previous">
+      
+    </div>
+    <div class="next">
+      
+        <a href="howto/" title="How to">
+          <span class="direction">
+            Next
+          </span>
+          <div class="page">
+            <div class="stretch">
+              <div class="title">
+                How to
+              </div>
+            </div>
+            <div class="button button-next" role="button" aria-label="Next">
+              <i class="icon icon-forward"></i>
+            </div>
+          </div>
+        </a>
+      
+    </div>
+  </nav>
+
             </footer>
           
         </div>
@@ -862,7 +604,7 @@ exposed_ports=&quot;-p 80:80 -p 443:443&quot;
     </main>
     <script>
       var base_url = '.';
-      var repo_id  = '';
+      var repo_id  = 'pamtrak06/edjanger';
     </script>
     <script src="./assets/javascripts/application-997097ee0c.js"></script>
     

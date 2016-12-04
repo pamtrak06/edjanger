@@ -3,8 +3,32 @@
 
     
     <url>
-     <loc>/</loc>
-     <lastmod>2016-11-22</lastmod>
+     <loc>https://pamtrak06.github.io/edjanger/</loc>
+     <lastmod>2016-12-04</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>https://pamtrak06.github.io/edjanger/howto/</loc>
+     <lastmod>2016-12-04</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>https://pamtrak06.github.io/edjanger/api/api/</loc>
+     <lastmod>2016-12-04</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>https://pamtrak06.github.io/edjanger/about/</loc>
+     <lastmod>2016-12-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
