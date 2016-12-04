@@ -83,23 +83,20 @@ source ~/.bashrc
 
 **Installation**
 
+Define path where to install edjanger (variable EDJANGER_INSTALL_PATH). 
+Following commands are given as example.
+
 ```bash
-git clone https://github.com/pamtrak06/edjanger.git /usr/local/bin
+EDJANGER_INSTALL_PATH=/usr/local/bin
+git clone https://github.com/pamtrak06/edjanger.git $EDJANGER_INSTALL_PATH
 cd edjanger; chmod 755 scripts/*.sh; chmod 755 edjangerinstall.sh
 ```
+This will install edjanger in /usr/local/bin/edjanger
+If installation fail to install in this directory, try to install it in another, see [Linux Filesystem Hierarchy Standard](http://www.pathname.com/fhs/pub/fhs-2.3.pdf) for potential paths.
 
 Run edjanger installation
 ```bash
 ./edjangerinstall.sh --alias
-```
-
-This will install edjanger in /usr/local/bin/edjanger
-If installation fail to install in this directory, try to install it in another, see [Linux Filesystem Hierarchy Standard](http://www.pathname.com/fhs/pub/fhs-2.3.pdf) for potential paths.
-
-```bash
-EDJANGER_INSTALL_PATH=<your path>
-git clone https://github.com/pamtrak06/edjanger.git $EDJANGER_INSTALL_PATH
-cd edjanger; chmod 755 scripts/*.sh; chmod 755 edjangerinstall.sh
 ```
 
 Execute the generated alias file:
@@ -111,6 +108,8 @@ All is done !!! Run this command to see your edjanger aliases
 ```bash
 alias|grep edjanger
 ```
+
+Following configuration chapter explain how to "fix" alias in shell environement. 
 
 **Configuration**
 
@@ -192,12 +191,27 @@ rm -rf {edjanger path}/
 
 ## Getting started
 
-
-Create an uninitialized edjanger.properties file in your working docker folder:
+Create a new edjanger working project :
 ```bash
 edjangerinit
 ```
+<iframe width="100%" height="300" src="//jsfiddle.net/pamtrak06/9wvxa133/37/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+File edjanger.properties contain variables used for all edjanger commands.
+
+Type edjanger command and --help to know parameters read from command and available arguments.
+
+You could use a teplate file to configure edjanger.properties.
+
+To do this, create a properties file (given at init is configuration.properties) which contain variables to be replaced in edjanger.template to produce edjanger.properties.
+
+See following example.
+
+```bash
+edjangerinit --template=httpd
+```
 <iframe width="100%" height="400" src="//jsfiddle.net/pamtrak06/9wvxa133/28/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
 
 Configure your [edjanger.properties](https://github.com/pamtrak06/edjanger/blob/master/scripts/templates/edjanger_template.properties) with correct parameters.
 By example, you could create a Dockerfile with this path:
