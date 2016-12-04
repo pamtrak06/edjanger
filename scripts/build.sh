@@ -52,7 +52,7 @@ read_app_properties
 # check required configuration
 [ -n "${build_path}" ] && \
   [ ! -d "${build_path}" ]                     && echo "Build path must exist and be a folder, configure variable build_path in edjanger.${config_extension}" && exit -1
-[ -z "${build_path}" ]                         build_path=.
+[ -z "${build_path}" ]                         && build_path="."
 [ -z "${image_name}" ]                         && echo "Image name must be filled, configure variable image_name in edjanger.${config_extension}" && exit -1
 
 . {edjangerpath}/_proxy.sh
