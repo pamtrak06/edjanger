@@ -198,8 +198,8 @@
             </li>
           
             <li class="anchor">
-              <a title="How to : docker" href="#how-to-docker">
-                How to : docker
+              <a title="How to : advanced" href="#how-to-advanced">
+                How to : advanced
               </a>
             </li>
           
@@ -264,6 +264,7 @@
           <h1 id="how-to">How to</h1>
 <h2 id="how-to-basic-commands">How to : basic commands</h2>
 <p>All those command are compact and useful docker shortcuts !</p>
+<p>Those aliases overrides standard docker commands for container and images.</p>
 <table>
 <thead>
 <tr>
@@ -276,7 +277,7 @@
 <tbody>
 <tr>
 <td><code>edjangerbuild</code></td>
-<td>"docker build" with parameters readed from local edjanger.properties.</td>
+<td>"docker build" with parameters read from local edjanger.properties.</td>
 <td>X</td>
 <td></td>
 </tr>
@@ -288,109 +289,109 @@
 </tr>
 <tr>
 <td><code>edjangercopy</code></td>
-<td>"docker copy" with parameters readed from local edjanger.properties.</td>
+<td>"docker copy" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
 <td><code>edjangerexec</code></td>
-<td>"docker exec" with parameters readed from local edjanger.properties.</td>
+<td>"docker exec" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
 <td><code>edjangerimages</code></td>
-<td>"docker exec" with parameters readed from local edjanger.properties.</td>
+<td>"docker exec" with parameters read from local edjanger.properties.</td>
 <td>X</td>
-<td></td>
+<td>X</td>
 </tr>
 <tr>
 <td><code>edjangerinspect</code></td>
-<td>"docker inspect" with parameters readed from local edjanger.properties.</td>
+<td>"docker inspect" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
 <td><code>edjangerlogs</code></td>
-<td>"docker logs" with parameters readed from local edjanger.properties.</td>
+<td>"docker logs" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
 <td><code>edjangerps</code></td>
-<td>"docker ps" with parameters readed from local edjanger.properties.</td>
+<td>"docker ps" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
 <td><code>edjangerpsa</code></td>
-<td>"docker ps -a" with parameters readed from local edjanger.properties.</td>
+<td>"docker ps -a" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
 <td><code>edjangerrename</code></td>
-<td>"docker rename" with parameters readed from local edjanger.properties.</td>
+<td>"docker rename" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
 <td><code>edjangerrestart</code></td>
-<td>"docker restart" with parameters readed from local edjanger.properties.</td>
+<td>"docker restart" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
 <td><code>edjangerm</code></td>
-<td>"docker rm" with parameters readed from local edjanger.properties.</td>
+<td>"docker rm" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
 <td><code>edjangermi</code></td>
-<td>"docker rmi" with parameters readed from local edjanger.properties.</td>
+<td>"docker rmi" with parameters read from local edjanger.properties.</td>
 <td>X</td>
 <td></td>
 </tr>
 <tr>
 <td><code>edjangerun</code></td>
-<td>"docker run -d" with parameters readed from local edjanger.properties.</td>
+<td>"docker run -d" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
 <td><code>edjangeruni</code></td>
-<td>"docker run -it" with parameters readed from local edjanger.properties.</td>
+<td>"docker run -it" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
 <td><code>edockestart</code></td>
-<td>"docker start" with parameters readed from local edjanger.properties.</td>
+<td>"docker start" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
 <td><code>edockestop</code></td>
-<td>"docker stop" with parameters readed from local edjanger.properties.</td>
+<td>"docker stop" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
 <td><code>edjangertag</code></td>
-<td>"docker tag" with parameters readed from local edjanger.properties.</td>
+<td>"docker tag" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 <tr>
 <td><code>edjangertop</code></td>
-<td>"docker top" with parameters readed from local edjanger.properties.</td>
+<td>"docker top" with parameters read from local edjanger.properties.</td>
 <td></td>
 <td>X</td>
 </tr>
 </tbody>
 </table>
-<h2 id="how-to-docker">How to : docker</h2>
+<h2 id="how-to-advanced">How to : advanced</h2>
 <table>
 <thead>
 <tr>
@@ -400,11 +401,11 @@
 </thead>
 <tbody>
 <tr>
-<td><code>edjangerportdesc</code></td>
+<td><code>edjangerports</code></td>
 <td>"docker ports" on all running container.</td>
 </tr>
 <tr>
-<td><code>edjangerports</code></td>
+<td><code>edjangerportdesc</code></td>
 <td>description of port.</td>
 </tr>
 <tr>
@@ -441,37 +442,7 @@
 </tbody>
 </table>
 <p><strong>Check missing parameters in edjanger.properties</strong></p>
-<pre><code class="bash">edjangercheck
-Check edjanger.properties...
-  - check &quot;docker_command&quot;
-  - check &quot;image_name&quot;
-  - check &quot;build_path&quot;
-  - check &quot;build_args&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;build_forcerm&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;build_rm&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;build_nocache&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;build_file&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;container_name&quot;
-  - check &quot;exposed_ports&quot;
-  - check &quot;shared_volumes&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;volumes_from&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;environment_variables&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;linked_containers&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;force_rmi&quot;
-    WARNING: parameter is missing !!!
-  - check &quot;command_run&quot;
-    WARNING: parameter is missing !!!
-  =&gt; STATUS of configuration is: some parameters are undefined
-</code></pre>
+<iframe width="100%" height="300" src="//jsfiddle.net/pamtrak06/9wvxa133/35/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 <p>Remark : even when parameters are missing in edjanger.properties, they are initialized empty.</p>
 <h2 id="how-to-compose">How to : compose</h2>
@@ -480,6 +451,10 @@ Script will parse all edjanger.properties in subfolders and create docker-compos
 <pre><code class="bash">edjangercompose
 vi docker-compose.yaml
 </code></pre>
+
+<iframe width="100%" height="300" src="//jsfiddle.net/pamtrak06/9wvxa133/34/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<iframe width="100%" height="300" src="//jsfiddle.net/pamtrak06/9wvxa133/33/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 <h2 id="how-to-template">How to : template</h2>
 <blockquote>
@@ -492,12 +467,12 @@ vi docker-compose.yaml
 <li>
 <p>Deploy 2 apache web sever (web1 and web2) with specific ports and shared volumes for a "production" environement.
     <code>bash
-    ./deploy_run.sh production 5</code></p>
+    ./deploy_run.sh --properties=production 5</code></p>
 </li>
 <li>
 <p>Deploy 2 apache web server (web1 and web2) with specific ports and shared volumes for an "integration" environement.
     <code>bash
-    ./deploy_run.sh integration 5</code></p>
+    ./deploy_run.sh --properties=integration 5</code></p>
 </li>
 <li>
 <p>Instructions
@@ -515,11 +490,11 @@ or</li>
 </ul>
 </li>
 </ul>
-<pre><code>edjangertemplate &lt;name&gt;.properties
+<pre><code>edjangertemplate --properties=&lt;name&gt;.properties
 </code></pre>
 
 <p>Example of edjangertemplate invocation</p>
-<pre><code>edjangertemplate production.properties
+<pre><code>edjangertemplate --properties=production.properties
 </code></pre>
 
 <p>Example of production.properties content</p>

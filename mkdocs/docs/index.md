@@ -6,7 +6,20 @@
 >
 > Try edjanger !
 
-![Architecture](images/edjanger_archi.png)
+<!--
+#![Architecture](images/edjanger_archi.png)
+![Architecture](<script async src="//jsfiddle.net/pamtrak06/9wvxa133/12/embed/result/"></script>)
+-->
+Demo with an httpd server configuration.
+```bash
+mkdir webserver
+cd webserver
+edjangerinit --template=httpd
+```
+<iframe width="100%" height="400" src="//jsfiddle.net/pamtrak06/9wvxa133/27/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="400" src="//jsfiddle.net/pamtrak06/9wvxa133/29/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="400" src="//jsfiddle.net/pamtrak06/9wvxa133/30/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<!--script async src="//jsfiddle.net/pamtrak06/9wvxa133/14/embed/result/dark/"></script-->
 
 ## Install
 
@@ -17,8 +30,8 @@
 
 **Prerequisities for runtime**
 
-- bc
 - gettext (for envsubst)
+- bc (optional)
 
 <!---
 
@@ -183,15 +196,7 @@ Create an uninitialized edjanger.properties file in your working docker folder:
 ```bash
 edjangerinit
 ```
-Equivalent to
-```bash
-> Initialize edjanger configuration file: edjanger.properties ...
-cp [edjanger path]/templates/edjanger_template.properties [your docker working project]/edjanger.properties
-> Initialize edjanger build folder for Dockerfile: /build ...
-mkdir [your docker working project]/build
-> Initialize Dockerfile: build/Dockerfile ...
-touch [your docker working project]/build/Dockerfile
-```
+<iframe width="100%" height="400" src="//jsfiddle.net/pamtrak06/9wvxa133/28/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 Configure your [edjanger.properties](https://github.com/pamtrak06/edjanger/blob/master/scripts/templates/edjanger_template.properties) with correct parameters.
 By example, you could create a Dockerfile with this path:

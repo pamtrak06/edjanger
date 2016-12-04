@@ -448,6 +448,8 @@
  Options:
     -h, --help                     print this documentation
  
+        --template=httpd           initialize with a "httpd" template
+ 
  edjanger, The MIT License (MIT)
  Copyright (c) 2016 copyright pamtrak06@gmail.com
  

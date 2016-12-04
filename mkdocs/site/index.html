@@ -263,7 +263,25 @@
 <p>Trying to find magic one from history. Putting commands in some exotical scripts ?</p>
 <p>Try edjanger !</p>
 </blockquote>
-<p><img alt="Architecture" src="./images/edjanger_archi.png" /></p>
+<!--
+#![Architecture](images/edjanger_archi.png)
+![Architecture](<script async src="//jsfiddle.net/pamtrak06/9wvxa133/12/embed/result/"></script>)
+-->
+
+<p>Demo with an httpd server configuration.</p>
+<pre><code class="bash">mkdir webserver
+cd webserver
+edjangerinit --template=httpd
+</code></pre>
+
+<iframe width="100%" height="400" src="//jsfiddle.net/pamtrak06/9wvxa133/27/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<iframe width="100%" height="400" src="//jsfiddle.net/pamtrak06/9wvxa133/29/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<iframe width="100%" height="400" src="//jsfiddle.net/pamtrak06/9wvxa133/30/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<!--script async src="//jsfiddle.net/pamtrak06/9wvxa133/14/embed/result/dark/"></script-->
+
 <h2 id="install">Install</h2>
 <p><strong>Prerequisities for installation</strong></p>
 <ul>
@@ -272,8 +290,8 @@
 </ul>
 <p><strong>Prerequisities for runtime</strong></p>
 <ul>
-<li>bc</li>
 <li>gettext (for envsubst)</li>
+<li>bc (optional)</li>
 </ul>
 <!---
 
@@ -282,32 +300,32 @@
 - Ubuntu / Debian
 
 
-wzxhzdk:0
+wzxhzdk:1
 
 
 - CentOS / RHEL / Fedora
 
 
-wzxhzdk:1
+wzxhzdk:2
 
 
 > - gettext (for envsubst)
 - Ubuntu / Debian
 
 
-wzxhzdk:2
+wzxhzdk:3
 
 
 - CentOS / RHEL / Fedora
 
 
-wzxhzdk:3
+wzxhzdk:4
 
 
 - osx
 
 
-wzxhzdk:4
+wzxhzdk:5
 
 
 - tree command (optional)
@@ -411,14 +429,7 @@ Bash as non-login non-interactive shell will load the configuration specified in
 <pre><code class="bash">edjangerinit
 </code></pre>
 
-<p>Equivalent to</p>
-<pre><code class="bash">&gt; Initialize edjanger configuration file: edjanger.properties ...
-cp [edjanger path]/templates/edjanger_template.properties [your docker working project]/edjanger.properties
-&gt; Initialize edjanger build folder for Dockerfile: /build ...
-mkdir [your docker working project]/build
-&gt; Initialize Dockerfile: build/Dockerfile ...
-touch [your docker working project]/build/Dockerfile
-</code></pre>
+<iframe width="100%" height="400" src="//jsfiddle.net/pamtrak06/9wvxa133/28/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 <p>Configure your <a href="https://github.com/pamtrak06/edjanger/blob/master/scripts/templates/edjanger_template.properties">edjanger.properties</a> with correct parameters.
 By example, you could create a Dockerfile with this path:</p>
