@@ -51,7 +51,7 @@ build_options="${app_build_options}"
 container_name="${app_container_name}"
 
 #container_hostname:container host name (option -h, --hostname string for docker run)
-container_hostname="${app_container_hostname}"
+#container_hostname="${app_container_hostname}"
 
 #container_privilege:give extended privileges to this container (option --privileged for docker run)
 #container_privilege="${app_container_privilege}"
@@ -85,6 +85,9 @@ environment_variables="${app_environment_variables}"
 
 #run_other_options:all other available options for docker run
 #run_other_options="all available options for docker run"
+
+#command_args:bash command(s) to run
+#command_args=""
 
 #command_run:bash command(s) to run
 #command_run="/bin/bash -c \"cd /; ls -la\""
