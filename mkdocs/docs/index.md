@@ -210,7 +210,7 @@ Type edjanger command and --help to know parameters read from command and availa
 
 You could use a teplate file to configure edjanger.properties.
 
-To do this, create a properties file (given at init is configuration.properties) which contain variables to be replaced in edjanger.template to produce edjanger.properties.
+To do this, create a properties file (given at init is [configuration.properties](https://github.com/pamtrak06/edjanger/blob/master/scripts/templates/configuration.properties)) which contain variables to be replaced in [edjanger.template](https://github.com/pamtrak06/edjanger/blob/master/scripts/templates/edjanger.template) to produce edjanger.properties.
 
 See following example.
 
@@ -220,73 +220,28 @@ edjangerinit --template=httpd
 <iframe width="100%" height="400" src="//jsfiddle.net/pamtrak06/9wvxa133/28/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 
-Configure your [edjanger.properties](https://github.com/pamtrak06/edjanger/blob/master/scripts/templates/edjanger_template.properties) with correct parameters.
-By example, you could create a Dockerfile with this path:
+Example with jenkins 
+
+Initialize you project
 ```bash
-vi [your docker working project]/build/Dockerfile
+mkdir jenkins && cd jenkins && edjangerinit
 ```
-Example of a minimal edjanger configuration:
+Configure your [configuration.properties](https://github.com/pamtrak06/edjanger/blob/master/scripts/templates/configuration.properties) with correct parameters.
 ```bash
-mkdir -p jenkins
-cd jenkins; edjangerinit
-vi edjanger.properties
+vi configuration.properties
+export app_image_name="test/jenkins"
+export app_container_name="jenkins"
+export app_exposed_ports="-p 8080:8080 -p 50000:50000"
+export app_shared_volumes="-v \$PWD/volumes/jenkins_home:/var/jenkins_home"
+#export app_environment_variables="-e <variable name 1>=<value 1> -e <variable name 2>=<value 2>"
 ```
+
+Configure your [edjanger.template](https://github.com/pamtrak06/edjanger/blob/master/scripts/templates/edjanger.template) with correct parameters.
+Comment lines containing environment_variables and container_hostname.
 ```bash
-#  ----------------------------------------------------
-#  The MIT License (MIT)
-#
-#  Copyright (c) 2016 copyright pamtrak06@gmail.com
-#  ----------------------------------------------------
-#  CONFIGURATION    : edjanger_template.properties
-#  DESCRIPTION      : project configuration file for edjanger
-#  CREATOR          : pamtrak06@gmail.com
-#  --------------------------------
-#  VERSION          : 1.0
-#  DATE             : 2016-03-02
-#  COMMENT          : creation
-#  --------------------------------
-#  USAGE            : read by edjanger scripts
-#  ----------------------------------------------------
-#cron_build: flag to start container at boot
-#cron_build=true
-#cron_start: flag to start container at boot
-cron_start=true
-# docker_command:show docker command when edjanger is used
-docker_command=true
-# image_name:image name
-image_name="devops/jenkins"
-# build_path:path where is found Dockerfile
-build_path=build
-# build_args:build arguments
-# build_args="--build-arg VAR1='value1' --build-arg VAR2='value2'"
-# build_forcerm:always remove intermediate containers
-# build_forcerm="--force-rm"
-# build_rm: Remove intermediate containers after a successful build
-# build_rm="--rm=true"
-# build_nocache:do not use cache when building the image
-# build_nocache="--no-cache"
-# build_file:name of the Dockerfile (Default is 'PATH/Dockerfile')
-# build_file="--file Dockerfile"
-# container_name:container
-container_name="jenkins"
-# exposed_ports:exposed port
-exposed_ports="-p 8080:8080 -p 50000:50000"
-# shared_volumes:shared volumes
-shared_volumes="-v $PWD/volumes/jenkins_home:/var/jenkins_home"
-# volumes_from:expose volumes from another container into current container
-# volumes_from="--volumes-from <container name with exposed volumes>"
-# environment_variables:environnment variables
-# environment_variables="-e <variable name 1>=<value 1> -e <variable name 2>=<value 2>"
-# linked_containers:linked container
-#linked_containers="--link dind_1:docker"
-#network_settings:all network settings options
-#network_settings=--dns [] --net host --network-alias [] --add-host "" --mac-address "" --ip "" --ip6 "" --link-local-ip []
-#runtime_constraints_on_resources: runtime constraints on resources
-#runtime_constraints_on_resources=-m, --memory "" --memory-swap "" --memory-reservation "" --kernel-memory "" ...
-# force_rmi:force deletion
-# force_rmi="--force"
-# command_run:bash command(s) to run
-# command_run="/bin/bash -c \"cd /; ls -la"
+vi edjanger.template
+#environment_variables="${app_environment_variables}"
+#container_hostname="${app_container_hostname}"
 ```
 
 Update Dockerfile with jenkins reference from [docker hub](https://hub.docker.com/_/jenkins/)
@@ -295,13 +250,18 @@ touch build/Dockerfile
 echo "FROM jenkins:latest" > build/Dockerfile
 ```
 
+Run template to produce edjanger.properties
+```bash
+edjangertemplate properties=configuration
+```
+
 > Example 1: docker build
 ```bash
 edjangerbuild
 ```
 instead of:
 ```bash
-docker build -t "devops/jenkins"       build
+docker build -t "test/jenkins"       build
 ```
 
 > Example 2: docker run
@@ -310,7 +270,7 @@ edjangerrun
 ```
 instead of:
 ```bash
-docker run -dt --name jenkins_1    -p 8080:8080 -p 50000:50000  -v /root/workspace/docker/devops/continuous_integration/jenkins/volumes/jenkins_home:/var/jenkins_home  --link dind_1:docker devops/jenkins
+docker run -dt --name jenkins_1    -p 8080:8080 -p 50000:50000  -v $PWD/jenkins/volumes/jenkins_home:/var/jenkins_home
 ```
 
 > Example 3: docker stop
@@ -319,7 +279,7 @@ edjangerstop
 ```
 instead of:
 ```bash
-docker stop $(docker ps -aq | grep "devops/jenkins")
+docker stop $(docker ps -aq | grep "test/jenkins")
 ```
 
 ## Best practices
