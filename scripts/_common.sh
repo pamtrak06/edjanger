@@ -168,14 +168,20 @@ function read_app_properties()
 }
 
 # print header of script
-function printHeader()
+function parseHeader()
 {
   scriptname=$1
   parse_documentation $scriptname
   basename=$(basename "${scriptname}")
   commandname=edjanger${basename%.sh}
-  documentation=$(echo "$documentation" | $SED_REGEX "s/@script.name/${commandname}/g")
-  echo "$documentation"
+  header=$(echo "$documentation" | $SED_REGEX "s/@script.name/${commandname}/g")
+}
+
+# print header of script
+function printHeader()
+{
+  parseHeader $1
+  echo "$header"
 }
 
 # unset variables valid only if script is running in a subprocess (executed with bash)
@@ -211,7 +217,7 @@ function dockerbasicimage()
     else
       
       if [ -n "$confirm" ]; then
-        confirmquestion=${confirmquestion/\{container_name\}/${container_name}}
+        confirmquestion=${confirmquestion/\{image_name\}/${image_name}}
         echo "$confirmquestion"
         read response
       else
@@ -633,4 +639,34 @@ function buildPathAliases()
 
   echo $pathaliasFile
 
+}
+
+# Build path aliases files
+function buildApiMarkdown() 
+{
+  outputpath=$1
+  
+  # list all *.sh scripts from edjanger path
+  scripts=$(ls {edjangerpath}/*.sh)
+  
+  # create aliases files (*.alias and *.unalias)
+  for script in ${scripts}; do
+
+    base=$(basename ${script})
+
+    #echo "- 'Api doc':" > ${outputpath}/api.index
+    if [[ ! "$base" =~ [_]{1}.* ]]; then
+      #echo -e "Build ${base%.sh}.md in path \"${outputpath}\""
+      parseHeader ${script}
+      header=$(echo -e "$header" | $SED_REGEX "s/#\!\/bin\/bash//g")
+      header=$(echo -e "\`\`\`bash\n${header}\n\`\`\`")
+      #echo -e "$header" > ${outputpath}/${base%.sh}.md
+      echo -e "## Command ${app_name}${base%.sh}" >> ${outputpath}/api.md
+      echo -e "$header" >> ${outputpath}/api.md
+      echo -e "    - ${base%.sh} : \"${outputpath#docs\/}/${base%.sh}.md\""
+      # >> ${outputpath}/api.index
+    fi
+    
+  done
+  
 }
