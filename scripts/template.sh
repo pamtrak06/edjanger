@@ -40,6 +40,7 @@ function check_export_presence_from_properties()
 function create_edjanger_properties()
 {
   command=$1
+  linesep="# ------------------------------------------------------------------------------"
 
   if [[ ! "$command" == *"properties="* ]]; then
     echo -e "edjanger:ERROR no properties argument setted, usage:"
@@ -133,6 +134,9 @@ function create_edjanger_properties()
             cp ${edjangerproperties} ${template%.template}_${date_time}.bak
             echo -e "  . create \"${edjangerproperties}\" file from template \"${template}\" and configuration file \"${prop_file}\""
             . ${prop_file} && envsubst < "${template}" | tee "${edjangerproperties}" > /dev/null
+            autmaticmsg="# Automatically generated at ${date_time} with configuration file \"${prop_file}\" , do not edit by hand."
+            sed -i "2i${linesep}" ${edjangerproperties}
+            sed -i "2i${autmaticmsg}" ${edjangerproperties}
           fi
 
         # else create edjanger.properties
@@ -140,6 +144,9 @@ function create_edjanger_properties()
 
           echo -e "  . create \"${edjangerproperties}\" file from template \"${template}\" and configuration file \"${prop_file}\""
           . ${prop_file} && envsubst < "${template}" | tee "${edjangerproperties}" > /dev/null
+          autmaticmsg="# Automatically generated at ${date_time} with configuration file \"${prop_file}\" , do not edit by hand."
+          sed -i "2i${linesep}" ${edjangerproperties}
+          sed -i "2i${autmaticmsg}" ${edjangerproperties}
 
         fi
       # else configuration file doe not exist
