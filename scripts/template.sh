@@ -136,7 +136,7 @@ function create_edjanger_properties()
             echo -e "  . create \"${edjangerproperties}\" file from template \"${template}\" and configuration file \"${prop_file}\""
             . ${prop_file} && envsubst < "${template}" | tee "${edjangerproperties}" > /dev/null
             
-            autmaticmsg="# Automatically generated at ${date_time} with configuration file \"${prop_file}\" , do not edit by hand."
+            autmaticmsg="# Automatically generated at ${date_time} with configuration file \"${prop_file}\"\n# Do not edit by hand."
             sed -i "2i${linesep}" ${edjangerproperties}
             sed -i "3i${autmaticmsg}" ${edjangerproperties}
             
@@ -149,7 +149,7 @@ function create_edjanger_properties()
           echo -e "  . create \"${edjangerproperties}\" file from template \"${template}\" and configuration file \"${prop_file}\""
           . ${prop_file} && envsubst < "${template}" | tee "${edjangerproperties}" > /dev/null
           
-          autmaticmsg="# Automatically generated at ${date_time} with configuration file \"${prop_file}\" , do not edit by hand."
+          autmaticmsg="# Automatically generated at ${date_time} with configuration file \"${prop_file}\"\n# Do not edit by hand."
           sed -i "2i${linesep}" ${edjangerproperties}
           sed -i "3i${autmaticmsg}" ${edjangerproperties}
 
