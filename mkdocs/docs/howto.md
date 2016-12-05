@@ -8,63 +8,63 @@ Those aliases overrides standard docker commands for container and images.
 
 |                   | Description                                                                     | IMAGE | CONTAINER |
  ------------------ | ------------------------------------------------------------------------------- | ----- | --------- |
-| [edjangerattach](http://127.0.0.1:8000/api/#command-edjangerattach)  | "docker attach" with parameters read from local edjanger.properties.            |       |     X     |
-| [edjangeredjangerbuild](http://127.0.0.1:8000/api/#command-edjangerbuild)  | "docker build" with parameters read from local edjanger.properties.             |   X   |           |
-| [edjangeredjangercommit](http://127.0.0.1:8000/api/#command-edjangercommit)  | "docker commit" with parameters read from local edjanger.properties.            |   X   |     X     |
-| [edjangeredjangercopy](http://127.0.0.1:8000/api/#command-edjangercopy)    | "docker copy" with parameters read from local edjanger.properties.              |       |     X     |
-| [edjangeredjangercreate](http://127.0.0.1:8000/api/#command-edjangercreate)  | "docker create" with parameters read from local edjanger.properties.            |   X   |           |
-| [edjangeredjangerdiff](http://127.0.0.1:8000/api/#command-edjangerdiff)    | "docker diff" with parameters read from local edjanger.properties.              |       |     X     |
-| [edjangeredjangerevents](http://127.0.0.1:8000/api/#command-edjangerevents)  | "docker events" with parameters read from local edjanger.properties.            |       |     X     |
-| [edjangeredjangerexec](http://127.0.0.1:8000/api/#command-edjangerexec)    | "docker exec" with parameters read from local edjanger.properties.              |       |     X     |
-| [edjangeredjangerexport](http://127.0.0.1:8000/api/#command-edjangerexport)  | "docker port" with parameters read from local edjanger.properties.              |       |     X     |
-| [edjangeredjangerhistory](http://127.0.0.1:8000/api/#command-edjangerhistory) | "docker history" with parameters read from local edjanger.properties.           |   X   |           |
-| [edjangeredjangerimages](http://127.0.0.1:8000/api/#command-edjangerimages)  | "docker images" with parameters read from local edjanger.properties.            |   X   |     X     |
-| [edjangeredjangerimport](http://127.0.0.1:8000/api/#command-edjangerimport)  | "docker import" with parameters read from local edjanger.properties.            |   X   |           |
-| [edjangeredjangerinspect](http://127.0.0.1:8000/api/#command-edjangerinspect) | "docker inspect" with parameters read from local edjanger.properties.           |   X   |     X     |
-| [edjangeredjangerkill](http://127.0.0.1:8000/api/#command-edjangerkill)    | "docker kill" with parameters read from local edjanger.properties.              |       |     X     |
-| [edjangeredjangerlogs](http://127.0.0.1:8000/api/#command-edjangerlogs)    | "docker logs" with parameters read from local edjanger.properties.              |       |     X     |
-| [edjangeredjangerpause](http://127.0.0.1:8000/api/#command-edjangerpause)  | "docker pause" with parameters read from local edjanger.properties.             |       |     X     |
-| [edjangeredjangerps](http://127.0.0.1:8000/api/#command-edjangerps)      | "docker ps" with parameters read from local edjanger.properties.                |       |     X     |
-| [edjangeredjangerpsa](http://127.0.0.1:8000/api/#command-edjangerpsa)     | "docker ps -a" with parameters read from local edjanger.properties.             |       |     X     |
-| [edjangeredjangerrename](http://127.0.0.1:8000/api/#command-edjangerrename)  | "docker rename" with parameters read from local edjanger.properties.            |       |     X     |
-| [edjangeredjangerrestart](http://127.0.0.1:8000/api/#command-edjangerrestart) | "docker restart" with parameters read from local edjanger.properties.           |       |     X     |
-| [edjangeredjangerm](http://127.0.0.1:8000/api/#command-edjangerrm)       | "docker rm" with parameters read from local edjanger.properties.                |       |     X     |
-| [edjangeredjangermi](http://127.0.0.1:8000/api/#command-edjangerrmi)      | "docker rmi" with parameters read from local edjanger.properties.               |   X   |           |
-| [edjangeredjangerun](http://127.0.0.1:8000/api/#command-edjangerrun)      | "docker run -d" with parameters read from local edjanger.properties.            |       |     X     |
-| [edjangeredjangeruni](http://127.0.0.1:8000/api/#command-edjangerruni)     | "docker run -it" with parameters read from local edjanger.properties.           |       |     X     |
-| [edjangeredockestart](http://127.0.0.1:8000/api/#command-edjangerstart)     | "docker start" with parameters read from local edjanger.properties.             |       |     X     |
-| [edjangeredockestats](http://127.0.0.1:8000/api/#command-edjangerstats)     | "docker stats" with parameters read from local edjanger.properties.             |       |     X     |
-| [edjangeredockestop](http://127.0.0.1:8000/api/#command-edjangerstop)      | "docker stop" with parameters read from local edjanger.properties.              |       |     X     |
-| [edjangeredjangertag](http://127.0.0.1:8000/api/#command-edjangertag)     | "docker tag" with parameters read from local edjanger.properties.               |   X   |           |
-| [edjangeredjangertop](http://127.0.0.1:8000/api/#command-edjangertop)     | "docker top" with parameters read from local edjanger.properties.               |       |     X     |
-| [edjangeredjangerunpause](http://127.0.0.1:8000/api/#command-edjangerpause) | "docker unpause" with parameters read from local edjanger.properties.           |       |     X     |
-| [edjangeredjangerupdate](http://127.0.0.1:8000/api/#command-edjangerupdate)  | "docker update" with parameters read from local edjanger.properties.            |       |     X     |
-| [edjangeredjangerwait](http://127.0.0.1:8000/api/#command-edjangerwait)    | "docker wait" with parameters read from local edjanger.properties.              |       |     X     |
+| [edjangerattach](api/#command-edjangerattach)  | "docker attach" with parameters read from local edjanger.properties.            |       |     X     |
+| [edjangeredjangerbuild](api/#command-edjangerbuild)  | "docker build" with parameters read from local edjanger.properties.             |   X   |           |
+| [edjangeredjangercommit](api/#command-edjangercommit)  | "docker commit" with parameters read from local edjanger.properties.            |   X   |     X     |
+| [edjangeredjangercopy](api/#command-edjangercopy)    | "docker copy" with parameters read from local edjanger.properties.              |       |     X     |
+| [edjangeredjangercreate](api/#command-edjangercreate)  | "docker create" with parameters read from local edjanger.properties.            |   X   |           |
+| [edjangeredjangerdiff](api/#command-edjangerdiff)    | "docker diff" with parameters read from local edjanger.properties.              |       |     X     |
+| [edjangeredjangerevents](api/#command-edjangerevents)  | "docker events" with parameters read from local edjanger.properties.            |       |     X     |
+| [edjangeredjangerexec](api/#command-edjangerexec)    | "docker exec" with parameters read from local edjanger.properties.              |       |     X     |
+| [edjangeredjangerexport](api/#command-edjangerexport)  | "docker port" with parameters read from local edjanger.properties.              |       |     X     |
+| [edjangeredjangerhistory](api/#command-edjangerhistory) | "docker history" with parameters read from local edjanger.properties.           |   X   |           |
+| [edjangeredjangerimages](api/#command-edjangerimages)  | "docker images" with parameters read from local edjanger.properties.            |   X   |     X     |
+| [edjangeredjangerimport](api/#command-edjangerimport)  | "docker import" with parameters read from local edjanger.properties.            |   X   |           |
+| [edjangeredjangerinspect](api/#command-edjangerinspect) | "docker inspect" with parameters read from local edjanger.properties.           |   X   |     X     |
+| [edjangeredjangerkill](api/#command-edjangerkill)    | "docker kill" with parameters read from local edjanger.properties.              |       |     X     |
+| [edjangeredjangerlogs](api/#command-edjangerlogs)    | "docker logs" with parameters read from local edjanger.properties.              |       |     X     |
+| [edjangeredjangerpause](api/#command-edjangerpause)  | "docker pause" with parameters read from local edjanger.properties.             |       |     X     |
+| [edjangeredjangerps](api/#command-edjangerps)      | "docker ps" with parameters read from local edjanger.properties.                |       |     X     |
+| [edjangeredjangerpsa](api/#command-edjangerpsa)     | "docker ps -a" with parameters read from local edjanger.properties.             |       |     X     |
+| [edjangeredjangerrename](api/#command-edjangerrename)  | "docker rename" with parameters read from local edjanger.properties.            |       |     X     |
+| [edjangeredjangerrestart](api/#command-edjangerrestart) | "docker restart" with parameters read from local edjanger.properties.           |       |     X     |
+| [edjangeredjangerm](api/#command-edjangerrm)       | "docker rm" with parameters read from local edjanger.properties.                |       |     X     |
+| [edjangeredjangermi](api/#command-edjangerrmi)      | "docker rmi" with parameters read from local edjanger.properties.               |   X   |           |
+| [edjangeredjangerun](api/#command-edjangerrun)      | "docker run -d" with parameters read from local edjanger.properties.            |       |     X     |
+| [edjangeredjangeruni](api/#command-edjangerruni)     | "docker run -it" with parameters read from local edjanger.properties.           |       |     X     |
+| [edjangeredockestart](api/#command-edjangerstart)     | "docker start" with parameters read from local edjanger.properties.             |       |     X     |
+| [edjangeredockestats](api/#command-edjangerstats)     | "docker stats" with parameters read from local edjanger.properties.             |       |     X     |
+| [edjangeredockestop](api/#command-edjangerstop)      | "docker stop" with parameters read from local edjanger.properties.              |       |     X     |
+| [edjangeredjangertag](api/#command-edjangertag)     | "docker tag" with parameters read from local edjanger.properties.               |   X   |           |
+| [edjangeredjangertop](api/#command-edjangertop)     | "docker top" with parameters read from local edjanger.properties.               |       |     X     |
+| [edjangeredjangerunpause](api/#command-edjangerpause) | "docker unpause" with parameters read from local edjanger.properties.           |       |     X     |
+| [edjangeredjangerupdate](api/#command-edjangerupdate)  | "docker update" with parameters read from local edjanger.properties.            |       |     X     |
+| [edjangeredjangerwait](api/#command-edjangerwait)    | "docker wait" with parameters read from local edjanger.properties.              |       |     X     |
 
 ## How to : advanced
 
 |                     | Description                                                                   | IMAGE | CONTAINER |
 | ------------------- | ----------------------------------------------------------------------------- |
-| [edjangeredjangerclean](http://127.0.0.1:8000/api/#command-edjangerclean)     | clean all images with none attribute (run docker rmi with "none" filter).     |   X   |           |
-| [edjangeredjangerports](http://127.0.0.1:8000/api/#command-edjangerports)     | "docker ports" on all running container.                                      |       |     X     |
-| [edjangeredjangermexiteds](http://127.0.0.1:8000/api/#command-edjangerrmexiteds)  | docker rm with list of container with exited status.                          |       |     X     |
-| [edjangeredjangerrmorphanedvolumes](http://127.0.0.1:8000/api/#command-edjangerrmorphanedvolumes)  | remove all orphaned volumes.                                         |       |     X     |
+| [edjangeredjangerclean](api/#command-edjangerclean)     | clean all images with none attribute (run docker rmi with "none" filter).     |   X   |           |
+| [edjangeredjangerports](api/#command-edjangerports)     | "docker ports" on all running container.                                      |       |     X     |
+| [edjangeredjangermexiteds](api/#command-edjangerrmexiteds)  | docker rm with list of container with exited status.                          |       |     X     |
+| [edjangeredjangerrmorphanedvolumes](api/#command-edjangerrmorphanedvolumes)  | remove all orphaned volumes.                                         |       |     X     |
 
 
 ## How to : useful
 
 |                     | Description                                                                   |
 | ------------------- | ----------------------------------------------------------------------------- |
-| [edjangeredjangerabout](http://127.0.0.1:8000/api/#command-edjangerabout)     | about script for edjanger.                                                    |
-| [edjangeredjangeralias](http://127.0.0.1:8000/api/#command-edjangeralias)     | print edjanger aliases.                                                       |
-| [edjangeredjangercheck](http://127.0.0.1:8000/api/#command-edjangercheck)     | check missing parameters in edjanger.properties.                              |
-| [edjangeredjangercompose](http://127.0.0.1:8000/api/#command-edjangercompose)   | create docker-compose.yaml from all edjanger.propeorties in current path.     |
-| [edjangeredjangerhelp](http://127.0.0.1:8000/api/#command-edjangerhelp)      | help for all commands.                                                        |
-| [edjangeredjangerinit](http://127.0.0.1:8000/api/#command-edjangerinit)      | initialize an edjanger project.                                               |
-| [edjangeredjangerportdesc](http://127.0.0.1:8000/api/#command-edjangerportdec)  | description of port.                                                          |
-| [edjangeredjangertemplate](http://127.0.0.1:8000/api/#command-edjangertemplate)  | generate edjanger.poperties from edjanger.template.                           |
-| [edjangeredjangerunalias](http://127.0.0.1:8000/api/#command-edjangerunalias)   | help script for edjanger command.                                             |
-| [edjangeredjangerupgrade](http://127.0.0.1:8000/api/#command-edjangerupgrade)   | upgrade edjanger.                                                             |
+| [edjangeredjangerabout](api/#command-edjangerabout)     | about script for edjanger.                                                    |
+| [edjangeredjangeralias](api/#command-edjangeralias)     | print edjanger aliases.                                                       |
+| [edjangeredjangercheck](api/#command-edjangercheck)     | check missing parameters in edjanger.properties.                              |
+| [edjangeredjangercompose](api/#command-edjangercompose)   | create docker-compose.yaml from all edjanger.propeorties in current path.     |
+| [edjangeredjangerhelp](api/#command-edjangerhelp)      | help for all commands.                                                        |
+| [edjangeredjangerinit](api/#command-edjangerinit)      | initialize an edjanger project.                                               |
+| [edjangeredjangerportdesc](api/#command-edjangerportdec)  | description of port.                                                          |
+| [edjangeredjangertemplate](api/#command-edjangertemplate)  | generate edjanger.poperties from edjanger.template.                           |
+| [edjangeredjangerunalias](api/#command-edjangerunalias)   | help script for edjanger command.                                             |
+| [edjangeredjangerupgrade](api/#command-edjangerupgrade)   | upgrade edjanger.                                                             |
 
 
 **Check missing parameters in edjanger.properties**

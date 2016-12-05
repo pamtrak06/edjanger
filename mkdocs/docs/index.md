@@ -298,7 +298,7 @@ Use following structure :
 ## Help
 
 For each commands, see edjangerhelp 'command' for list of parameters read in edjanger.properties and arguments.
-
+<iframe width="100%" height="500" src="//jsfiddle.net/pamtrak06/9wvxa133/38/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ## Unit tests
 
@@ -310,6 +310,7 @@ Tests use following
 Result Tests are visible here
 
 - [pamtrak06/edjanger from Travis](https://travis-ci.org/pamtrak06/edjanger)
+- [![Build Status](https://travis-ci.org/pamtrak06/edjanger.svg?branch=master)](https://travis-ci.org/pamtrak06/edjanger)
 
 Run tests :
 
