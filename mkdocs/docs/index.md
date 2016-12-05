@@ -6,12 +6,12 @@
 >
 > Try edjanger !
 >
-> Edjanger purpose is to give simple and shortest command for docker beginners.
+> Edjanger purpose is to give simple and shortest commands for docker beginners.
 > There is no intention to replace docker-compose.
 > Objective is to reduce time to write long commands with many options and to give a standard way (edjanger.properties) to store them.
 > Standard use case is to work on a single Docker container configuration.
 > When containers configuration process is done, you could produce a docker-compose.yaml with edjangercompose command.
-> Edjanger has a command (edjangertemplate) allowing to provide many configuration for the same container (allowing to define many diffrent ports or shared volume configuration or other options for integration or production...)
+> Edjanger had a command (edjangertemplate) allowing to provide many configuration for the same container (allowing to define many different ports or shared volume configuration or other options for integration or production or any others...)
 
 <!--
 #![Architecture](images/edjanger_archi.png)
