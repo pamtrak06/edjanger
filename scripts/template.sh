@@ -130,20 +130,25 @@ function create_edjanger_properties()
           read response
 
           if [ "y" = "${response}" ]; then
+          
             date_time=$(date +"%Y%m%d_%H%M%S")
             cp ${edjangerproperties} ${template%.template}_${date_time}.bak
             echo -e "  . create \"${edjangerproperties}\" file from template \"${template}\" and configuration file \"${prop_file}\""
             . ${prop_file} && envsubst < "${template}" | tee "${edjangerproperties}" > /dev/null
+            
             autmaticmsg="# Automatically generated at ${date_time} with configuration file \"${prop_file}\" , do not edit by hand."
             sed -i "2i${linesep}" ${edjangerproperties}
             sed -i "3i${autmaticmsg}" ${edjangerproperties}
+            
           fi
 
         # else create edjanger.properties
         else
-
+        
+          date_time=$(date +"%Y%m%d_%H%M%S")
           echo -e "  . create \"${edjangerproperties}\" file from template \"${template}\" and configuration file \"${prop_file}\""
           . ${prop_file} && envsubst < "${template}" | tee "${edjangerproperties}" > /dev/null
+          
           autmaticmsg="# Automatically generated at ${date_time} with configuration file \"${prop_file}\" , do not edit by hand."
           sed -i "2i${linesep}" ${edjangerproperties}
           sed -i "3i${autmaticmsg}" ${edjangerproperties}
