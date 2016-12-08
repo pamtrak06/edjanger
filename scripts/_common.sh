@@ -641,7 +641,7 @@ function buildPathAliases()
 
 }
 
-# Build path aliases files
+# update help header in markdown for edjanger web site
 function buildApiMarkdown() 
 {
   outputpath=$1
@@ -662,6 +662,8 @@ function buildApiMarkdown()
       #echo -e "$header" > ${outputpath}/${base%.sh}.md
       echo -e "## Command ${app_name}${base%.sh}" >> ${outputpath}/api.md
       echo -e "$header" >> ${outputpath}/api.md
+      echo -e "Note: help for this command could be retrieve by typing:" >> ${outputpath}/api.md
+      echo -e "\`\`\`bash\n${app_name}${base%.sh} --help\n\`\`\`" >> ${outputpath}/api.md
     fi
     
   done
