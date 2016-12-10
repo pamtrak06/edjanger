@@ -69,7 +69,7 @@ read_app_properties
 [ -z "${command_run}" ]                        && command_run="/bin/bash"
 [ -n "${command_run}" ]                        && commandoptions="${commandoptions} ${command_run}"
 [ -n "${commandoptions}" ]                     && commandoptions="--commandoptions=\"${commandoptions}\""
-[ -n "$@" ]                                    && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
+[[ -n "$@" ]]                                  && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
                                                && externaloptions=$(echo $@ | sed "s|[[:space:]]-|;-|g")
 dockerbasiccontainer "--scriptname=\"$0\";--commandline=\"run -it --name {container_name}\";--commandcomment=\"Create new container and enter interactive: {container_name}...\";${commandoptions};${externaloptions}"
 

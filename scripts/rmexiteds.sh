@@ -44,7 +44,7 @@
 # 
 # [ -n "${rm_options}" ]              && commandoptions="${commandoptions} ${rm_options}"
 # [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
-#[ -n "$@" ]                          && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
+#[[ -n "$@" ]]                          && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
 #                                     && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]--|;--|g") \
 #                                     && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]-|;-|g")
 # exitedcontainer=$(docker ps -aq --filter "status=exited")

@@ -53,7 +53,7 @@ imagesnone=$(docker images --format="{{.Repository}} {{.ID}}" | grep -e '.none..
 
 [ -n "${imagesnone}" ]                         && commandoptions="${commandoptions} ${imagesnone}"
 [ -n "${commandoptions}" ]                     && commandoptions="--commandoptions=\"${commandoptions}\""
-[ -n "$@" ]                                    && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
+[[ -n "$@" ]]                                  && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
                                                && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]--|;--|g") \
                                                && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]-|;-|g")
 confirm_question="Image with attribute name=\"none\" will be permanently erased, do you want to continue (y/n) ?"

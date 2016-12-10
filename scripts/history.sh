@@ -50,7 +50,7 @@ read_app_properties
 [ -n "${history_options}" ]         && commandoptions="${commandoptions} ${history_options}"
 [ -n "${image_name}" ]              && commandoptions="${commandoptions} ${image_name}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
-[ -n "$@" ]                         && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
+[[ -n "$@" ]]                       && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
                                     && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]--|;--|g") \
                                     && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]-|;-|g")
 dockerbasicimage "--scriptname=\"$0\";--commandline=\"history\";--commandcomment=\"Show the history of images which name contains: {image_name}...\";${commandoptions};${externaloptions}"

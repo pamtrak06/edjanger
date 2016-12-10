@@ -66,7 +66,7 @@ build_arguments="${proxy_args} ${build_args}"
 [ -n "${build_path}" ]                         && commandoptions="${commandoptions} ${build_path}"
 [ -n "${build_options}" ]                      && commandoptions="${commandoptions} ${build_options}"
 [ -n "${commandoptions}" ]                     && commandoptions="--commandoptions=\"${commandoptions}\""
-[ -n "$@" ]                                    && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
+[[ -n "$@" ]]                                  && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
                                                && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]--|;--|g") \
                                                && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]-|;-|g")
 dockerbasicimage "--scriptname=\"$0\";--commandline=\"build -t {image_name}\";--commandcomment=\"Build image: {image_name}...\";${commandoptions};${externaloptions}"
