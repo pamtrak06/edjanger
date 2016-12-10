@@ -319,6 +319,20 @@ touch build/Dockerfile
 echo "FROM jenkins:latest" > build/Dockerfile
 ```
 
+## How to initialize an edjanger project with a template
+([go up to table of content](#table-of-content))
+
+Create an edjanger project in your working docker folder:
+```bash
+edjangerinit template=demo_jenkins
+```
+This command give an equivalent structure from previous paragraph.
+To initialize and configure the edjanger.properties file, do it like :
+```bash
+edjangertemplate properties=configuration
+```
+This command read file configuration.properties and load environnement varaibles in edjanger.template file to produce edjanger.properties file configured.
+
 ## How to use edjanger in a docker project working directory
 ([go up to table of content](#table-of-content))
 
