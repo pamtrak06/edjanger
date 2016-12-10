@@ -10,35 +10,88 @@
 ##  
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_options.sh
+source {edjangerpath}/prefs.properties
 
 config_extension=properties
 app_name=edjanger
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
         SED_REGEX="sed -r"
+        ARCHIVE="tar -cf"
+        ARCHIVE_APPEND="tar -rf"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
         # Mac OSX
         SED_REGEX="sed -E"
+        ARCHIVE="tar -cf"
+        ARCHIVE_APPEND="tar -rf"
 elif [[ "$OSTYPE" == "cygwin" ]]; then
         # POSIX compatibility layer and Linux environment emulation for Windows
         SED_REGEX="sed -r"
+        ARCHIVE="tar -cf"
+        ARCHIVE_APPEND="tar -rf"
 elif [[ "$OSTYPE" == "msys" ]]; then
         # Lightweight shell and GNU utilities compiled for Windows (part of MinGW)
         SED_REGEX="sed -r"
+        ARCHIVE="tar -cf"
+        ARCHIVE_APPEND="tar -rf"
 elif [[ "$OSTYPE" == "win32" ]]; then
         # I'm not sure this can happen.
         SED_REGEX="sed -r"
+        ARCHIVE="tar -cf"
+        ARCHIVE_APPEND="tar -rf"
 elif [[ "$OSTYPE" == "freebsd"* ]]; then
         # ...
         SED_REGEX="sed -r"
+        ARCHIVE="tar -cf"
+        ARCHIVE_APPEND="tar -rf"
 else
         # Unknown.
         SED_REGEX="sed -r"
+        ARCHIVE="tar -cf"
+        ARCHIVE_APPEND="tar -rf"
 fi
+
+# unset variables valid only if script is running in a subprocess (executed with bash)
+function unsetOptionsParameters()
+{
+  parameterslist=$*
+  IFS=';' read -ra parameters <<< "$parameterslist"
+  for parameter in "${parameters[@]}"; do
+    #echo "Unset parameters from option:${parameter}"
+    if [[ "${parameter}" = "--"*"="* ]]; then
+      parameter=${parameter#--}
+      #echo "Unset parameter starting with \"--\": \"${parameter%%=*}\""
+      unset -v "${parameter%%=*}"
+    elif [[ "${parameter}" = "-"*"="* ]]; then
+      parameter=${parameter#-}
+      #echo "Unset parameter starting with \"-\": \"${parameter%%=*}\""
+      unset -v "${parameter%%=*}"
+    elif [[ "${parameter}" = *"="* ]]; then
+      #echo "Unset parameter without prefix: \"${parameter%%=*}\""
+      unset -v "${parameter%%=*}"
+    elif [[ "$parameter" =~ ^[-]*help[a-z]* ]] || [ "$parameter" = "-h" ]; then
+      unset -v help
+    else
+      if [ -n "${parameter#--}" ]; then
+        parameter=${parameter#--}
+        #echo "Unset parameter starting with \"--\": \"${parameter%%=*}\""
+        unset -v "${parameter%%=*}"
+      elif [ -n "${parameter#-}" ]; then
+        parameter=${parameter#-}
+        #echo "Unset parameter starting with \"-\": \"${parameter%%=*}\""
+        unset -v "${parameter%%=*}"
+      elif [ -n "${parameter}" ]; then
+        #echo "Unset parameter witout prefix: \"${parameter}\""
+        unset -v "${parameter}"
+      fi
+    fi
+  done
+}
 
 # eval parameters from all parametters given as argument of function
 function evalOptionsParameters()
 {
+  unsetOptionsParameters $*
   # scriptname=$(echo $* | $SED_REGEX "s|.*--scriptname=\"(.+\.sh)\";.*|\1|g")
   # 
   # # Parse known options from documentation
@@ -86,26 +139,29 @@ function evalOptionsParameters()
         #echo "edocker:ERROR: parameter rm evaluation not allowed: ${parameter} !!!"
         exit -1
       elif [[ "${parameter}" = "--"*"="* ]]; then
-        #echo "Eval parameter --:${parameter#--}"
+        #echo "Eval parameter starting with \"--\": \"${parameter#--}\""
         eval "${parameter#--}"
         #parameter=${parameter#--}
       elif [[ "${parameter}" = "-"*"="* ]]; then
-        #echo "Eval parameter -:${parameter#-}"
+        #echo "Eval parameter starting with \"-\": \"${parameter#-}\""
         eval "${parameter#-}"
         #parameter=${parameter#-}
       elif [[ "${parameter}" = *"="* ]]; then
-        #echo "Eval parameter:${parameter}"
+        #echo "Eval parameter without prefix: \"${parameter}\""
         eval "${parameter}"
         #parameter=${parameter}
       elif [[ "$parameter" =~ ^[-]*help[a-z]* ]] || [ "$parameter" = "-h" ]; then
         help=true
       else
         if [ -n "${parameter#--}" ]; then
-          eval "${parameter#--}=true" #&& echo "Set parameter \"${parameter#--}\" to true"
+          #echo "Set parameter \"${parameter#--}\" starting with \"--\" to true"
+          eval "${parameter#--}=true" 
         elif [ -n "${parameter#-}" ]; then
-          eval "${parameter#-}=true" #&& echo "Set parameter \"${parameter#-}\" to true"
+          #echo "Set parameter \"${parameter#-}\" starting with \"-\" to true"
+          eval "${parameter#-}=true" 
         elif [ -n "${parameter}" ]; then
-          eval "${parameter}=true" #&& echo "Set parameter \"${parameter}\" to true"
+          #echo "Set parameter \"${parameter}\" without prefix to true"
+          eval "${parameter}=true" 
         fi
       fi
       #paramvar=${parameter%%=*}
@@ -117,6 +173,73 @@ function evalOptionsParameters()
       #eval "${paramvar}=${paramval}"
       
   done
+}
+
+function print_template_list()
+{
+  detailed=$1
+  
+  listzip=$(find $templates_path -name "*.zip")
+  for zip in ${listzip[@]}
+  do
+    
+    zipbase=$(basename ${zip})
+    zipid=${zipbase%.*}
+    echo "# Template \"${zipid}\""
+    
+    if $detailed; then
+      unzip -c ${zip} $zipid.yaml | grep -v "Archive:" | grep -v "inflating:"
+    else
+      unzip -c ${zip} $zipid.yaml | grep -v "Archive:" | grep -v "inflating:" | grep "# Template" 
+    fi
+    
+  done
+}
+
+function delete_template()
+{
+  template=$1
+  
+  zipfile=$templates_path/${template}.zip
+  
+  [ ! -f $zipfile ] \
+      && echo "Template ${template}.zip does not exist in path \"$templates_path\"" \
+      && exit 1
+  
+  zipbase=$(basename ${zipfile})
+  zipid=${zipbase%.*}
+
+  echo -e "${app_name}:WARNING template \"${template}\", will be definitively removed from database, do you confirm deletion (y/n)?"
+  read response
+  if [ "y" = "$response" ]; then
+    rm -f $zipfile
+  fi
+
+}
+
+function init_new_template()
+{
+  template=$1
+  
+  [ "$(ls -A .)" ] \
+      && echo "edjanger:WARNING: directory is not empty" \
+      && return 1 
+  
+  zipfile=$templates_path/${template}.zip
+  
+  [ ! -f $zipfile ] \
+      && echo "Template ${template}.zip does not exist in path \"$templates_path\"" \
+      && exit 1
+  
+  zipbase=$(basename ${zipfile})
+  zipid=${zipbase%.*}
+  
+  unzip $zipfile -d $PWD
+  tar -xvf $zipid.tar
+  
+  rm -f $zipid.tar
+  rm -f $zipid.yaml
+  
 }
 
 # check if a linux binary is installed
@@ -184,28 +307,10 @@ function printHeader()
   echo "$header"
 }
 
-# unset variables valid only if script is running in a subprocess (executed with bash)
-function unsetOptionsParameters()
-{
-  # TODO do it with readSpecifications and readDocumentation
-  unset -v help
-  unset -v scriptname
-  unset -v confirm
-  unset -v confirmquestion
-  unset -v commandline
-  unset -v commandcomment
-  unset -v commandoptions
-  unset -v noneedsofproperties
-  unset -v all
-  unset -v force
-  unset -v index
-}
-
 # primitive function for docker image commands
 function dockerbasicimage()
 {
 
-  unsetOptionsParameters
   evalOptionsParameters "$*"
 
   if [ -n "$help" ]; then
@@ -279,7 +384,6 @@ function computeContainerIndexFromTotal()
 function dockerbasiccontainer()
 {
   
-  unsetOptionsParameters
   evalOptionsParameters "$*"
   
   if [ -n "$help" ]; then
