@@ -212,61 +212,105 @@ cd jenkins; edjangerinit
 vi edjanger.properties
 ```
 ```bash
-#  ----------------------------------------------------
-#  The MIT License (MIT)
-#
-#  Copyright (c) 2016 copyright pamtrak06@gmail.com
-#  ----------------------------------------------------
-#  CONFIGURATION    : edjanger.template
-#  DESCRIPTION      : project configuration file for edjanger
-#  CREATOR          : pamtrak06@gmail.com
-#  --------------------------------
-#  VERSION          : 1.0
-#  DATE             : 2016-03-02
-#  COMMENT          : creation
-#  --------------------------------
-#  USAGE            : read by edjanger scripts
-#  ----------------------------------------------------
-#cron_build: flag to start container at boot
-#cron_build=true
-#cron_start: flag to start container at boot
-cron_start=true
-# docker_command:print docker command
-docker_command=true
-# image_name:image name
-image_name="devops/jenkins"
-# build_path:path where is found Dockerfile
-build_path=build
-# build_args:build arguments
-# build_args="--build-arg VAR1='value1' --build-arg VAR2='value2'"
-# build_forcerm:always remove intermediate containers
-# build_forcerm="--force-rm"
-# build_rm: Remove intermediate containers after a successful build
-# build_rm="--rm=true"
-# build_nocache:do not use cache when building the image
-# build_nocache="--no-cache"
-# build_file:name of the Dockerfile (Default is 'PATH/Dockerfile')
-# build_file="--file Dockerfile"
-# container_name:container
+#!/bin/bash
+# ------------------------------------------------------------------------------
+##  Template file used by edjanger commands.
+##  
+##  edjanger, The MIT License (MIT)
+##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  
+# ------------------------------------------------------------------------------
+
+#cron_start:start active containers from crontab with @reboot cron_start_only.sh <edjanger.properties paths> (true|false)
+cron_start=false
+
+#cron_build:build and start containers from crontab with @reboot cron_build_start.sh <edjanger.properties paths> (true|false)
+cron_build=false
+
+#docker_command:show docker command when edjanger commands are used
+docker_command=
+
+# ------------------------------------------------------------------------------
+# Docker build and run command options
+# ------------------------------------------------------------------------------
+
+#image_name:image name
+image_name="demo/jenkins"
+
+#build_path:path where is found Dockerfile and its dependencies
+build_path="build"
+
+#build_args:build arguments
+#build_args="--build-arg VAR1='value1' --build-arg VAR2='value2'"
+
+#build_forcerm:always remove intermediate containers
+#build_forcerm="--force-rm"
+
+#build_rm:remove intermediate containers after a successful build
+#build_rm="--rm=true"
+
+#build_nocache:do not use cache when building the image
+#build_nocache="--no-cache"
+
+#build_file:name of the Dockerfile (Default is 'CURRENT PATH/Dockerfile')
+build_file="--file build/Dockerfile"
+
+#build_options:all the other build build options
+build_options=""
+
+#force_rmi:force image deletion
+#force_rmi="--force"
+
+#container_name:container name
 container_name="jenkins"
-# exposed_ports:exposed port
-exposed_ports="-p 8080:8080 -p 50000:50000"
-# shared_volumes:shared volumes
-shared_volumes="-v $PWD/volumes/jenkins_home:/var/jenkins_home"
-# volumes_from:expose volumes from another container into current container
-# volumes_from="--volumes-from <container name with exposed volumes>"
-# environment_variables:environnment variables
-# environment_variables="-e <variable name 1>=<value 1> -e <variable name 2>=<value 2>"
-# linked_containers:linked container
-#linked_containers="--link dind_1:docker"
+
+#container_hostname:container host name (option -h, --hostname string for docker run)
+##container_hostname=""
+
+#container_privilege:give extended privileges to this container (option --privileged for docker run)
+#container_privilege=""
+
+#container_remove:automatically remove the container when it exits (option --rm for docker run)
+#container_remove=""
+
+#container_addhost:Add a custom host-to-IP mapping (host:ip) (default []) (option --add-host value for docker run)
+#container_addhost=""
+
+#exposed_ports:exposed port
+exposed_ports="-p 8080:8080"
+
+#shared_volumes:shared volumes
+shared_volumes="-v /Users/docker/Documents/workspace/docker/test_template/jenkins/volumes/jenkins_home:/var/jenkins_home"
+
+#environment_variables:environnment variables
+#environment_variables=""
+
+#volumes_from:expose volumes from another container into current container
+#volumes_from=""
+
+#linked_containers:linked container
+#linked_containers=""
+
 #network_settings:all network settings options
 #network_settings=--dns [] --net host --network-alias [] --add-host "" --mac-address "" --ip "" --ip6 "" --link-local-ip []
-#runtime_constraints_on_resources: runtime constraints on resources
+
+#runtime_constraints_on_resources:runtime constraints on resources
 #runtime_constraints_on_resources=-m, --memory "" --memory-swap "" --memory-reservation "" --kernel-memory "" ...
-# force_rmi:force deletion
-# force_rmi="--force"
-# command_run:bash command(s) to run
-# command_run="/bin/bash -c \"cd /; ls -la"
+
+#run_other_options:all other available options for docker run
+#run_other_options="all available options for docker run"
+
+#command_args:bash command(s) to run
+#command_args=""
+
+#command_run:bash command(s) to run
+#command_run="/bin/bash -c \"cd /; ls -la\""
+
+# ------------------------------------------------------------------------------
+# Others docker command options
+# ------------------------------------------------------------------------------
+
+...
 ```
 
 Update Dockerfile with jenkins reference from [docker hub](https://hub.docker.com/_/jenkins/)
