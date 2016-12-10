@@ -227,6 +227,12 @@
               </a>
             </li>
           
+            <li class="anchor">
+              <a title="How to : contribute" href="#how-to-contribute">
+                How to : contribute
+              </a>
+            </li>
+          
         </ul>
       
     
@@ -659,6 +665,35 @@ exposed_ports=&quot;-p 80:80 -p 443:443&quot;
 <pre><code>crontab -e
 @reboot /opt/edjanger/scripts/cron_build_start.sh /root/workspace/docker
 @reboot /opt/edjanger/scripts/cron_start_only.sh /root/workspace/docker
+</code></pre>
+
+<h2 id="how-to-contribute">How to : contribute</h2>
+<p>Download sources from github :</p>
+<pre><code class="bash">cd /opt
+git clone edjanger https://github.com/pamtrak06/edjanger.git
+cd edjanger
+git clone -b gh-pages https://github.com/pamtrak06/edjanger.git
+cd ..
+</code></pre>
+
+<p>To be in user mode :</p>
+<pre><code class="bash">./edjangerinstall.sh --alias
+./edjangerinstall.sh --a
+</code></pre>
+
+<p>To be in contribution mode (allow to push to github) :</p>
+<pre><code class="bash">./edjangerinstall.sh --contribution
+./edjangerinstall.sh --c
+</code></pre>
+
+<p>To build web site</p>
+<pre><code class="bash">cd /opt/edjanger/gh-pages/mkdocs
+./build.sh
+./serve.sh
+</code></pre>
+
+<p>Open following :</p>
+<pre><code>http://127.0.0.1:8000
 </code></pre>
           <aside class="copyright" role="note">
             

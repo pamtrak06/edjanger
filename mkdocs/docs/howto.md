@@ -205,3 +205,38 @@ crontab -e
 @reboot /opt/edjanger/scripts/cron_build_start.sh /root/workspace/docker
 @reboot /opt/edjanger/scripts/cron_start_only.sh /root/workspace/docker
 ```
+
+## How to : contribute
+
+Download sources from github :
+```bash
+cd /opt
+git clone edjanger https://github.com/pamtrak06/edjanger.git
+cd edjanger
+git clone -b gh-pages https://github.com/pamtrak06/edjanger.git
+cd ..
+```
+
+To be in user mode :
+```bash
+./edjangerinstall.sh --alias
+./edjangerinstall.sh --a
+```
+
+To be in contribution mode (allow to push to github) :
+```bash
+./edjangerinstall.sh --contribution
+./edjangerinstall.sh --c
+```
+
+To build web site
+```bash
+cd /opt/edjanger/gh-pages/mkdocs
+./build.sh
+./serve.sh
+```
+
+Open following :
+```
+http://127.0.0.1:8000
+```
