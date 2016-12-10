@@ -58,7 +58,7 @@ read_app_properties
 [ -n "${container_name}" ]          && commandoptions="${commandoptions} {container_name}"
 [ -z "${command_run}" ]             && commandoptions="${commandoptions} /bin/bash"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
-[ -n "$@" ]                         && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
+[[ -n "$@" ]]                       && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
                                     && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]--|;--|g") \
                                     && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]-|;-|g")
 dockerbasiccontainer "--scriptname=\"$0\";--commandline=\"exec -it\";--commandcomment=\"Enter in container: {container_name}...\";${commandoptions};${externaloptions}"

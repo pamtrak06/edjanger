@@ -73,7 +73,7 @@ read_app_properties
 [ -n "${image_name}" ]                         && commandoptions="${commandoptions} ${image_name}"
 #[ -n "${command_run}" ]                        && commandoptions="${commandoptions} ${command_run}"
 [ -n "${commandoptions}" ]                     && commandoptions="--commandoptions=\"${commandoptions}\""
-[ -n "$@" ]                                    && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
+[[ -n "$@" ]]                                  && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
                                                && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]--|;--|g") \
                                                && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]-|;-|g")
 dockerbasiccontainer "--scriptname=\"$0\";--commandline=\"create -t --name {container_name}\";--commandcomment=\"Create new container: {container_name}...\";${commandoptions};${externaloptions}"

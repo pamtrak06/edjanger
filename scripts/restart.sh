@@ -50,7 +50,7 @@ read_app_properties
 [ -n "${restart_options}" ]         && commandoptions="${commandoptions} ${restart_options}"
 [ -n "${container_name}" ]          && commandoptions="${commandoptions} {container_name}"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
-[ -n "$@" ]                         && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
+[[ -n "$@" ]]                       && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
                                     && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]--|;--|g") \
                                     && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]-|;-|g")
 dockerbasiccontainer "--scriptname=\"$0\";--commandline=\"restart\";--commandcomment=\"Restart container: {container_name}...\";${commandoptions};${externaloptions}"

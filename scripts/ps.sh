@@ -46,7 +46,7 @@ read_app_properties
 [ -n "${ps_options}" ]              && commandoptions="${commandoptions} ${ps_options}"
 [ -n "${container_name}" ]          && commandoptions="${commandoptions} --filter='name=${container_name}_[0-9]+'"
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
-[ -n "$@" ]                         && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
+[[ -n "$@" ]]                       && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
                                     && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]--|;--|g") \
                                     && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]-|;-|g")
 dockerbasiccontainer "--scriptname=\"$0\";--commandline=\"ps\";--commandcomment=\"State(s) of container(s): {container_name}_[0-9]+...\";${commandoptions};${externaloptions}"
