@@ -1,6 +1,10 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Description: generate edjanger.poperties from edjanger.template
+##  Description: manage templates for edjanger :
+##    - list available template's archive in the local database (short or detailed list)
+##    - initialize a template from a local archive name
+##    - save a template in a local archive from current sources
+##    - delete a template from the a local database
 ##  
 ##  Usage:
 ##     @script.name [option]
