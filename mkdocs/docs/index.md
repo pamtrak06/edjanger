@@ -21,7 +21,7 @@ Demo with an httpd server configuration.
 ```bash
 mkdir webserver
 cd webserver
-edjangerinit --template=httpd
+edjangerinit --template=demo_httpd
 ```
 <iframe width="100%" height="250" src="//jsfiddle.net/pamtrak06/9wvxa133/36/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 <iframe width="100%" height="400" src="//jsfiddle.net/pamtrak06/9wvxa133/27/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>

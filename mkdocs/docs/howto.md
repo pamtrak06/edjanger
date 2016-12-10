@@ -89,9 +89,23 @@ vi docker-compose.yaml
 
 ## How to : template
 
-> Prerequisities : install gettext (for envsubst)
+> Prerequisities : 
+> - gettext (for envsubst)
+> - zip/unzip
 
-- Download and try example from [https://github.com/pamtrak06/edjanger/tree/master/scripts/templates/templating](https://github.com/pamtrak06/edjanger/tree/master/scripts/templates/templating), run:
+- Deploy example "demo_template" with one of following commands:
+
+```bash
+edjangerinit --template=demo_template
+```
+
+or
+
+```bash
+edjangertemplate --init=demo_template
+```
+
+<iframe width="100%" height="300" src="//jsfiddle.net/pamtrak06/9wvxa133/39/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 - Deploy 2 apache web sever (web1 and web2) with specific ports and shared volumes for a "production" environement.
     ```bash
@@ -146,6 +160,27 @@ Example of edjanger.properties produced
 #exposed_ports:exposed port
 exposed_ports="-p 80:80 -p 443:443"
 ```
+
+Example of template workflow:
+
+Initialize an empty project and configure it.
+<iframe width="100%" height="300" src="//jsfiddle.net/pamtrak06/9wvxa133/41/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+Configure properties and run template for jenkins
+<iframe width="100%" height="300" src="//jsfiddle.net/pamtrak06/9wvxa133/42/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+Build and run the jenkins container
+<iframe width="100%" height="300" src="//jsfiddle.net/pamtrak06/9wvxa133/43/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+Save the jenkins template
+<iframe width="100%" height="300" src="//jsfiddle.net/pamtrak06/9wvxa133/44/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+See it in the template list
+<iframe width="100%" height="300" src="//jsfiddle.net/pamtrak06/9wvxa133/45/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+Test initialisation with a demo_jenkins template
+<iframe width="100%" height="300" src="//jsfiddle.net/pamtrak06/9wvxa133/46/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
 
 ## How to : crontab
 
