@@ -181,7 +181,7 @@ Remove edjanger files
 rm -rf {edjanger path}/
 ```
 
-## How to initialize an edjanger project
+## How to initialize an empty edjanger project
 ([go up to table of content](#table-of-content))
 
 Create an uninitialized edjanger.properties file in your working docker folder:
