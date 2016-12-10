@@ -220,13 +220,13 @@ cd ..
 To be in user mode :
 ```bash
 ./edjangerinstall.sh --alias
-./edjangerinstall.sh --a
+./edjangerinstall.sh -a
 ```
 
 To be in contribution mode (allow to push to github) :
 ```bash
 ./edjangerinstall.sh --contribution
-./edjangerinstall.sh --c
+./edjangerinstall.sh -c
 ```
 
 To build web site
