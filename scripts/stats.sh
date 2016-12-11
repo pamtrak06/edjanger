@@ -2,7 +2,7 @@
 ##  Description:
 ##     Display a live stream of container(s) resource usage statistics.
 ##     
-##     Filtered by $container_name.
+##     Filtered by edjanger.properties$container_name.
 ##     File edjanger.properties must be present in path.
 ##     By default executed on last container if no index specified.
 ##  

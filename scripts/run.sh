@@ -2,7 +2,7 @@
 ##  Description:
 ##     Run a command in a new container. 
 ##     
-##     Filtered by $image_name and $container_name.
+##     Filtered by edjanger.properties$image_name and $container_name.
 ##     File edjanger.properties must be present in path.
 ##     By default executed on last container if no index specified.
 ##  

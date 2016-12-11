@@ -2,7 +2,7 @@
 ##  Description: 
 ##     Return low-level information on a container, image or task.
 ##     
-##     Filtered by $container_name and $image_name.
+##     Filtered by edjanger.properties$container_name and edjanger.properties$image_name.
 ##     File edjanger.properties must be present in path.
 ##     By default executed on last container if no index specified.
 ##  

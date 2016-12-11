@@ -1,7 +1,7 @@
 #!/bin/bash
 ##  Description:
 ##     Export a container's filesystem as a tar archive.
-##     Filtered by $container_name.
+##     Filtered by edjanger.properties$container_name.
 ##     File edjanger.properties must be present in path.
 ##     By default executed on last container if no index specified.
 ##  
