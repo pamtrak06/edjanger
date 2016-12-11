@@ -175,6 +175,16 @@ function evalOptionsParameters()
   done
 }
 
+# create a regex
+function build_find_pattern()
+{
+  pattern=$1
+  pattern=$(echo $pattern | tr -d ' ')
+  pattern=$(echo $pattern | sed 's/[[:space:]]*,[[:space:]]*/\" -o -name \"/g')
+  pattern=$(echo $pattern | sed 's/[[:space:]]*;[[:space:]]*/\" -o -name \"/g')
+  pattern="\( -name \"$pattern\" \)"
+}
+
 function print_template_list()
 {
   detailed=$1

@@ -4,8 +4,8 @@
 ##  - configuration.properties (example)
 ##  - build/Dockerfile (empty example)
 ##  File edjanger.properties is build with previous template and configuration files
-##  with followinf command :
-##  - edjangertemplate properties=configuration
+##  with following command :
+##  - edjangertemplate configure=configuration
 ##  
 ##  Usage:
 ##     @script.name [option]
@@ -49,7 +49,7 @@ function initialize()
   fi
   if [ ! -f "edjanger.${config_extension}" ] && [ "{edjangerpath}" != "$PWD" ]; then
     echo -e "  . Initialize edjanger.properties file from template edjanger.template ..."
-    . {edjangerpath}/template.sh --properties=configuration.properties
+    . {edjangerpath}/template.sh --configure=configuration.properties
   else
     source {edjangerpath}/_common.sh
     echo -e "  . File edjanger.${config_extension} is already in your current directory !"
@@ -76,22 +76,26 @@ if [ -n "${help}" ]; then
   printHeader $0
   
 else
-
+  
   if [ -n "${template}" ]; then
 
     init_new_template ${template}
     
   elif [ -n "${templatelist}" ]; then
     
-    print_template_list
+    print_template_list false
     
   else
     
     if [ "$(ls -A .)" ]; then
+      
       echo "edjanger:WARNING: directory is not empty" 
-      exit 1 
+      exit 1
+      
     else
+      
       initialize
+      
     fi
     
   fi

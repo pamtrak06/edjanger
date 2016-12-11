@@ -345,44 +345,6 @@ export PATH=$PATH:/usr/local/bin/edjanger
   docker rmi pamtrak06/webtest
 }
 
-@test "edjanger template      : create edjanger.properties from a properties and a template" {
-  skip
-  ROOTDIR=$(pwd)/..
-  TMP=$PWD/workspace_template
-  rm -rf $TMP &&  mkdir $TMP && cd $TMP
-  bash $ROOTDIR/scripts/init.sh
-  echo "FROM httpd" > build/Dockerfile
-  echo "RUN adduser travis" >> build/Dockerfile
-  echo "USER travis" >> build/Dockerfile
-  PROP=configuration.properties
-  TMPP=configuration.tmp
-  sed -e "s/\(export app_docker_command=\".*\"\)/\1/" $PROP > $TMPP && mv $TMPP $PROP
-  cat $PROP | grep -v "#" | grep app_docker_command
-  sed -e "s/\(export app_image_name=\)\".*\"/\1\"pamtrak06\/webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
-  cat $PROP | grep -v "#" | grep app_image_name
-  sed -e "s/\(export app_container_name=\)\".*\"/\1\"webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
-  cat $PROP | grep -v "#" | grep app_container_name
-  sed -e "s/\(export app_exposed_ports=\)\".*\"/\1\"-p 80:80 -p 443:443\"/" $PROP > $TMPP && mv $TMPP $PROP
-  cat $PROP | grep app_exposed_ports
-  sed -e "s/\(export app_shared_volumes=\)\".*\"/\1\"-v \$PWD\/volumes\/html:\/var\/www\/html -v \$PWD\/volumes\/logs:\/var\/logs\/apache2\"/" $PROP > $TMPP && mv $TMPP $PROP
-  cat $PROP | grep app_shared_volumes
-  sed -e "s/\(export app_environment_variables=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
-  cat $PROP | grep -v "#environment_variables:" | grep app_environment_variables
-  yes | bash $ROOTDIR/scripts/template.sh properties=configuration
-  bash $ROOTDIR/scripts/build.sh
-  bash $ROOTDIR/scripts/run.sh
-  result="$(docker ps | grep webtest_1 )"
-  [ -n "$result" ]
-  result="$(docker port grep webtest_1 | tr '\n' ' ' )"
-  [ -n "$result" == *"80/tcp -> 0.0.0.0:80"* ]
-  [ -n "$result" == *"443/tcp -> 0.0.0.0:443"* ]
-  cd ..
-  docker stop $(docker ps -q --filter="name=webtest*")
-  rm -rf $TMP
-  docker rm $(docker ps -aq --filter="name=webtest*")
-  docker rmi pamtrak06/webtest
-}
-
 @test "edjanger compose       : create docker-compose.yaml from all edjanger.properties" {
   skip
   ROOTDIR=$(pwd)/..
@@ -408,7 +370,7 @@ export PATH=$PATH:/usr/local/bin/edjanger
   sed -e "s/\(export app_environment_variables=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep -v "#environment_variables:" | grep app_environment_variables
   
-  yes | bash $ROOTDIR/scripts/template.sh properties=configuration
+  yes | bash $ROOTDIR/scripts/template.sh configure=configuration
 
   cd $TMP
   
@@ -472,7 +434,7 @@ export PATH=$PATH:/usr/local/bin/edjanger
   sed -e "s/\(export app_environment_variables=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep -v "#environment_variables:" | grep app_environment_variables
   
-  yes | bash $ROOTDIR/scripts/template.sh properties=configuration
+  yes | bash $ROOTDIR/scripts/template.sh configure=configuration
   
   cd $TMP
   yes | bash $ROOTDIR/scripts/compose.sh
@@ -500,4 +462,97 @@ export PATH=$PATH:/usr/local/bin/edjanger
   rm -rf $TMP
   docker rmi pamtrak06/webtest
   docker rmi pamtrak06/nodetest
+}
+
+
+@test "edjanger template      : create edjanger.properties from a properties and a template" {
+  skip
+  ROOTDIR=$(pwd)/..
+  TMP=$PWD/workspace_template
+  rm -rf $TMP &&  mkdir $TMP && cd $TMP
+  bash $ROOTDIR/scripts/init.sh
+  echo "FROM httpd" > build/Dockerfile
+  echo "RUN adduser travis" >> build/Dockerfile
+  echo "USER travis" >> build/Dockerfile
+  PROP=configuration.properties
+  TMPP=configuration.tmp
+  sed -e "s/\(export app_docker_command=\".*\"\)/\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep -v "#" | grep app_docker_command
+  sed -e "s/\(export app_image_name=\)\".*\"/\1\"pamtrak06\/webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep -v "#" | grep app_image_name
+  sed -e "s/\(export app_container_name=\)\".*\"/\1\"webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep -v "#" | grep app_container_name
+  sed -e "s/\(export app_exposed_ports=\)\".*\"/\1\"-p 80:80 -p 443:443\"/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep app_exposed_ports
+  sed -e "s/\(export app_shared_volumes=\)\".*\"/\1\"-v \$PWD\/volumes\/html:\/var\/www\/html -v \$PWD\/volumes\/logs:\/var\/logs\/apache2\"/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep app_shared_volumes
+  sed -e "s/\(export app_environment_variables=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep -v "#environment_variables:" | grep app_environment_variables
+  yes | bash $ROOTDIR/scripts/template.sh configure=configuration
+  bash $ROOTDIR/scripts/build.sh
+  bash $ROOTDIR/scripts/run.sh
+  result="$(docker ps | grep webtest_1 )"
+  [ -n "$result" ]
+  result="$(docker port grep webtest_1 | tr '\n' ' ' )"
+  [ -n "$result" == *"80/tcp -> 0.0.0.0:80"* ]
+  [ -n "$result" == *"443/tcp -> 0.0.0.0:443"* ]
+  cd ..
+  docker stop $(docker ps -q --filter="name=webtest*")
+  rm -rf $TMP
+  docker rm $(docker ps -aq --filter="name=webtest*")
+  docker rmi pamtrak06/webtest
+}
+
+@test "edjanger template      : create edjanger from template demo_template (local configuration)" {
+  skip
+  ROOTDIR=$(pwd)/..
+  TMP=$PWD/workspace_template
+  rm -rf $TMP &&  mkdir $TMP && cd $TMP
+  bash $ROOTDIR/scripts/template.sh --create --name=demo_template
+  bash $ROOTDIR/scripts/template.sh --configure=integration
+  bash $ROOTDIR/scripts/compose.sh
+  [ -f "docker-compose.yaml" ]
+  docker-compose build
+  docker-compose up
+  docker-compose stop
+  docker-compose rm
+  bash $ROOTDIR/scripts/template.sh --configure=production
+  rm -f docker-compose.yaml
+  bash $ROOTDIR/scripts/compose.sh
+  [ -f "docker-compose.yaml" ]
+  docker-compose build
+  docker-compose up
+  docker-compose stop
+  docker-compose rm
+}
+
+@test "edjanger template      : create edjanger from template demo_template (global configuration)" {
+  skip
+  ROOTDIR=$(pwd)/..
+  TMP=$PWD/workspace_template
+  rm -rf $TMP &&  mkdir $TMP && cd $TMP
+  bash $ROOTDIR/scripts/template.sh --create --name=demo_template
+  cat ./web1/integration.properties >> integration.properties
+  awk 'FNR>=2' web2/integration.properties >> integration.properties
+  cat ./web2/production.properties >> production.properties
+  awk 'FNR>=2' web2/production.properties >> production.properties
+  rm -f web1/integration.properties 
+  rm -f web2/integration.properties 
+  rm -f web1/production.properties 
+  rm -f web2/production.properties 
+  bash $ROOTDIR/scripts/template.sh --configure=integration
+  bash $ROOTDIR/scripts/compose.sh
+  [ -f "docker-compose.yaml" ]
+  docker-compose build
+  docker-compose up
+  docker-compose stop
+  docker-compose rm
+  bash $ROOTDIR/scripts/template.sh --configure=production
+  rm -f docker-compose.yaml
+  bash $ROOTDIR/scripts/compose.sh
+  [ -f "docker-compose.yaml" ]
+  docker-compose build
+  docker-compose up
+  docker-compose stop
+  docker-compose rm
 }
