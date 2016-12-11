@@ -22,10 +22,10 @@
 ##  
 ##         --configure=CONFIG-NAME    properties file containing variables to be replaced in edjanger.template to create edjanger.properties
 ##  
-##         --create                   initialize with the name of the template which could be chozen from the --list option
+##         --delete                   delete named archive 
 ##                                    Must be combined with option --name=TEMPLATE-NAME
 ##  
-##         --delete                   delete named archive 
+##         --init                     initialize with the name of the template which could be chozen from the --list option
 ##                                    Must be combined with option --name=TEMPLATE-NAME
 ##  
 ##         --list                     list of all available templates
@@ -33,7 +33,7 @@
 ##         --listinfo                 list of all available templates with details
 ##  
 ##         --name=TEMPLATE-NAME       template name available from archive name list
-##                                    Must be combined with options --create, --delete, --save
+##                                    Must be combined with options --init, --delete, --save
 ##  
 ##         --save                     save current directory as a template (template name is the hash of the archive)
 ##                                    Could be combined with option --name=TEMPLATE-NAME
@@ -46,8 +46,8 @@
 ##     edjangertemplate --help        print this documentation
 ##
 ##  Initialize a new template:
-##     edjangertemplate --create=demo_httpd
-##                                    create a nex template from the archive given by option create
+##     edjangertemplate --init=demo_httpd
+##                                    initialize a nex template from the archive given by option --init
 ##  
 ##  Load a template:
 ##     edjangertemplate --configure=configuration
@@ -613,7 +613,7 @@ function main_template()
     fi
   
     if [ -z "${configure}" ] && [ -z "${save}" ] && [ -z "${list}" ] && [ -z "${listinfo}" ] \
-    && [ -z "${delete}" ] && [ -z "${create}" ]; then
+    && [ -z "${delete}" ] && [ -z "${init}" ]; then
       echo -e "edjanger:ERROR less one of options \"properties\" or \"save\" or \"list\" must be defined, usage:"
       printHeader $0
       return 1
@@ -631,19 +631,19 @@ function main_template()
       return 1
     fi
     
-    if [ -n "${create}" ] && [ -z "${name}" ]; then
-      echo -e "edjanger:ERROR option \"name\" must be defined with option \"create\", usage:"
+    if [ -n "${init}" ] && [ -z "${name}" ]; then
+      echo -e "edjanger:ERROR option \"name\" must be defined with option \"init\", usage:"
       printHeader $0
       return 1
     fi
   
     if [[ ( -n "${configure}" && -n "${save}"     ) || ( -n "${configure}" && -n "${delete}" ) || \
-          ( -n "${configure}" && -n "${create}"   ) || ( -n "${configure}" && -n "${list}"   ) || \
+          ( -n "${configure}" && -n "${init}"     ) || ( -n "${configure}" && -n "${list}"   ) || \
           ( -n "${configure}" && -n "${listinfo}" ) || ( -n "${save}" && -n "${delete}"      ) || \
-          ( -n "${save}"      && -n "${create}"   ) || ( -n "${save}" && -n "${list}"        ) || \
-          ( -n "${save}"      && -n "${listinfo}" ) || ( -n "${delete}" && -n "${create}"    ) || \
+          ( -n "${save}"      && -n "${init}"     ) || ( -n "${save}" && -n "${list}"        ) || \
+          ( -n "${save}"      && -n "${listinfo}" ) || ( -n "${delete}" && -n "${init}"      ) || \
           ( -n "${delete}"    && -n "${list}"     ) || ( -n "${delete}" && -n "${listinfo}"  ) || \
-          ( -n "${create}"    && -n "${list}"     ) || ( -n "${create}" && -n "${listinfo}"  ) || \
+          ( -n "${init}"    && -n "${list}"       ) || ( -n "${init}" && -n "${listinfo}"    ) || \
           ( "${configure}"    =     "true"        ) || ( -n "${configure}" && -n "${name}"   ) || \
           ( -n "${list}"      && -n "${listinfo}" ) ]]; then
       echo -e "edjanger:ERROR imcompatible options, usage:"
@@ -667,7 +667,7 @@ function main_template()
       
       print_template_list true
       
-    elif [ -n "${create}" ]; then
+    elif [ -n "${init}" ]; then
 
       init_new_template ${name}
       
