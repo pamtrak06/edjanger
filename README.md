@@ -558,7 +558,15 @@ vi docker-compose.yaml
 
 ! Prerequisities : install gettext (for envsubst)
 
-- Download and try example from https://github.com/pamtrak06/edjanger/tree/master/scripts/templates/templating, run:
+- ploy example "demo_template" with one of following commands:
+
+    ```bash
+    edjangerinit --template=demo_template
+    ```
+    or
+    ```bash
+    edjangertemplate --init=demo_template
+    ```
 
 - Deploy 2 apache web sever (web1 and web2) with specific ports and shared volumes for a "production" environement.
     ```bash
