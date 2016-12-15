@@ -1,12 +1,14 @@
 ## Command edjangerabout
 ```bash
- Description: about script for edjanger
+ Description
+   About script for edjanger.
  
- Usage:
+ Usage
     edjangerabout
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
  
 ```
 Note: help for this command could be retrieve by typing:
@@ -15,13 +17,15 @@ edjangerabout --help
 ```
 ## Command edjangeralias
 ```bash
- Description: print edjanger aliases
+ Description
+   Display edjanger aliases.
  
- Usage:
+ Usage
     edjangeralias
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
  
 ```
 Note: help for this command could be retrieve by typing:
@@ -30,29 +34,40 @@ edjangeralias --help
 ```
 ## Command edjangerattach
 ```bash
- Description:
-    Attach to a running container.
+ Description
+   Attach for a running container.
     
-    Filtered by $container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
+   Filtered by edjanger.properties$container_name.
+   File edjanger.properties must be present in path.
+   By default executed on last container if no index specified.
  
- Usage:
-    edjangerattach [option]
+ Usage
+   edjangerattach[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
-        --index=INDEX              index of the container name
+        --index=INDEX
+           Define the index of the container name.
  
  Parameters (edjanger.properties):
-    attach_options                 "docker attach" options to a running container (see docker attach --help)
-    container_name                 container name
-    docker_command                 print docker command
+    attach_options
+           Options of "docker attach" for a running container (see docker 
+           attach --help).
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    container_name
+           Container name.
  
+    docker_command
+           Display docker command.
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -60,31 +75,54 @@ edjangerattach --help
 ```
 ## Command edjangerbuild
 ```bash
- Description: Build an image from a Dockerfile. Use $image_name and $container_name.
+ Description Build an image from a Dockerfile. Use $image_name and $container_name.
     File edjanger.properties must be present in path.
- Usage:
-    edjangerbuild [option]
+ Usage
+   edjangerbuild[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
  Parameters (edjanger.properties):
-    build_args                     build arguments
-    build_forcerm                  always remove intermediate containers
-    build_rm                       remove intermediate containers after a successful build
-    build_nocache                  do not use cache when building the image
-    build_file                     name of the Dockerfile (Default is 'CURRENT PATH/Dockerfile')
-    build_path                     path where is found Dockerfile and its dependencies
-    build_options                  all the other build build options (see docker build --help)
-    docker_command                 print docker command
-    image_name                     image name
+    build_args
+           Build arguments.
+ 
+    build_forcerm
+           Always remove intermediate containers.
+ 
+    build_rm
+           Remove intermediate containers after a successful build.
+ 
+    build_nocache
+           Do not use cache when building the image.
+ 
+    build_file
+           Name of the Dockerfile (Default is 'CURRENT PATH/Dockerfile').
+ 
+    build_path
+           Path where is found Dockerfile and its dependencies.
+ 
+    build_options
+           All the other build build options (see docker build --help).
+ 
+    docker_command
+           Display docker command.
+ 
+    image_name
+           Image name.
  
  Environement:
-    proxy_args                     proxy variables (HTTP_PROXY,HTTPS_PROXY,http_proxy,https_proxy) read from proxy.zip or environment
+    proxy_args
+           Get proxy variables (HTTP_PROXY,HTTPS_PROXY,http_proxy,https_proxy) 
+           from environment or read it from proxy.zip.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
  
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -92,14 +130,16 @@ edjangerbuild --help
 ```
 ## Command edjangercheck
 ```bash
- Description: check missing parameters in edjanger.properties from existing in template
- templates/edjanger.template
+ Description
+   Check missing parameters in edjanger.properties from existing in template
+   templates/edjanger.template.
  
- Usage:
+ Usage
     edjangercheck
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
  
 ```
 Note: help for this command could be retrieve by typing:
@@ -108,26 +148,36 @@ edjangercheck --help
 ```
 ## Command edjangerclean
 ```bash
- Description: run command "docker rmi" with parameters read from edjanger.properties
- Delete images: with attribute name=\"none\"
+ Description
+   Run command "docker rmi" with parameters read from edjanger.properties.
+   Delete images: with attribute name="none".
  
- Usage:
-    edjangerclean [option]
+ Usage
+   edjangerclean[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
-        --force                    force removal of the image
+        --force
+           Force removal of the image.
  
-        --no-prune                 do not delete untagged parents
+        --no-prune
+           Do not delete untagged parents.
  
  Parameters (edjanger.properties):
-    force_rmi                      path where is found Dockerfile and its dependencies
-    image_name                     image name
+    force_rmi
+           path where is found Dockerfile and its dependencies
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    image_name
+           Image name.
  
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -135,20 +185,22 @@ edjangerclean --help
 ```
 ## Command edjangercommit
 ```bash
- Description:
+ Description
     Create a new image from a container's changes.
     
-    Filtered by $container_name.
+    Filtered by edjanger.properties$container_name.
     File edjanger.properties must be present in path.
     By default executed on last container if no index specified.
  
- Usage:
-    edjangercommit [option]
+ Usage
+   edjangercommit[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
-        --index=INDEX              index of the container name
+        --index=INDEX
+           Index of the container name.
  
         --commitname=COMMIT        commit tag like REPOSITORY[:TAG]
  
@@ -157,13 +209,19 @@ edjangerclean --help
         --commitauthor=MESSAG      commit author
  
  Parameters (edjanger.properties):
-    container_name                 container name
-    commit_options                 "docker commit" options to a running container (see docker commit --help)
-    docker_command                 print docker command
+    container_name
+           Container name.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    commit_options                 "docker commit" options for a running container (see docker commit --help)
+    docker_command
+           Display docker command.
  
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -171,13 +229,23 @@ edjangercommit --help
 ```
 ## Command edjangercompose
 ```bash
- Description: generate docker-compose.yaml from all local edjanger.poperties
+ Description
+   Generate docker-compose.yaml from all local edjanger.poperties.
  
- Usage:
+ Usage
     edjangercompose
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+ Usage
+   edjangercompose[option]
+ 
+ Options
+    -h, --help
+           Display help.
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
  
 ```
 Note: help for this command could be retrieve by typing:
@@ -186,35 +254,49 @@ edjangercompose --help
 ```
 ## Command edjangercopy
 ```bash
- Description:
+ Description
     Copy files/folders between a container and the local filesystem.
     
-    Filtered by $container_name.
+    Filtered by edjanger.properties$container_name.
     File edjanger.properties must be present in path.
     By default executed on last container if no index specified.
  
- Usage:
-    edjangercopy [option]
+ Usage
+   edjangercopy[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
-        --fromcontainer            copy file(s) from container to host
+        --fromcontainer
+           Copy file(s) from container to host.
  
-        --fromhost                 copy file(s) from host to container
+        --fromhost
+           Copy file(s) from host to container.
  
-        --sourcepath=PATH          path to file(s) or folder to copy
+        --sourcepath=PATH
+           Path to file(s) or folder to copy.
  
-        --destinationpath=PATH     path where to copy file(s) or folder to copy
+        --destinationpath=PATH
+           Path where to copy file(s) or folder to copy.
  
  Parameters (edjanger.properties):
-    container_name                 container name
-    copy_options                   options to copy files/folders between a container and the local filesystem
-    docker_command                 "docker cp" options to a running container (see docker cp --help)
+    container_name
+           Container name.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    copy_options
+           Options to copy files/folders between a container and the local 
+           filesystem.
  
+    docker_command
+           Options of "docker cp" for a running container (see docker cp --help).
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -222,39 +304,71 @@ edjangercopy --help
 ```
 ## Command edjangercreate
 ```bash
- Description:
+ Description
     Create a new container.
     
-    Filtered by $container_name.
+    Filtered by edjanger.properties$container_name.
     File edjanger.properties must be present in path.
     By default executed on last container if no index specified.
  
- Usage:
-    edjangercreate [option]
+ Usage
+   edjangercreate[option]
  
- Options:
-    -h, --help                       print this documentation
+ Options
+    -h, --help
+           Display help.
  
         --index=INDEX                index of the container name
  
  Parameters (edjanger.properties):
-    command_run                      bash command(s) to run
-    container_hostname               container host name (option -h, --hostname string for docker run)
-    container_privilege              give extended privileges to this container (option --privileged for docker run)
-    container_remove                 automatically remove the container when it exits (option --rm for docker run)
-    container_addhost                add a custom host-to-IP mapping (host:ip) (default []) (option --add-host value for docker run)
-    environment_variables            environnment variables
-    exposed_ports                    exposed port
-    image_name                       image name
-    linked_containers                linked container
-    network_settings                 all network settings options
-    run_other_options                all other available options for "docker create"
-    runtime_constraints_on_resources runtime constraints on resources
-    volumes_from                     expose volumes from another container into current container (option --volumes-from value of docker run)
+    command_run
+      Bash command(s) to run.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    container_hostname
+      Container host name (option -h, --hostname string for docker run).
  
+    container_privilege
+      Give extended privileges to this container (option --privileged for 
+      docker run).
+ 
+    container_remove
+      Automatically remove the container when it exits (option --rm for 
+      docker run).
+ 
+    container_addhost
+      Add a custom host-to-IP mapping (host:ip) (default []) (option 
+      --add-host value for docker run).
+ 
+    environment_variables
+      Environnment variables.
+ 
+    exposed_ports
+      Exposed port.
+ 
+    image_name
+           Image name.
+    linked_containers
+      Linked container.
+ 
+    network_settings
+      All network settings options.
+ 
+    run_other_options
+      All other available options for "docker create".
+ 
+    runtime_constraints_on_resources
+      Runtime constraints on resources.
+ 
+    volumes_from
+      Expose volumes from another container into current container (option 
+      --volumes-from value of docker run).
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -262,29 +376,39 @@ edjangercreate --help
 ```
 ## Command edjangerdiff
 ```bash
- Description:
+ Description
     Inspect changes on a container's filesystem.
     
-    Filtered by $container_name.
+    Filtered by edjanger.properties$container_name.
     File edjanger.properties must be present in path.
     By default executed on last container if no index specified.
  
- Usage:
-    edjangerdiff [option]
+ Usage
+   edjangerdiff[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
-        --index=INDEX              index of the container name
+        --index=INDEX
+           Index of the container name.
  
  Parameters (edjanger.properties):
-    container_name                 container name
-    diff_options                   "docker diff" options to a running container (see docker diff --help)
-    docker_command                 print docker command
+    container_name
+      Container name.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    diff_options
+      Options of "docker diff" for a running container (see docker diff --help)
  
+    docker_command
+           Display docker command.
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -292,29 +416,39 @@ edjangerdiff --help
 ```
 ## Command edjangerevents
 ```bash
- Description:
+ Description
     Get real time events for a container.
     
-    Filtered by $container_name.
+    Filtered by edjanger.properties$container_name.
     File edjanger.properties must be present in path.
     By default executed on last container if no index specified.
  
- Usage:
-    edjangerevents [option]
+ Usage
+   edjangerevents[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
-        --index=INDEX              index of the container name
+        --index=INDEX
+           Index of the container name.
  
  Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    events_options                 "docker events" options to a running container (see docker events --help)
+    container_name
+           Container name.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    docker_command
+           Display docker command.
  
+    events_options
+           Options of "docker events" for a running container (see docker events --help)
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -322,31 +456,41 @@ edjangerevents --help
 ```
 ## Command edjangerexec
 ```bash
- Description:
+ Description
     Run a command in a running container.
     
-    Filtered by $container_name.
+    Filtered by edjanger.properties$container_name.
     File edjanger.properties must be present in path.
     By default executed on last container if no index specified.
  
- Usage:
-    edjangerexec [option]
+ Usage
+   edjangerexec[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
-        --index=INDEX              index of the container name
+        --index=INDEX
+           Index of the container name.
  
         --shellcommand=COMMAND     additionnal command to execute
  
  Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    exec_options                   "docker exec" options to a running container (see docker exec --help)
+    container_name
+           Container name.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    docker_command
+           Display docker command.
  
+    exec_options
+           Options of "docker exec" for a running container (see docker exec --help)
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -354,28 +498,39 @@ edjangerexec --help
 ```
 ## Command edjangerexport
 ```bash
- Description:
+ Description
     Export a container's filesystem as a tar archive.
-    Filtered by $container_name.
+    Filtered by edjanger.properties$container_name.
     File edjanger.properties must be present in path.
     By default executed on last container if no index specified.
  
- Usage:
-    edjangerexport [option]
+ Usage
+   edjangerexport[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
-        --index=INDEX              index of the container name
+        --index=INDEX
+           Index of the container name.
  
  Parameters (edjanger.properties):
-    container_name                 container name
-    export_options                 "docker export" options to a running container (see docker export --help)
-    docker_command                 print docker command
+    container_name
+           Container name.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    export_options
+           Options of "docker export" options for a running container (see 
+           docker export --help).
  
+    docker_command
+           Display docker command.
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -383,15 +538,16 @@ edjangerexport --help
 ```
 ## Command edjangerhelp
 ```bash
- Description: print list of all available edjanger commands. 
- Running command : "edjangerhelp"
+ Description
+   Print list of all available edjanger commands. 
+   Running command : "edjangerhelp"
  
- With parameter "config" or "parameters", print parameters read in 
- edjanger.properties and used by each edjanger commands.
- Running command : "edjangerhelp config"
+   With parameter "config" or "parameters", print parameters read in 
+   edjanger.properties and used by each edjanger commands.
+   Running command : "edjangerhelp config"
  
- With parameter "[edjanger short command]", print help for this command. 
- Examples : 
+   With parameter "[edjanger short command]", print help for this command. 
+   Examples : 
      "edjangerhelp run"            => give help for edjangerrun
      "edjangerhelp build"          => give help for edjangerbuild
      ...
@@ -400,18 +556,22 @@ edjangerexport --help
       "edjangerhelp edjangerbuild" => give help for edjangerbuild
      ...
  
- Usage:
-    edjangerhelp [option] [config | parameters]
+ Usage
+   edjangerhelp [option] [config | parameters]
  
- Options:
-    config                         print parameters used by edjanger commands.
+ Options
+   config
+           Print parameters used by edjanger commands.
  
-    [edjanger short command]       print help for this edjanger command.
+   [edjanger short command]
+           Print help for this edjanger command.
  
-    -h, --help                     print this documentation
+   -h, --help
+           Display help.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
  
 ```
 Note: help for this command could be retrieve by typing:
@@ -420,27 +580,36 @@ edjangerhelp --help
 ```
 ## Command edjangerhistory
 ```bash
- Description:
-    Show the history of an image.
+ Description
+   Show the history of an image.
     
-    Filtered by $image_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
+   Filtered by edjanger.properties$image_name.
+   File edjanger.properties must be present in path.
+   By default executed on last container if no index specified.
  
- Usage:
-    edjangerhistory [option]
+ Usage
+   edjangerhistory[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
  Parameters (edjanger.properties):
-    docker_command                 print docker command
-    history_options                "docker history" options to a running container (see docker history --help)
-    image_name                     image name
+    docker_command
+           Display docker command.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    history_options
+           Options of "docker history" for a running container (see docker history --help)
  
+    image_name
+           Image name.
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -448,1338 +617,37 @@ edjangerhistory --help
 ```
 ## Command edjangerimages
 ```bash
- Description:
-    List images.
-    
-    Filtered by $image_name
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerimages [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
- Parameters (edjanger.properties):
-    docker_command                 print docker command
-    image_name                     image name
-    images_options                 "docker images" options to a running container (see docker images --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerimages --help
-```
-## Command edjangerimport
-```bash
- Description:
-    Import the contents from a tarball to create a filesystem image.
-    
-    Filtered by $container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerimport [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    import_options                 "docker import" options to a running container (see docker import --help)
-    docker_command                 print docker command
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerimport --help
-```
-## Command edjangerinit
-```bash
- Description: create a edjanger project with following files
- - edjanger.template (example)
- - configuration.properties (example)
- - build/Dockerfile (empty example)
- File edjanger.properties is build with previous template and configuration files
- with followinf command :
- - edjangertemplate properties=configuration
- 
- Usage:
-    edjangerinit [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --template=TEMPLATE-NAME   initialize with the name of the template which could be chozen from the --templatelist option
- 
-        --templatelist             list of all available templates
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerinit --help
-```
-## Command edjangerinspect
-```bash
- Description: 
-    Return low-level information on a container, image or task.
-    
-    Filtered by $container_name and $image_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerinspect [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --container                apply to container
- 
-        --image                    apply to image
- 
-        --index=INDEX              index of the container name (valid with option --container)
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    inspect_options                "docker inspect" options to a running container (see docker inspect --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerinspect --help
-```
-## Command edjangerkill
-```bash
- Description: 
-    Kill one or more running containers.
-    
-    Filtered by $container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerkill [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    kill_options                   "docker kill" options to a running container (see docker kill --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerkill --help
-```
-## Command edjangerlogs
-```bash
- Description:
-    Fetch the logs of a container. 
-    
-    Filtered by $container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerlogs [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    logs_options                   "docker logs" options to a running container (see docker logs --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerlogs --help
-```
-## Command edjangerpause
-```bash
- Description:
-    Pause all processes within one or more containers.
-    
-    Filtered by $container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerpause [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    pause_options                  "docker pause" options to a running container (see docker pause --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerpause --help
-```
-## Command edjangerportdesc
-```bash
- Description: description of network port numbers for a given port number parameter
- 
- Usage:
-    edjangerportdesc [option]
- 
- Options:
-    -h, --help                       print this documentation
- 
-        --port=PORT                  index number of the port
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerportdesc --help
-```
-## Command edjangerports
-```bash
- Description: List port mappings or a specific mapping for all container.
- 
- Usage:
-    edjangerports [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --list                     print list of exposed ports for all running containers
- 
-        --all                      print list of ports information for all containers
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    ports_options                  "docker ports" options to a running container (see docker ports --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerports --help
-```
-## Command edjangerps
-```bash
- Description: 
-    List all running container(s).
-    
-    Filtered by $container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerps [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    ps_options                     "docker ps" options to a running container (see docker ps --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerps --help
-```
-## Command edjangerpsa
-```bash
- Description:
-    List all container(s).
-    
-    Filtered by $container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerpsa [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    ps_options                     "docker ps" options to a running container (see docker ps --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerpsa --help
-```
-## Command edjangerrename
-```bash
- Description:
-    Rename a container.
-    Filtered by $container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerrename [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
-        --name=NAME                new name of the container.
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    rename_options                 "docker rename" options to a running container (see docker rename --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerrename --help
-```
-## Command edjangerrestart
-```bash
- Description:
-    Restart one or more containers.
-    
-    Filtered by $container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerrestart [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    restart_options                "docker restart" options to a running container (see docker restart --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerrestart --help
-```
-## Command edjangerrm
-```bash
- Description:
-    Remove one or more containers.
-    
-    Filtered by $container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerrm [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
-        --all                      delete all containers for the container_name pattern
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    rm_options                     "docker rm" options to a running container (see docker rm --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerrm --help
-```
-## Command edjangerrmexiteds
-```bash
- Description: remove all exited container.
- 
- Usage:
-    edjangerrmexiteds [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
- Parameters (edjanger.properties):
-    docker_command                 print docker command
-    rm_options                     "docker rm" options to a running container (see docker rm --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerrmexiteds --help
-```
-## Command edjangerrmi
-```bash
- Description: remove one or more images. Filtered by $image_name.
-    File edjanger.properties must be present in path.
- 
- Usage:
-    edjangerrmi [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
- Parameters (edjanger.properties):
-    docker_command                 print docker command
-    force_rmi                      force image deletion
-    image_name                     image name
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerrmi --help
-```
-## Command edjangerrmorphanedvolumes
-```bash
- Description: remove all orphaned volumes
- 
- Usage:
-    edjangerrmorphanedvolumes
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerrmorphanedvolumes --help
-```
-## Command edjangerrun
-```bash
- Description:
-    Run a command in a new container. 
-    
-    Filtered by $image_name and $container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerrun [option]
- 
- Options:
-    -h, --help                       print this documentation
- 
-        --index=INDEX                index of the container name
- 
- Parameters (edjanger.properties):
-    command_run                      bash command(s) to run
-    container_hostname               container host name (option -h, --hostname string for docker run)
-    container_privilege              give extended privileges to this container (option --privileged for docker run)
-    container_remove                 automatically remove the container when it exits (option --rm for docker run)
-    container_addhost                add a custom host-to-IP mapping (host:ip) (default []) (option --add-host value for docker run)
-    environment_variables            environnment variables
-    exposed_ports                    exposed port
-    image_name                       image name
-    linked_containers                linked container
-    network_settings                 all network settings options
-    run_other_options                all other available options for docker run
-    runtime_constraints_on_resources runtime constraints on resources
-    volumes_from                     expose volumes from another container into current container (option --volumes-from value of docker run)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerrun --help
-```
-## Command edjangerruni
-```bash
- Description:
-    Run interactively a command in a new container.
-    
-    Filtered by $image_name and $container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerruni [option]
- 
- Options:
-    -h, --help                       print this documentation
- 
-        --index=INDEX                index of the container name
- 
- Parameters (edjanger.properties):
-    command_run                      bash command(s) to run
-    environment_variables            environnment variables
-    exposed_ports                    exposed port
-    image_name                       image name
-    linked_containers                linked container
-    network_settings                 all network settings options
-    run_other_options                all other available options for docker run
-    runtime_constraints_on_resources runtime constraints on resources
-    volumes_from                     expose volumes from another container into current container
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerruni --help
-```
-## Command edjangerstart
-```bash
- Description:
-    Start one or more stopped containers.
-    
-    Filtered by $container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerstart [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    start_options                  \"docker start\" options to a running container
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerstart --help
-```
-## Command edjangerstats
-```bash
- Description:
-    Display a live stream of container(s) resource usage statistics.
-    
-    Filtered by $container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerstats [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    stats_options                  \"docker stats\" options to a running container
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerstats --help
-```
-## Command edjangerstop
-```bash
- Description: 
-    Stop one or more running containers.
-    
-    Filtered by $container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerstop [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    stop_options                   \"docker stop\" options to a running container
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerstop --help
-```
-## Command edjangertag
-```bash
- Description: 
-    Tag an image into a repository.
-    
-    Filtered by $container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangertag [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    tag_options                    \"docker tag\" options to a running container
-    docker_command                 print docker command
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangertag --help
-```
-## Command edjangertemplate
-```bash
- Description: manage templates for edjanger :
-   - list available template's archive in the local database (short or detailed list)
-   - initialize a template from a local archive name
-   - save a template in a local archive from current sources
-   - delete a template from the a local database
- 
- Usage:
-    edjangertemplate [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --properties=CONFIG        properties file containing variables to be replaced in edjanger.template to create edjanger.properties
- 
-        --save                     save current directory as a template (teplate name is the hash of the archive)
- 
-        --delete                   delete named archive. Must be combined with option --name=TEMPLATE-NAME
- 
-        --savepattern              additionnal file pattern to save in the archive
- 
-        --init=TEMPLATE-NAME       initialize with the name of the template which could be chozen from the --list option
- 
-        --name=TEMPLATE-NAME       save template with specified archive name
- 
-        --list                     list of all available templates
- 
-        --listinfo                 list of all available templates with details
- 
- Example:
-    edjangertemplate --help        print this documentation
- 
-    edjangertemplate --properties=configuration
-                                   replace environement variables from file configuration.properties in edjanger.template to produce edjanger.properties file
- 
-    edjangertemplate --save
-                                   save all current configuration in a templating folder with an hash identifiant (edjanger.*, scripts sh, )
- 
-    edjangertemplate --save --name=demo_web
-                                   save all current configuration in a templating folder with the template name "demo_web"
- 
-    edjangertemplate --save --name=demo_web --savepattern="*.html,*js,*.css"
-                                   save all current configuration in a templating folder with the template name "demo_web" and save additional files
- 
-    edjangertemplate --list
-                                   print the list off all stored templates
- 
-    edjangertemplate --delete --name=demo_web
-                                   remove the template from storage space
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangertemplate --help
-```
-## Command edjangertop
-```bash
- Description:
-    Display the running processes of a container.
-    
-    Filtered by $container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangertop [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    top_options                    \"docker top\" options to a running container
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangertop --help
-```
-## Command edjangerunalias
-```bash
- Description: unalias all edjanger aliases
- 
- Usage:
-    edjangerunalias
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerunalias --help
-```
-## Command edjangerunpause
-```bash
- Description: 
-    Unpause all processes within one or more containers.
-    
-    Filtered by $container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerunpause [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    unpause_options                \"docker unpause\" options to a running container
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerunpause --help
-```
-## Command edjangerupdate
-```bash
- Description: 
-    Update configuration of one or more containers.
-    
-    Filtered by $container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerupdate [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    update_options                 \"docker update\" options to a running container
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerupdate --help
-```
-## Command edjangerupgrade
-```bash
-
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerupgrade --help
-```
-## Command edjangerwait
-```bash
- Description : 
-    Block until a container stops, then print its exit code.
-    
-    Filtered by $container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerwait [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    wait_options                   "docker wait" options to a running container (see docker wait --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerwait --help
-```
-## Command edjangerabout
-```bash
- Description: about script for edjanger
- 
- Usage:
-    edjangerabout
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerabout --help
-```
-## Command edjangeralias
-```bash
- Description: print edjanger aliases
- 
- Usage:
-    edjangeralias
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangeralias --help
-```
-## Command edjangerattach
-```bash
- Description:
-    Attach to a running container.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerattach [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    attach_options                 "docker attach" options to a running container (see docker attach --help)
-    container_name                 container name
-    docker_command                 print docker command
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerattach --help
-```
-## Command edjangerbuild
-```bash
- Description: Build an image from a Dockerfile. Use $image_name and $container_name.
-    File edjanger.properties must be present in path.
- Usage:
-    edjangerbuild [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
- Parameters (edjanger.properties):
-    build_args                     build arguments
-    build_forcerm                  always remove intermediate containers
-    build_rm                       remove intermediate containers after a successful build
-    build_nocache                  do not use cache when building the image
-    build_file                     name of the Dockerfile (Default is 'CURRENT PATH/Dockerfile')
-    build_path                     path where is found Dockerfile and its dependencies
-    build_options                  all the other build build options (see docker build --help)
-    docker_command                 print docker command
-    image_name                     image name
- 
- Environement:
-    proxy_args                     proxy variables (HTTP_PROXY,HTTPS_PROXY,http_proxy,https_proxy) read from proxy.zip or environment
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerbuild --help
-```
-## Command edjangercheck
-```bash
- Description: check missing parameters in edjanger.properties from existing in template
- templates/edjanger.template
- 
- Usage:
-    edjangercheck
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangercheck --help
-```
-## Command edjangerclean
-```bash
- Description: run command "docker rmi" with parameters read from edjanger.properties
- Delete images: with attribute name=\"none\"
- 
- Usage:
-    edjangerclean [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --force                    force removal of the image
- 
-        --no-prune                 do not delete untagged parents
- 
- Parameters (edjanger.properties):
-    force_rmi                      path where is found Dockerfile and its dependencies
-    image_name                     image name
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerclean --help
-```
-## Command edjangercommit
-```bash
- Description:
-    Create a new image from a container's changes.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangercommit [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
-        --commitname=COMMIT        commit tag like REPOSITORY[:TAG]
- 
-        --commitmessage=MESSAG     commit message
- 
-        --commitauthor=MESSAG      commit author
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    commit_options                 "docker commit" options to a running container (see docker commit --help)
-    docker_command                 print docker command
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangercommit --help
-```
-## Command edjangercompose
-```bash
- Description: generate docker-compose.yaml from all local edjanger.poperties
- 
- Usage:
-    edjangercompose
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangercompose --help
-```
-## Command edjangercopy
-```bash
- Description:
-    Copy files/folders between a container and the local filesystem.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangercopy [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --fromcontainer            copy file(s) from container to host
- 
-        --fromhost                 copy file(s) from host to container
- 
-        --sourcepath=PATH          path to file(s) or folder to copy
- 
-        --destinationpath=PATH     path where to copy file(s) or folder to copy
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    copy_options                   options to copy files/folders between a container and the local filesystem
-    docker_command                 "docker cp" options to a running container (see docker cp --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangercopy --help
-```
-## Command edjangercreate
-```bash
- Description:
-    Create a new container.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangercreate [option]
- 
- Options:
-    -h, --help                       print this documentation
- 
-        --index=INDEX                index of the container name
- 
- Parameters (edjanger.properties):
-    command_run                      bash command(s) to run
-    container_hostname               container host name (option -h, --hostname string for docker run)
-    container_privilege              give extended privileges to this container (option --privileged for docker run)
-    container_remove                 automatically remove the container when it exits (option --rm for docker run)
-    container_addhost                add a custom host-to-IP mapping (host:ip) (default []) (option --add-host value for docker run)
-    environment_variables            environnment variables
-    exposed_ports                    exposed port
-    image_name                       image name
-    linked_containers                linked container
-    network_settings                 all network settings options
-    run_other_options                all other available options for "docker create"
-    runtime_constraints_on_resources runtime constraints on resources
-    volumes_from                     expose volumes from another container into current container (option --volumes-from value of docker run)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangercreate --help
-```
-## Command edjangerdiff
-```bash
- Description:
-    Inspect changes on a container's filesystem.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerdiff [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    diff_options                   "docker diff" options to a running container (see docker diff --help)
-    docker_command                 print docker command
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerdiff --help
-```
-## Command edjangerevents
-```bash
- Description:
-    Get real time events for a container.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerevents [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    events_options                 "docker events" options to a running container (see docker events --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerevents --help
-```
-## Command edjangerexec
-```bash
- Description:
-    Run a command in a running container.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerexec [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
-        --shellcommand=COMMAND     additionnal command to execute
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    exec_options                   "docker exec" options to a running container (see docker exec --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerexec --help
-```
-## Command edjangerexport
-```bash
- Description:
-    Export a container's filesystem as a tar archive.
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerexport [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    export_options                 "docker export" options to a running container (see docker export --help)
-    docker_command                 print docker command
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerexport --help
-```
-## Command edjangerhelp
-```bash
- Description: print list of all available edjanger commands. 
- Running command : "edjangerhelp"
- 
- With parameter "config" or "parameters", print parameters read in 
- edjanger.properties and used by each edjanger commands.
- Running command : "edjangerhelp config"
- 
- With parameter "[edjanger short command]", print help for this command. 
- Examples : 
-     "edjangerhelp run"            => give help for edjangerrun
-     "edjangerhelp build"          => give help for edjangerbuild
-     ...
- 
-      "edjangerhelp edjangerrun"   => give help for edjangerrun
-      "edjangerhelp edjangerbuild" => give help for edjangerbuild
-     ...
- 
- Usage:
-    edjangerhelp [option] [config | parameters]
- 
- Options:
-    config                         print parameters used by edjanger commands.
- 
-    [edjanger short command]       print help for this edjanger command.
- 
-    -h, --help                     print this documentation
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerhelp --help
-```
-## Command edjangerhistory
-```bash
- Description:
-    Show the history of an image.
-    
-    Filtered by edjanger.properties$image_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerhistory [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
- Parameters (edjanger.properties):
-    docker_command                 print docker command
-    history_options                "docker history" options to a running container (see docker history --help)
-    image_name                     image name
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerhistory --help
-```
-## Command edjangerimages
-```bash
- Description:
+ Description
     List images.
     
     Filtered by edjanger.properties$image_name
     File edjanger.properties must be present in path.
     By default executed on last container if no index specified.
  
- Usage:
-    edjangerimages [option]
+ Usage
+   edjangerimages[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
  Parameters (edjanger.properties):
-    docker_command                 print docker command
-    image_name                     image name
-    images_options                 "docker images" options to a running container (see docker images --help)
+    docker_command
+           Display docker command.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    image_name
+           Image name.
  
+    images_options
+           Options of "docker images" for a running container (see docker images 
+           --help).
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -1787,29 +655,40 @@ edjangerimages --help
 ```
 ## Command edjangerimport
 ```bash
- Description:
+ Description
     Import the contents from a tarball to create a filesystem image.
     
     Filtered by edjanger.properties$container_name.
     File edjanger.properties must be present in path.
     By default executed on last container if no index specified.
  
- Usage:
-    edjangerimport [option]
+ Usage
+   edjangerimport[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
-        --index=INDEX              index of the container name
+        --index=INDEX
+           Index of the container name.
  
  Parameters (edjanger.properties):
-    container_name                 container name
-    import_options                 "docker import" options to a running container (see docker import --help)
-    docker_command                 print docker command
+    container_name
+           Container name.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    import_options
+           Options of "docker import" for a running container (see docker 
+           import --help).
  
+    docker_command
+           Display docker command.
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -1817,26 +696,36 @@ edjangerimport --help
 ```
 ## Command edjangerinit
 ```bash
- Description: create a edjanger project with following files
- - edjanger.template (example)
- - configuration.properties (example)
- - build/Dockerfile (empty example)
- File edjanger.properties is build with previous template and configuration files
- with followinf command :
- - edjangertemplate properties=configuration
+ Description
+   create a edjanger project with following files
+     - edjanger.template (example)
+     - configuration.properties (example)
+     - build/Dockerfile (empty example)
  
- Usage:
-    edjangerinit [option]
+   File edjanger.properties is build with previous template and configuration 
+   files with following command :
+     - edjangertemplate configure=configuration
  
- Options:
-    -h, --help                     print this documentation
+ Usage
+   edjangerinit[option]
  
-        --template=TEMPLATE-NAME   initialize with the name of the template which could be chozen from the --templatelist option
+ Options
+    -h, --help
+           Display help.
  
-        --templatelist             list of all available templates
+        --template=TEMPLATE-NAME
+           Initialize with the name of the template which could be chozen 
+           from the --templatelist option.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+        --templatelist
+           Display a comapct list of all available templates.
+ 
+        --templatelistinfo
+           Display a list of all available templates with details.
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
  
 ```
 Note: help for this command could be retrieve by typing:
@@ -1845,33 +734,46 @@ edjangerinit --help
 ```
 ## Command edjangerinspect
 ```bash
- Description: 
-    Return low-level information on a container, image or task.
+ Description 
+   Return low-level information on a container, image or task.
     
-    Filtered by edjanger.properties$container_name and edjanger.properties$image_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
+   Filtered by edjanger.properties$container_name and edjanger.properties$image_name.
+   File edjanger.properties must be present in path.
+   By default executed on last container if no index specified.
  
- Usage:
-    edjangerinspect [option]
+ Usage
+   edjangerinspect[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
-        --container                apply to container
+        --container
+           Apply inspect to container.
  
-        --image                    apply to image
+        --image
+           Apply inspect to image.
  
-        --index=INDEX              index of the container name (valid with option --container)
+        --index=INDEX
+           Index of the container name (used only with option --container).
  
  Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    inspect_options                "docker inspect" options to a running container (see docker inspect --help)
+    container_name
+           Container name.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    docker_command
+           Display docker command.
+    inspect_options
  
+           Options of "docker inspect" for a running container (see docker 
+           inspect --help).
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -1879,29 +781,40 @@ edjangerinspect --help
 ```
 ## Command edjangerkill
 ```bash
- Description: 
-    Kill one or more running containers.
+ Description 
+   Kill one or more running containers.
     
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
+   Filtered by edjanger.properties$container_name.
+   File edjanger.properties must be present in path.
+   By default executed on last container if no index specified.
  
- Usage:
-    edjangerkill [option]
+ Usage
+   edjangerkill[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
-        --index=INDEX              index of the container name
+        --index=INDEX
+           Index of the container name.
  
  Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    kill_options                   "docker kill" options to a running container (see docker kill --help)
+    container_name
+           Container name.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    docker_command
+           Display docker command.
  
+    kill_options
+           Options of "docker kill" for a running container (see docker kill 
+           --help).
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -1909,29 +822,40 @@ edjangerkill --help
 ```
 ## Command edjangerlogs
 ```bash
- Description:
-    Fetch the logs of a container. 
+ Description
+   Fetch the logs of a container. 
     
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
+   Filtered by edjanger.properties$container_name.
+   File edjanger.properties must be present in path.
+   By default executed on last container if no index specified.
  
- Usage:
-    edjangerlogs [option]
+ Usage
+   edjangerlogs[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
-        --index=INDEX              index of the container name
+        --index=INDEX
+           Index of the container name.
  
  Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    logs_options                   "docker logs" options to a running container (see docker logs --help)
+    container_name
+           Container name.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    docker_command
+           Display docker command.
  
+    logs_options
+           Options "docker logs" for a running container (see docker logs 
+           --help).
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -1939,29 +863,40 @@ edjangerlogs --help
 ```
 ## Command edjangerpause
 ```bash
- Description:
+ Description
     Pause all processes within one or more containers.
     
     Filtered by edjanger.properties$container_name.
     File edjanger.properties must be present in path.
     By default executed on last container if no index specified.
  
- Usage:
-    edjangerpause [option]
+ Usage
+   edjangerpause[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
-        --index=INDEX              index of the container name
+        --index=INDEX
+           Index of the container name.
  
  Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    pause_options                  "docker pause" options to a running container (see docker pause --help)
+    container_name
+           Container name.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    docker_command
+           Display docker command.
  
+    pause_options
+           Options of "docker pause" for a running container (see docker 
+           pause --help).
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -1969,18 +904,21 @@ edjangerpause --help
 ```
 ## Command edjangerportdesc
 ```bash
- Description: description of network port numbers for a given port number parameter
+ Description
+   Description of network port numbers for a given port number parameter.
  
- Usage:
-    edjangerportdesc [option]
+ Usage
+   edjangerportdesc[option]
  
- Options:
-    -h, --help                       print this documentation
+ Options
+    -h, --help
+           Display help.
  
         --port=PORT                  index number of the port
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
  
 ```
 Note: help for this command could be retrieve by typing:
@@ -1989,25 +927,30 @@ edjangerportdesc --help
 ```
 ## Command edjangerports
 ```bash
- Description: List port mappings or a specific mapping for all container.
+ Description List port mappings or a specific mapping for all container.
  
- Usage:
-    edjangerports [option]
+ Usage
+   edjangerports[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
         --list                     print list of exposed ports for all running containers
  
         --all                      print list of ports information for all containers
  
  Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    ports_options                  "docker ports" options to a running container (see docker ports --help)
+    container_name
+           Container name.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    docker_command
+           Display docker command.
+    ports_options                  "docker ports" options for a running container (see docker ports --help)
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
  
 ```
 Note: help for this command could be retrieve by typing:
@@ -2016,27 +959,37 @@ edjangerports --help
 ```
 ## Command edjangerps
 ```bash
- Description: 
-    List all running container(s).
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
+ Description 
+   List all running container(s).
+   
+   Filtered by edjanger.properties$container_name.
+   File edjanger.properties must be present in path.
+   By default executed on last container if no index specified.
  
- Usage:
-    edjangerps [option]
+ Usage
+   edjangerps[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
  Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    ps_options                     "docker ps" options to a running container (see docker ps --help)
+    container_name
+           Container name.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    docker_command
+           Display docker command.
  
+    ps_options
+           Options of "docker ps" for a running container (see docker ps 
+           --help).
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -2044,1338 +997,37 @@ edjangerps --help
 ```
 ## Command edjangerpsa
 ```bash
- Description:
-    List all container(s).
+ Description
+   List all container(s).
     
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
+   Filtered by edjanger.properties$container_name.
+   File edjanger.properties must be present in path.
+   By default executed on last container if no index specified.
  
- Usage:
-    edjangerpsa [option]
+ Usage
+   edjangerpsa[option]
  
- Options:
-    -h, --help                     print this documentation
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    ps_options                     "docker ps" options to a running container (see docker ps --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerpsa --help
-```
-## Command edjangerrename
-```bash
- Description:
-    Rename a container.
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerrename [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
-        --name=NAME                new name of the container.
+ Options
+    -h, --help
+           Display help.
  
  Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    rename_options                 "docker rename" options to a running container (see docker rename --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerrename --help
-```
-## Command edjangerrestart
-```bash
- Description:
-    Restart one or more containers.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerrestart [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    restart_options                "docker restart" options to a running container (see docker restart --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerrestart --help
-```
-## Command edjangerrm
-```bash
- Description:
-    Remove one or more containers.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerrm [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
-        --all                      delete all containers for the container_name pattern
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    rm_options                     "docker rm" options to a running container (see docker rm --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerrm --help
-```
-## Command edjangerrmexiteds
-```bash
- Description: remove all exited container.
- 
- Usage:
-    edjangerrmexiteds [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
- Parameters (edjanger.properties):
-    docker_command                 print docker command
-    rm_options                     "docker rm" options to a running container (see docker rm --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerrmexiteds --help
-```
-## Command edjangerrmi
-```bash
- Description: remove one or more images. Filtered by edjanger.properties$image_name.
-    File edjanger.properties must be present in path.
- 
- Usage:
-    edjangerrmi [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
- Parameters (edjanger.properties):
-    docker_command                 print docker command
-    force_rmi                      force image deletion
-    image_name                     image name
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerrmi --help
-```
-## Command edjangerrmorphanedvolumes
-```bash
- Description: remove all orphaned volumes
- 
- Usage:
-    edjangerrmorphanedvolumes
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerrmorphanedvolumes --help
-```
-## Command edjangerrun
-```bash
- Description:
-    Run a command in a new container. 
-    
-    Filtered by edjanger.properties$image_name and $container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerrun [option]
- 
- Options:
-    -h, --help                       print this documentation
- 
-        --index=INDEX                index of the container name
- 
- Parameters (edjanger.properties):
-    command_run                      bash command(s) to run
-    container_hostname               container host name (option -h, --hostname string for docker run)
-    container_privilege              give extended privileges to this container (option --privileged for docker run)
-    container_remove                 automatically remove the container when it exits (option --rm for docker run)
-    container_addhost                add a custom host-to-IP mapping (host:ip) (default []) (option --add-host value for docker run)
-    environment_variables            environnment variables
-    exposed_ports                    exposed port
-    image_name                       image name
-    linked_containers                linked container
-    network_settings                 all network settings options
-    run_other_options                all other available options for docker run
-    runtime_constraints_on_resources runtime constraints on resources
-    volumes_from                     expose volumes from another container into current container (option --volumes-from value of docker run)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerrun --help
-```
-## Command edjangerruni
-```bash
- Description:
-    Run interactively a command in a new container.
-    
-    Filtered by edjanger.properties$image_name and $container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerruni [option]
- 
- Options:
-    -h, --help                       print this documentation
- 
-        --index=INDEX                index of the container name
- 
- Parameters (edjanger.properties):
-    command_run                      bash command(s) to run
-    environment_variables            environnment variables
-    exposed_ports                    exposed port
-    image_name                       image name
-    linked_containers                linked container
-    network_settings                 all network settings options
-    run_other_options                all other available options for docker run
-    runtime_constraints_on_resources runtime constraints on resources
-    volumes_from                     expose volumes from another container into current container
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerruni --help
-```
-## Command edjangerstart
-```bash
- Description:
-    Start one or more stopped containers.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerstart [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    start_options                  \"docker start\" options to a running container
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerstart --help
-```
-## Command edjangerstats
-```bash
- Description:
-    Display a live stream of container(s) resource usage statistics.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerstats [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    stats_options                  \"docker stats\" options to a running container
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerstats --help
-```
-## Command edjangerstop
-```bash
- Description: 
-    Stop one or more running containers.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerstop [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    stop_options                   \"docker stop\" options to a running container
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerstop --help
-```
-## Command edjangertag
-```bash
- Description: 
-    Tag an image into a repository.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangertag [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    tag_options                    \"docker tag\" options to a running container
-    docker_command                 print docker command
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangertag --help
-```
-## Command edjangertemplate
-```bash
- Description: manage templates for edjanger :
-   - list available template's archive in the local database (short or detailed list)
-   - initialize a template from a local archive name
-   - save a template in a local archive from current sources
-   - delete a template from the a local database
- 
- Usage:
-    edjangertemplate [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --properties=CONFIG        properties file containing variables to be replaced in edjanger.template to create edjanger.properties
- 
-        --save                     save current directory as a template (teplate name is the hash of the archive)
- 
-        --delete                   delete named archive. Must be combined with option --name=TEMPLATE-NAME
- 
-        --savepattern              additionnal file pattern to save in the archive
- 
-        --init=TEMPLATE-NAME       initialize with the name of the template which could be chozen from the --list option
- 
-        --name=TEMPLATE-NAME       save template with specified archive name
- 
-        --list                     list of all available templates
- 
-        --listinfo                 list of all available templates with details
- 
- Example:
-    edjangertemplate --help        print this documentation
- 
-    edjangertemplate --properties=configuration
-                                   replace environement variables from file configuration.properties in edjanger.template to produce edjanger.properties file
- 
-    edjangertemplate --save
-                                   save all current configuration in a templating folder with an hash identifiant (edjanger.*, scripts sh, )
- 
-    edjangertemplate --save --name=demo_web
-                                   save all current configuration in a templating folder with the template name "demo_web"
- 
-    edjangertemplate --save --name=demo_web --savepattern="*.html,*js,*.css"
-                                   save all current configuration in a templating folder with the template name "demo_web" and save additional files
- 
-    edjangertemplate --list
-                                   print the list off all stored templates
- 
-    edjangertemplate --delete --name=demo_web
-                                   remove the template from storage space
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangertemplate --help
-```
-## Command edjangertop
-```bash
- Description:
-    Display the running processes of a container.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangertop [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    top_options                    \"docker top\" options to a running container
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangertop --help
-```
-## Command edjangerunalias
-```bash
- Description: unalias all edjanger aliases
- 
- Usage:
-    edjangerunalias
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerunalias --help
-```
-## Command edjangerunpause
-```bash
- Description: 
-    Unpause all processes within one or more containers.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerunpause [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    unpause_options                \"docker unpause\" options to a running container
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerunpause --help
-```
-## Command edjangerupdate
-```bash
- Description: 
-    Update configuration of one or more containers.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerupdate [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    update_options                 \"docker update\" options to a running container
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerupdate --help
-```
-## Command edjangerupgrade
-```bash
+    container_name
+           Container name.
+ 
+    docker_command
+           Display docker command.
 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerupgrade --help
-```
-## Command edjangerwait
-```bash
- Description : 
-    Block until a container stops, then print its exit code.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerwait [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    wait_options                   "docker wait" options to a running container (see docker wait --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerwait --help
-```
-## Command edjangerabout
-```bash
- Description: about script for edjanger
- 
- Usage:
-    edjangerabout
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerabout --help
-```
-## Command edjangeralias
-```bash
- Description: print edjanger aliases
- 
- Usage:
-    edjangeralias
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangeralias --help
-```
-## Command edjangerattach
-```bash
- Description:
-    Attach to a running container.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerattach [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    attach_options                 "docker attach" options to a running container (see docker attach --help)
-    container_name                 container name
-    docker_command                 print docker command
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerattach --help
-```
-## Command edjangerbuild
-```bash
- Description: Build an image from a Dockerfile. Use $image_name and $container_name.
-    File edjanger.properties must be present in path.
- Usage:
-    edjangerbuild [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
- Parameters (edjanger.properties):
-    build_args                     build arguments
-    build_forcerm                  always remove intermediate containers
-    build_rm                       remove intermediate containers after a successful build
-    build_nocache                  do not use cache when building the image
-    build_file                     name of the Dockerfile (Default is 'CURRENT PATH/Dockerfile')
-    build_path                     path where is found Dockerfile and its dependencies
-    build_options                  all the other build build options (see docker build --help)
-    docker_command                 print docker command
-    image_name                     image name
- 
- Environement:
-    proxy_args                     proxy variables (HTTP_PROXY,HTTPS_PROXY,http_proxy,https_proxy) read from proxy.zip or environment
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerbuild --help
-```
-## Command edjangercheck
-```bash
- Description: check missing parameters in edjanger.properties from existing in template
- templates/edjanger.template
- 
- Usage:
-    edjangercheck
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangercheck --help
-```
-## Command edjangerclean
-```bash
- Description: run command "docker rmi" with parameters read from edjanger.properties
- Delete images: with attribute name=\"none\"
- 
- Usage:
-    edjangerclean [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --force                    force removal of the image
- 
-        --no-prune                 do not delete untagged parents
- 
- Parameters (edjanger.properties):
-    force_rmi                      path where is found Dockerfile and its dependencies
-    image_name                     image name
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerclean --help
-```
-## Command edjangercommit
-```bash
- Description:
-    Create a new image from a container's changes.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangercommit [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
-        --commitname=COMMIT        commit tag like REPOSITORY[:TAG]
- 
-        --commitmessage=MESSAG     commit message
- 
-        --commitauthor=MESSAG      commit author
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    commit_options                 "docker commit" options to a running container (see docker commit --help)
-    docker_command                 print docker command
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangercommit --help
-```
-## Command edjangercompose
-```bash
- Description: generate docker-compose.yaml from all local edjanger.poperties
- 
- Usage:
-    edjangercompose
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangercompose --help
-```
-## Command edjangercopy
-```bash
- Description:
-    Copy files/folders between a container and the local filesystem.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangercopy [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --fromcontainer            copy file(s) from container to host
- 
-        --fromhost                 copy file(s) from host to container
- 
-        --sourcepath=PATH          path to file(s) or folder to copy
- 
-        --destinationpath=PATH     path where to copy file(s) or folder to copy
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    copy_options                   options to copy files/folders between a container and the local filesystem
-    docker_command                 "docker cp" options to a running container (see docker cp --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangercopy --help
-```
-## Command edjangercreate
-```bash
- Description:
-    Create a new container.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangercreate [option]
- 
- Options:
-    -h, --help                       print this documentation
- 
-        --index=INDEX                index of the container name
- 
- Parameters (edjanger.properties):
-    command_run                      bash command(s) to run
-    container_hostname               container host name (option -h, --hostname string for docker run)
-    container_privilege              give extended privileges to this container (option --privileged for docker run)
-    container_remove                 automatically remove the container when it exits (option --rm for docker run)
-    container_addhost                add a custom host-to-IP mapping (host:ip) (default []) (option --add-host value for docker run)
-    environment_variables            environnment variables
-    exposed_ports                    exposed port
-    image_name                       image name
-    linked_containers                linked container
-    network_settings                 all network settings options
-    run_other_options                all other available options for "docker create"
-    runtime_constraints_on_resources runtime constraints on resources
-    volumes_from                     expose volumes from another container into current container (option --volumes-from value of docker run)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangercreate --help
-```
-## Command edjangerdiff
-```bash
- Description:
-    Inspect changes on a container's filesystem.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerdiff [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    diff_options                   "docker diff" options to a running container (see docker diff --help)
-    docker_command                 print docker command
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerdiff --help
-```
-## Command edjangerevents
-```bash
- Description:
-    Get real time events for a container.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerevents [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    events_options                 "docker events" options to a running container (see docker events --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerevents --help
-```
-## Command edjangerexec
-```bash
- Description:
-    Run a command in a running container.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerexec [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
-        --shellcommand=COMMAND     additionnal command to execute
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    exec_options                   "docker exec" options to a running container (see docker exec --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerexec --help
-```
-## Command edjangerexport
-```bash
- Description:
-    Export a container's filesystem as a tar archive.
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerexport [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    export_options                 "docker export" options to a running container (see docker export --help)
-    docker_command                 print docker command
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerexport --help
-```
-## Command edjangerhelp
-```bash
- Description: print list of all available edjanger commands. 
- Running command : "edjangerhelp"
- 
- With parameter "config" or "parameters", print parameters read in 
- edjanger.properties and used by each edjanger commands.
- Running command : "edjangerhelp config"
- 
- With parameter "[edjanger short command]", print help for this command. 
- Examples : 
-     "edjangerhelp run"            => give help for edjangerrun
-     "edjangerhelp build"          => give help for edjangerbuild
-     ...
- 
-      "edjangerhelp edjangerrun"   => give help for edjangerrun
-      "edjangerhelp edjangerbuild" => give help for edjangerbuild
-     ...
- 
- Usage:
-    edjangerhelp [option] [config | parameters]
- 
- Options:
-    config                         print parameters used by edjanger commands.
- 
-    [edjanger short command]       print help for this edjanger command.
- 
-    -h, --help                     print this documentation
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerhelp --help
-```
-## Command edjangerhistory
-```bash
- Description:
-    Show the history of an image.
-    
-    Filtered by edjanger.properties$image_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerhistory [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
- Parameters (edjanger.properties):
-    docker_command                 print docker command
-    history_options                "docker history" options to a running container (see docker history --help)
-    image_name                     image name
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerhistory --help
-```
-## Command edjangerimages
-```bash
- Description:
-    List images.
-    
-    Filtered by edjanger.properties$image_name
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerimages [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
- Parameters (edjanger.properties):
-    docker_command                 print docker command
-    image_name                     image name
-    images_options                 "docker images" options to a running container (see docker images --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerimages --help
-```
-## Command edjangerimport
-```bash
- Description:
-    Import the contents from a tarball to create a filesystem image.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerimport [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    import_options                 "docker import" options to a running container (see docker import --help)
-    docker_command                 print docker command
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerimport --help
-```
-## Command edjangerinit
-```bash
- Description: create a edjanger project with following files
- - edjanger.template (example)
- - configuration.properties (example)
- - build/Dockerfile (empty example)
- File edjanger.properties is build with previous template and configuration files
- with following command :
- - edjangertemplate configure=configuration
- 
- Usage:
-    edjangerinit [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --template=TEMPLATE-NAME   initialize with the name of the template which could be chozen from the --templatelist option
- 
-        --templatelist             list of all available templates
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerinit --help
-```
-## Command edjangerinspect
-```bash
- Description: 
-    Return low-level information on a container, image or task.
-    
-    Filtered by edjanger.properties$container_name and edjanger.properties$image_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerinspect [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --container                apply to container
- 
-        --image                    apply to image
- 
-        --index=INDEX              index of the container name (valid with option --container)
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    inspect_options                "docker inspect" options to a running container (see docker inspect --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerinspect --help
-```
-## Command edjangerkill
-```bash
- Description: 
-    Kill one or more running containers.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerkill [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    kill_options                   "docker kill" options to a running container (see docker kill --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerkill --help
-```
-## Command edjangerlogs
-```bash
- Description:
-    Fetch the logs of a container. 
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerlogs [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    logs_options                   "docker logs" options to a running container (see docker logs --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerlogs --help
-```
-## Command edjangerpause
-```bash
- Description:
-    Pause all processes within one or more containers.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerpause [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    pause_options                  "docker pause" options to a running container (see docker pause --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerpause --help
-```
-## Command edjangerportdesc
-```bash
- Description: description of network port numbers for a given port number parameter
- 
- Usage:
-    edjangerportdesc [option]
- 
- Options:
-    -h, --help                       print this documentation
- 
-        --port=PORT                  index number of the port
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerportdesc --help
-```
-## Command edjangerports
-```bash
- Description: List port mappings or a specific mapping for all container.
- 
- Usage:
-    edjangerports [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --list                     print list of exposed ports for all running containers
- 
-        --all                      print list of ports information for all containers
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    ports_options                  "docker ports" options to a running container (see docker ports --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerports --help
-```
-## Command edjangerps
-```bash
- Description: 
-    List all running container(s).
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerps [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    ps_options                     "docker ps" options to a running container (see docker ps --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerps --help
-```
-## Command edjangerpsa
-```bash
- Description:
-    List all container(s).
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerpsa [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    ps_options                     "docker ps" options to a running container (see docker ps --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
+    ps_options
+           Options of "docker ps" for a running container (see docker ps 
+           --help).
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -3383,30 +1035,42 @@ edjangerpsa --help
 ```
 ## Command edjangerrename
 ```bash
- Description:
+ Description
     Rename a container.
     Filtered by edjanger.properties$container_name.
     File edjanger.properties must be present in path.
     By default executed on last container if no index specified.
  
- Usage:
-    edjangerrename [option]
+ Usage
+   edjangerrename[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
-        --index=INDEX              index of the container name
+        --index=INDEX
+           Index of the container name.
  
-        --name=NAME                new name of the container.
+        --name=NAME
+           New name of the container.
  
  Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    rename_options                 "docker rename" options to a running container (see docker rename --help)
+    container_name
+           Container name.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    docker_command
+           Display docker command.
  
+    rename_options
+           Options of "docker rename" for a running container (see docker 
+           rename --help).
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -3414,29 +1078,40 @@ edjangerrename --help
 ```
 ## Command edjangerrestart
 ```bash
- Description:
-    Restart one or more containers.
+ Description
+   Restart one or more containers.
     
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
+   Filtered by edjanger.properties$container_name.
+   File edjanger.properties must be present in path.
+   By default executed on last container if no index specified.
  
- Usage:
-    edjangerrestart [option]
+ Usage
+   edjangerrestart[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
-        --index=INDEX              index of the container name
+        --index=INDEX
+           Index of the container name.
  
  Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    restart_options                "docker restart" options to a running container (see docker restart --help)
+    container_name
+           Container name.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    docker_command
+           Display docker command.
  
+    restart_options
+           Options of "docker restart" for a running container (see docker 
+           restart --help).
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -3444,31 +1119,42 @@ edjangerrestart --help
 ```
 ## Command edjangerrm
 ```bash
- Description:
-    Remove one or more containers.
+ Description
+   Remove one or more containers.
     
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
+   Filtered by edjanger.properties$container_name.
+   File edjanger.properties must be present in path.
+   By default executed on last container if no index specified.
  
- Usage:
-    edjangerrm [option]
+ Usage
+   edjangerrm[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
-        --index=INDEX              index of the container name
+        --index=INDEX
+           Index of the container name.
  
-        --all                      delete all containers for the container_name pattern
+        --all
+           Delete all containers for the container_name pattern.
  
  Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    rm_options                     "docker rm" options to a running container (see docker rm --help)
+    container_name
+           Container name.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    docker_command
+           Display docker command.
  
+    rm_options
+           Options of "docker rm" for a running container (see docker rm --help)
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -3476,21 +1162,29 @@ edjangerrm --help
 ```
 ## Command edjangerrmexiteds
 ```bash
- Description: remove all exited container.
+ Description
+   Remove all exited container.
  
- Usage:
-    edjangerrmexiteds [option]
+ Usage
+   edjangerrmexiteds[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
  Parameters (edjanger.properties):
-    docker_command                 print docker command
-    rm_options                     "docker rm" options to a running container (see docker rm --help)
+    docker_command
+           Display docker command.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    rm_options
+           Options of "docker rm" for a running container (see docker rm --help)
  
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -3498,23 +1192,33 @@ edjangerrmexiteds --help
 ```
 ## Command edjangerrmi
 ```bash
- Description: remove one or more images. Filtered by edjanger.properties$image_name.
-    File edjanger.properties must be present in path.
+ Description
+   Remove one or more images. Filtered by edjanger.properties$image_name.
+   File edjanger.properties must be present in path.
  
- Usage:
-    edjangerrmi [option]
+ Usage
+   edjangerrmi[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
  Parameters (edjanger.properties):
-    docker_command                 print docker command
-    force_rmi                      force image deletion
-    image_name                     image name
+    docker_command
+           Display docker command.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    force_rmiF
+           Force image deletion.
  
+    image_name
+           Image name.
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -3522,13 +1226,19 @@ edjangerrmi --help
 ```
 ## Command edjangerrmorphanedvolumes
 ```bash
- Description: remove all orphaned volumes
+ Description
+   Remove all orphaned volumes.
  
- Usage:
-    edjangerrmorphanedvolumes
+ Usage
+   edjangerrmorphanedvolumes[option]
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+ Options
+    -h, --help
+           Display help.
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
  
 ```
 Note: help for this command could be retrieve by typing:
@@ -3537,39 +1247,72 @@ edjangerrmorphanedvolumes --help
 ```
 ## Command edjangerrun
 ```bash
- Description:
-    Run a command in a new container. 
+ Description
+   Run a command in a new container. 
     
-    Filtered by edjanger.properties$image_name and $container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
+   Filtered by edjanger.properties$image_name and $container_name.
+   File edjanger.properties must be present in path.
+   By default executed on last container if no index specified.
  
- Usage:
-    edjangerrun [option]
+ Usage
+   edjangerrun[option]
  
- Options:
-    -h, --help                       print this documentation
+ Options
+    -h, --help
+           Display help.
  
         --index=INDEX                index of the container name
  
  Parameters (edjanger.properties):
-    command_run                      bash command(s) to run
-    container_hostname               container host name (option -h, --hostname string for docker run)
-    container_privilege              give extended privileges to this container (option --privileged for docker run)
-    container_remove                 automatically remove the container when it exits (option --rm for docker run)
-    container_addhost                add a custom host-to-IP mapping (host:ip) (default []) (option --add-host value for docker run)
-    environment_variables            environnment variables
-    exposed_ports                    exposed port
-    image_name                       image name
-    linked_containers                linked container
-    network_settings                 all network settings options
-    run_other_options                all other available options for docker run
-    runtime_constraints_on_resources runtime constraints on resources
-    volumes_from                     expose volumes from another container into current container (option --volumes-from value of docker run)
+    command_run
+      Bash command(s) to run.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    container_hostname
+      container host name (option -h, --hostname string for docker run).
  
+    container_privilege
+      Give extended privileges to this container (option --privileged for 
+      docker run).
+ 
+    container_remove
+      Automatically remove the container when it exits (option --rm for 
+      docker run).
+ 
+    container_addhost
+      Add a custom host-to-IP mapping (host:ip) (default []) (option 
+      --add-host value for docker run).
+ 
+    environment_variables
+      Environnment variables.
+ 
+    exposed_ports
+      Exposed port.
+ 
+    image_name
+           Image name.
+ 
+    linked_containers
+      Linked container.
+ 
+    network_settings
+      All network settings options.
+ 
+    run_other_options
+      All other available options for docker run.
+ 
+    runtime_constraints_on_resources
+      Runtime constraints on resources.
+ 
+    volumes_from
+      Expose volumes from another container into current container (option 
+      --volumes-from value of docker run).
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -3577,35 +1320,72 @@ edjangerrun --help
 ```
 ## Command edjangerruni
 ```bash
- Description:
-    Run interactively a command in a new container.
+ Description
+   Run interactively a command in a new container.
     
-    Filtered by edjanger.properties$image_name and $container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
+   Filtered by edjanger.properties$image_name and $container_name.
+   File edjanger.properties must be present in path.
+   By default executed on last container if no index specified.
  
- Usage:
-    edjangerruni [option]
+ Usage
+   edjangerruni[option]
  
- Options:
-    -h, --help                       print this documentation
+ Options
+    -h, --help
+           Display help.
  
         --index=INDEX                index of the container name
  
  Parameters (edjanger.properties):
-    command_run                      bash command(s) to run
-    environment_variables            environnment variables
-    exposed_ports                    exposed port
-    image_name                       image name
-    linked_containers                linked container
-    network_settings                 all network settings options
-    run_other_options                all other available options for docker run
-    runtime_constraints_on_resources runtime constraints on resources
-    volumes_from                     expose volumes from another container into current container
+    command_run
+      Bash command(s) to run.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    container_hostname
+      container host name (option -h, --hostname string for docker run).
  
+    container_privilege
+      Give extended privileges to this container (option --privileged for 
+      docker run).
+ 
+    container_remove
+      Automatically remove the container when it exits (option --rm for 
+      docker run).
+ 
+    container_addhost
+      Add a custom host-to-IP mapping (host:ip) (default []) (option 
+      --add-host value for docker run).
+ 
+    environment_variables
+      Environnment variables.
+ 
+    exposed_ports
+      Exposed port.
+ 
+    image_name
+           Image name.
+ 
+    linked_containers
+      Linked container.
+ 
+    network_settings
+      All network settings options.
+ 
+    run_other_options
+      All other available options for docker run.
+ 
+    runtime_constraints_on_resources
+      Runtime constraints on resources.
+ 
+    volumes_from
+      Expose volumes from another container into current container (option 
+      --volumes-from value of docker run).
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -3613,29 +1393,39 @@ edjangerruni --help
 ```
 ## Command edjangerstart
 ```bash
- Description:
-    Start one or more stopped containers.
+ Description
+   Start one or more stopped containers.
     
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
+   Filtered by edjanger.properties$container_name.
+   File edjanger.properties must be present in path.
+   By default executed on last container if no index specified.
  
- Usage:
-    edjangerstart [option]
+ Usage
+   edjangerstart[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
-        --index=INDEX              index of the container name
+        --index=INDEX
+           Index of the container name.
  
  Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    start_options                  \"docker start\" options to a running container
+    container_name
+           Container name.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    docker_command
+           Display docker command.
  
+    start_options
+           Options of "docker start" for a running container.
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -3643,29 +1433,39 @@ edjangerstart --help
 ```
 ## Command edjangerstats
 ```bash
- Description:
-    Display a live stream of container(s) resource usage statistics.
+ Description
+   Display a live stream of container(s) resource usage statistics.
     
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
+   Filtered by edjanger.properties$container_name.
+   File edjanger.properties must be present in path.
+   By default executed on last container if no index specified.
  
- Usage:
-    edjangerstats [option]
+ Usage
+   edjangerstats[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
-        --index=INDEX              index of the container name
+        --index=INDEX
+           Index of the container name.
  
  Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    stats_options                  \"docker stats\" options to a running container
+    container_name
+           Container name.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    docker_command
+           Display docker command.
  
+    stats_options
+           Options of "docker stats" for a running container.
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -3673,29 +1473,39 @@ edjangerstats --help
 ```
 ## Command edjangerstop
 ```bash
- Description: 
+ Description 
     Stop one or more running containers.
     
     Filtered by edjanger.properties$container_name.
     File edjanger.properties must be present in path.
     By default executed on last container if no index specified.
  
- Usage:
-    edjangerstop [option]
+ Usage
+   edjangerstop[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
-        --index=INDEX              index of the container name
+        --index=INDEX
+           Index of the container name.
  
  Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    stop_options                   \"docker stop\" options to a running container
+    container_name
+           Container name.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    docker_command
+           Display docker command.
  
+    stop_options
+           Options of "docker stop" for a running container.
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -3703,27 +1513,36 @@ edjangerstop --help
 ```
 ## Command edjangertag
 ```bash
- Description: 
-    Tag an image into a repository.
+ Description 
+   Tag an image into a repository.
     
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
+   Filtered by edjanger.properties$container_name.
+   File edjanger.properties must be present in path.
+   By default executed on last container if no index specified.
  
- Usage:
-    edjangertag [option]
+ Usage
+   edjangertag[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
  Parameters (edjanger.properties):
-    container_name                 container name
-    tag_options                    \"docker tag\" options to a running container
-    docker_command                 print docker command
+    container_name
+           Container name.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    tag_options
+           Options of "docker tag" for a running container.
  
+    docker_command
+           Display docker command.
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -3731,13 +1550,14 @@ edjangertag --help
 ```
 ## Command edjangertemplate
 ```bash
- Description: manage templates for edjanger :
-   A template is an archive which contains edjanger configuration files:
+ Description 
+   Manage templates for edjanger.
+   A template is a zip archive which contains edjanger configuration files:
    - edjanger.template
    - edjanger.properties
    - *.properties
    - build folder read from each *.properties (injection in template to read property build_path)
-   - additional file pattern defined in option --savepattern
+   - additional file pattern defined in option --savepattern="*.*"
  
    Following operations are available:
    - list available template's archive in the local database (short or detailed list)
@@ -3745,1404 +1565,87 @@ edjangertag --help
    - save a template in a local archive from current sources
    - delete a template from the a local archive storage
  
- Usage:
-    edjangertemplate [option]
+ Usage
+   edjangertemplate[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
-        --configure=CONFIG-NAME    properties file containing variables to be replaced in edjanger.template to create edjanger.properties
+        --configure=CONFIG-NAME
+           Properties file containing variables to be replaced in 
+           edjanger.template to create edjanger.properties
  
-        --create                   initialize with the name of the template which could be chozen from the --list option
-                                   Must be combined with option --name=TEMPLATE-NAME
+        --delete
+           Delete named archive 
+           Must be combined with option --name=TEMPLATE-NAME
  
-        --delete                   delete named archive 
-                                   Must be combined with option --name=TEMPLATE-NAME
+        --init
+           Initialize with the name of the template which could be chozen 
+           from the --list option.
+           Must be combined with option --name=TEMPLATE-NAME.
  
-        --list                     list of all available templates
+        --list
+           Display a compact list of all available templates.
  
-        --listinfo                 list of all available templates with details
+        --listinfo
+           Display a list of all available templates with details.
  
-        --name=TEMPLATE-NAME       template name available from archive name list
-                                   Must be combined with options --create, --delete, --save
+        --name=TEMPLATE-NAME
+           Template name available from archive name list.
+           Must be combined with options --init, --delete, --save.
  
-        --save                     save current directory as a template (template name is the hash of the archive)
-                                   Could be combined with option --name=TEMPLATE-NAME
+        --save
+           Save current directory as a template (template name is the hash 
+           of the archive).
+           Could be combined with option --name=TEMPLATE-NAME.
  
-        --savepattern              additionnal file pattern to save in the archive
+        --savepattern="PATTERNS with comma or semi-colon separator"
+           Additionnal file pattern to save in the archive.
  
  Command lines example:
  
  Help:
-    edjangertemplate --help        print this documentation
- Initialize a new template:
-    edjangertemplate --create=demo_httpd
-                                   create a nex template from the archive given by option create
- 
- Load a template:
-    edjangertemplate --configure=configuration
-                                   replace environement variables from file configuration.properties in edjanger.template to produce edjanger.properties file
- 
- Save a template:
-    edjangertemplate --save
-                                   save all current configuration in a templating folder with an hash identifiant (edjanger.*, scripts sh, )
- 
-    edjangertemplate --save --name=demo_web
-                                   save all current configuration in a templating folder with the template name "demo_web"
- 
-    edjangertemplate --save --name=demo_web --savepattern="*.html,*js,*.css"
-                                   save all current configuration in a templating folder with the template name "demo_web" and save additional files
- 
- Print templates list:
-    edjangertemplate --list
-                                   print the list off all stored templates with short name only
- 
- Print templates list:
-    edjangertemplate --listinfo
-                                   print the list off all stored templates with detailed informations
- 
- Delete a template:
-    edjangertemplate --delete --name=demo_web
-                                   remove the template from storage space
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangertemplate --help
-```
-## Command edjangertop
-```bash
- Description:
-    Display the running processes of a container.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangertop [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    top_options                    \"docker top\" options to a running container
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangertop --help
-```
-## Command edjangerunalias
-```bash
- Description: unalias all edjanger aliases
- 
- Usage:
-    edjangerunalias
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerunalias --help
-```
-## Command edjangerunpause
-```bash
- Description: 
-    Unpause all processes within one or more containers.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerunpause [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    unpause_options                \"docker unpause\" options to a running container
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerunpause --help
-```
-## Command edjangerupdate
-```bash
- Description: 
-    Update configuration of one or more containers.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerupdate [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    update_options                 \"docker update\" options to a running container
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerupdate --help
-```
-## Command edjangerupgrade
-```bash
-
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerupgrade --help
-```
-## Command edjangerwait
-```bash
- Description : 
-    Block until a container stops, then print its exit code.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerwait [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    wait_options                   "docker wait" options to a running container (see docker wait --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerwait --help
-```
-## Command edjangerabout
-```bash
- Description: about script for edjanger
- 
- Usage:
-    edjangerabout
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerabout --help
-```
-## Command edjangeralias
-```bash
- Description: print edjanger aliases
- 
- Usage:
-    edjangeralias
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangeralias --help
-```
-## Command edjangerattach
-```bash
- Description:
-    Attach to a running container.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerattach [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    attach_options                 "docker attach" options to a running container (see docker attach --help)
-    container_name                 container name
-    docker_command                 print docker command
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerattach --help
-```
-## Command edjangerbuild
-```bash
- Description: Build an image from a Dockerfile. Use $image_name and $container_name.
-    File edjanger.properties must be present in path.
- Usage:
-    edjangerbuild [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
- Parameters (edjanger.properties):
-    build_args                     build arguments
-    build_forcerm                  always remove intermediate containers
-    build_rm                       remove intermediate containers after a successful build
-    build_nocache                  do not use cache when building the image
-    build_file                     name of the Dockerfile (Default is 'CURRENT PATH/Dockerfile')
-    build_path                     path where is found Dockerfile and its dependencies
-    build_options                  all the other build build options (see docker build --help)
-    docker_command                 print docker command
-    image_name                     image name
- 
- Environement:
-    proxy_args                     proxy variables (HTTP_PROXY,HTTPS_PROXY,http_proxy,https_proxy) read from proxy.zip or environment
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerbuild --help
-```
-## Command edjangercheck
-```bash
- Description: check missing parameters in edjanger.properties from existing in template
- templates/edjanger.template
- 
- Usage:
-    edjangercheck
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangercheck --help
-```
-## Command edjangerclean
-```bash
- Description: run command "docker rmi" with parameters read from edjanger.properties
- Delete images: with attribute name=\"none\"
- 
- Usage:
-    edjangerclean [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --force                    force removal of the image
- 
-        --no-prune                 do not delete untagged parents
- 
- Parameters (edjanger.properties):
-    force_rmi                      path where is found Dockerfile and its dependencies
-    image_name                     image name
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerclean --help
-```
-## Command edjangercommit
-```bash
- Description:
-    Create a new image from a container's changes.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangercommit [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
-        --commitname=COMMIT        commit tag like REPOSITORY[:TAG]
- 
-        --commitmessage=MESSAG     commit message
- 
-        --commitauthor=MESSAG      commit author
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    commit_options                 "docker commit" options to a running container (see docker commit --help)
-    docker_command                 print docker command
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangercommit --help
-```
-## Command edjangercompose
-```bash
- Description: generate docker-compose.yaml from all local edjanger.poperties
- 
- Usage:
-    edjangercompose
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangercompose --help
-```
-## Command edjangercopy
-```bash
- Description:
-    Copy files/folders between a container and the local filesystem.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangercopy [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --fromcontainer            copy file(s) from container to host
- 
-        --fromhost                 copy file(s) from host to container
- 
-        --sourcepath=PATH          path to file(s) or folder to copy
- 
-        --destinationpath=PATH     path where to copy file(s) or folder to copy
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    copy_options                   options to copy files/folders between a container and the local filesystem
-    docker_command                 "docker cp" options to a running container (see docker cp --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangercopy --help
-```
-## Command edjangercreate
-```bash
- Description:
-    Create a new container.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangercreate [option]
- 
- Options:
-    -h, --help                       print this documentation
- 
-        --index=INDEX                index of the container name
- 
- Parameters (edjanger.properties):
-    command_run                      bash command(s) to run
-    container_hostname               container host name (option -h, --hostname string for docker run)
-    container_privilege              give extended privileges to this container (option --privileged for docker run)
-    container_remove                 automatically remove the container when it exits (option --rm for docker run)
-    container_addhost                add a custom host-to-IP mapping (host:ip) (default []) (option --add-host value for docker run)
-    environment_variables            environnment variables
-    exposed_ports                    exposed port
-    image_name                       image name
-    linked_containers                linked container
-    network_settings                 all network settings options
-    run_other_options                all other available options for "docker create"
-    runtime_constraints_on_resources runtime constraints on resources
-    volumes_from                     expose volumes from another container into current container (option --volumes-from value of docker run)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangercreate --help
-```
-## Command edjangerdiff
-```bash
- Description:
-    Inspect changes on a container's filesystem.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerdiff [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    diff_options                   "docker diff" options to a running container (see docker diff --help)
-    docker_command                 print docker command
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerdiff --help
-```
-## Command edjangerevents
-```bash
- Description:
-    Get real time events for a container.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerevents [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    events_options                 "docker events" options to a running container (see docker events --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerevents --help
-```
-## Command edjangerexec
-```bash
- Description:
-    Run a command in a running container.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerexec [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
-        --shellcommand=COMMAND     additionnal command to execute
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    exec_options                   "docker exec" options to a running container (see docker exec --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerexec --help
-```
-## Command edjangerexport
-```bash
- Description:
-    Export a container's filesystem as a tar archive.
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerexport [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    export_options                 "docker export" options to a running container (see docker export --help)
-    docker_command                 print docker command
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerexport --help
-```
-## Command edjangerhelp
-```bash
- Description: print list of all available edjanger commands. 
- Running command : "edjangerhelp"
- 
- With parameter "config" or "parameters", print parameters read in 
- edjanger.properties and used by each edjanger commands.
- Running command : "edjangerhelp config"
- 
- With parameter "[edjanger short command]", print help for this command. 
- Examples : 
-     "edjangerhelp run"            => give help for edjangerrun
-     "edjangerhelp build"          => give help for edjangerbuild
-     ...
- 
-      "edjangerhelp edjangerrun"   => give help for edjangerrun
-      "edjangerhelp edjangerbuild" => give help for edjangerbuild
-     ...
- 
- Usage:
-    edjangerhelp [option] [config | parameters]
- 
- Options:
-    config                         print parameters used by edjanger commands.
- 
-    [edjanger short command]       print help for this edjanger command.
- 
-    -h, --help                     print this documentation
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerhelp --help
-```
-## Command edjangerhistory
-```bash
- Description:
-    Show the history of an image.
-    
-    Filtered by edjanger.properties$image_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerhistory [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
- Parameters (edjanger.properties):
-    docker_command                 print docker command
-    history_options                "docker history" options to a running container (see docker history --help)
-    image_name                     image name
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerhistory --help
-```
-## Command edjangerimages
-```bash
- Description:
-    List images.
-    
-    Filtered by edjanger.properties$image_name
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerimages [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
- Parameters (edjanger.properties):
-    docker_command                 print docker command
-    image_name                     image name
-    images_options                 "docker images" options to a running container (see docker images --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerimages --help
-```
-## Command edjangerimport
-```bash
- Description:
-    Import the contents from a tarball to create a filesystem image.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerimport [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    import_options                 "docker import" options to a running container (see docker import --help)
-    docker_command                 print docker command
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerimport --help
-```
-## Command edjangerinit
-```bash
- Description: create a edjanger project with following files
- - edjanger.template (example)
- - configuration.properties (example)
- - build/Dockerfile (empty example)
- File edjanger.properties is build with previous template and configuration files
- with following command :
- - edjangertemplate configure=configuration
- 
- Usage:
-    edjangerinit [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --template=TEMPLATE-NAME   initialize with the name of the template which could be chozen from the --templatelist option
- 
-        --templatelist             list of all available templates
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerinit --help
-```
-## Command edjangerinspect
-```bash
- Description: 
-    Return low-level information on a container, image or task.
-    
-    Filtered by edjanger.properties$container_name and edjanger.properties$image_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerinspect [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --container                apply to container
- 
-        --image                    apply to image
- 
-        --index=INDEX              index of the container name (valid with option --container)
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    inspect_options                "docker inspect" options to a running container (see docker inspect --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerinspect --help
-```
-## Command edjangerkill
-```bash
- Description: 
-    Kill one or more running containers.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerkill [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    kill_options                   "docker kill" options to a running container (see docker kill --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerkill --help
-```
-## Command edjangerlogs
-```bash
- Description:
-    Fetch the logs of a container. 
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerlogs [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    logs_options                   "docker logs" options to a running container (see docker logs --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerlogs --help
-```
-## Command edjangerpause
-```bash
- Description:
-    Pause all processes within one or more containers.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerpause [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    pause_options                  "docker pause" options to a running container (see docker pause --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerpause --help
-```
-## Command edjangerportdesc
-```bash
- Description: description of network port numbers for a given port number parameter
- 
- Usage:
-    edjangerportdesc [option]
- 
- Options:
-    -h, --help                       print this documentation
- 
-        --port=PORT                  index number of the port
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerportdesc --help
-```
-## Command edjangerports
-```bash
- Description: List port mappings or a specific mapping for all container.
- 
- Usage:
-    edjangerports [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --list                     print list of exposed ports for all running containers
- 
-        --all                      print list of ports information for all containers
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    ports_options                  "docker ports" options to a running container (see docker ports --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerports --help
-```
-## Command edjangerps
-```bash
- Description: 
-    List all running container(s).
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerps [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    ps_options                     "docker ps" options to a running container (see docker ps --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerps --help
-```
-## Command edjangerpsa
-```bash
- Description:
-    List all container(s).
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerpsa [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    ps_options                     "docker ps" options to a running container (see docker ps --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerpsa --help
-```
-## Command edjangerrename
-```bash
- Description:
-    Rename a container.
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerrename [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
-        --name=NAME                new name of the container.
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    rename_options                 "docker rename" options to a running container (see docker rename --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerrename --help
-```
-## Command edjangerrestart
-```bash
- Description:
-    Restart one or more containers.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerrestart [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    restart_options                "docker restart" options to a running container (see docker restart --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerrestart --help
-```
-## Command edjangerrm
-```bash
- Description:
-    Remove one or more containers.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerrm [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
-        --all                      delete all containers for the container_name pattern
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    rm_options                     "docker rm" options to a running container (see docker rm --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerrm --help
-```
-## Command edjangerrmexiteds
-```bash
- Description: remove all exited container.
- 
- Usage:
-    edjangerrmexiteds [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
- Parameters (edjanger.properties):
-    docker_command                 print docker command
-    rm_options                     "docker rm" options to a running container (see docker rm --help)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerrmexiteds --help
-```
-## Command edjangerrmi
-```bash
- Description: remove one or more images. Filtered by edjanger.properties$image_name.
-    File edjanger.properties must be present in path.
- 
- Usage:
-    edjangerrmi [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
- Parameters (edjanger.properties):
-    docker_command                 print docker command
-    force_rmi                      force image deletion
-    image_name                     image name
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerrmi --help
-```
-## Command edjangerrmorphanedvolumes
-```bash
- Description: remove all orphaned volumes
- 
- Usage:
-    edjangerrmorphanedvolumes
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerrmorphanedvolumes --help
-```
-## Command edjangerrun
-```bash
- Description:
-    Run a command in a new container. 
-    
-    Filtered by edjanger.properties$image_name and $container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerrun [option]
- 
- Options:
-    -h, --help                       print this documentation
- 
-        --index=INDEX                index of the container name
- 
- Parameters (edjanger.properties):
-    command_run                      bash command(s) to run
-    container_hostname               container host name (option -h, --hostname string for docker run)
-    container_privilege              give extended privileges to this container (option --privileged for docker run)
-    container_remove                 automatically remove the container when it exits (option --rm for docker run)
-    container_addhost                add a custom host-to-IP mapping (host:ip) (default []) (option --add-host value for docker run)
-    environment_variables            environnment variables
-    exposed_ports                    exposed port
-    image_name                       image name
-    linked_containers                linked container
-    network_settings                 all network settings options
-    run_other_options                all other available options for docker run
-    runtime_constraints_on_resources runtime constraints on resources
-    volumes_from                     expose volumes from another container into current container (option --volumes-from value of docker run)
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerrun --help
-```
-## Command edjangerruni
-```bash
- Description:
-    Run interactively a command in a new container.
-    
-    Filtered by edjanger.properties$image_name and $container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerruni [option]
- 
- Options:
-    -h, --help                       print this documentation
- 
-        --index=INDEX                index of the container name
- 
- Parameters (edjanger.properties):
-    command_run                      bash command(s) to run
-    environment_variables            environnment variables
-    exposed_ports                    exposed port
-    image_name                       image name
-    linked_containers                linked container
-    network_settings                 all network settings options
-    run_other_options                all other available options for docker run
-    runtime_constraints_on_resources runtime constraints on resources
-    volumes_from                     expose volumes from another container into current container
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerruni --help
-```
-## Command edjangerstart
-```bash
- Description:
-    Start one or more stopped containers.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerstart [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    start_options                  \"docker start\" options to a running container
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerstart --help
-```
-## Command edjangerstats
-```bash
- Description:
-    Display a live stream of container(s) resource usage statistics.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerstats [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    stats_options                  \"docker stats\" options to a running container
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerstats --help
-```
-## Command edjangerstop
-```bash
- Description: 
-    Stop one or more running containers.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangerstop [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --index=INDEX              index of the container name
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    stop_options                   \"docker stop\" options to a running container
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangerstop --help
-```
-## Command edjangertag
-```bash
- Description: 
-    Tag an image into a repository.
-    
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
- 
- Usage:
-    edjangertag [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
- Parameters (edjanger.properties):
-    container_name                 container name
-    tag_options                    \"docker tag\" options to a running container
-    docker_command                 print docker command
- 
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
- 
-```
-Note: help for this command could be retrieve by typing:
-```bash
-edjangertag --help
-```
-## Command edjangertemplate
-```bash
- Description: manage templates for edjanger :
-   A template is an archive which contains edjanger configuration files:
-   - edjanger.template
-   - edjanger.properties
-   - *.properties
-   - build folder read from each *.properties (injection in template to read property build_path)
-   - additional file pattern defined in option --savepattern
- 
-   Following operations are available:
-   - list available template's archive in the local database (short or detailed list)
-   - unarchive a template with an archive name retrieve from the list
-   - save a template in a local archive from current sources
-   - delete a template from the a local archive storage
- 
- Usage:
-    edjangertemplate [option]
- 
- Options:
-    -h, --help                     print this documentation
- 
-        --configure=CONFIG-NAME    properties file containing variables to be replaced in edjanger.template to create edjanger.properties
- 
-        --delete                   delete named archive 
-                                   Must be combined with option --name=TEMPLATE-NAME
- 
-        --init                     initialize with the name of the template which could be chozen from the --list option
-                                   Must be combined with option --name=TEMPLATE-NAME
- 
-        --list                     list of all available templates
- 
-        --listinfo                 list of all available templates with details
- 
-        --name=TEMPLATE-NAME       template name available from archive name list
-                                   Must be combined with options --init, --delete, --save
- 
-        --save                     save current directory as a template (template name is the hash of the archive)
-                                   Could be combined with option --name=TEMPLATE-NAME
- 
-        --savepattern              additionnal file pattern to save in the archive
- 
- Command lines example:
- 
- Help:
-    edjangertemplate --help        print this documentation
+    edjangertemplate --help
+           Dispay help.
  Initialize a new template:
     edjangertemplate --init=demo_httpd
-                                   initialize a nex template from the archive given by option --init
+           initialize a nex template from the archive given by option --init.
  
  Load a template:
     edjangertemplate --configure=configuration
-                                   replace environement variables from file configuration.properties in edjanger.template to produce edjanger.properties file
+           Replace environement variables from file configuration.properties
+           in edjanger.template to produce edjanger.properties file.
  
  Save a template:
     edjangertemplate --save
-                                   save all current configuration in a templating folder with an hash identifiant (edjanger.*, scripts sh, )
+           Save all current configuration in a templating folder with an 
+           hash identifiant (edjanger.*, scripts sh).
  
     edjangertemplate --save --name=demo_web
-                                   save all current configuration in a templating folder with the template name "demo_web"
+           Save all current configuration in a templating folder with the 
+           template name "demo_web".
  
     edjangertemplate --save --name=demo_web --savepattern="*.html,*js,*.css"
-                                   save all current configuration in a templating folder with the template name "demo_web" and save additional files
+           Save all current configuration in a templating folder with the 
+           template name "demo_web" and save additional files.
  
  Print templates list:
     edjangertemplate --list
-                                   print the list off all stored templates with short name only
+           Print the list off all stored templates with short name only.
  
  Print templates list:
     edjangertemplate --listinfo
-                                   print the list off all stored templates with detailed informations
+           Print the list off all stored templates with detailed informations.
  
  Delete a template:
     edjangertemplate --delete --name=demo_web
-                                   remove the template from storage space
+           Remove the template from storage space defined in variable 
+           templates_path from configuration file prefs.properties.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
  
 ```
 Note: help for this command could be retrieve by typing:
@@ -5151,29 +1654,39 @@ edjangertemplate --help
 ```
 ## Command edjangertop
 ```bash
- Description:
-    Display the running processes of a container.
+ Description
+   Display the running processes of a container.
     
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
+   Filtered by edjanger.properties$container_name.
+   File edjanger.properties must be present in path.
+   By default executed on last container if no index specified.
  
- Usage:
-    edjangertop [option]
+ Usage
+   edjangertop[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
-        --index=INDEX              index of the container name
+        --index=INDEX
+           Index of the container name.
  
  Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    top_options                    \"docker top\" options to a running container
+    container_name
+           Container name.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    docker_command
+           Display docker command.
  
+    top_options
+           Options of "docker top" for a running container.
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -5181,13 +1694,19 @@ edjangertop --help
 ```
 ## Command edjangerunalias
 ```bash
- Description: unalias all edjanger aliases
+ Description
+   Unalias all edjanger aliases.
  
- Usage:
-    edjangerunalias
+ Usage
+   edjangerunalias[option]
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+ Options
+    -h, --help
+           Display help.
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
  
 ```
 Note: help for this command could be retrieve by typing:
@@ -5196,29 +1715,39 @@ edjangerunalias --help
 ```
 ## Command edjangerunpause
 ```bash
- Description: 
-    Unpause all processes within one or more containers.
+ Description 
+   Unpause all processes within one or more containers.
     
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
+   Filtered by edjanger.properties$container_name.
+   File edjanger.properties must be present in path.
+   By default executed on last container if no index specified.
  
- Usage:
-    edjangerunpause [option]
+ Usage
+   edjangerunpause[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
-        --index=INDEX              index of the container name
+        --index=INDEX
+           Index of the container name.
  
  Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    unpause_options                \"docker unpause\" options to a running container
+    container_name
+           Container name.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    docker_command
+           Display docker command.
  
+    unpause_options
+           Options of "docker unpause" for a running container.
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -5226,29 +1755,39 @@ edjangerunpause --help
 ```
 ## Command edjangerupdate
 ```bash
- Description: 
-    Update configuration of one or more containers.
+ Description 
+   Update configuration of one or more containers.
     
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
+   Filtered by edjanger.properties$container_name.
+   File edjanger.properties must be present in path.
+   By default executed on last container if no index specified.
  
- Usage:
-    edjangerupdate [option]
+ Usage
+   edjangerupdate[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
-        --index=INDEX              index of the container name
+        --index=INDEX
+           Index of the container name.
  
  Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    update_options                 \"docker update\" options to a running container
+    container_name
+           Container name.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    docker_command
+           Display docker command.
  
+    update_options
+           Options of "docker update" for a running container.
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -5256,7 +1795,22 @@ edjangerupdate --help
 ```
 ## Command edjangerupgrade
 ```bash
-
+ Description : 
+   Update script:
+     - archive edjanger folder with date in a zip file with date timestamp
+     - update edjanger : git pull origin master
+ 
+ Usage
+   edjangerupgrade[option]
+ 
+ Options
+    -h, --help
+           Display help.
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
@@ -5265,28 +1819,39 @@ edjangerupgrade --help
 ## Command edjangerwait
 ```bash
  Description : 
-    Block until a container stops, then print its exit code.
+   Block until a container stops, then print its exit code.
     
-    Filtered by edjanger.properties$container_name.
-    File edjanger.properties must be present in path.
-    By default executed on last container if no index specified.
+   Filtered by edjanger.properties$container_name.
+   File edjanger.properties must be present in path.
+   By default executed on last container if no index specified.
  
- Usage:
-    edjangerwait [option]
+ Usage
+   edjangerwait[option]
  
- Options:
-    -h, --help                     print this documentation
+ Options
+    -h, --help
+           Display help.
  
-        --index=INDEX              index of the container name
+        --index=INDEX
+           Index of the container name.
  
  Parameters (edjanger.properties):
-    container_name                 container name
-    docker_command                 print docker command
-    wait_options                   "docker wait" options to a running container (see docker wait --help)
+    container_name
+           Container name.
  
- edjanger, The MIT License (MIT)
- Copyright (c) 2016 copyright pamtrak06@gmail.com
+    docker_command
+           Display docker command.
  
+    wait_options
+           Options "docker wait" for a running container (see docker wait 
+           --help).
+ 
+ Licence & authors
+    edjanger, The MIT License (MIT)
+    Copyright (c) 2016 copyright pamtrak06@gmail.com
+ 
+    -h, --help
+           Display help.
 ```
 Note: help for this command could be retrieve by typing:
 ```bash
