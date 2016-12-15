@@ -1,23 +1,28 @@
 #!/bin/bash
-##  Description: List port mappings or a specific mapping for all container.
+##  Description List port mappings or a specific mapping for all container.
 ##  
-##  Usage:
-##     @script.name [option]
+##  Usage
+##    @script.name[option]
 ##  
-##  Options:
-##     -h, --help                     print this documentation
+##  Options
+##     -h, --help
+##            Display help.
 ##  
 ##         --list                     print list of exposed ports for all running containers
 ##  
 ##         --all                      print list of ports information for all containers
 ##  
 ##  Parameters (edjanger.properties):
-##     container_name                 container name
-##     docker_command                 print docker command
-##     ports_options                  "docker ports" options to a running container (see docker ports --help)
+##     container_name
+##            Container name.
 ##  
-##  edjanger, The MIT License (MIT)
-##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##     docker_command
+##            Display docker command.
+##     ports_options                  "docker ports" options for a running container (see docker ports --help)
+##  
+##  Licence & authors
+##     edjanger, The MIT License (MIT)
+##     Copyright (c) 2016 copyright pamtrak06@gmail.com
 ##  
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh

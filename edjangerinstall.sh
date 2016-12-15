@@ -1,20 +1,36 @@
 #!/bin/bash
-# ----------------------------------------------------
-# The MIT License (MIT)
-#
-# Copyright (c) 2016 copyright pamtrak06@gmail.com
-# ----------------------------------------------------
-# SCRIPT           : copy.sh
-# DESCRIPTION      : install edjanger
-#   PARAMETER      : (dev) provide contribution mode to upload to github
-# CREATOR          : pamtrak06@gmail.com
-# --------------------------------
-# VERSION          : 1.0
-# DATE             : 2016-03-02
-# COMMENT          : creation
-# --------------------------------
-# USAGE            : ./edjangerinstall --alias || --contribution
-# ----------------------------------------------------
+# ------------------------------------------------------------------------------
+##  Description
+##    Install edjanger.
+##  
+##  Usage
+##    @script.name[option]
+##  
+##  Options
+##     -h, --help
+##            Display help.
+##  
+##     -a, --alias
+##            Run edjanger installation mode.
+##  
+##     -c, --contribution
+##            Run edjanger contribution mode.
+##  
+##  Command lines example:
+##  
+##  Help:
+##     ./edjangerinstall.sh --alias | -a
+##            Run edjanger installation mode.
+##  
+##     ./edjangerinstall.sh --contribution | -c
+##            Run edjanger installation mode (useful before to make a git pull 
+##            safely).
+##  
+##  Licence & authors
+##     edjanger, The MIT License (MIT)
+##     Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  
+# ------------------------------------------------------------------------------
 
 # global edjanger
 debug=false

@@ -1,45 +1,71 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Description: Build an image from a Dockerfile. Use $image_name and $container_name.
+##  Description Build an image from a Dockerfile. Use $image_name and $container_name.
 ##     File edjanger.properties must be present in path.
 ##
-##  Usage:
-##     @script.name [option]
+##  Usage
+##    @script.name[option]
 ##  
-##  Options:
-##     -h, --help                     print this documentation
+##  Options
+##     -h, --help
+##            Display help.
 ##  
 ##  Parameters (edjanger.properties):
-##     build_args                     build arguments
-##     build_forcerm                  always remove intermediate containers
-##     build_rm                       remove intermediate containers after a successful build
-##     build_nocache                  do not use cache when building the image
-##     build_file                     name of the Dockerfile (Default is 'CURRENT PATH/Dockerfile')
-##     build_path                     path where is found Dockerfile and its dependencies
-##     build_options                  all the other build build options (see docker build --help)
-##     docker_command                 print docker command
-##     image_name                     image name
+##     build_args
+##            Build arguments.
+##  
+##     build_forcerm
+##            Always remove intermediate containers.
+##  
+##     build_rm
+##            Remove intermediate containers after a successful build.
+##  
+##     build_nocache
+##            Do not use cache when building the image.
+##  
+##     build_file
+##            Name of the Dockerfile (Default is 'CURRENT PATH/Dockerfile').
+##  
+##     build_path
+##            Path where is found Dockerfile and its dependencies.
+##  
+##     build_options
+##            All the other build build options (see docker build --help).
+##  
+##     docker_command
+##            Display docker command.
+##  
+##     image_name
+##            Image name.
 ##  
 ##  Environement:
-##     proxy_args                     proxy variables (HTTP_PROXY,HTTPS_PROXY,http_proxy,https_proxy) read from proxy.zip or environment
+##     proxy_args
+##            Get proxy variables (HTTP_PROXY,HTTPS_PROXY,http_proxy,https_proxy) 
+##            from environment or read it from proxy.zip.
 ##  
-##  edjanger, The MIT License (MIT)
-##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  Licence & authors
+##     edjanger, The MIT License (MIT)
+##     Copyright (c) 2016 copyright pamtrak06@gmail.com
 ##  
 # ------------------------------------------------------------------------------
 ###
 ### External options:
-###    -h, --help                     print this documentation
+##     -h, --help
+##            Display help.
 ###  
 ### Internal options:
 ###  
-###        --scriptname=SCRIPT        name of the main script
+###        --scriptname=SCRIPT
+###            Name of the main script.
 ###  
-###        --commandline=COMMAND      name of the docker command to execute
+###        --commandline=COMMAND
+###            Name of the docker command to execute.
 ###  
-###        --commandcomment=COMMAND   printed comment of the command to execute
+###        --commandcomment=COMMAND
+###            Printed comment of the command to execute.
 ###  
-###        --commandoptions=OPTIONS   options read in the edjanger.properties
+###        --commandoptions=OPTIONS
+###            Options read in the edjanger.properties.
 ###  
 # ------------------------------------------------------------------------------
 checkinstall=$(cat $0|grep -v checkinstall|grep "edjangerpath")

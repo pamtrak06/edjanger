@@ -1,37 +1,48 @@
 #!/bin/bash
-##  Description: remove all exited container.
+##  Description
+##    Remove all exited container.
 ##  
-##  Usage:
-##     @script.name [option]
+##  Usage
+##    @script.name[option]
 ##  
-##  Options:
-##     -h, --help                     print this documentation
+##  Options
+##     -h, --help
+##            Display help.
 ##  
 ##  Parameters (edjanger.properties):
-##     docker_command                 print docker command
-##     rm_options                     "docker rm" options to a running container (see docker rm --help)
+##     docker_command
+##            Display docker command.
 ##  
-##  edjanger, The MIT License (MIT)
-##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##     rm_options
+##            Options of "docker rm" for a running container (see docker rm --help)
+##  
+##  Licence & authors
+##     edjanger, The MIT License (MIT)
+##     Copyright (c) 2016 copyright pamtrak06@gmail.com
 ##  
 # ------------------------------------------------------------------------------
 ###
 ### External options:
-###    -h, --help                     print this documentation
+##     -h, --help
+##            Display help.
 ###
 ### Internal options:
 ###
-###        --scriptname=SCRIPT        name of the main script
+###        --scriptname=SCRIPT
+###            Name of the main script.
 ###
-###        --commandline=COMMAND      name of the docker command to execute
+###        --commandline=COMMAND
+###            Name of the docker command to execute.
 ###
 ###        --confirm                  ask for a confirmation before execute
 ###
 ###        --confirmquestion=QUESTION question for the execution's confirmation
 ###
-###        --commandcomment=COMMAND   printed comment of the command to execute
+###        --commandcomment=COMMAND
+###            Printed comment of the command to execute.
 ###
-###        --commandoptions=OPTIONS   options read in the edjanger.properties
+###        --commandoptions=OPTIONS
+###            Options read in the edjanger.properties.
 ###
 # ------------------------------------------------------------------------------
 # TODO to be corrected (take care about eval in function evalOptionsParameters from _common.sh)

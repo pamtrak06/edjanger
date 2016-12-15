@@ -1,13 +1,15 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Set proxy environment variables read in proxy.properties 
-##  and extracted from proxy.zip.
+##  Description
+##    Set proxy environment variables read in proxy.properties 
+##    and extracted from proxy.zip.
 ##  
-##  Usage:
+##  Usage
 ##     ./_proxy.sh
 ##  
-##  edjanger, The MIT License (MIT)
-##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  Licence & authors
+##     edjanger, The MIT License (MIT)
+##     Copyright (c) 2016 copyright pamtrak06@gmail.com
 ##  
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh

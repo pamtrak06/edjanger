@@ -1,40 +1,52 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Description:
-##     Show the history of an image.
+##  Description
+##    Show the history of an image.
 ##     
-##     Filtered by edjanger.properties$image_name.
-##     File edjanger.properties must be present in path.
-##     By default executed on last container if no index specified.
+##    Filtered by edjanger.properties$image_name.
+##    File edjanger.properties must be present in path.
+##    By default executed on last container if no index specified.
 ##  
-##  Usage:
-##     @script.name [option]
+##  Usage
+##    @script.name[option]
 ##  
-##  Options:
-##     -h, --help                     print this documentation
+##  Options
+##     -h, --help
+##            Display help.
 ##  
 ##  Parameters (edjanger.properties):
-##     docker_command                 print docker command
-##     history_options                "docker history" options to a running container (see docker history --help)
-##     image_name                     image name
+##     docker_command
+##            Display docker command.
 ##  
-##  edjanger, The MIT License (MIT)
-##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##     history_options
+##            Options of "docker history" for a running container (see docker history --help)
+##  
+##     image_name
+##            Image name.
+##  
+##  Licence & authors
+##     edjanger, The MIT License (MIT)
+##     Copyright (c) 2016 copyright pamtrak06@gmail.com
 ##  
 # ------------------------------------------------------------------------------
 ###
 ### External options:
-###    -h, --help                     print this documentation
+##     -h, --help
+##            Display help.
 ###  
 ### Internal options:
 ###  
-###        --scriptname=SCRIPT        name of the main script
+###        --scriptname=SCRIPT
+###            Name of the main script.
 ###  
-###        --commandline=COMMAND      name of the docker command to execute
+###        --commandline=COMMAND
+###            Name of the docker command to execute.
 ###  
-###        --commandcomment=COMMAND   printed comment of the command to execute
+###        --commandcomment=COMMAND
+###            Printed comment of the command to execute.
 ###  
-###        --commandoptions=OPTIONS   options read in the edjanger.properties
+###        --commandoptions=OPTIONS
+###            Options read in the edjanger.properties.
 ###  
 # ------------------------------------------------------------------------------
 checkinstall=$(cat $0|grep -v checkinstall|grep "edjangerpath")

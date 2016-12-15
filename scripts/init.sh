@@ -1,24 +1,34 @@
 #!/bin/bash
-##  Description: create a edjanger project with following files
-##  - edjanger.template (example)
-##  - configuration.properties (example)
-##  - build/Dockerfile (empty example)
-##  File edjanger.properties is build with previous template and configuration files
-##  with following command :
-##  - edjangertemplate configure=configuration
+##  Description
+##    create a edjanger project with following files
+##      - edjanger.template (example)
+##      - configuration.properties (example)
+##      - build/Dockerfile (empty example)
 ##  
-##  Usage:
-##     @script.name [option]
+##    File edjanger.properties is build with previous template and configuration 
+##    files with following command :
+##      - edjangertemplate configure=configuration
 ##  
-##  Options:
-##     -h, --help                     print this documentation
+##  Usage
+##    @script.name[option]
 ##  
-##         --template=TEMPLATE-NAME   initialize with the name of the template which could be chozen from the --templatelist option
+##  Options
+##     -h, --help
+##            Display help.
 ##  
-##         --templatelist             list of all available templates
+##         --template=TEMPLATE-NAME
+##            Initialize with the name of the template which could be chozen 
+##            from the --templatelist option.
 ##  
-##  edjanger, The MIT License (MIT)
-##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##         --templatelist
+##            Display a comapct list of all available templates.
+##  
+##         --templatelistinfo
+##            Display a list of all available templates with details.
+##  
+##  Licence & authors
+##     edjanger, The MIT License (MIT)
+##     Copyright (c) 2016 copyright pamtrak06@gmail.com
 ##  
 # ------------------------------------------------------------------------------
 checkinstall=$(cat $0|grep -v checkinstall|grep "edjangerpath")
@@ -84,6 +94,10 @@ else
   elif [ -n "${templatelist}" ]; then
     
     print_template_list false
+    
+  elif [ -n "${templatelistinfo}" ]; then
+    
+    print_template_list true
     
   else
     

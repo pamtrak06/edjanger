@@ -1,12 +1,14 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Unset proxy environment variables
+##  Description
+##    Unset proxy environment variables.
 ##  
-##  Usage:
+##  Usage
 ##     ./_proxy_reset.sh
 ##  
-##  edjanger, The MIT License (MIT)
-##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  Licence & authors
+##     edjanger, The MIT License (MIT)
+##     Copyright (c) 2016 copyright pamtrak06@gmail.com
 ##  
 # ------------------------------------------------------------------------------
 

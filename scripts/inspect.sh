@@ -1,47 +1,64 @@
 #!/bin/bash
-##  Description: 
-##     Return low-level information on a container, image or task.
+##  Description 
+##    Return low-level information on a container, image or task.
 ##     
-##     Filtered by edjanger.properties$container_name and edjanger.properties$image_name.
-##     File edjanger.properties must be present in path.
-##     By default executed on last container if no index specified.
+##    Filtered by edjanger.properties$container_name and edjanger.properties$image_name.
+##    File edjanger.properties must be present in path.
+##    By default executed on last container if no index specified.
 ##  
-##  Usage:
-##     @script.name [option]
+##  Usage
+##    @script.name[option]
 ##  
-##  Options:
-##     -h, --help                     print this documentation
+##  Options
+##     -h, --help
+##            Display help.
 ##  
-##         --container                apply to container
+##         --container
+##            Apply inspect to container.
 ##  
-##         --image                    apply to image
+##         --image
+##            Apply inspect to image.
 ##  
-##         --index=INDEX              index of the container name (valid with option --container)
+##         --index=INDEX
+##            Index of the container name (used only with option --container).
 ##  
 ##  Parameters (edjanger.properties):
-##     container_name                 container name
-##     docker_command                 print docker command
-##     inspect_options                "docker inspect" options to a running container (see docker inspect --help)
+##     container_name
+##            Container name.
 ##  
-##  edjanger, The MIT License (MIT)
-##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##     docker_command
+##            Display docker command.
+##     inspect_options
+##  
+##            Options of "docker inspect" for a running container (see docker 
+##            inspect --help).
+##  
+##  Licence & authors
+##     edjanger, The MIT License (MIT)
+##     Copyright (c) 2016 copyright pamtrak06@gmail.com
 ##  
 # ------------------------------------------------------------------------------
 ###
 ### External options:
-###    -h, --help                     print this documentation
+##     -h, --help
+##            Display help.
 ###
-###        --index=INDEX              index of the container name
+###        --index=INDEX
+###            Index of the container name.
 ###
 ### Internal options:
 ###
-###        --scriptname=SCRIPT        name of the main script
+###        --scriptname=SCRIPT
+###            Name of the main script.
 ###
-###        --commandline=COMMAND      name of the docker command to execute
+###        --commandline=COMMAND
+###            Name of the docker command to execute.
 ###
-###        --commandcomment=COMMAND   printed comment of the command to execute
+###        --commandcomment=COMMAND
+###            Printed comment of the command to execute.
 ###
-###        --commandoptions=OPTIONS   options read in the edjanger.properties
+###        --commandoptions=OPTIONS
+###            Options read in the edjanger.properties.
 ###
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh

@@ -1,12 +1,22 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Description: generate docker-compose.yaml from all local edjanger.poperties
+##  Description
+##    Generate docker-compose.yaml from all local edjanger.poperties.
 ##  
-##  Usage:
+##  Usage
 ##     @script.name
 ##  
-##  edjanger, The MIT License (MIT)
-##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  
+##  Usage
+##    @script.name[option]
+##  
+##  Options
+##     -h, --help
+##            Display help.
+##  
+##  Licence & authors
+##     edjanger, The MIT License (MIT)
+##     Copyright (c) 2016 copyright pamtrak06@gmail.com
 ##  
 # ------------------------------------------------------------------------------
 checkinstall=$(cat $0|grep -v checkinstall|grep "edjangerpath")

@@ -1,24 +1,23 @@
 #!/bin/bash
-# update script:
-# - zip edjanger folder with date
-# - update edjanger : git pull origin master
+# ------------------------------------------------------------------------------
+##  Description : 
+##    Update script:
+##      - archive edjanger folder with date in a zip file with date timestamp
+##      - update edjanger : git pull origin master
+##  
+##  Usage
+##    @script.name[option]
+##  
+##  Options
+##     -h, --help
+##            Display help.
+##  
+##  Licence & authors
+##     edjanger, The MIT License (MIT)
+##     Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  
+# ------------------------------------------------------------------------------
 
-# ----------------------------------------------------
-# The MIT License (MIT)
-#
-# Copyright (c) 2016 copyright pamtrak06@gmail.com
-# ----------------------------------------------------
-# SCRIPT           : update.sh
-# ALIAS            : edjangerupdate
-# DESCRIPTION      : archive edjanger with date and update it from git
-# CREATOR          : pamtrak06@gmail.com
-# --------------------------------
-# VERSION          : 1.0
-# DATE             : 2016-03-02
-# COMMENT          : creation
-# --------------------------------
-# USAGE            : edjangerupdate
-# ----------------------------------------------------
 checkinstall=$(cat $0|grep -v checkinstall|grep "edjangerpath")
 [ -n "$checkinstall" ]             && echo "edjanger:ERROR: Bad edjanger configuration, please run ./edjangerinstall.sh --alias from edjanger path" && exit -1
 

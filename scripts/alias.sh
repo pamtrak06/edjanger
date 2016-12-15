@@ -1,12 +1,14 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Description: print edjanger aliases
+##  Description
+##    Display edjanger aliases.
 ##  
-##  Usage:
+##  Usage
 ##     @script.name
 ##  
-##  edjanger, The MIT License (MIT)
-##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  Licence & authors
+##     edjanger, The MIT License (MIT)
+##     Copyright (c) 2016 copyright pamtrak06@gmail.com
 ##  
 # ------------------------------------------------------------------------------
 checkinstall=$(cat $0|grep -v checkinstall|grep "edjangerpath")

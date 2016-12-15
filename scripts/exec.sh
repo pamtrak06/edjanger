@@ -1,47 +1,61 @@
 #!/bin/bash
-##  Description:
+##  Description
 ##     Run a command in a running container.
 ##     
 ##     Filtered by edjanger.properties$container_name.
 ##     File edjanger.properties must be present in path.
 ##     By default executed on last container if no index specified.
 ##  
-##  Usage:
-##     @script.name [option]
+##  Usage
+##    @script.name[option]
 ##  
-##  Options:
-##     -h, --help                     print this documentation
+##  Options
+##     -h, --help
+##            Display help.
 ##  
-##         --index=INDEX              index of the container name
+##         --index=INDEX
+##            Index of the container name.
 ##  
 ##         --shellcommand=COMMAND     additionnal command to execute
 ##  
 ##  Parameters (edjanger.properties):
-##     container_name                 container name
-##     docker_command                 print docker command
-##     exec_options                   "docker exec" options to a running container (see docker exec --help)
+##     container_name
+##            Container name.
 ##  
-##  edjanger, The MIT License (MIT)
-##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##     docker_command
+##            Display docker command.
+##  
+##     exec_options
+##            Options of "docker exec" for a running container (see docker exec --help)
+##  
+##  Licence & authors
+##     edjanger, The MIT License (MIT)
+##     Copyright (c) 2016 copyright pamtrak06@gmail.com
 ##  
 # ------------------------------------------------------------------------------
 ###
 ### External options:
-###    -h, --help                     print this documentation
+##     -h, --help
+##            Display help.
 ###
-###        --index=INDEX              index of the container name
+###        --index=INDEX
+###            Index of the container name.
 ###  
 ###        --shellcommand=COMMAND     shell command to execute
 ###  
 ### Internal options:
 ###
-###        --scriptname=SCRIPT        name of the main script
+###        --scriptname=SCRIPT
+###            Name of the main script.
 ###
-###        --commandline=COMMAND      name of the docker command to execute
+###        --commandline=COMMAND
+###            Name of the docker command to execute.
 ###
-###        --commandcomment=COMMAND   printed comment of the command to execute
+###        --commandcomment=COMMAND
+###            Printed comment of the command to execute.
 ###
-###        --commandoptions=OPTIONS   options read in the edjanger.properties
+###        --commandoptions=OPTIONS
+###            Options read in the edjanger.properties.
 ###
 # ------------------------------------------------------------------------------
 checkinstall=$(cat $0|grep -v checkinstall|grep "edjangerpath")

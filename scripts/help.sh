@@ -1,14 +1,15 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Description: print list of all available edjanger commands. 
-##  Running command : "edjangerhelp"
+##  Description
+##    Print list of all available edjanger commands. 
+##    Running command : "edjangerhelp"
 ##  
-##  With parameter "config" or "parameters", print parameters read in 
-##  edjanger.properties and used by each edjanger commands.
-##  Running command : "edjangerhelp config"
+##    With parameter "config" or "parameters", print parameters read in 
+##    edjanger.properties and used by each edjanger commands.
+##    Running command : "edjangerhelp config"
 ##  
-##  With parameter "[edjanger short command]", print help for this command. 
-##  Examples : 
+##    With parameter "[edjanger short command]", print help for this command. 
+##    Examples : 
 ##      "edjangerhelp run"            => give help for edjangerrun
 ##      "edjangerhelp build"          => give help for edjangerbuild
 ##      ...
@@ -17,18 +18,22 @@
 ##       "edjangerhelp edjangerbuild" => give help for edjangerbuild
 ##      ...
 ##  
-##  Usage:
-##     @script.name [option] [config | parameters]
+##  Usage
+##    @script.name [option] [config | parameters]
 ##  
-##  Options:
-##     config                         print parameters used by edjanger commands.
+##  Options
+##    config
+##            Print parameters used by edjanger commands.
 ##  
-##     [edjanger short command]       print help for this edjanger command.
+##    [edjanger short command]
+##            Print help for this edjanger command.
 ##  
-##     -h, --help                     print this documentation
+##    -h, --help
+##            Display help.
 ##  
-##  edjanger, The MIT License (MIT)
-##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  Licence & authors
+##     edjanger, The MIT License (MIT)
+##     Copyright (c) 2016 copyright pamtrak06@gmail.com
 ##  
 # ------------------------------------------------------------------------------
 checkinstall=$(cat $0|grep -v checkinstall|grep "edjangerpath")

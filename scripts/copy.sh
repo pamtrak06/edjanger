@@ -1,50 +1,68 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Description:
+##  Description
 ##     Copy files/folders between a container and the local filesystem.
 ##     
 ##     Filtered by edjanger.properties$container_name.
 ##     File edjanger.properties must be present in path.
 ##     By default executed on last container if no index specified.
 ##  
-##  Usage:
-##     @script.name [option]
+##  Usage
+##    @script.name[option]
 ##  
-##  Options:
-##     -h, --help                     print this documentation
+##  Options
+##     -h, --help
+##            Display help.
 ##  
-##         --fromcontainer            copy file(s) from container to host
+##         --fromcontainer
+##            Copy file(s) from container to host.
 ##  
-##         --fromhost                 copy file(s) from host to container
+##         --fromhost
+##            Copy file(s) from host to container.
 ##  
-##         --sourcepath=PATH          path to file(s) or folder to copy
+##         --sourcepath=PATH
+##            Path to file(s) or folder to copy.
 ##  
-##         --destinationpath=PATH     path where to copy file(s) or folder to copy
+##         --destinationpath=PATH
+##            Path where to copy file(s) or folder to copy.
 ##  
 ##  Parameters (edjanger.properties):
-##     container_name                 container name
-##     copy_options                   options to copy files/folders between a container and the local filesystem
-##     docker_command                 "docker cp" options to a running container (see docker cp --help)
+##     container_name
+##            Container name.
 ##  
-##  edjanger, The MIT License (MIT)
-##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##     copy_options
+##            Options to copy files/folders between a container and the local 
+##            filesystem.
+##  
+##     docker_command
+##            Options of "docker cp" for a running container (see docker cp --help).
+##  
+##  Licence & authors
+##     edjanger, The MIT License (MIT)
+##     Copyright (c) 2016 copyright pamtrak06@gmail.com
 ##  
 # ------------------------------------------------------------------------------
 ###
 ### External options:
-###    -h, --help                     print this documentation
+##     -h, --help
+##            Display help.
 ###
-###        --index=INDEX              index of the container name
+###        --index=INDEX
+###            Index of the container name.
 ###
 ### Internal options:
 ###
-###        --scriptname=SCRIPT        name of the main script
+###        --scriptname=SCRIPT
+###            Name of the main script.
 ###
-###        --commandline=COMMAND      name of the docker command to execute
+###        --commandline=COMMAND
+###            Name of the docker command to execute.
 ###
-###        --commandcomment=COMMAND   printed comment of the command to execute
+###        --commandcomment=COMMAND
+###            Printed comment of the command to execute.
 ###
-###        --commandoptions=OPTIONS   options read in the edjanger.properties
+###        --commandoptions=OPTIONS
+###            Options read in the edjanger.properties.
 ###
 # ------------------------------------------------------------------------------
 checkinstall=$(cat $0|grep -v checkinstall|grep "edjangerpath")

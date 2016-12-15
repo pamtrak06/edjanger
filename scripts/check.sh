@@ -1,13 +1,15 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Description: check missing parameters in edjanger.properties from existing in template
-##  templates/edjanger.template
+##  Description
+##    Check missing parameters in edjanger.properties from existing in template
+##    templates/edjanger.template.
 ##  
-##  Usage:
+##  Usage
 ##     @script.name
 ##  
-##  edjanger, The MIT License (MIT)
-##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  Licence & authors
+##     edjanger, The MIT License (MIT)
+##     Copyright (c) 2016 copyright pamtrak06@gmail.com
 ##  
 # ------------------------------------------------------------------------------
 checkinstall=$(cat $0|grep -v checkinstall|grep "edjangerpath")

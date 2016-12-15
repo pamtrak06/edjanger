@@ -1,17 +1,20 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Description: description of network port numbers for a given port number parameter
+##  Description
+##    Description of network port numbers for a given port number parameter.
 ##  
-##  Usage:
-##     @script.name [option]
+##  Usage
+##    @script.name[option]
 ##  
-##  Options:
-##     -h, --help                       print this documentation
+##  Options
+##     -h, --help
+##            Display help.
 ##  
 ##         --port=PORT                  index number of the port
 ##  
-##  edjanger, The MIT License (MIT)
-##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  Licence & authors
+##     edjanger, The MIT License (MIT)
+##     Copyright (c) 2016 copyright pamtrak06@gmail.com
 ##  
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh

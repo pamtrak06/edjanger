@@ -1,12 +1,13 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Description: manage templates for edjanger :
-##    A template is an archive which contains edjanger configuration files:
+##  Description 
+##    Manage templates for edjanger.
+##    A template is a zip archive which contains edjanger configuration files:
 ##    - edjanger.template
 ##    - edjanger.properties
 ##    - *.properties
 ##    - build folder read from each *.properties (injection in template to read property build_path)
-##    - additional file pattern defined in option --savepattern
+##    - additional file pattern defined in option --savepattern="*.*"
 ##  
 ##    Following operations are available:
 ##    - list available template's archive in the local database (short or detailed list)
@@ -14,69 +15,88 @@
 ##    - save a template in a local archive from current sources
 ##    - delete a template from the a local archive storage
 ##  
-##  Usage:
-##     @script.name [option]
+##  Usage
+##    @script.name[option]
 ##  
-##  Options:
-##     -h, --help                     print this documentation
+##  Options
+##     -h, --help
+##            Display help.
 ##  
-##         --configure=CONFIG-NAME    properties file containing variables to be replaced in edjanger.template to create edjanger.properties
+##         --configure=CONFIG-NAME
+##            Properties file containing variables to be replaced in 
+##            edjanger.template to create edjanger.properties
 ##  
-##         --delete                   delete named archive 
-##                                    Must be combined with option --name=TEMPLATE-NAME
+##         --delete
+##            Delete named archive 
+##            Must be combined with option --name=TEMPLATE-NAME
 ##  
-##         --init                     initialize with the name of the template which could be chozen from the --list option
-##                                    Must be combined with option --name=TEMPLATE-NAME
+##         --init
+##            Initialize with the name of the template which could be chozen 
+##            from the --list option.
+##            Must be combined with option --name=TEMPLATE-NAME.
 ##  
-##         --list                     list of all available templates
+##         --list
+##            Display a compact list of all available templates.
 ##  
-##         --listinfo                 list of all available templates with details
+##         --listinfo
+##            Display a list of all available templates with details.
 ##  
-##         --name=TEMPLATE-NAME       template name available from archive name list
-##                                    Must be combined with options --init, --delete, --save
+##         --name=TEMPLATE-NAME
+##            Template name available from archive name list.
+##            Must be combined with options --init, --delete, --save.
 ##  
-##         --save                     save current directory as a template (template name is the hash of the archive)
-##                                    Could be combined with option --name=TEMPLATE-NAME
+##         --save
+##            Save current directory as a template (template name is the hash 
+##            of the archive).
+##            Could be combined with option --name=TEMPLATE-NAME.
 ##  
-##         --savepattern              additionnal file pattern to save in the archive
+##         --savepattern="PATTERNS with comma or semi-colon separator"
+##            Additionnal file pattern to save in the archive.
 ##  
 ##  Command lines example:
 ##  
 ##  Help:
-##     edjangertemplate --help        print this documentation
+##     edjangertemplate --help
+##            Dispay help.
 ##
 ##  Initialize a new template:
 ##     edjangertemplate --init=demo_httpd
-##                                    initialize a nex template from the archive given by option --init
+##            initialize a nex template from the archive given by option --init.
 ##  
 ##  Load a template:
 ##     edjangertemplate --configure=configuration
-##                                    replace environement variables from file configuration.properties in edjanger.template to produce edjanger.properties file
+##            Replace environement variables from file configuration.properties
+##            in edjanger.template to produce edjanger.properties file.
 ##  
 ##  Save a template:
 ##     edjangertemplate --save
-##                                    save all current configuration in a templating folder with an hash identifiant (edjanger.*, scripts sh, )
+##            Save all current configuration in a templating folder with an 
+##            hash identifiant (edjanger.*, scripts sh).
 ##  
 ##     edjangertemplate --save --name=demo_web
-##                                    save all current configuration in a templating folder with the template name "demo_web"
+##            Save all current configuration in a templating folder with the 
+##            template name "demo_web".
 ##  
 ##     edjangertemplate --save --name=demo_web --savepattern="*.html,*js,*.css"
-##                                    save all current configuration in a templating folder with the template name "demo_web" and save additional files
+##            Save all current configuration in a templating folder with the 
+##            template name "demo_web" and save additional files.
 ##  
 ##  Print templates list:
 ##     edjangertemplate --list
-##                                    print the list off all stored templates with short name only
+##            Print the list off all stored templates with short name only.
 ##  
 ##  Print templates list:
 ##     edjangertemplate --listinfo
-##                                    print the list off all stored templates with detailed informations
+##            Print the list off all stored templates with detailed informations.
 ##  
 ##  Delete a template:
 ##     edjangertemplate --delete --name=demo_web
-##                                    remove the template from storage space
+##            Remove the template from storage space defined in variable 
+##            templates_path from configuration file prefs.properties.
 ##  
-##  edjanger, The MIT License (MIT)
-##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  Licence & authors
+##     edjanger, The MIT License (MIT)
+##     Copyright (c) 2016 copyright pamtrak06@gmail.com
 ##  
 # ------------------------------------------------------------------------------
 checkinstall=$(cat $0|grep -v checkinstall|grep "edjangerpath")

@@ -1,18 +1,20 @@
 #!/bin/bash
-##  Description:
+##  Description
 ##     Create a new image from a container's changes.
 ##     
 ##     Filtered by edjanger.properties$container_name.
 ##     File edjanger.properties must be present in path.
 ##     By default executed on last container if no index specified.
 ##  
-##  Usage:
-##     @script.name [option]
+##  Usage
+##    @script.name[option]
 ##  
-##  Options:
-##     -h, --help                     print this documentation
+##  Options
+##     -h, --help
+##            Display help.
 ##  
-##         --index=INDEX              index of the container name
+##         --index=INDEX
+##            Index of the container name.
 ##  
 ##         --commitname=COMMIT        commit tag like REPOSITORY[:TAG]
 ##  
@@ -21,29 +23,39 @@
 ##         --commitauthor=MESSAG      commit author
 ##  
 ##  Parameters (edjanger.properties):
-##     container_name                 container name
-##     commit_options                 "docker commit" options to a running container (see docker commit --help)
-##     docker_command                 print docker command
+##     container_name
+##            Container name.
 ##  
-##  edjanger, The MIT License (MIT)
-##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##     commit_options                 "docker commit" options for a running container (see docker commit --help)
+##     docker_command
+##            Display docker command.
+##  
+##  Licence & authors
+##     edjanger, The MIT License (MIT)
+##     Copyright (c) 2016 copyright pamtrak06@gmail.com
 ##  
 # ------------------------------------------------------------------------------
 ###
 ### External options:
-###    -h, --help                     print this documentation
+##     -h, --help
+##            Display help.
 ###
-###        --index=INDEX              index of the container name
+###        --index=INDEX
+###            Index of the container name.
 ###
 ### Internal options:
 ###
-###        --scriptname=SCRIPT        name of the main script
+###        --scriptname=SCRIPT
+###            Name of the main script.
 ###
-###        --commandline=COMMAND      name of the docker command to execute
+###        --commandline=COMMAND
+###            Name of the docker command to execute.
 ###
-###        --commandcomment=COMMAND   printed comment of the command to execute
+###        --commandcomment=COMMAND
+###            Printed comment of the command to execute.
 ###
-###        --commandoptions=OPTIONS   options read in the edjanger.properties
+###        --commandoptions=OPTIONS
+###            Options read in the edjanger.properties.
 ###
 # ------------------------------------------------------------------------------
 checkinstall=$(cat $0|grep -v checkinstall|grep "edjangerpath")

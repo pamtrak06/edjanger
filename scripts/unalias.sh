@@ -1,12 +1,18 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Description: unalias all edjanger aliases
+##  Description
+##    Unalias all edjanger aliases.
 ##  
-##  Usage:
-##     @script.name
+##  Usage
+##    @script.name[option]
 ##  
-##  edjanger, The MIT License (MIT)
-##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  Options
+##     -h, --help
+##            Display help.
+##  
+##  Licence & authors
+##     edjanger, The MIT License (MIT)
+##     Copyright (c) 2016 copyright pamtrak06@gmail.com
 ##  
 # ------------------------------------------------------------------------------
 checkinstall=$(cat $0|grep -v checkinstall|grep "edjangerpath")

@@ -1,12 +1,14 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Encrypt proxy.properties file with zip --encrypt
+##  Description
+##    Encrypt proxy.properties file with zip --encrypt.
 ##  
-##  Usage:
+##  Usage
 ##     ./_encrypt.sh
 ##  
-##  edjanger, The MIT License (MIT)
-##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  Licence & authors
+##     edjanger, The MIT License (MIT)
+##     Copyright (c) 2016 copyright pamtrak06@gmail.com
 ##  
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh

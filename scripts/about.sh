@@ -1,12 +1,14 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Description: about script for edjanger
+##  Description
+##    About script for edjanger.
 ##  
-##  Usage:
+##  Usage
 ##     @script.name
 ##  
-##  edjanger, The MIT License (MIT)
-##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  Licence & authors
+##     edjanger, The MIT License (MIT)
+##     Copyright (c) 2016 copyright pamtrak06@gmail.com
 ##  
 # ------------------------------------------------------------------------------
 

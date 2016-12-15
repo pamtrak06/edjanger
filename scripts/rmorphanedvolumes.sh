@@ -1,12 +1,18 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Description: remove all orphaned volumes
+##  Description
+##    Remove all orphaned volumes.
 ##  
-##  Usage:
-##     @script.name
+##  Usage
+##    @script.name[option]
 ##  
-##  edjanger, The MIT License (MIT)
-##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  Options
+##     -h, --help
+##            Display help.
+##  
+##  Licence & authors
+##     edjanger, The MIT License (MIT)
+##     Copyright (c) 2016 copyright pamtrak06@gmail.com
 ##  
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh

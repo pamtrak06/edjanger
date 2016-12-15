@@ -1,12 +1,14 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Commons functions
+##  Description
+##    Commons functions.
 ##  
-##  Usage:
+##  Usage
 ##     source _common.sh
 ##  
-##  edjanger, The MIT License (MIT)
-##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##  Licence & authors
+##     edjanger, The MIT License (MIT)
+##     Copyright (c) 2016 copyright pamtrak06@gmail.com
 ##  
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_options.sh

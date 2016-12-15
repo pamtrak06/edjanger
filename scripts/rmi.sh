@@ -1,40 +1,53 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-##  Description: remove one or more images. Filtered by edjanger.properties$image_name.
-##     File edjanger.properties must be present in path.
+##  Description
+##    Remove one or more images. Filtered by edjanger.properties$image_name.
+##    File edjanger.properties must be present in path.
 ##  
-##  Usage:
-##     @script.name [option]
+##  Usage
+##    @script.name[option]
 ##  
-##  Options:
-##     -h, --help                     print this documentation
+##  Options
+##     -h, --help
+##            Display help.
 ##  
 ##  Parameters (edjanger.properties):
-##     docker_command                 print docker command
-##     force_rmi                      force image deletion
-##     image_name                     image name
+##     docker_command
+##            Display docker command.
 ##  
-##  edjanger, The MIT License (MIT)
-##  Copyright (c) 2016 copyright pamtrak06@gmail.com
+##     force_rmiF
+##            Force image deletion.
+##  
+##     image_name
+##            Image name.
+##  
+##  Licence & authors
+##     edjanger, The MIT License (MIT)
+##     Copyright (c) 2016 copyright pamtrak06@gmail.com
 ##  
 # ------------------------------------------------------------------------------
 ###
 ### External options:
-###    -h, --help                     print this documentation
+##     -h, --help
+##            Display help.
 ###  
 ### Internal options:
 ###  
-###        --scriptname=SCRIPT        name of the main script
+###        --scriptname=SCRIPT
+###            Name of the main script.
 ###  
 ###        --confirm                  ask for a confirmation before execute
 ###
 ###        --confirmquestion=QUESTION question for the execution's confirmation
 ###  
-###        --commandline=COMMAND      name of the docker command to execute
+###        --commandline=COMMAND
+###            Name of the docker command to execute.
 ###  
-###        --commandcomment=COMMAND   printed comment of the command to execute
+###        --commandcomment=COMMAND
+###            Printed comment of the command to execute.
 ###  
-###        --commandoptions=OPTIONS   options read in the edjanger.properties
+###        --commandoptions=OPTIONS
+###            Options read in the edjanger.properties.
 ###  
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
