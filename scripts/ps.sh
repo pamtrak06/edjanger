@@ -57,7 +57,7 @@ read_app_properties
 [ -z "${container_name}" ]          && echo "Container name must be filled, configure variable container_name in edjanger.${config_extension}" && exit -1
 
 [ -n "${ps_options}" ]              && commandoptions="${commandoptions} ${ps_options}"
-[ -n "${container_name}" ]          && commandoptions="${commandoptions} --filter='name=${container_name}_[0-9]+'"
+[ -n "${container_name}" ]          && commandoptions="${commandoptions} --filter=\"name=${container_name}_[0-9]+\""
 [ -n "${commandoptions}" ]          && commandoptions="--commandoptions=\"${commandoptions}\""
 [[ -n "$@" ]]                       && externaloptions=$(echo $@ | sed "s|[[:space:]](.*)=(.*)|;$1=$2|g") \
                                     && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]--|;--|g") \
