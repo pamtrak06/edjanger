@@ -60,11 +60,13 @@
 ##            Dispay help.
 ##
 ##  Initialize a new template:
-##     edjangertemplate --init=demo_httpd
+##     edjangertemplate --init --name=demo_httpd
 ##            initialize a nex template from the archive given by option --init.
 ##  
 ##  Load a template:
 ##     edjangertemplate --configure=configuration
+##       or
+##     edjangertemplate --configure=configuration.properties
 ##            Replace environement variables from file configuration.properties
 ##            in edjanger.template to produce edjanger.properties file.
 ##  
