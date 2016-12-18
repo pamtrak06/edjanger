@@ -1,6 +1,6 @@
 #!/bin/bash
 ##  Description
-##   Give informations of docker version for docker, docker-compose, docker-machine.
+##   Give informations of versions for docker, docker-machine, docker-compose.
 ##  
 ##  Usage
 ##    @script.name[option]
@@ -16,7 +16,6 @@
 # ------------------------------------------------------------------------------
 source {edjangerpath}/_common.sh
 
-ports=
 if [[ "$1" =~ ^[-]*h[a-z]* ]] || [ "$1" = "-h" ]; then
   printHeader $0
 else
