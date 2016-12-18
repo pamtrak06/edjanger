@@ -205,7 +205,7 @@ function update_metadata_header()
   echo -e "    kernel:           $(uname -r)" >> $infofile
   
   if [ "$(command -v lsb_release)" ]; then
-    distribution=$(lsb_release -a 1> /dev/null)
+    distribution=$(lsb_release -a 2> /dev/null | grep Description|awk -F ":" '{ print $2 }')
   fi
   if [[ -n "$distribution" ]]; then
     echo -e "    distribution:     $distribution" >> $infofile
