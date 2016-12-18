@@ -141,7 +141,9 @@ function update_metadata()
   fi
   
   build_file=$(echo ${build_file}|awk '{ printf $2 }')
-  from_image=$(cat $dirbase/$build_file|grep FROM|awk '{ printf $2 }')
+  if [ -f "$dirbase/$build_file" ]; then
+    from_image=$(cat $dirbase/$build_file|grep FROM|awk '{ printf $2 }')
+  fi
   if [ -n "$template" ] && [ -n "$tmppath" ]; then
     echo -e "  - template:         $dirbase/edjanger.template" >> $infofile
   fi
@@ -152,69 +154,6 @@ function update_metadata()
   echo -e "    from_image:       $from_image" >> $infofile
   echo -e "    image_name:       $image_name" >> $infofile
   echo -e "    container_name:   $container_name" >> $infofile
-}
-
-function update_metadata_start()
-{
-  infofile=$1
-  echo "configurations:" >> $infofile
-}
-
-
-function update_metadata_header()
-{
-  echo "# Writing metadata ..."
-  
-  infofile=$1
-  echo "metadata:" >> $infofile
-  echo -e "    timestamp:        $(date)" >> $infofile
-  echo -e "    ostype:           $OSTYPE" >> $infofile
-  
-  echo "versions:" >> $infofile
-  
-  dockerversion=$(docker info | grep "Server Version:" | awk -F  ":" '{ printf $2}' | tr -d ' ')
-  if [[ -n "$dockerversion" ]]; then
-    echo -e "    docker:           $dockerversion" >> $infofile
-  else
-    echo -e "    docker:           undefined" >> $infofile
-  fi
-  
-  dockermachineversion=$(docker-machine version)
-  if [[ -n "$dockermachineversion" ]]; then
-    dockermachineversion=$(echo ${dockermachineversion}| awk '{ printf $3" "$4}')
-    dockermachineversion=$(echo ${dockermachineversion}| sed 's/^ *//;s/ *$//')
-    echo -e "    docker-machine:   $dockermachineversion" >> $infofile
-  else
-    echo -e "    docker-machine:   undefined" >> $infofile
-  fi
-  
-  dockercomposeversion=$(docker-compose version)
-  if [[ -n "$dockercomposeversion" ]]; then
-    
-    composeversion=$(docker-compose version|grep "docker-compose version")
-    composeversion=$(echo ${composeversion}| awk '{ printf $3" "$4" "$5}')
-    composeversion=$(echo ${composeversion}| sed 's/^ *//;s/ *$//')
-    echo -e "    docker-compose:   $composeversion" >> $infofile
-    
-    dockerpyversion=$(docker-compose version|grep "docker-py version")
-    dockerpyversion=$(echo ${dockerpyversion}| awk -F  ":" '{ printf $2}')
-    dockerpyversion=$(echo ${dockerpyversion}| sed 's/^ *//;s/ *$//')
-    echo -e "    docker-py:        $dockerpyversion" >> $infofile
-    
-    cpythonversion=$(docker-compose version|grep "CPython version")
-    cpythonversion=$(echo ${cpythonversion}| awk -F  ":" '{ printf $2}')
-    cpythonversion=$(echo ${cpythonversion}| sed 's/^ *//;s/ *$//')
-    echo -e "    cpython:          $cpythonversion" >> $infofile
-    
-    opensslversion=$(docker-compose version|grep "OpenSSL version")
-    opensslversion=$(echo ${opensslversion}| awk -F  ":" '{ printf $2}')
-    opensslversion=$(echo ${opensslversion}| sed 's/^ *//;s/ *$//')
-    echo -e "    openssl:          $opensslversion" >> $infofile
-    
-  else
-    echo -e "    docker-compose-version:    undefined" >> $infofile
-  fi
-  
 }
 
 # Archive local files in the template folder 
