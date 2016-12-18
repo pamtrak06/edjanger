@@ -364,7 +364,7 @@ function save_configuration()
   if [ ! -f edjanger.properties ] && [ ! -f edjanger.template ]; then
     
     # retrieve files only in first level folder
-    main_prop_list=$(find $current_path -name "*.properties" -prune -type f -maxdepth 1)
+    main_prop_list=$(find $current_path -maxdepth 1 -name "*.properties" -prune -type f)
   
     [ -n ${main_prop_list} ] \
         && echo "# Archive main configuration files"
@@ -404,7 +404,7 @@ function save_configuration()
     archive_or_append $tarfile $template
     
     # save properties files on first current directory level, used with template, exclude edjanger.properties 
-    prop_list=$(find $tmpl_path -name "*.properties" -prune -type f -maxdepth 1 -a \( -type f ! -name "edjanger.properties" -prune \))
+    prop_list=$(find $tmpl_path -maxdepth 1 -name "*.properties" -prune -type f -a \( -type f ! -name "edjanger.properties" -prune \))
     [[ -n ${prop_list} ]] \
           && echo "# Local configuration files in path \"$tmpl_path\"" \
           && update_metadata_start $infofile
