@@ -202,6 +202,23 @@ function update_metadata_header()
   echo "metadata:" >> $infofile
   echo -e "    timestamp:        $(date)" >> $infofile
   echo -e "    ostype:           $OSTYPE" >> $infofile
+  echo -e "    kernel:           $(uname -r)" >> $infofile
+  
+  if [ "$(command -v lsb_release)" ]; then
+    distribution=$(lsb_release -a 1> /dev/null)
+  fi
+  if [[ -n "$distribution" ]]; then
+    echo -e "    distribution:     $distribution" >> $infofile
+  else
+    [[ -f "/etc/debian_version" ]] \
+      && distribution=$(cat /etc/debian_version) \
+      && [[ -n "$distribution" ]] \
+        && echo -e "    distribution:     $distribution" >> $infofile
+    [[ -f "/etc/redhat-release" ]] \
+      && [[ -z "$distribution" ]] \
+      && distribution=$(cat /etc/redhat-release) \
+      && echo -e "    distribution:     $distribution" >> $infofile
+  fi
   
   echo "versions:" >> $infofile
   
