@@ -381,101 +381,153 @@ function init_new_template_from_command()
       
       initialize
       
-      unset -v volumes
-      unset -v volumesfrom
-      unset -v variables
-      unset -v publish
-      unset -v others
-      unset -v links
+      unset -v shared_volumes
+      unset -v volumes_from
+      unset -v environment_variables
+      unset -v exposed_ports
+      unset -v run_other_options
+      unset -v linked_containers
       unset -v container_name
+      unset -v container_hostname
       unset -v image_name
         
-      while IFS='' read -r line || [[ -n "$line" ]]; do
+      cmdonline=$(cat ${command} | tr -d '\\' | tr -d "\r\n")
+      cmdonline=${cmdonline#*run}
+      #echo "cmdonline raw:$cmdonline"
+      element=$(echo  $cmdonline | awk '{ printf $1 }')
+      cmdonline=${cmdonline#*${element}}
+      nbelement=$(echo  $cmdonline | awk '{ printf NF }')
+      nbelement=$(( $nbelement + 1 ))
+      #echo "nb elements:$nbelement"
+      idelt=$(( 1 ))
 
-        echo "  . process line: $line"
+      imagefound=false
+      while [ -n "$element" ]; do
+        #echo -e "element $idelt:$element"
       
-        line=$(echo $line | tr -d '\\')
-        
         # TODO replace with reading results from docker run --help
-        if [[ $line = *"--volume"* ]] || [[ $line = *"-v"* ]]; then
-          volumes+=$line" "
-          echo "volumes identified"
-        elif [[ $line = *"--volumes-from"* ]]; then
-          volumesfrom+=$line" "
-          echo "volumesfrom identified"
-        elif [[ $line = *"--link"* ]]; then
-          links+=$line" "
-          echo "links identified"
-        elif [[ $line = *"--publish"* ]] || [[ $line = *"-p"* ]]; then
-          publish+=$line" "
-          echo "publish identified"
-        elif [[ $line = *"--env"* ]] || [[ $line = *"-e"* ]]; then
-          variables+=$line" "
-          echo "env identified"
-        elif [[ $line = *"--name"* ]]; then
-          container_name=$(echo ${line##*=} | tr -d ' ')
-        elif [[ ! $line = *"-"* ]]; then
-          image_name=$(echo $line | tr -d ' ')
+        if [[ $element = *"--volume"* ]] || [[ $element = *"-v"* ]]; then
+          shared_volumes+=$element" "
+          #echo -e "shared_volumes:$shared_volumes"
+        elif [[ $element = *"--volumes-from"* ]]; then
+          volumes_from+=$element" "
+          #echo -e "volumes_from:$volumes_from"
+        elif [[ $element = *"--link"* ]]; then
+          linked_containers+=$element" "
+          #echo -e "linked_containers:$linked_containers"
+        elif [[ $element = *"--publish"* ]] || [[ $element = *"-p "* ]]; then
+          exposed_ports+=$element" "
+          #echo -e "exposed_ports:$exposed_ports"
+        elif [[ $element = *"--env"* ]] || [[ $element = *"-e "* ]]; then
+          environment_variables+=$element" "
+          #echo -e "environment_variables:$environment_variables"
+        elif [[ $element = *"--name"* ]]; then
+          container_name=$(echo ${element##*=} | tr -d ' ')
+          #echo -e "container_name:$container_name"
+        elif [[ $element = *"--hostname"* ]] || [[ $element = *"-h "* ]]; then
+          container_hostname=$(echo ${element##*=} | tr -d ' ')
+          #echo -e "container_hostname:$container_hostname"
+        elif [[ $element = *"-"* ]] && [[ "$imagefound" = "false" ]]; then
+          run_other_options+=$element" "
+          #echo -e "run_other_options:$run_other_options"
+        elif [[ ! $element = *"-"* ]] && [[ "$imagefound" = "false" ]]; then
+          image_name=$(echo $element | tr -d ' ')
+          imagefound=true
+          #echo -e "image_name:$image_name"
         else
-          others+=$line" "
-          echo "others identified"
+          command_run+=$(echo $element | tr -d ' ')" "
+          #echo -e "command_run:$command_run"
         fi
         
-      done <${command}
-      
+        element=$(echo  $cmdonline | awk '{ printf $1 }')
+        idelt=$(( $idelt + 1 ))
+        cmdonline=${cmdonline#*${element}}
+      done
+
       # replace in configuration.properties
-      echo -e "container_name=$container_name"
+      #echo -e "container_name=$container_name"
       sed -e "s/\(container_name=\).*/\1\"${container_name}\"/g" configuration.properties > configuration.tmp \
                                                   && mv configuration.tmp configuration.properties
-      image_name=${image_name//\//\\/}
-      echo -e "image_name=$image_name"
-      sed -e "s/\(image_name=\).*/\1\"${image_name}\"/g" configuration.properties > configuration.tmp \
+      #echo -e "container_hostname=$container_hostname"
+      sed -e "s/\(container_hostname=\).*/\1\"${container_remove}\"/g" configuration.properties > configuration.tmp \
                                                   && mv configuration.tmp configuration.properties
-      echo -e "exposed_ports=$publish"
-      sed -e "s/\(exposed_ports=\).*/\1\"${publish}\"/g" configuration.properties > configuration.tmp \
+      #echo -e "container_remove=$container_remove"
+      sed -e "s/\(container_remove=\).*/\1\"${container_remove}\"/g" configuration.properties > configuration.tmp \
                                                   && mv configuration.tmp configuration.properties
-      volumes=${volumes//\//\\/}
-      echo -e "shared_volumes=$volumes"
-      sed -e "s/\(shared_volumes=\).*/\1\"${volumes}\"/g" configuration.properties > configuration.tmp \
+      #echo -e "image_name=$image_name"
+      sed -e "s/\(image_name=\).*/\1\"${image_name//\//\\/}\"/g" configuration.properties > configuration.tmp \
+                                                  && mv configuration.tmp configuration.properties
+      #echo -e "exposed_ports=$exposed_ports"
+      sed -e "s/\(exposed_ports=\).*/\1\"${exposed_ports}\"/g" configuration.properties > configuration.tmp \
+                                                  && mv configuration.tmp configuration.properties
+      shared_volumes=${shared_volumes//\//\\/}
+      #echo -e "shared_volumes=$shared_volumes"
+      sed -e "s/\(shared_volumes=\).*/\1\"${shared_volumes}\"/g" configuration.properties > configuration.tmp \
                                                         && mv configuration.tmp configuration.properties
-      variables=${variables//\//\\/}
-      echo -e "environment_variables=$variables"
-      sed -e "s/\(environment_variables=\).*/\1\"${variables}\"/g" configuration.properties > configuration.tmp \
+      [[ -n $environment_variables ]] && environment_variables=${environment_variables//\//\\/}
+      #echo -e "environment_variables=$environment_variables"
+      sed -e "s/\(environment_variables=\).*/\1\"${environment_variables}\"/g" configuration.properties > configuration.tmp \
                                                   && mv configuration.tmp configuration.properties
       volumesfrom=${volumesfrom//\//\\/}
-      echo -e "volumes_from=$volumesfrom"
-      sed -e "s/\(volumes_from=\).*/\1\"${volumesfrom}\"/g" configuration.properties > configuration.tmp \
+      #echo -e "volumes_from=$volumes_from"
+      sed -e "s/\(volumes_from=\).*/\1\"${volumes_from}\"/g" configuration.properties > configuration.tmp \
                                                   && mv configuration.tmp configuration.properties
-      links=${links//\//\\/}
-      echo -e "linked_containers=$links"
-      sed -e "s/\(linked_containers=\).*/\1\"${links}\"/g" configuration.properties > configuration.tmp \
+      linked_containers=${linked_containers//\//\\/}
+      #echo -e "linked_containers=$linked_containers"
+      sed -e "s/\(linked_containers=\).*/\1\"${linked_containers}\"/g" configuration.properties > configuration.tmp \
                                                   && mv configuration.tmp configuration.properties
-      others=${others//\//\\/}
-      echo -e "run_other_options=$others"
-      sed -e "s/\(run_other_options=\).*/\1\"${others}\"/g" configuration.properties > configuration.tmp \
+      run_other_options=${run_other_options//\//\\/}
+      #echo -e "run_other_options=$run_other_options"
+      sed -e "s/\(run_other_options=\).*/\1\"${run_other_options}\"/g" configuration.properties > configuration.tmp \
                                                   && mv configuration.tmp configuration.properties
-                                                  
+                                           
       # enable variables in edjanger.template
-      sed -e "s/\(#[[:space:]]*image_name=\).*/\1/g" edjanger.template > edjanger.tmp \
+      unset -v comment && [[ -z $image_name ]] && comment="#" 
+      unset -v header  && [[ -n $image_name ]] && header="#[[:space:]]+"
+      sed -e "s/\(${header}image_name=\.*\)/${comment}\1/" edjanger.template > edjanger.tmp \
                                                   && mv edjanger.tmp edjanger.template
-      sed -e "s/\(#[[:space:]]*container_name=\).*/\1/g" edjanger.template > edjanger.tmp \
+      unset -v comment && [[ -z $container_name ]] && comment="#"
+      unset -v header  && [[ -n $container_name ]] && header="#[[:space:]]+"
+      sed -e "s/\(${header}container_name=\.*\)/${comment}\1/" edjanger.template > edjanger.tmp \
                                                   && mv edjanger.tmp edjanger.template
-      sed -e "s/\(#[[:space:]]*exposed_ports=\).*/\1/" edjanger.template > edjanger.tmp \
+      unset -v comment && [[ -z $container_hostname ]] && comment="#"
+      unset -v header  && [[ -n $container_hostname ]] && header="#[[:space:]]+"
+      sed -e "s/\(${header}container_hostname=\.*\)/${comment}\1/" edjanger.template > edjanger.tmp \
                                                   && mv edjanger.tmp edjanger.template
-      sed -e "s/\(#[[:space:]]*shared_volumes=\).*/\1/" edjanger.template > edjanger.tmp \
+      unset -v comment && [[ -z $container_remove ]] && comment="#"
+      unset -v header  && [[ -n $container_remove ]] && header="#[[:space:]]+"
+      sed -e "s/\(${header}container_remove=\.*\)/${comment}\1/" edjanger.template > edjanger.tmp \
                                                   && mv edjanger.tmp edjanger.template
-      sed -e "s/\(#[[:space:]]*environment_variables=\).*/\1/g" edjanger.template > edjanger.tmp \
+      unset -v comment && [[ -z $exposed_ports ]] && comment="#"
+      unset -v header  && [[ -n $exposed_ports ]] && header="#[[:space:]]+"
+      sed -e "s/\(${header}exposed_ports=\.*\)/${comment}\1/" edjanger.template > edjanger.tmp \
                                                   && mv edjanger.tmp edjanger.template
-      sed -e "s/\(#[[:space:]]*volumes_from=\).*/\1/g" edjanger.template > edjanger.tmp \
+      unset -v comment && [[ -z $shared_volumes ]] && comment="#"
+      unset -v header  && [[ -n $shared_volumes ]] && header="#[[:space:]]+"
+      sed -e "s/\(${header}shared_volumes=\.*\)/${comment}\1/" edjanger.template > edjanger.tmp \
                                                   && mv edjanger.tmp edjanger.template
-      sed -e "s/\(#[[:space:]]*linked_containers=\).*/\1/g" edjanger.template > edjanger.tmp \
+      unset -v comment && [[ -z $environment_variables ]] && comment="#"
+      unset -v header  && [[ -n $environment_variables ]] && header="#[[:space:]]+" 
+      echo -e "comment:$comment"
+      sed -e "s/\(${header}environment_variables=\.*\)/${comment}\1/" edjanger.template > edjanger.tmp \
+                                                  && mv edjanger.tmp edjanger.template                
+      unset -v comment && [[ -z $volumes_from ]] && comment="#"
+      unset -v header  && [[ -n $volumes_from ]] && header="#[[:space:]]+"
+      sed -e "s/\(${header}volumes_from=\.*\)/${comment}\1/" edjanger.template > edjanger.tmp \
                                                   && mv edjanger.tmp edjanger.template
-      sed -e "s/\(#[[:space:]]*run_other_options=\).*/\1/g" edjanger.template > edjanger.tmp \
+      unset -v comment && [[ -z $linked_containers ]] && comment="#"
+      unset -v header  && [[ -n $linked_containers ]] && header="#[[:space:]]+"
+      sed -e "s/\(${header}linked_containers=\.*\)/${comment}\1/" edjanger.template > edjanger.tmp \
+                                                  && mv edjanger.tmp edjanger.template
+      unset -v comment && [[ -z $run_other_options ]] && comment="#"
+      unset -v header  && [[ -n $run_other_options ]] && header="#[[:space:]]+"
+      sed -e "s/\(${header}run_other_options=\.*\)/${comment}\1/" edjanger.template > edjanger.tmp \
                                                   && mv edjanger.tmp edjanger.template
                                                   
+      cat edjanger.template | sed 's/^##/#/g' > edjanger.tmp && mv edjanger.tmp edjanger.template
       
       # update build/Dockerfile
-      echo "FROM $image_name" > build/Dockerfile 
+      echo -e "FROM ${image_name}" > build/Dockerfile 
       
       # replace in template
       yes | . {edjangerpath}/template.sh --configure=configuration
