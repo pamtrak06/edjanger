@@ -40,8 +40,11 @@
 ##     exposed_ports
 ##       Exposed port.
 ##  
+##     published_ports
+##       Published port.
+##  
 ##     image_name
-##            Image name.
+##       Image name.
 ##  
 ##     linked_containers
 ##       Linked container.
@@ -103,6 +106,7 @@ read_app_properties
 [ -n "${network_settings}" ]                   && commandoptions="${commandoptions} ${network_settings}"
 [ -n "${runtime_constraints_on_resources}" ]   && commandoptions="${commandoptions} ${runtime_constraints_on_resources}"
 [ -n "${exposed_ports}" ]                      && commandoptions="${commandoptions} ${exposed_ports}"
+[ -n "${published_ports}" ]                    && commandoptions="${commandoptions} ${published_ports}"
 [ -n "${volumes_from}" ]                       && commandoptions="${commandoptions} ${volumes_from}"
 [ -n "${shared_volumes}" ]                     && commandoptions="${commandoptions} ${shared_volumes}"
 [ -n "${environment_variables}" ]              && commandoptions="${commandoptions} ${environment_variables}"
