@@ -309,6 +309,185 @@ function delete_template()
 
 }
 
+function initialize() 
+{
+  echo -e "> Initialize edjanger project ..."
+  if [ ! -f "edjanger.template" ] && [ "{edjangerpath}" != "$PWD" ]; then
+    echo -e "  . Initialize edjanger template file example: edjanger.template ..."
+    cp {edjangerpath}/templates/edjanger.template .
+  else
+    echo -e "  . File edjanger.template is already in your current directory !"
+  fi
+  if [ ! -f "configuration.${config_extension}" ] && [ "{edjangerpath}" != "$PWD" ]; then
+    echo -e "  . Initialize edjanger configuration file example: configuration.${config_extension} ..."
+    cp {edjangerpath}/templates/configuration.${config_extension} .
+  else
+    echo -e "  . File configuration.${config_extension} is already in your current directory !"
+  fi
+  if [ ! -f "edjanger.${config_extension}" ] && [ "{edjangerpath}" != "$PWD" ]; then
+    echo -e "  . Initialize edjanger.properties file from template edjanger.template ..."
+    . {edjangerpath}/template.sh --configure=configuration.properties
+  else
+    echo -e "  . File edjanger.${config_extension} is already in your current directory !"
+    checkconfig
+  fi
+  if [ ! -d "build" ] && [ "{edjangerpath}" != "$PWD" ]; then
+    echo -e "  . Initialize edjanger build folder for Dockerfile: /build ..."
+    mkdir build/
+  fi
+  if [ ! -f "build/Dockerfile" ] && [ "{edjangerpath}" != "$PWD" ]; then
+    echo -e "  . Initialize Dockerfile: build/Dockerfile ..."
+    touch build/Dockerfile
+  fi
+  if [ ! -d "volumes" ] && [ "{edjangerpath}" != "$PWD" ]; then
+    echo -e "  . Initialize edjanger shared volumes folder for Dockerfile: /volumes ..."
+    mkdir volumes/
+  fi
+}
+
+# TODO
+function init_new_template_from_command()
+{
+
+  # retrieve files only in first level folder
+  commands=$(find $current_path -maxdepth 1 -name "*${init_docker_extension}" -prune -type f)
+
+  [ -z ${commands} ] \
+      && echo -e "edjanger:WARNING: No file *${init_docker_extension} present to be processed" \
+      && return 1
+  
+  for command in ${commands[@]}
+  do
+    
+    root_cmd=${command%${init_docker_extension}}
+    
+    if [ -d $root_cmd ]; then
+    
+      echo -e "edjanger:WARNING: directory ${root_cmd} already exist"
+      
+    else
+      
+      check=$(cat ${command} | grep run)
+      
+      [ -z "$check" ] \
+        && echo -e "edjanger:WARNING: file ${command} does not contain docker run command" \
+        && return 1
+      
+      command=$PWD/${command#\.\/}
+      
+      echo -e "Process ${command}..."
+      
+      mkdir $root_cmd && cd $root_cmd
+      
+      initialize
+      
+      unset -v volumes
+      unset -v volumesfrom
+      unset -v variables
+      unset -v publish
+      unset -v others
+      unset -v links
+      unset -v container_name
+      unset -v image_name
+        
+      while IFS='' read -r line || [[ -n "$line" ]]; do
+
+        echo "  . process line: $line"
+      
+        line=$(echo $line | tr -d '\\')
+        
+        # TODO replace with reading results from docker run --help
+        if [[ $line = *"--volume"* ]] || [[ $line = *"-v"* ]]; then
+          volumes+=$line" "
+          echo "volumes identified"
+        elif [[ $line = *"--volumes-from"* ]]; then
+          volumesfrom+=$line" "
+          echo "volumesfrom identified"
+        elif [[ $line = *"--link"* ]]; then
+          links+=$line" "
+          echo "links identified"
+        elif [[ $line = *"--publish"* ]] || [[ $line = *"-p"* ]]; then
+          publish+=$line" "
+          echo "publish identified"
+        elif [[ $line = *"--env"* ]] || [[ $line = *"-e"* ]]; then
+          variables+=$line" "
+          echo "env identified"
+        elif [[ $line = *"--name"* ]]; then
+          container_name=$(echo ${line##*=} | tr -d ' ')
+        elif [[ ! $line = *"-"* ]]; then
+          image_name=$(echo $line | tr -d ' ')
+        else
+          others+=$line" "
+          echo "others identified"
+        fi
+        
+      done <${command}
+      
+      # replace in configuration.properties
+      echo -e "container_name=$container_name"
+      sed -e "s/\(container_name=\).*/\1\"${container_name}\"/g" configuration.properties > configuration.tmp \
+                                                  && mv configuration.tmp configuration.properties
+      image_name=${image_name//\//\\/}
+      echo -e "image_name=$image_name"
+      sed -e "s/\(image_name=\).*/\1\"${image_name}\"/g" configuration.properties > configuration.tmp \
+                                                  && mv configuration.tmp configuration.properties
+      echo -e "exposed_ports=$publish"
+      sed -e "s/\(exposed_ports=\).*/\1\"${publish}\"/g" configuration.properties > configuration.tmp \
+                                                  && mv configuration.tmp configuration.properties
+      volumes=${volumes//\//\\/}
+      echo -e "shared_volumes=$volumes"
+      sed -e "s/\(shared_volumes=\).*/\1\"${volumes}\"/g" configuration.properties > configuration.tmp \
+                                                        && mv configuration.tmp configuration.properties
+      variables=${variables//\//\\/}
+      echo -e "environment_variables=$variables"
+      sed -e "s/\(environment_variables=\).*/\1\"${variables}\"/g" configuration.properties > configuration.tmp \
+                                                  && mv configuration.tmp configuration.properties
+      volumesfrom=${volumesfrom//\//\\/}
+      echo -e "volumes_from=$volumesfrom"
+      sed -e "s/\(volumes_from=\).*/\1\"${volumesfrom}\"/g" configuration.properties > configuration.tmp \
+                                                  && mv configuration.tmp configuration.properties
+      links=${links//\//\\/}
+      echo -e "linked_containers=$links"
+      sed -e "s/\(linked_containers=\).*/\1\"${links}\"/g" configuration.properties > configuration.tmp \
+                                                  && mv configuration.tmp configuration.properties
+      others=${others//\//\\/}
+      echo -e "run_other_options=$others"
+      sed -e "s/\(run_other_options=\).*/\1\"${others}\"/g" configuration.properties > configuration.tmp \
+                                                  && mv configuration.tmp configuration.properties
+                                                  
+      # enable variables in edjanger.template
+      sed -e "s/\(#[[:space:]]*image_name=\).*/\1/g" edjanger.template > edjanger.tmp \
+                                                  && mv edjanger.tmp edjanger.template
+      sed -e "s/\(#[[:space:]]*container_name=\).*/\1/g" edjanger.template > edjanger.tmp \
+                                                  && mv edjanger.tmp edjanger.template
+      sed -e "s/\(#[[:space:]]*exposed_ports=\).*/\1/" edjanger.template > edjanger.tmp \
+                                                  && mv edjanger.tmp edjanger.template
+      sed -e "s/\(#[[:space:]]*shared_volumes=\).*/\1/" edjanger.template > edjanger.tmp \
+                                                  && mv edjanger.tmp edjanger.template
+      sed -e "s/\(#[[:space:]]*environment_variables=\).*/\1/g" edjanger.template > edjanger.tmp \
+                                                  && mv edjanger.tmp edjanger.template
+      sed -e "s/\(#[[:space:]]*volumes_from=\).*/\1/g" edjanger.template > edjanger.tmp \
+                                                  && mv edjanger.tmp edjanger.template
+      sed -e "s/\(#[[:space:]]*linked_containers=\).*/\1/g" edjanger.template > edjanger.tmp \
+                                                  && mv edjanger.tmp edjanger.template
+      sed -e "s/\(#[[:space:]]*run_other_options=\).*/\1/g" edjanger.template > edjanger.tmp \
+                                                  && mv edjanger.tmp edjanger.template
+                                                  
+      
+      # update build/Dockerfile
+      echo "FROM $image_name" > build/Dockerfile 
+      
+      # replace in template
+      yes | . {edjangerpath}/template.sh --configure=configuration
+      
+      cd
+     
+    fi
+    
+  done
+  
+}
+
 function init_new_template()
 {
   template=$1
