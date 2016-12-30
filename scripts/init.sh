@@ -36,9 +36,17 @@
 ##     edjangerinit --help
 ##            Dispay help.
 ##
-##  Initialize a new template:
+##  Initialize a new template from local archive:
 ##     edjangerinit --template=demo_httpd
-##            initialize a nex template from the archive given by option --init.
+##            initialize a new template from the archive given by option --init.
+##  
+##  Initialize a new template from run file:
+##     edjangerinit --fromcommand=demo_httpd
+##            Initialize a new template from the all *.run files at current path,
+##            which contains single docker run command : 
+##              type=dockerfile,build=[dockerfile git repository]),
+##            or contains compose file :
+##              type=compose,build=[dockerfile git repository]
 ##  
 ##  Print templates list:
 ##     edjangerinit --templatelist
