@@ -16,7 +16,7 @@ source {edjangerpath}/prefs.properties
 
 config_extension=properties
 app_name=edjanger
-debug=false
+debug=true
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
         SED_REGEX="sed -r"
@@ -420,7 +420,10 @@ function init_new_template_from_command()
       cmdonline=${cmdonline#*run -t -i}
       cmdonline=${cmdonline#*run -i}
       cmdonline=${cmdonline#*run -t}
-      cmdonline=${cmdonline#*run}
+      cmdonline=${cmdonline#* -d }
+      cmdonline=${cmdonline#* -i }
+      cmdonline=${cmdonline#* -t }
+      #cmdonline=${cmdonline#*run}
       [[ "$debug" = "true" ]] && \
         echo -e "edjanger:DEBUG: cmdonline one line:$cmdonline"
       
@@ -534,7 +537,7 @@ function init_new_template_from_command()
           container_name=$(echo ${element##*=} | tr -d ' ')
           [[ "$debug" = "true" ]] && \
             echo -e "edjanger:DEBUG: container_name:$container_name"
-        elif [[ $element = *"--hostname"* ]] || [[ $element = "-h"* ]]; then
+        elif [[ $element = "--hostname"* ]] || [[ $element = "-h"* ]]; then
           if [[ ! $element = *"="* ]]; then
             element=$(echo "$cmdonline" | awk '{ printf $1 }')
             idelt=$(( $idelt + 1 ))
@@ -546,7 +549,7 @@ function init_new_template_from_command()
           container_hostname=$(echo ${element##*=} | tr -d ' ')
           [[ "$debug" = "true" ]] && \
             echo -e "edjanger:DEBUG: container_hostname:$container_hostname"
-        elif [[ $element = *"-"* ]] && [[ "$imagefound" = "false" ]]; then
+        elif [[ $element = "-"* ]] && [[ "$imagefound" = "false" ]]; then
           flag=$element
           if [[ ! $element = *"="* ]]; then
             element=$(echo "$cmdonline" | awk '{ printf $1 }')
@@ -559,7 +562,7 @@ function init_new_template_from_command()
           run_other_options+=$element" "
           [[ "$debug" = "true" ]] && \
             echo -e "edjanger:DEBUG: run_other_options:$run_other_options"
-        elif [[ ! $element = *"-"* ]] && [[ "$imagefound" = "false" ]]; then
+        elif [[ ! $element = "-"* ]] && [[ "$imagefound" = "false" ]]; then
           image_name=$(echo $element | tr -d ' ')
           imagefound=true
           [[ "$debug" = "true" ]] && \
