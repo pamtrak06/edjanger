@@ -16,7 +16,7 @@ source {edjangerpath}/prefs.properties
 
 config_extension=properties
 app_name=edjanger
-debug=true
+debug=false
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
         SED_REGEX="sed -r"
@@ -360,6 +360,50 @@ function initialize()
   fi
 }
 
+# if key value is space separated, retrieve the next item element
+function retrieve_key_value_space_separated()
+{
+  key1=$1
+  key2=$2
+
+  flag=$element
+  current=$element
+  
+  # if element not like key=value
+  if [[ ! $element = *"="* ]]; then
+  
+    # get next element from command line
+    next=$(echo "$cmdonline" | awk '{ printf $1 }')
+    
+    #if [[ ! $next = "-"* ]]; then
+    if [[ ! $next = *"$key1="* ]] && [[ ! $next = *"$key2="* ]]; then
+
+      [[ "$debug" = "true" ]] && \
+        idelt=$(( $idelt + 1 )) && \
+        echo -e "edjanger:DEBUG: second element $idelt:$next"
+                                
+      # remove next element from command line
+      cmdonline=${cmdonline#*${next}}
+      
+      if [[ $current = "--"* ]]; then
+      
+        element="$flag="$next
+        
+      elif [[ $current = "-"* ]]; then
+      
+        element="$flag "$next
+        
+      fi
+      
+    else
+    
+      element=$current
+      
+    fi
+    
+  fi
+}
+
 function init_new_template_from_command()
 {
 
@@ -451,114 +495,51 @@ function init_new_template_from_command()
       while [ -n "$element" ]; do
       
         [[ "$debug" = "true" ]] && \
-          echo -e "edjanger:DEBUG: element $idelt:$element"
+          echo -e "edjanger:DEBUG: first element $idelt:$element"
       
         if [[ $element = *"--volume"* ]] || [[ $element = *"-v"* ]]; then
-          if [[ ! $element = *"="* ]]; then
-            element=$(echo "$cmdonline" | awk '{ printf $1 }')
-            idelt=$(( $idelt + 1 ))
-            [[ "$debug" = "true" ]] && \
-              echo -e "edjanger:DEBUG: element $idelt:$element"
-            cmdonline=${cmdonline#*${element}}
-            element="--volumes="$element
-          fi
+          retrieve_key_value_space_separated "--volume" "-v"
           shared_volumes+=$element" "
           [[ "$debug" = "true" ]] && \
             echo -e "edjanger:DEBUG: shared_volumes:$shared_volumes"
         elif [[ $element = *"--volumes-from"* ]]; then
-          if [[ ! $element = *"="* ]]; then
-            element=$(echo "$cmdonline" | awk '{ printf $1 }')
-            idelt=$(( $idelt + 1 ))
-            [[ "$debug" = "true" ]] && \
-              echo -e "edjanger:DEBUG: element $idelt:$element"
-            cmdonline=${cmdonline#*${element}}
-            element="--volumes-from="$element
-          fi
+          retrieve_key_value_space_separated "--volumes-from" ""
           volumes_from+=$element" "
           [[ "$debug" = "true" ]] && \
             echo -e "edjanger:DEBUG: volumes_from:$volumes_from"
         elif [[ $element = *"--link"* ]]; then
-          if [[ ! $element = *"="* ]]; then
-            element=$(echo "$cmdonline" | awk '{ printf $1 }')
-            idelt=$(( $idelt + 1 ))
-            [[ "$debug" = "true" ]] && \
-              echo -e "edjanger:DEBUG: element $idelt:$element"
-            cmdonline=${cmdonline#*${element}}
-            element="--link="$element
-          fi
+          retrieve_key_value_space_separated "--link" ""
           linked_containers+=$element" "
           [[ "$debug" = "true" ]] && \
             echo -e "edjanger:DEBUG: linked_containers:$linked_containers"
         elif [[ $element = *"--expose"* ]]; then
-          if [[ ! $element = *"="* ]]; then
-            element=$(echo "$cmdonline" | awk '{ printf $1 }')
-            idelt=$(( $idelt + 1 ))
-            [[ "$debug" = "true" ]] && \
-              echo -e "edjanger:DEBUG: element $idelt:$element"
-            cmdonline=${cmdonline#*${element}}
-            element="--expose="$element
-          fi
+          retrieve_key_value_space_separated "--expose"
           exposed_ports+=$element" "
           [[ "$debug" = "true" ]] && \
             echo -e "edjanger:DEBUG: exposed_ports:$exposed_ports"
         elif [[ $element = *"--publish"* ]] || [[ $element = "-p"* ]]; then
-          if [[ ! $element = *"="* ]]; then
-            element=$(echo "$cmdonline" | awk '{ printf $1 }')
-            idelt=$(( $idelt + 1 ))
-            [[ "$debug" = "true" ]] && \
-              echo -e "edjanger:DEBUG: element $idelt:$element"
-            cmdonline=${cmdonline#*${element}}
-            element="--publish="$element
-          fi
+          retrieve_key_value_space_separated "--publish" "-p"
           published_ports+=$element" "
           [[ "$debug" = "true" ]] && \
             echo -e "edjanger:DEBUG: published_ports:$published_ports"
         elif [[ $element = *"--env"* ]] || [[ $element = "-e"* ]]; then
           # for env, variable could contain equal : e.g.: -e "GF_SERVER_ROOT_URL=http://grafana.server.name"
-          if [[ ! $element = *"--env="* ]] && [[ ! $element = "-e="* ]]; then
-            element=$(echo "$cmdonline" | awk '{ printf $1 }')
-            idelt=$(( $idelt + 1 ))
-            [[ "$debug" = "true" ]] && \
-              echo -e "edjanger:DEBUG: element $idelt:$element"
-            cmdonline=${cmdonline#*${element}}
-            element="--env=${element}"
-          fi
+          retrieve_key_value_space_separated "--env" "-e"
           environment_variables+=$element" "
           [[ "$debug" = "true" ]] && \
             echo -e "edjanger:DEBUG: environment_variables:$environment_variables"
         elif [[ $element = *"--name"* ]]; then
-          if [[ ! $element = *"="* ]]; then
-            element=$(echo "$cmdonline" | awk '{ printf $1 }')
-            idelt=$(( $idelt + 1 ))
-            [[ "$debug" = "true" ]] && \
-              echo -e "edjanger:DEBUG: element $idelt:$element"
-            cmdonline=${cmdonline#*${element}}
-          fi
+          retrieve_key_value_space_separated "--name" ""
           container_name=$(echo ${element##*=} | tr -d ' ')
           [[ "$debug" = "true" ]] && \
             echo -e "edjanger:DEBUG: container_name:$container_name"
         elif [[ $element = "--hostname"* ]] || [[ $element = "-h"* ]]; then
-          if [[ ! $element = *"="* ]]; then
-            element=$(echo "$cmdonline" | awk '{ printf $1 }')
-            idelt=$(( $idelt + 1 ))
-            [[ "$debug" = "true" ]] && \
-              echo -e "edjanger:DEBUG: element $idelt:$element"            
-            cmdonline=${cmdonline#*${element}}
-            element="--hostname="$element
-          fi
+          retrieve_key_value_space_separated "--hostname" "-h"
           container_hostname=$(echo ${element##*=} | tr -d ' ')
           [[ "$debug" = "true" ]] && \
             echo -e "edjanger:DEBUG: container_hostname:$container_hostname"
         elif [[ $element = "-"* ]] && [[ "$imagefound" = "false" ]]; then
-          flag=$element
-          if [[ ! $element = *"="* ]]; then
-            element=$(echo "$cmdonline" | awk '{ printf $1 }')
-            idelt=$(( $idelt + 1 ))
-            [[ "$debug" = "true" ]] && \
-              echo -e "edjanger:DEBUG: element $idelt:$element"                        
-            cmdonline=${cmdonline#*${element}}
-            element="$flag="$element
-          fi
+          retrieve_key_value_space_separated "" ""
           run_other_options+=$element" "
           [[ "$debug" = "true" ]] && \
             echo -e "edjanger:DEBUG: run_other_options:$run_other_options"
@@ -577,6 +558,7 @@ function init_new_template_from_command()
         element=$(echo "$cmdonline" | awk '{ printf $1 }')
         idelt=$(( $idelt + 1 ))
         cmdonline=${cmdonline#*${element}}
+        
       done
 
       # replace in configuration.properties
