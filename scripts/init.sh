@@ -16,6 +16,9 @@
 ##     -h, --help
 ##            Display help.
 ##  
+##         --force
+##           Force initialization even directory is not empty
+##  
 ##         --template=TEMPLATE-NAME
 ##            Initialize with the name of the template which could be chozen 
 ##            from the --templatelist option.
@@ -35,13 +38,21 @@
 ##  Help:
 ##     edjangerinit --help
 ##            Dispay help.
-##
+##  
+##  Initialize a new template
+##     edjangerinit
+##            Initialize a new template 
+##  
+##  Initialize a new template even directory is not empty
+##     edjangerinit --force
+##            Initialize a new template
+##  
 ##  Initialize a new template from local archive:
 ##     edjangerinit --template=demo_httpd
-##            initialize a new template from the archive given by option --init.
+##            Initialize a new template from the archive given by option --init.
 ##  
 ##  Initialize a new template from run file:
-##     edjangerinit --fromcommand=demo_httpd
+##     edjangerinit --fromcommand
 ##            Initialize a new template from the all *.run files at current path,
 ##            which contains single docker run command : 
 ##              type=dockerfile,build=[dockerfile git repository]),
@@ -96,7 +107,7 @@ else
     
   else
     
-    if [ "$(ls -A .)" ]; then
+    if [ "$(ls -A .)" ] && [ -z ${force} ]; then
       
       echo "edjanger:WARNING: directory is not empty" 
       exit 1
