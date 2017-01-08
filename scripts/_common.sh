@@ -16,6 +16,7 @@ source {edjangerpath}/prefs.properties
 
 config_extension=properties
 app_name=edjanger
+debug=false
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
         SED_REGEX="sed -r"

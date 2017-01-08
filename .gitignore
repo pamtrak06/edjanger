@@ -4,3 +4,4 @@ edjanger.unalias
 *.log
 tests/tmp*
 gh-pages
+scripts/.kv-bash
