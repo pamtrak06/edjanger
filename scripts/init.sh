@@ -16,15 +16,56 @@
 ##     -h, --help
 ##            Display help.
 ##  
+##         --force
+##           Force initialization even directory is not empty
+##  
 ##         --template=TEMPLATE-NAME
 ##            Initialize with the name of the template which could be chozen 
 ##            from the --templatelist option.
+##  
+##         --fromcommand
+##            Initialize edjanger repositories and create *.properties from 
+##            *.docker commands files present in path. 
 ##  
 ##         --templatelist
 ##            Display a comapct list of all available templates.
 ##  
 ##         --templatelistinfo
 ##            Display a list of all available templates with details.
+##  
+##  Command lines example:
+##  
+##  Help:
+##     edjangerinit --help
+##            Dispay help.
+##  
+##  Initialize a new template
+##     edjangerinit
+##            Initialize a new template 
+##  
+##  Initialize a new template even directory is not empty
+##     edjangerinit --force
+##            Initialize a new template
+##  
+##  Initialize a new template from local archive:
+##     edjangerinit --template=demo_httpd
+##            Initialize a new template from the archive given by option --init.
+##  
+##  Initialize a new template from run file:
+##     edjangerinit --fromcommand
+##            Initialize a new template from the all *.run files at current path,
+##            which contains single docker run command : 
+##              type=dockerfile,build=[dockerfile git repository]),
+##            or contains compose file :
+##              type=compose,build=[dockerfile git repository]
+##  
+##  Print templates list:
+##     edjangerinit --templatelist
+##            Print the list off all stored templates with short name only.
+##  
+##  Print templates list:
+##     edjangerinit --templatelistinfo
+##            Print the list off all stored templates with detailed informations.
 ##  
 ##  Licence & authors
 ##     edjanger, The MIT License (MIT)
@@ -40,45 +81,6 @@ source {edjangerpath}/_common.sh
                                    && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]--|;--|g") \
                                    && externaloptions=$(echo $externaloptions | sed "s|[[:space:]]-|;-|g")
 
-function initialize() 
-{
-  echo -e "> Initialize edjanger project ..."
-  if [ ! -f "edjanger.template" ] && [ "{edjangerpath}" != "$PWD" ]; then
-    echo -e "  . Initialize edjanger template file example: edjanger.template ..."
-    cp {edjangerpath}/templates/edjanger.template .
-  else
-    source {edjangerpath}/_common.sh
-    echo -e "  . File edjanger.template is already in your current directory !"
-  fi
-  if [ ! -f "configuration.${config_extension}" ] && [ "{edjangerpath}" != "$PWD" ]; then
-    echo -e "  . Initialize edjanger configuration file example: configuration.${config_extension} ..."
-    cp {edjangerpath}/templates/configuration.${config_extension} .
-  else
-    source {edjangerpath}/_common.sh
-    echo -e "  . File configuration.${config_extension} is already in your current directory !"
-  fi
-  if [ ! -f "edjanger.${config_extension}" ] && [ "{edjangerpath}" != "$PWD" ]; then
-    echo -e "  . Initialize edjanger.properties file from template edjanger.template ..."
-    . {edjangerpath}/template.sh --configure=configuration.properties
-  else
-    source {edjangerpath}/_common.sh
-    echo -e "  . File edjanger.${config_extension} is already in your current directory !"
-    checkconfig
-  fi
-  if [ ! -d "build" ] && [ "{edjangerpath}" != "$PWD" ]; then
-    echo -e "  . Initialize edjanger build folder for Dockerfile: /build ..."
-    mkdir build/
-  fi
-  if [ ! -f "build/Dockerfile" ] && [ "{edjangerpath}" != "$PWD" ]; then
-    echo -e "  . Initialize Dockerfile: build/Dockerfile ..."
-    touch build/Dockerfile
-  fi
-  if [ ! -d "volumes" ] && [ "{edjangerpath}" != "$PWD" ]; then
-    echo -e "  . Initialize edjanger shared volumes folder for Dockerfile: /volumes ..."
-    mkdir volumes/
-  fi
-}
-
 evalOptionsParameters $*
 
 if [ -n "${help}" ]; then
@@ -91,6 +93,10 @@ else
 
     init_new_template ${template}
     
+  elif [ -n "${fromcommand}" ]; then
+    
+    init_new_template_from_command
+    
   elif [ -n "${templatelist}" ]; then
     
     print_template_list false
@@ -101,7 +107,7 @@ else
     
   else
     
-    if [ "$(ls -A .)" ]; then
+    if [ "$(ls -A .)" ] && [ -z ${force} ]; then
       
       echo "edjanger:WARNING: directory is not empty" 
       exit 1

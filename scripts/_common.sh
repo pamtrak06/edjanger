@@ -60,31 +60,38 @@ function unsetOptionsParameters()
   parameterslist=$*
   IFS=';' read -ra parameters <<< "$parameterslist"
   for parameter in "${parameters[@]}"; do
-    #echo "Unset parameters from option:${parameter}"
+    [[ "$debug" = "true" ]] && \
+      echo "edjanger:DEBUG: Unset parameters from option:${parameter}"
     if [[ "${parameter}" = "--"*"="* ]]; then
       parameter=${parameter#--}
-      #echo "Unset parameter starting with \"--\": \"${parameter%%=*}\""
+      [[ "$debug" = "true" ]] && \
+        echo "edjanger:DEBUG: Unset parameter starting with \"--\": \"${parameter%%=*}\""
       unset -v "${parameter%%=*}"
     elif [[ "${parameter}" = "-"*"="* ]]; then
       parameter=${parameter#-}
-      #echo "Unset parameter starting with \"-\": \"${parameter%%=*}\""
+      [[ "$debug" = "true" ]] && \
+        echo "edjanger:DEBUG: Unset parameter starting with \"-\": \"${parameter%%=*}\""
       unset -v "${parameter%%=*}"
     elif [[ "${parameter}" = *"="* ]]; then
-      #echo "Unset parameter without prefix: \"${parameter%%=*}\""
+      [[ "$debug" = "true" ]] && \
+        echo "edjanger:DEBUG: Unset parameter without prefix: \"${parameter%%=*}\""
       unset -v "${parameter%%=*}"
     elif [[ "$parameter" =~ ^[-]*help[a-z]* ]] || [ "$parameter" = "-h" ]; then
       unset -v help
     else
       if [ -n "${parameter#--}" ]; then
         parameter=${parameter#--}
-        #echo "Unset parameter starting with \"--\": \"${parameter%%=*}\""
+        [[ "$debug" = "true" ]] && \
+          echo "edjanger:DEBUG: Unset parameter starting with \"--\": \"${parameter%%=*}\""
         unset -v "${parameter%%=*}"
       elif [ -n "${parameter#-}" ]; then
         parameter=${parameter#-}
-        #echo "Unset parameter starting with \"-\": \"${parameter%%=*}\""
+        [[ "$debug" = "true" ]] && \
+          echo "edjanger:DEBUG: Unset parameter starting with \"-\": \"${parameter%%=*}\""
         unset -v "${parameter%%=*}"
       elif [ -n "${parameter}" ]; then
-        #echo "Unset parameter witout prefix: \"${parameter}\""
+        [[ "$debug" = "true" ]] && \
+          echo "edjanger:DEBUG: Unset parameter witout prefix: \"${parameter}\""
         unset -v "${parameter}"
       fi
     fi
@@ -137,33 +144,40 @@ function evalOptionsParameters()
   
   IFS=';' read -ra parameters <<< "$parameterslist"
   for parameter in "${parameters[@]}"; do
-      #echo "parameter:${parameter}"
+      [[ "$debug" = "true" ]] && \
+        echo "edjanger:DEBUG: parameter:${parameter}"
       if [[ "${parameter}" = *"rm[[:space:]]"* ]]; then
         #echo "edocker:ERROR: parameter rm evaluation not allowed: ${parameter} !!!"
         exit -1
       elif [[ "${parameter}" = "--"*"="* ]]; then
-        #echo "Eval parameter starting with \"--\": \"${parameter#--}\""
+        [[ "$debug" = "true" ]] && \
+          echo "edjanger:DEBUG: Eval parameter starting with \"--\": \"${parameter#--}\""
         eval "${parameter#--}"
         #parameter=${parameter#--}
       elif [[ "${parameter}" = "-"*"="* ]]; then
-        #echo "Eval parameter starting with \"-\": \"${parameter#-}\""
+        [[ "$debug" = "true" ]] && \
+          echo "edjanger:DEBUG: Eval parameter starting with \"-\": \"${parameter#-}\""
         eval "${parameter#-}"
         #parameter=${parameter#-}
       elif [[ "${parameter}" = *"="* ]]; then
-        #echo "Eval parameter without prefix: \"${parameter}\""
+        [[ "$debug" = "true" ]] && \
+          echo "edjanger:DEBUG: Eval parameter without prefix: \"${parameter}\""
         eval "${parameter}"
         #parameter=${parameter}
       elif [[ "$parameter" =~ ^[-]*help[a-z]* ]] || [ "$parameter" = "-h" ]; then
         help=true
       else
         if [ -n "${parameter#--}" ]; then
-          #echo "Set parameter \"${parameter#--}\" starting with \"--\" to true"
+          [[ "$debug" = "true" ]] && \
+            echo "edjanger:DEBUG: Set parameter \"${parameter#--}\" starting with \"--\" to true"
           eval "${parameter#--}=true" 
         elif [ -n "${parameter#-}" ]; then
-          #echo "Set parameter \"${parameter#-}\" starting with \"-\" to true"
+          [[ "$debug" = "true" ]] && \
+            echo "edjanger:DEBUG: Set parameter \"${parameter#-}\" starting with \"-\" to true"
           eval "${parameter#-}=true" 
         elif [ -n "${parameter}" ]; then
-          #echo "Set parameter \"${parameter}\" without prefix to true"
+          [[ "$debug" = "true" ]] && \
+            echo "edjanger:DEBUG: Set parameter \"${parameter}\" without prefix to true"
           eval "${parameter}=true" 
         fi
       fi
@@ -308,6 +322,450 @@ function delete_template()
     rm -f $zipfile
   fi
 
+}
+
+function initialize() 
+{
+  echo -e "> Initialize edjanger project ..."
+  if [ ! -f "edjanger.template" ] && [ "{edjangerpath}" != "$PWD" ]; then
+    echo -e "  . Initialize edjanger template file example: edjanger.template ..."
+    cp {edjangerpath}/templates/edjanger.template .
+  else
+    echo -e "  . File edjanger.template is already in your current directory !"
+  fi
+  if [ ! -f "configuration.${config_extension}" ] && [ "{edjangerpath}" != "$PWD" ]; then
+    echo -e "  . Initialize edjanger configuration file example: configuration.${config_extension} ..."
+    cp {edjangerpath}/templates/configuration.${config_extension} .
+  else
+    echo -e "  . File configuration.${config_extension} is already in your current directory !"
+  fi
+  if [ ! -f "edjanger.${config_extension}" ] && [ "{edjangerpath}" != "$PWD" ]; then
+    echo -e "  . Initialize edjanger.properties file from template edjanger.template ..."
+    . {edjangerpath}/template.sh --configure=configuration.properties
+  else
+    echo -e "  . File edjanger.${config_extension} is already in your current directory !"
+    checkconfig
+  fi
+  if [ ! -d "build" ] && [ "{edjangerpath}" != "$PWD" ]; then
+    echo -e "  . Initialize edjanger build folder for Dockerfile: /build ..."
+    mkdir build/
+  fi
+  if [ ! -f "build/Dockerfile" ] && [ "{edjangerpath}" != "$PWD" ]; then
+    echo -e "  . Initialize Dockerfile: build/Dockerfile ..."
+    touch build/Dockerfile
+  fi
+  if [ ! -d "volumes" ] && [ "{edjangerpath}" != "$PWD" ]; then
+    echo -e "  . Initialize edjanger shared volumes folder for Dockerfile: /volumes ..."
+    mkdir volumes/
+  fi
+}
+
+# if key value is space separated, retrieve the next item element
+function retrieve_key_value_space_separated()
+{
+  key1=$1
+  key2=$2
+
+  flag=$element
+  current=$element
+  
+  # if element not like key=value
+  if [[ ! $element = *"="* ]]; then
+  
+    # get next element from command line
+    next=$(echo "$cmdonline" | awk '{ printf $1 }')
+    
+    #if [[ ! $next = "-"* ]]; then
+    if [[ ! $next = *"$key1="* ]] && [[ ! $next = *"$key2="* ]]; then
+
+      [[ "$debug" = "true" ]] && \
+        idelt=$(( $idelt + 1 )) && \
+        echo -e "edjanger:DEBUG: second element $idelt:$next"
+                                
+      # remove next element from command line
+      cmdonline=${cmdonline#*${next}}
+      
+      if [[ $current = "--"* ]]; then
+      
+        element="$flag="$next
+        
+      elif [[ $current = "-"* ]]; then
+      
+        element="$flag "$next
+        
+      fi
+      
+    else
+    
+      element=$current
+      
+    fi
+    
+  fi
+}
+
+function init_new_template_from_command()
+{
+
+  # retrieve files only in first level folder
+  commands=$(find $current_path -maxdepth 1 -name "*${init_docker_extension}" -prune -type f)
+
+  [ -z "${commands}" ] \
+      && echo -e "edjanger:WARNING: No file *${init_docker_extension} present to be processed" \
+      && return 1
+  
+  for command in ${commands[@]}
+  do
+    
+    root_cmd=${command%${init_docker_extension}}
+    
+    if [ -d $root_cmd ]; then
+    
+      echo -e "edjanger:WARNING: directory ${root_cmd} already exist"
+      
+    else
+    
+      unset -v type
+      unset -v enabled
+      unset -v repository
+      
+      line1=$(awk 'NR==1 {print; exit}' ${command})
+      line2=$(awk 'NR==2 {print; exit}' ${command})
+      line3=$(awk 'NR==3 {print; exit}' ${command})
+
+      [[ ! "$line1" = "type="* ]] || [[ ! "$line2" = "enabled="* ]] \
+        && echo -e "edjanger:WARNING: file ${command} does not contain correct header" \
+        && echo -e "                  line 1: type=dockerfile|compose" \
+        && echo -e "                  line 2: enabled=true|false" \
+        && return 1
+        
+      type=${line1#*=}
+      enabled=${line2#*=}
+      
+      [[ "$line3" = "repository="* ]] \
+        && repository=${line3#*=}
+        
+      check=$(cat ${command} | grep "docker run")
+      
+      [[ -z "$check" ]] && [[ -z "$repository" ]] \
+        && echo -e "edjanger:WARNING: file ${command} does not contain docker run command" \
+        && enabled=false
+      
+      if [[ ! "$enabled" = "true" ]]; then
+        
+        echo -e "edjanger:WARNING: file ${command} is disabled"
+        [[ "$debug" = "true" ]] \
+          && echo -e "                  line 1: type=${line1#*=}" \
+          && echo -e "                  line 2: enabled=${line2#*=}"
+        
+      else
+      
+        currentpath=$PWD
+        command=$PWD/${command#\.\/}
+        
+        echo -e "Process ${command}..."
+        
+        # create project subfolder
+        mkdir $root_cmd && cd $root_cmd
+        
+        if [[ -n "$repository" ]]; then
+          echo -e "${app_name}:WARNING repository \"$repository\" will be directly download on this current path ($root_cmd/build). Continue (y/n)?"
+          read response
+          if [ "y" = "$response" ]; then
+            git clone --recursive $repository ./build
+            if [[ "$type" = "compose" ]]; then
+              mv $root_cmd/build/*.yml $root_cmd/  > /dev/null
+              mv $root_cmd/build/*.yaml $root_cmd/ > /dev/null
+            #elif [[ "$type" = "dockerfile" ]]; then
+            fi
+          else
+            return 1;
+          fi
+        fi
+        
+        initialize
+        
+        unset -v shared_volumes
+        unset -v volumes_from
+        unset -v environment_variables
+        unset -v exposed_ports
+        unset -v published_ports
+        unset -v run_other_options
+        unset -v linked_containers
+        unset -v container_name
+        unset -v container_hostname
+        unset -v image_name
+        unset -v imagefound
+        unset -v command_run
+          
+        cmdonline=$(cat ${command})
+        
+        # suppress line 1 & 2
+        cmdonline=${cmdonline#*${line1}}
+        cmdonline=${cmdonline#*${line2}}
+        
+        [[ "$debug" = "true" ]] && \
+          echo -e "edjanger:DEBUG: command raw:\n$cmdonline"
+        cmdonline=$(echo ${cmdonline} | tr -d '\\' | tr "\r\n" " ")
+        cmdonline=${cmdonline#*run -d}
+        cmdonline=${cmdonline#*run -it}
+        cmdonline=${cmdonline#*run -ti}
+        cmdonline=${cmdonline#*run -i -t}
+        cmdonline=${cmdonline#*run -t -i}
+        cmdonline=${cmdonline#*run -i}
+        cmdonline=${cmdonline#*run -t}
+        cmdonline=${cmdonline#* -d }
+        cmdonline=${cmdonline#* -i }
+        cmdonline=${cmdonline#* -t }
+        cmdonline=${cmdonline#*docker run}
+        #cmdonline=${cmdonline#*run}
+        [[ "$debug" = "true" ]] && \
+          echo -e "edjanger:DEBUG: cmdonline one line:$cmdonline"
+        
+        # extract first element
+        element=$(echo "$cmdonline" | awk '{ printf $1 }')
+        cmdonline=${cmdonline#*${element}}
+        
+        nbelement=$(echo "$cmdonline" | awk '{ printf NF }')
+        nbelement=$(( $nbelement + 1 ))
+        [[ "$debug" = "true" ]] && \
+          echo -e "edjanger:DEBUG: nb elements:$nbelement"
+        idelt=$(( 1 ))
+  
+  #      [[ "$debug" = "true" ]] && \
+  #        cmdonlineref=$cmdonline && \
+  #        while [ -n "$element" ]; do
+  #          [[ "$debug" = "true" ]] && \
+  #            echo -e "edjanger:DEBUG: element $idelt:$element"
+  #          element=$(echo "$cmdonline" | awk '{ printf $1 }')
+  #          idelt=$(( $idelt + 1 ))
+  #          cmdonline=${cmdonline#*${element}}
+  #        done && cmdonline=$cmdonlineref
+        
+        imagefound=false
+        while [ -n "$element" ]; do
+        
+          [[ "$debug" = "true" ]] && \
+            echo -e "edjanger:DEBUG: first element $idelt:$element"
+        
+          if [[ $element = *"--volume"* ]] || [[ $element = *"-v"* ]]; then
+            retrieve_key_value_space_separated "--volume" "-v"
+            shared_volumes+=$element" "
+            [[ "$debug" = "true" ]] && \
+              echo -e "edjanger:DEBUG: shared_volumes:$shared_volumes"
+          elif [[ $element = *"--volumes-from"* ]]; then
+            retrieve_key_value_space_separated "--volumes-from" ""
+            volumes_from+=$element" "
+            [[ "$debug" = "true" ]] && \
+              echo -e "edjanger:DEBUG: volumes_from:$volumes_from"
+          elif [[ $element = *"--link"* ]]; then
+            retrieve_key_value_space_separated "--link" ""
+            linked_containers+=$element" "
+            [[ "$debug" = "true" ]] && \
+              echo -e "edjanger:DEBUG: linked_containers:$linked_containers"
+          elif [[ $element = *"--expose"* ]]; then
+            retrieve_key_value_space_separated "--expose"
+            exposed_ports+=$element" "
+            [[ "$debug" = "true" ]] && \
+              echo -e "edjanger:DEBUG: exposed_ports:$exposed_ports"
+          elif [[ $element = *"--publish"* ]] || [[ $element = "-p"* ]]; then
+            retrieve_key_value_space_separated "--publish" "-p"
+            published_ports+=$element" "
+            [[ "$debug" = "true" ]] && \
+              echo -e "edjanger:DEBUG: published_ports:$published_ports"
+          elif [[ $element = *"--env"* ]] || [[ $element = "-e"* ]]; then
+            # for env, variable could contain equal : e.g.: -e "GF_SERVER_ROOT_URL=http://grafana.server.name"
+            retrieve_key_value_space_separated "--env" "-e"
+            environment_variables+=$element" "
+            [[ "$debug" = "true" ]] && \
+              echo -e "edjanger:DEBUG: environment_variables:$environment_variables"
+          elif [[ $element = *"--name"* ]]; then
+            retrieve_key_value_space_separated "--name" ""
+            container_name=$(echo ${element##*=} | tr -d ' ')
+            [[ "$debug" = "true" ]] && \
+              echo -e "edjanger:DEBUG: container_name:$container_name"
+          elif [[ $element = "--hostname"* ]] || [[ $element = "-h"* ]]; then
+            retrieve_key_value_space_separated "--hostname" "-h"
+            container_hostname=$(echo ${element##*=} | tr -d ' ')
+            [[ "$debug" = "true" ]] && \
+              echo -e "edjanger:DEBUG: container_hostname:$container_hostname"
+          elif [[ $element = "-"* ]] && [[ "$imagefound" = "false" ]]; then
+            retrieve_key_value_space_separated "" ""
+            run_other_options+=$element" "
+            [[ "$debug" = "true" ]] && \
+              echo -e "edjanger:DEBUG: run_other_options:$run_other_options"
+          elif [[ ! $element = "-"* ]] && [[ "$imagefound" = "false" ]]; then
+            image_name=$(echo $element | tr -d ' ')
+            imagefound=true
+            [[ "$debug" = "true" ]] && \
+              echo -e "edjanger:DEBUG: image_name:$image_name"
+          else
+            command_run+=$(echo $element | tr -d ' ')
+            command_run+=" "
+            [[ "$debug" = "true" ]] && \
+              echo -e "edjanger:DEBUG: command_run:$command_run"
+          fi
+          
+          element=$(echo "$cmdonline" | awk '{ printf $1 }')
+          idelt=$(( $idelt + 1 ))
+          cmdonline=${cmdonline#*${element}}
+          
+        done
+  
+        # replace in configuration.properties
+        [[ "$debug" = "true" ]] && \
+          echo -e "edjanger:DEBUG: container_name=$container_name"
+        sed -e "s/\(container_name=\).*/\1\"${container_name}\"/g" configuration.properties > configuration.tmp \
+                                                    && mv configuration.tmp configuration.properties
+        [[ "$debug" = "true" ]] && \
+          echo -e "edjanger:DEBUG: container_hostname=$container_hostname"
+        sed -e "s/\(container_hostname=\).*/\1\"${container_remove}\"/g" configuration.properties > configuration.tmp \
+                                                    && mv configuration.tmp configuration.properties
+        [[ "$debug" = "true" ]] && \
+          echo -e "edjanger:DEBUG: container_remove=$container_remove"
+        sed -e "s/\(container_remove=\).*/\1\"${container_remove}\"/g" configuration.properties > configuration.tmp \
+                                                    && mv configuration.tmp configuration.properties
+        [[ "$debug" = "true" ]] && \
+          echo -e "edjanger:DEBUG: image_name=$image_name"
+        sed -e "s/\(image_name=\).*/\1\"${image_name//\//\\/}\"/g" configuration.properties > configuration.tmp \
+                                                    && mv configuration.tmp configuration.properties
+        exposed_ports=${exposed_ports//\//\\/}
+        [[ "$debug" = "true" ]] && \
+          echo -e "edjanger:DEBUG: exposed_ports=$exposed_ports"
+        sed -e "s/\(exposed_ports=\).*/\1\"${exposed_ports}\"/g" configuration.properties > configuration.tmp \
+                                                    && mv configuration.tmp configuration.properties
+        published_ports=${published_ports//\//\\/}
+        [[ "$debug" = "true" ]] && \
+          echo -e "edjanger:DEBUG: published_ports=$published_ports"
+        sed -e "s/\(published_ports=\).*/\1\"${published_ports}\"/g" configuration.properties > configuration.tmp \
+                                                    && mv configuration.tmp configuration.properties
+        shared_volumes=${shared_volumes//\//\\/}
+        [[ "$debug" = "true" ]] && \
+          echo -e "edjanger:DEBUG: shared_volumes=$shared_volumes"
+        sed -e "s/\(shared_volumes=\).*/\1\"${shared_volumes}\"/g" configuration.properties > configuration.tmp \
+                                                          && mv configuration.tmp configuration.properties
+        [[ -n $environment_variables ]] \
+          && environment_variables=${environment_variables//\//\\/} \
+          && environment_variables=$(echo ${environment_variables} | sed 's/\"/\\\"/g')
+        [[ "$debug" = "true" ]] && \
+          echo -e "edjanger:DEBUG: environment_variables=$environment_variables"
+        sed -e "s/\(environment_variables=\).*/\1\"${environment_variables}\"/g" configuration.properties > configuration.tmp \
+                                                    && mv configuration.tmp configuration.properties
+        sed -e "s/env=\"/env=\\\\\"/g"  configuration.properties > configuration.tmp \
+                                                    && mv configuration.tmp configuration.properties
+        sed -e "s/\" \-\-env=/\\\\\" \-\-env=/g"  configuration.properties > configuration.tmp \
+                                                    && mv configuration.tmp configuration.properties
+        sed -e "s/\"\"/\\\\\"\"/g"  configuration.properties > configuration.tmp \
+                                                    && mv configuration.tmp configuration.properties
+        # TODO following to correct not so good regex, to be improved
+        sed -e "s/=\\\\\"\"/=\"\"/g"  configuration.properties > configuration.tmp \
+                                                    && mv configuration.tmp configuration.properties
+        volumesfrom=${volumesfrom//\//\\/}
+        [[ "$debug" = "true" ]] && \
+          echo -e "edjanger:DEBUG: volumes_from=$volumes_from"
+        sed -e "s/\(volumes_from=\).*/\1\"${volumes_from}\"/g" configuration.properties > configuration.tmp \
+                                                    && mv configuration.tmp configuration.properties
+        linked_containers=${linked_containers//\//\\/}
+        [[ "$debug" = "true" ]] && \
+          echo -e "edjanger:DEBUG: linked_containers=$linked_containers"
+        sed -e "s/\(linked_containers=\).*/\1\"${linked_containers}\"/g" configuration.properties > configuration.tmp \
+                                                    && mv configuration.tmp configuration.properties
+        run_other_options=${run_other_options//\//\\/}
+        [[ "$debug" = "true" ]] && \
+          echo -e "edjanger:DEBUG: run_other_options=$run_other_options"
+        sed -e "s/\(run_other_options=\).*/\1\"${run_other_options}\"/g" configuration.properties > configuration.tmp \
+                                                    && mv configuration.tmp configuration.properties
+        [[ -n $command_run ]] \
+          && command_run=${command_run//\//\\/} \
+          && command_run=$(echo ${command_run} | sed 's/\"/\\\"/g')
+        [[ "$debug" = "true" ]] && \
+          echo -e "edjanger:DEBUG: command_run=$command_run"
+        sed -e "s/\(command_run=\).*/\1\"${command_run}\"/g" configuration.properties > configuration.tmp \
+                                                    && mv configuration.tmp configuration.properties
+                                             
+        # enable variables in edjanger.template
+        unset -v comment && [[ -z $image_name ]] && comment="#" 
+        unset -v header  && [[ -n $image_name ]] && header="#"
+        sed -e "s/${header}\(image_name=\.*\)/${comment}\1/" edjanger.template > edjanger.tmp \
+                                                    && mv edjanger.tmp edjanger.template
+        unset -v comment && [[ -z $container_name ]] && comment="#"
+        unset -v header  && [[ -n $container_name ]] && header="#"
+        sed -e "s/${header}\(container_name=\.*\)/${comment}\1/" edjanger.template > edjanger.tmp \
+                                                    && mv edjanger.tmp edjanger.template
+        unset -v comment && [[ -z $container_hostname ]] && comment="#"
+        unset -v header  && [[ -n $container_hostname ]] && header="#"
+        sed -e "s/${header}\(container_hostname=\.*\)/${comment}\1/" edjanger.template > edjanger.tmp \
+                                                    && mv edjanger.tmp edjanger.template
+        unset -v comment && [[ -z $container_remove ]] && comment="#"
+        unset -v header  && [[ -n $container_remove ]] && header="#"
+        sed -e "s/${header}\(container_remove=\.*\)/${comment}\1/" edjanger.template > edjanger.tmp \
+                                                    && mv edjanger.tmp edjanger.template
+        unset -v comment && [[ -z $exposed_ports ]] && comment="#"
+        unset -v header  && [[ -n $exposed_ports ]] && header="#"
+        sed -e "s/${header}\(exposed_ports=\.*\)/${comment}\1/" edjanger.template > edjanger.tmp \
+                                                    && mv edjanger.tmp edjanger.template
+        unset -v comment && [[ -z $published_ports ]] && comment="#"
+        unset -v header  && [[ -n $published_ports ]] && header="#"
+        sed -e "s/${header}\(published_ports=\.*\)/${comment}\1/" edjanger.template > edjanger.tmp \
+                                                    && mv edjanger.tmp edjanger.template
+        unset -v comment && [[ -z $shared_volumes ]] && comment="#"
+        unset -v header  && [[ -n $shared_volumes ]] && header="#"
+        sed -e "s/${header}\(shared_volumes=\.*\)/${comment}\1/" edjanger.template > edjanger.tmp \
+                                                    && mv edjanger.tmp edjanger.template
+        unset -v comment && [[ -z $environment_variables ]] && comment="#"
+        unset -v header  && [[ -n $environment_variables ]] && header="#" 
+        sed -e "s/${header}\(environment_variables=\.*\)/${comment}\1/" edjanger.template > edjanger.tmp \
+                                                    && mv edjanger.tmp edjanger.template                
+        unset -v comment && [[ -z $volumes_from ]] && comment="#"
+        unset -v header  && [[ -n $volumes_from ]] && header="#"
+        sed -e "s/${header}\(volumes_from=\.*\)/${comment}\1/" edjanger.template > edjanger.tmp \
+                                                    && mv edjanger.tmp edjanger.template
+        unset -v comment && [[ -z $linked_containers ]] && comment="#"
+        unset -v header  && [[ -n $linked_containers ]] && header="#"
+        sed -e "s/${header}\(linked_containers=\.*\)/${comment}\1/" edjanger.template > edjanger.tmp \
+                                                    && mv edjanger.tmp edjanger.template
+        unset -v comment && [[ -z $run_other_options ]] && comment="#"
+        unset -v header  && [[ -n $run_other_options ]] && header="#"
+        sed -e "s/${header}\(run_other_options=\.*\)/${comment}\1/" edjanger.template > edjanger.tmp \
+                                                    && mv edjanger.tmp edjanger.template
+        unset -v comment && [[ -z $command_run ]] && comment="#"
+        unset -v header  && [[ -n $command_run ]] && header="#"
+        sed -e "s/${header}\(command_run=\.*\)/${comment}\1/" edjanger.template > edjanger.tmp \
+                                                    && mv edjanger.tmp edjanger.template
+        
+        # TODO following to correct not so good regex, to be improved                                            
+        cat edjanger.template | sed 's/^##/#/g' > edjanger.tmp && mv edjanger.tmp edjanger.template
+        
+        # update build/Dockerfile
+        echo -e "FROM ${image_name}" > build/Dockerfile 
+  
+        # replace in template
+        yes | . {edjangerpath}/template.sh --configure=configuration
+        
+        # TODO following to correct not so good regex, to be improved
+        # envsubst must conserve escaping double quotes
+        sed -e "s/\(environment_variables=\).*/\1\"${environment_variables}\"/g" edjanger.properties > edjanger.tmp \
+                                                    && mv edjanger.tmp edjanger.properties
+        sed -e "s/env=\"/env=\\\\\"/g"  edjanger.properties > edjanger.tmp \
+                                                    && mv edjanger.tmp edjanger.properties
+        sed -e "s/\" \-\-env=/\\\\\" \-\-env=/g"  edjanger.properties > edjanger.tmp \
+                                                    && mv edjanger.tmp edjanger.properties
+        sed -e "s/\"\"/\\\\\"\"/g"  edjanger.properties > edjanger.tmp \
+                                                    && mv edjanger.tmp edjanger.properties
+        #sed -e "s/\//\\\\\//g"  edjanger.properties > edjanger.tmp \
+        #                                            && mv edjanger.tmp edjanger.properties
+        # TODO following to correct not so good regex, to be improved
+        sed -e "s/=\\\\\"\"/=\"\"/g"  edjanger.properties > edjanger.tmp \
+                                                    && mv edjanger.tmp edjanger.properties
+        
+        cd $currentpath
+        
+      fi
+     
+    fi
+    
+  done
+  
 }
 
 function init_new_template()

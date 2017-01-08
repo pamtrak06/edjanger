@@ -63,8 +63,11 @@ container_name="${app_container_name}"
 #container_addhost:Add a custom host-to-IP mapping (host:ip) (default []) (option --add-host value for docker run)
 #container_addhost="${app_container_addhost}"
 
+#published_ports:published port
+published_ports="${app_published_ports}"
+
 #exposed_ports:exposed port
-exposed_ports="${app_exposed_ports}"
+#exposed_ports="${app_exposed_ports}"
 
 #shared_volumes:shared volumes
 shared_volumes="${app_shared_volumes}"
@@ -85,13 +88,13 @@ environment_variables="${app_environment_variables}"
 #runtime_constraints_on_resources=-m, --memory "" --memory-swap "" --memory-reservation "" --kernel-memory "" ...
 
 #run_other_options:all other available options for docker run
-#run_other_options="all available options for docker run"
+#run_other_options="${app_run_other_options}"
 
 #command_args:bash command(s) to run
-#command_args=""
+#command_args="${app_command_args}"
 
 #command_run:bash command(s) to run
-#command_run="/bin/bash -c \"cd /; ls -la\""
+#command_run="${app_command_run}"
 
 # ------------------------------------------------------------------------------
 # Others docker command options
