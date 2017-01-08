@@ -66,8 +66,8 @@ export PATH=$PATH:/usr/local/bin/edjanger
   cat $PROP | grep -v "#container_remove:" | grep container_remove
   sed -e "s/\(container_addhost=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep -v "#container_addhost:" | grep container_addhost
-  sed -e "s/\(exposed_ports=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
-  cat $PROP | grep -v "#exposed_ports:" | grep exposed_ports
+  sed -e "s/\(published_ports=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep -v "#published_ports:" | grep published_ports
   sed -e "s/\(shared_volumes=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep -v "#shared_volumes:" | grep shared_volumes
   sed -e "s/\(volumes_from=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
@@ -104,8 +104,8 @@ export PATH=$PATH:/usr/local/bin/edjanger
   cat $PROP | grep -v "#container_remove:" | grep container_remove
   sed -e "s/\(container_addhost=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep -v "#container_addhost:" | grep container_addhost
-  sed -e "s/\(exposed_ports=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
-  cat $PROP | grep -v "#exposed_ports:" | grep exposed_ports
+  sed -e "s/\(published_ports=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep -v "#published_ports:" | grep published_ports
   sed -e "s/\(shared_volumes=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep -v "#shared_volumes:" | grep shared_volumes
   sed -e "s/\(environment_variables=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
@@ -147,8 +147,8 @@ export PATH=$PATH:/usr/local/bin/edjanger
   cat $PROP | grep -v "#container_remove:" | grep container_remove
   sed -e "s/\(container_addhost=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep -v "#container_addhost:" | grep container_addhost
-  sed -e "s/\(exposed_ports=\).*/\1\"-p 85:80\"/" $PROP > $TMPP && mv $TMPP $PROP
-  cat $PROP | grep -v "#" | grep exposed_ports
+  sed -e "s/\(published_ports=\).*/\1\"-p 85:80\"/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep -v "#" | grep published_ports
   sed -e "s/\(shared_volumes=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep -v "#shared_volumes:" | grep shared_volumes
   sed -e "s/\(environment_variables=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
@@ -194,8 +194,8 @@ export PATH=$PATH:/usr/local/bin/edjanger
   cat $PROP | grep -v "#container_remove:" | grep container_remove
   sed -e "s/\(container_addhost=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep -v "#container_addhost:" | grep container_addhost
-  sed -e "s/\(exposed_ports=\).*/\1\"-P\"/" $PROP > $TMPP && mv $TMPP $PROP
-  cat $PROP | grep -v "#" | grep exposed_ports
+  sed -e "s/\(published_ports=\).*/\1\"-P\"/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep -v "#" | grep published_ports
   sed -e "s/\(shared_volumes=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep -v "#shared_volumes:" | grep shared_volumes
   sed -e "s/\(environment_variables=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
@@ -273,8 +273,8 @@ export PATH=$PATH:/usr/local/bin/edjanger
   cat $PROP | grep -v "#container_remove:" | grep container_remove
   sed -e "s/\(container_addhost=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep -v "#container_addhost:" | grep container_addhost
-  sed -e "s/\(exposed_ports=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
-  cat $PROP | grep -v "#exposed_ports:" | grep exposed_ports
+  sed -e "s/\(published_ports=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep -v "#published_ports:" | grep published_ports
   sed -e "s/\(shared_volumes=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep -v "#shared_volumes:" | grep shared_volumes
   sed -e "s/\(environment_variables=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
@@ -318,8 +318,8 @@ export PATH=$PATH:/usr/local/bin/edjanger
   cat $PROP | grep -v "#container_remove:" | grep container_remove
   sed -e "s/\(container_addhost=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep -v "#container_addhost:" | grep container_addhost
-  sed -e "s/\(exposed_ports=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
-  cat $PROP | grep exposed_ports
+  sed -e "s/\(published_ports=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep published_ports
   sed -e "s/\(shared_volumes=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep shared_volumes
   sed -e "s/\(environment_variables=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
@@ -363,8 +363,8 @@ export PATH=$PATH:/usr/local/bin/edjanger
   cat $PROP | grep -v "#" | grep app_image_name
   sed -e "s/\(export app_container_name=\)\".*\"/\1\"webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep -v "#" | grep app_container_name
-  sed -e "s/\(export app_exposed_ports=\)\".*\"/\1\"-p 80:80 -p 443:443\"/" $PROP > $TMPP && mv $TMPP $PROP
-  cat $PROP | grep app_exposed_ports
+  sed -e "s/\(export app_published_ports=\)\".*\"/\1\"-p 80:80 -p 443:443\"/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep app_published_ports
   sed -e "s/\(export app_shared_volumes=\)\".*\"/\1\"-v \$PWD\/volumes\/html:\/var\/www\/html -v \$PWD\/volumes\/logs:\/var\/logs\/apache2\"/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep app_shared_volumes
   sed -e "s/\(export app_environment_variables=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
@@ -427,8 +427,8 @@ export PATH=$PATH:/usr/local/bin/edjanger
   cat $PROP | grep -v "#" | grep app_image_name
   sed -e "s/\(export app_container_name=\)\".*\"/\1\"nodetest\"/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep -v "#" | grep app_container_name
-  sed -e "s/\(export app_exposed_ports=\)\".*\"/\1\"-p 8080:8080\"/" $PROP > $TMPP && mv $TMPP $PROP
-  cat $PROP | grep app_exposed_ports
+  sed -e "s/\(export app_published_ports=\)\".*\"/\1\"-p 8080:8080\"/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep app_published_ports
   sed -e "s/\(export app_shared_volumes=\".*\"\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep app_shared_volumes
   sed -e "s/\(export app_environment_variables=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
@@ -482,8 +482,8 @@ export PATH=$PATH:/usr/local/bin/edjanger
   cat $PROP | grep -v "#" | grep app_image_name
   sed -e "s/\(export app_container_name=\)\".*\"/\1\"webtest\"/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep -v "#" | grep app_container_name
-  sed -e "s/\(export app_exposed_ports=\)\".*\"/\1\"-p 80:80 -p 443:443\"/" $PROP > $TMPP && mv $TMPP $PROP
-  cat $PROP | grep app_exposed_ports
+  sed -e "s/\(export app_published_ports=\)\".*\"/\1\"-p 80:80 -p 443:443\"/" $PROP > $TMPP && mv $TMPP $PROP
+  cat $PROP | grep app_published_ports
   sed -e "s/\(export app_shared_volumes=\)\".*\"/\1\"-v \$PWD\/volumes\/html:\/var\/www\/html -v \$PWD\/volumes\/logs:\/var\/logs\/apache2\"/" $PROP > $TMPP && mv $TMPP $PROP
   cat $PROP | grep app_shared_volumes
   sed -e "s/\(export app_environment_variables=\.*\)/#\1/" $PROP > $TMPP && mv $TMPP $PROP
