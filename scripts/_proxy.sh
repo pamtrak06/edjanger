@@ -32,7 +32,7 @@ else
     proxy_args="--build-arg HTTPS_PROXY=$HTTPS_PROXY"
   fi
   if [ -n "$HTTP_PROXY" ]; then
-     proxy_args="--build-arg HTTP_PROXY=$HTTP_PROXY ${proxy_args}"$
+     proxy_args="--build-arg HTTP_PROXY=$HTTP_PROXY ${proxy_args}"
   fi
   if [ -n "$https_proxy" ]; then
     proxy_args="--build-arg https_proxy=$https_proxy ${proxy_args}"
