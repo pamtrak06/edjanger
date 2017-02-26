@@ -94,9 +94,9 @@ Define path where to install edjanger (variable EDJANGER_INSTALL_PATH).
 Following commands are given as example.
 
 ```bash
-EDJANGER_INSTALL_PATH=/usr/local/bin
+EDJANGER_INSTALL_PATH=/opt/edjanger
 git clone https://github.com/pamtrak06/edjanger.git $EDJANGER_INSTALL_PATH
-cd edjanger; chmod 755 scripts/*.sh; chmod 755 edjangerinstall.sh
+cd $EDJANGER_INSTALL_PATH; chmod 755 scripts/*.sh; chmod 755 edjangerinstall.sh
 ```
 This will install edjanger in /usr/local/bin/edjanger
 If installation fail to install in this directory, try to install it in another, see [Linux Filesystem Hierarchy Standard](http://www.pathname.com/fhs/pub/fhs-2.3.pdf) for potential paths.
