@@ -98,7 +98,7 @@ EDJANGER_INSTALL_PATH=/opt/edjanger
 git clone https://github.com/pamtrak06/edjanger.git $EDJANGER_INSTALL_PATH
 cd $EDJANGER_INSTALL_PATH; chmod 755 scripts/*.sh; chmod 755 edjangerinstall.sh
 ```
-This will install edjanger in /usr/local/bin/edjanger
+This will install edjanger in /opt/edjanger
 If installation fail to install in this directory, try to install it in another, see [Linux Filesystem Hierarchy Standard](http://www.pathname.com/fhs/pub/fhs-2.3.pdf) for potential paths.
 
 Run edjanger installation
