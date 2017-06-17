@@ -11,7 +11,7 @@
 ##  
 ##         --build
 ##            Find edjanger.properties in current path and update
-##            a kv database in folder /opt/edjanegr/scripts/.kv-bash.
+##            a kv database in folder {edjangerpath}/.kv-bash.
 ##  
 ##         --clear
 ##            Clear database. Must be used with option --build.
