@@ -6,10 +6,10 @@ services:
   - docker
 
 before_script:
-    - CURDIR=$PWD
+    - CURDIR=$PWD; echo $CURDIR
     - ./edjangerinstall.sh --alias
     - git clone --branch=master https://github.com/sstephenson/bats.git /tmp/bats
-    - cd /tmp/bats; ./install.sh ~/; rm -rf /tmp/bats
+    - cd /tmp/bats; ./install.sh ~; rm -rf /tmp/bats
     - curl -L "https://github.com/docker/compose/releases/download/1.14.0-rc2/docker-compose-$(uname -s)-$(uname -m)" -o ~/docker-compose
     - chmod +x ~/docker-compose
     - curl -L "https://github.com/docker/machine/releases/download/v0.12.0-rc2/docker-machine-$(uname -s)-$(uname -m)" > ~/docker-machine
