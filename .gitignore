@@ -5,3 +5,4 @@ edjanger.unalias
 tests/tmp*
 gh-pages
 scripts/.kv-bash
+tests/workspace*
