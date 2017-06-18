@@ -905,11 +905,11 @@ function dockerbasicimage()
           [ -n "${no-prune}" ]        && commandoptions="${commandoptions} ${no-prune}"
         fi
         
-        docker ${commandline} ${commandoptions}
         if [ "true" = "${docker_command}" ]; then
             echo -e "> Executed docker command:"
             echo -e "> docker ${commandline} ${commandoptions}"
         fi
+        docker ${commandline} ${commandoptions}
       fi
     fi
   fi
