@@ -111,8 +111,10 @@ read_app_properties
 [ -n "${environment_variables}" ]              && commandoptions="${commandoptions} ${environment_variables}"
 [ -n "${linked_containers}" ]                  && commandoptions="${commandoptions} ${linked_containers}"
 [ -n "${image_name}" ]                         && commandoptions="${commandoptions} ${image_name}"
-[ -z "${command_run}" ]                        && command_run="/bin/bash"
-[ -n "${command_run}" ]                        && commandoptions="${commandoptions} ${command_run}"
+[ -n "${command_args}" ]                       && commandoptions="${commandoptions} ${command_args}"
+#[ -n "${command_run}" ]                        && commandoptions="${commandoptions} ${command_run}"
+#[ -z "${command_run}" ]                        && command_run="/bin/bash"
+#[ -n "${command_run}" ]                        && commandoptions="${commandoptions} ${command_run}"
 [ -n "${commandoptions}" ]                     && commandoptions="--commandoptions=\"${commandoptions}\""
 [[ -n "$@" ]]                                  && externaloptions=$(echo $@ | sed "s|[[:space:]]--|;--|g") \
                                                && externaloptions=$(echo $@ | sed "s|[[:space:]]-|;-|g")
