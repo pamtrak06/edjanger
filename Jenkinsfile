@@ -8,20 +8,6 @@ pipeline {
   
   stages {
     stage("first stage") {
-      // All sections within stage other than steps are optional.
-      environment {
-        // Overrides or adds to the existing environment
-        FOO = "notBar"
-      }
-      tools {
-        // Overrides tools of the same type defined globally
-        maven "maven3.3.3"
-      }
-      agent {
-        // Overrides the top-level agent. "agent none" at the stage level does nothing.
-        label "some-other-label"
-      }
-      
      
       // Runs at the end of the stage, depending on whether the conditions are met.
       post {
