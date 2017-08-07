@@ -1,7 +1,4 @@
 pipeline {
-  // Possible agent configurations - you must have one and only one at the top level.
-  agent any
-
   // Note that you can define a default label for docker and dockerfile in either your Jenkins
   // global configuration, or in the configuration for a folder, like a GitHub Organization Folder.
   // If that's defined, that label will be used when you don't specify one here explicitly.
