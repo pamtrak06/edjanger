@@ -98,10 +98,10 @@ read_app_properties
 [ -z "${image_name}" ]                         && echo "Image name must be filled, configure variable image_name in edjanger.${config_extension}" && exit -1
 [ -z "${container_name}" ]                     && echo "Container name must be filled, configure variable container_name in edjanger.${config_extension}" && exit -1
 
-[ -z "${container_hostname}" ]                 && commandoptions="${commandoptions} ${container_hostname}"
-[ -z "${container_privilege}" ]                && commandoptions="${commandoptions} ${container_privilege}"
-[ -z "${container_remove}" ]                   && commandoptions="${commandoptions} ${container_remove}"
-[ -z "${container_addhost}" ]                  && commandoptions="${commandoptions} ${container_addhost}"
+[ -n "${container_hostname}" ]                 && commandoptions="${commandoptions} ${container_hostname}"
+[ -n "${container_privilege}" ]                && commandoptions="${commandoptions} ${container_privilege}"
+[ -n "${container_remove}" ]                   && commandoptions="${commandoptions} ${container_remove}"
+[ -n "${container_addhost}" ]                  && commandoptions="${commandoptions} ${container_addhost}"
 [ -n "${run_other_options}" ]                  && commandoptions="${commandoptions} ${run_other_options}"
 [ -n "${network_settings}" ]                   && commandoptions="${commandoptions} ${network_settings}"
 [ -n "${runtime_constraints_on_resources}" ]   && commandoptions="${commandoptions} ${runtime_constraints_on_resources}"
