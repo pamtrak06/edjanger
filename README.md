@@ -74,7 +74,7 @@ docker stop $(docker ps -aq | grep "devops/jenkins")
 
 ### Installation
 ```bash
-git clone https://github.com/pamtrak06/edjanger.git /usr/local/bin
+git clone https://github.com/pamtrak06/edjanger.git /usr/local/bin/edjanger
 cd edjanger; chmod 755 scripts/*.sh; chmod 755 edjangerinstall.sh
 ```
 
